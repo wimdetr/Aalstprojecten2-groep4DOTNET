@@ -24,7 +24,7 @@ img{max-width:100%;}
 /*end reset*/
 body{
 	font-family: 'Open Sans', sans-serif;
-	background: url(../images/bg.jpg) no-repeat #fff;
+	background: url(../images/login/foto1.jpg) no-repeat #fff;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
@@ -165,7 +165,6 @@ body{
         filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); 
     }
      .tab.style-1 dl dd.users a.user { 
-    	 background: url("../images/contact1.png") no-repeat 37px 10px #eee;
 		padding: 9px 60px 0px;
 		border-top-left-radius: 5px;
 		-webkit-border-top-left-radius: 5px;
@@ -173,11 +172,9 @@ body{
 		-o-border-top-left-radius: 5px;
     }
      .tab.style-1 dl dd.users a.active { 
-    	 background: url("../images/contact.png") no-repeat 37px 10px #fff;
 		padding: 9px 60px 0px;
     }
      .tab.style-1 dl dd.users a.active { 
-    	 background: url("../images/contact.png") no-repeat 37px 10px #fff;
 		padding: 9px 60px 0px;
 		border-top-left-radius: 5px;
 		-webkit-border-top-left-radius: 5px;
@@ -185,19 +182,15 @@ body{
 		-o-border-top-left-radius: 5px;
     }
      .tab.style-1 dl dd.users a:hover { 
-    	 background: url("../images/contact.png") no-repeat 37px 10px #fff;
 		padding: 9px 60px 0px;
     }
      .tab.style-1 dl dd.messages a.msg { 
-      background: url("../images/massage.png") no-repeat 37px 10px #eee;
       padding: 9px 60px 0px;
     }
      .tab.style-1 dl dd.messages a.active{ 
-      background: url("../images/massage1.png") no-repeat 37px 10px #fff;
       padding: 9px 60px 0px;
     }
      .tab.style-1 dl dd.messages a:hover{ 
-        background: url("../images/massage1.png") no-repeat 37px 10px #fff;
       padding: 9px 60px 0px;
     }
     
@@ -266,27 +259,21 @@ body{
 	    border: 1px solid #0000ff;
 	}
 	.tab.style-1 dl dd.users a.user { 
-    	 background: url("../images/contact1.png") no-repeat 30px 10px #eee;
     	  padding: 9px 45px 0px;
     }
 	.tab.style-1 dl dd.users a.active { 
-    	 background: url("../images/contact.png") no-repeat 30px 10px #fff;
     	  padding: 9px 45px 0px;
     }
      .tab.style-1 dl dd.users a:hover { 
-    	 background: url("../images/contact.png") no-repeat 30px 10px #fff;
     	  padding: 9px 45px 0px;
     }
      .tab.style-1 dl dd.messages a.msg { 
-      background: url("../images/massage.png") no-repeat 32px 10px #eee;
        padding: 9px 46px 0px;
     }
      .tab.style-1 dl dd.messages a.active{ 
-      background: url("../images/massage1.png") no-repeat 32px 10px #fff;
        padding: 9px 46px 0px;
     }
      .tab.style-1 dl dd.messages a:hover{ 
-        background: url("../images/massage1.png") no-repeat 32px 10px #fff;
          padding: 9px 46px 0px;
     }
 	.form input[type="text"] {
@@ -304,11 +291,9 @@ body{
 		width: 260px;
 	}
 	.tab.style-1 dl dd.users a.user {
-		background: url("../images/contact1.png") no-repeat 18px 10px #eee;
 		padding: 9px 32px 0px;
 	}
 	.tab.style-1 dl dd.messages a.msg {
-		background: url("../images/massage.png") no-repeat 18px 10px #eee;
 		padding: 9px 33px 0px;
 	}
 	
