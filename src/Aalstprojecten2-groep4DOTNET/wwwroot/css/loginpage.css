@@ -1,0 +1,321 @@
+﻿ /* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+body{
+	font-family: 'Open Sans', sans-serif;
+	background: url(../images/bg.jpg) no-repeat #fff;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	font-weight: 300;
+}
+.wrap{
+	width: 26.4%;
+	margin: 0 auto;
+}
+
+    .tab.style-1 dl{ 
+	    display      : block; 
+        margin       : 0; /* margin-bottom: 0; top gap of content */
+        padding      : 0; 
+        height       : 38px; 
+        border-radius: 5px;
+     }
+     
+
+    .tab.style-1 dl dd { 
+        display    : block; 
+        width      : 300px; 
+        height     : 38px; 
+        padding    : 0; 
+        float      : left;
+        margin-left: 0px; /* tabs distance */
+       transition: 0.5s ease;
+	-o-transition: 0.5s ease;
+       
+    }
+    
+    .stopmetkapotzijn {
+        margin: auto;
+    }
+    
+    .tab.style-1 dl dd a {
+        display        : block; 
+        width          : auto; 
+        height         : 45px; 
+       padding: 9px 36px 0px;
+        line-height    : 38px; 
+        color          : #666; 
+       	background: #eee; 
+        text-decoration: none;
+        transition: 0.5s ease;
+	-o-transition: 0.5s ease;
+    }
+    
+    .tab.style-1 dl dd a:hover { color: #000; }
+        
+    .tab.style-1 dl dd a.active {
+      background: #ffffff;
+        border-width: 1px 1px 0 1px;
+        height      : 45px; 
+        color       : #000;
+        border-bottom-color: rgba(255,255,255,0);
+       border-radius: 5px;
+    }
+    .tab.style-1 {
+		box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.28);
+		border: 0px solid#eee;
+		border-radius: 5px;
+		  -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        -o-border-radius:5px;
+	}
+    
+    /* content area */
+    .tab.style-1 > ul { 
+        display      : block;
+	    margin       : 0; 
+        padding      : 22px;
+        background   : #fff;
+       
+     }
+    
+    .tab.style-1 > ul li { display:none; }
+    .tab.style-1 > ul li.active { display: block; }
+
+
+    /* style-1 dark */
+    .tab.style-1.dark dl dd a { 
+        background: #535353;
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUzNTM1MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0ODQ4NDgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(top,  #535353 0%, #484848 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#535353), color-stop(100%,#484848));
+        background: -webkit-linear-gradient(top,  #535353 0%,#484848 100%);
+        background: -o-linear-gradient(top,  #535353 0%,#484848 100%);
+        background: -ms-linear-gradient(top,  #535353 0%,#484848 100%);
+        background: linear-gradient(top,  #535353 0%,#484848 100%);
+        filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#535353', endColorstr='#484848',GradientType=0 );
+        color     : #b8b8b8;
+    }
+ 
+    .tab.style-1.dark dl dd a:hover  { 
+        background: #464646;
+        filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#464646', endColorstr='#464646',GradientType=0 );
+        color     : #fff; 
+    }
+        
+    .tab.style-1.dark dl dd a.active { 
+        background: #535353; 
+        filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#535353', endColorstr='#535353',GradientType=0 );
+        color     : #fff; 
+    }
+    
+    .tab.style-1.dark > ul { 
+        background: #535353;
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUzNTM1MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0ODQ4NDgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(top,  #535353 0%, #484848 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#535353), color-stop(100%,#484848));
+        background: -webkit-linear-gradient(top,  #535353 0%,#484848 100%);
+        background: -o-linear-gradient(top,  #535353 0%,#484848 100%);
+        background: -ms-linear-gradient(top,  #535353 0%,#484848 100%);
+        background: linear-gradient(top,  #535353 0%,#484848 100%);
+        filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#535353', endColorstr='#484848',GradientType=0 );
+        color     : #fff; 
+    } 
+  
+    /* style-1 gradient */
+    .tab.style-1.gradient dl dd a,
+    .tab.style-1.gradient > ul{
+        background: #ffffff;
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNWY2ZjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(top,  #ffffff 0%, #f5f6f5 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f5f6f5));
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        background: -o-linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        background: -ms-linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        background: linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f6f5',GradientType=0 );
+    }
+    
+    .tab.style-1.gradient dl dd a:hover,
+    .tab.style-1.gradient dl dd a.active { 
+        background: #fff;
+        filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); 
+    }
+     .tab.style-1 dl dd.users a.user { 
+    	 background: url("../images/contact1.png") no-repeat 37px 10px #eee;
+		padding: 9px 60px 0px;
+		border-top-left-radius: 5px;
+		-webkit-border-top-left-radius: 5px;
+		-moz-border-top-left-radius: 5px;
+		-o-border-top-left-radius: 5px;
+    }
+     .tab.style-1 dl dd.users a.active { 
+    	 background: url("../images/contact.png") no-repeat 37px 10px #fff;
+		padding: 9px 60px 0px;
+    }
+     .tab.style-1 dl dd.users a.active { 
+    	 background: url("../images/contact.png") no-repeat 37px 10px #fff;
+		padding: 9px 60px 0px;
+		border-top-left-radius: 5px;
+		-webkit-border-top-left-radius: 5px;
+		-moz-border-top-left-radius: 5px;
+		-o-border-top-left-radius: 5px;
+    }
+     .tab.style-1 dl dd.users a:hover { 
+    	 background: url("../images/contact.png") no-repeat 37px 10px #fff;
+		padding: 9px 60px 0px;
+    }
+     .tab.style-1 dl dd.messages a.msg { 
+      background: url("../images/massage.png") no-repeat 37px 10px #eee;
+      padding: 9px 60px 0px;
+    }
+     .tab.style-1 dl dd.messages a.active{ 
+      background: url("../images/massage1.png") no-repeat 37px 10px #fff;
+      padding: 9px 60px 0px;
+    }
+     .tab.style-1 dl dd.messages a:hover{ 
+        background: url("../images/massage1.png") no-repeat 37px 10px #fff;
+      padding: 9px 60px 0px;
+    }
+    
+
+    .mijnRij{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .customRij {
+        text-align: center;
+	padding-top: 12em;
+        width: 600px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .prentje {
+        margin: 10px 0px 10px;
+    }
+
+@media only screen and (min-width: 1366px){
+
+    .linkerKant {
+        float: right;
+        margin-right: 50px;
+    }
+
+    .rechterKant {
+        float: left;
+        margin-left: 50px;
+    }
+	
+}
+
+@media only screen and (max-width: 1280px){
+	.wrap{
+		width:95%;
+	}
+}
+
+@media only screen and (max-width: 1024px){
+	.wrap{
+		width:95%;
+	}
+	
+}
+@media only screen and (max-width: 800px){
+	.wrap{
+		width:95%;
+	}
+	
+}
+@media only screen and (max-width: 640px){
+	.wrap{
+		width:95%;
+	}
+	
+}
+@media only screen and (max-width: 480px){
+    .wrap {
+        width: 95%;
+    }
+	.mijnRij {
+		width: 361px;
+	    border: 1px solid #0000ff;
+	}
+	.tab.style-1 dl dd.users a.user { 
+    	 background: url("../images/contact1.png") no-repeat 30px 10px #eee;
+    	  padding: 9px 45px 0px;
+    }
+	.tab.style-1 dl dd.users a.active { 
+    	 background: url("../images/contact.png") no-repeat 30px 10px #fff;
+    	  padding: 9px 45px 0px;
+    }
+     .tab.style-1 dl dd.users a:hover { 
+    	 background: url("../images/contact.png") no-repeat 30px 10px #fff;
+    	  padding: 9px 45px 0px;
+    }
+     .tab.style-1 dl dd.messages a.msg { 
+      background: url("../images/massage.png") no-repeat 32px 10px #eee;
+       padding: 9px 46px 0px;
+    }
+     .tab.style-1 dl dd.messages a.active{ 
+      background: url("../images/massage1.png") no-repeat 32px 10px #fff;
+       padding: 9px 46px 0px;
+    }
+     .tab.style-1 dl dd.messages a:hover{ 
+        background: url("../images/massage1.png") no-repeat 32px 10px #fff;
+         padding: 9px 46px 0px;
+    }
+	.form input[type="text"] {
+		width: 273px;
+	}
+	.form input[type="submit"] {
+		width: 302px;
+	}
+}
+@media only screen and (max-width: 320px){
+	.wrap{
+		width:95%;
+	}
+	.mijnRij {
+		width: 260px;
+	}
+	.tab.style-1 dl dd.users a.user {
+		background: url("../images/contact1.png") no-repeat 18px 10px #eee;
+		padding: 9px 32px 0px;
+	}
+	.tab.style-1 dl dd.messages a.msg {
+		background: url("../images/massage.png") no-repeat 18px 10px #eee;
+		padding: 9px 33px 0px;
+	}
+	
+	.form input[type="text"] {
+		width: 169px;
+	}
+	.form input[type="submit"] {
+		width: 198px;
+	}
+}
