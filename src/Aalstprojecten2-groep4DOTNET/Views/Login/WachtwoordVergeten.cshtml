@@ -1,0 +1,52 @@
+﻿@model Aalstprojecten2_groep4DOTNET.Models.NogViewModels.WachtwoordVergetenViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Wachtwoord vergeten - Kairos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/WachtwoordVergeten.css" />
+
+
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- tab style-1 -->
+            <div class="row customRij">
+                <h2 class="maakShjtijl">Wachtwoord vergeten</h2>
+                <div class="grid_12 columns">
+                    <div class="tab style-1">
+                        <h4>Geef uw email adres in en wij sturen u een nieuw wachtwoord.</h4>
+
+                        <form asp-controller="Login" asp-action="Index" method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input asp-for="Email" class="form-control input-lg" placeholder="Email adres" tabindex="1">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="submit" value="Verzend" class="btn btn-primary btn-block btn-lg" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

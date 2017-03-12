@@ -15,5 +15,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             return View();
         }
+
+        public IActionResult WachtwoordVergeten()
+        {
+            return View();
+        }
     }
 }
