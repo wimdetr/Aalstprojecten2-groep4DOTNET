@@ -1,0 +1,91 @@
+﻿.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.omlijn {
+    border: 1px solid black;
+    margin: 15px 0px 15px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.omlijnBoven {
+    border-top: 1px solid black;
+}
+
+.kosten {
+    text-align: left;
+}
+
+.kostenBalk {
+    background-color: red;
+    width: 100%;
+    text-align: left;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.baten {
+    text-align: right;
+}
+
+.batenBalk {
+    background-color: green;
+    width: 100%;
+    text-align: right;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.helft {
+    float: left;
+}
+
+.resultaat {
+    border-top: 1px solid black;
+    text-align: center;
+    background-color: green;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.verhoogPaddingZijkant {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.verhoogPaddingBovenOnder {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.verhoogPaddingTitel {
+    padding: 5px;
+}
+
+.mijnIcoon {
+    max-height: 25px;
+    min-height: 25px;
+}
+
+.mijnLogo {
+    max-height: 35px;
+    min-height: 35px;
+}
+
+.icoon {
+    float: right;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.werkgeverTekst {
+    padding-top: 8px;
+}
