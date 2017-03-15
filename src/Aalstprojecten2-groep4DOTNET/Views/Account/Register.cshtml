@@ -1,42 +1,142 @@
 ﻿@model RegisterViewModel
 @{
     ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h2>@ViewData["Title"].</h2>
+<dl>
+    <dd class="users"><a asp-area="" asp-controller="Account" asp-action="Login" class="user"> Aanmelden</a></dd>
+    <dd class="messages"><a asp-area="" asp-controller="Account" asp-action="Register" class="msg active"> Registreren</a></dd>
+</dl>
+<ul>
+        <form asp-controller="Account" asp-action="Register" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input asp-for="Voornaam" class="form-control input-lg" placeholder="Voornaam" tabindex="1" />
+                        <span asp-validation-for="Voornaam" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input asp-for="Naam" class="form-control input-lg" placeholder="Naam" tabindex="2">
+                        <span asp-validation-for="Naam" class="text-danger"></span>
+                    </div>
+                </div>
 
-<form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-    <h4>Create a new account.</h4>
-    <hr />
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="ConfirmPassword" class="form-control" />
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Register</button>
-        </div>
-    </div>
-</form>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-control input-lg" placeholder="Email adres" tabindex="3">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <input asp-for="NaamBedrijf" class="form-control input-lg" placeholder="Bedrijfsnaam" tabindex="4">
+                        <span asp-validation-for="NaamBedrijf" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-7 col-md-7">
+                    <div class="form-group">
+                        <input asp-for="Straat" class="form-control input-lg" placeholder="Straat" tabindex="5">
+                        <span asp-validation-for="Straat" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-sm-3 col-md-3">
+                    <div class="form-group">
+                        <input asp-for="Nummer" class="form-control input-lg" placeholder="Nummer" tabindex="6">
+                        <span asp-validation-for="Nummer" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-2 col-md-2">
+                    <div class="form-group">
+                        <input asp-for="Bus" class="form-control input-lg" placeholder="Bus" tabindex="7">
+                        <span asp-validation-for="Bus" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="form-group">
+                        <input asp-for="Postcode" class="form-control input-lg" placeholder="Postcode" tabindex="8">
+                        <span asp-validation-for="Postcode" class="text-danger"></span>
+                    </div>
+                </div>
 
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    <div class="form-group">
+                        <input asp-for="Gemeente" class="form-control input-lg" placeholder="Gemeente" tabindex="9">
+                        <span asp-validation-for="Gemeente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6"></div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="Registreer" class="btn btn-primary btn-block btn-lg" tabindex="10">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="clear"> </div>
+</ul>
+
+
+
+        @section Scripts {
+            @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @*@model RegisterViewModel
+            @{
+                ViewData["Title"] = "Register";
+            }
+
+            <h2>@ViewData["Title"].</h2>
+
+            <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-default">Register</button>
+                    </div>
+                </div>
+            </form>
+
+            @section Scripts {
+                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+            }*@
