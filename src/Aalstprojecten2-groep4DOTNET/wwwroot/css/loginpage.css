@@ -20,17 +20,20 @@ a{text-decoration:none;}
 .underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
 nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
-img{max-width:100%;}
+img{
+    max-width:100%;
+}
 /*end reset*/
 body{
 	font-family: 'Open Sans', sans-serif;
-	background: url(../images/login/foto1.jpg) no-repeat #fff;
+	background: url(../images/login/foto3.jpg) no-repeat;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
 	background-size: cover;
 	font-weight: 300;
 }
+
 .wrap{
 	width: 26.4%;
 	margin: 0 auto;
@@ -200,12 +203,28 @@ body{
         padding-right: 0px;
     }
 
+    .kleurtje2 {
+        background: #ffffff;
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNWY2ZjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(top,  #ffffff 0%, #f5f6f5 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f5f6f5));
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        background: -o-linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        background: -ms-linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        background: linear-gradient(top,  #ffffff 0%,#f5f6f5 100%);
+        filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f6f5',GradientType=0 );
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 25px;
+    }
+
     .customRij {
         text-align: center;
-	padding-top: 12em;
+	    padding-top: 12em;
         width: 600px;
         margin: auto;
         text-align: center;
+        
     }
 
     .prentje {

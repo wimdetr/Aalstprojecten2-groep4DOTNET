@@ -39,9 +39,9 @@ body{
 		  -webkit-border-radius:5px;
         -moz-border-radius:5px;
         -o-border-radius:5px;
-
         padding-left: 25px;
         padding-right: 25px;
+        padding-top: 25px;
 	}
     
 
