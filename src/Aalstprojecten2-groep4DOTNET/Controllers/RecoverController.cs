@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
 {
-    public class LoginController : Controller
+    public class RecoverController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
@@ -16,9 +16,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View();
         }
 
-        public IActionResult WachtwoordVergeten()
+        [HttpPost]
+        public IActionResult Index(String email)
         {
-            return View();
+            return RedirectToAction("Login", "Account");
         }
     }
 }
