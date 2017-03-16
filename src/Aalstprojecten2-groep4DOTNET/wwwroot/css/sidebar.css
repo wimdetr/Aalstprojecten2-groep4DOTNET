@@ -49,7 +49,7 @@
 .top-nav>.open>a,
 .top-nav>.open>a:hover,
 .top-nav>.open>a:focus {
-    color: #fff;
+    color: #FFFFFF;
     background-color: #1a242f;
 }
 
@@ -97,7 +97,7 @@
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
-        background-color: #1a242f !important;
+        background-color: #FFFFFF !important;
     }
 }
 
@@ -112,6 +112,10 @@
     text-decoration: none;
     /*color: #999;*/
     color: #fff;    
+}
+
+.extraPadding {
+    padding-bottom:10px;
 }
 
 .side-nav>li>ul>li>a:hover {
