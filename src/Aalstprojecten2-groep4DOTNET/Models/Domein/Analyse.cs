@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,49 +8,63 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public class Analyse
     {
+        #region Properties
         public int Id { get; set; }
-        public IDictionary<int, KostOfBaat> Kosten { get; set; }
+        public ICollection<KostOfBaat> Kosten { get; set; }
         
-        public IDictionary<int, KostOfBaat> Baten { get; set; }
+        public ICollection<KostOfBaat> Baten { get; set; }
         public Werkgever Werkgever { get; set; }
         public DateTime LaatsteAanpasDatum { get; set; }
+        #endregion
+
+        #region Constructor
 
         public Analyse(int id, DateTime date)
         {
             Id = id;
             LaatsteAanpasDatum = date;
-            Kosten = new Dictionary<int, KostOfBaat>();
-            Baten = new Dictionary<int, KostOfBaat>();
+            Kosten = new List<KostOfBaat>();
+            Baten = new List<KostOfBaat>();
         }
+        #endregion
 
+        #region methods
         public Boolean ControleerOfKostMetNummerAlIngevuldIs(int nummer)
         {
-            return Kosten.ContainsKey(nummer);
+            return Kosten.Any(k => k.Id == nummer);
         }
 
         public KostOfBaat GeefKostMetNummer(int nummer)
         {
-            return Kosten[nummer];
+            return Kosten.FirstOrDefault(k => k.Id == nummer);
         }
 
         public Boolean ControleerOfBaatMetNummerAlIngevuldIs(int nummer)
         {
-            return Baten.ContainsKey(nummer);
+            return Baten.Any(b => b.Id == nummer);
         }
 
         public KostOfBaat GeefBaatMetNummer(int nummer)
         {
-            return Baten[nummer];
+            return Baten.FirstOrDefault(b => b.Id == nummer);
         }
 
-        public void SlaKostMetNummerOp(int nummer, KostOfBaat kost)
+        public void SlaKostMetNummerOp(KostOfBaat kost)
         {
-            Kosten[nummer] = kost;
+            if (ControleerOfKostMetNummerAlIngevuldIs(kost.Id))
+            {
+                Kosten.Remove(GeefKostMetNummer(kost.Id));
+            }
+            Kosten.Add(kost);
         }
 
-        public void SlaBaatMetNummerOp(int nummer, KostOfBaat baat)
+        public void SlaBaatMetNummerOp(KostOfBaat baat)
         {
-            Baten[nummer] = baat;
+            if (ControleerOfBaatMetNummerAlIngevuldIs(baat.Id))
+            {
+                Baten.Remove(GeefBaatMetNummer(baat.Id));
+            }
+            Baten.Add(baat);
         }
 
         public double GeefSubtotaalKosten()
@@ -73,5 +88,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         {
             LaatsteAanpasDatum = DateTime.Now;
         }
+        #endregion
     }
 }

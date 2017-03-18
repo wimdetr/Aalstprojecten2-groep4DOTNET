@@ -7,7 +7,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public class Werkgever
     {
+        #region Field
         private readonly int _defaultPatronaleBijdrage = 35;
+        #endregion
+
+        #region Properties
         public string Naam { get; set; }
         public string Straat { get; set; }
         public string Nummer { get; set; }
@@ -18,7 +22,9 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public string LinkNaarLogoPrent { get; set; }
         public ContactPersoon ContactPersoon { get; set; }
         public string NaamAfdeling { get; set; }
+        #endregion
 
+        #region Constructor
         public Werkgever(string naam, int postcode, string gemeente)
         {
             Naam = naam;
@@ -26,5 +32,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             Gemeente = gemeente;
             PatronaleBijdrage = _defaultPatronaleBijdrage;
         }
+        #endregion 
     }
 }
