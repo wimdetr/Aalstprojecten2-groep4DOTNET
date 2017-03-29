@@ -7,14 +7,19 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public class Werkgever
     {
-        #region Field
+        #region Fields
         private readonly int _defaultPatronaleBijdrage = 35;
+        private readonly int _defaultAantalWerkuren = 38;
         #endregion
 
         #region Properties
+        public int AnalyseId { get; set; }
+        public string JobCoachEmail { get; set; }
+        public int? WerkgeverId { get; set; }
         public string Naam { get; set; }
         public string Straat { get; set; }
-        public string Nummer { get; set; }
+        public int Nummer { get; set; }
+        public string Bus { get; set; }
         public int Postcode { get; set; }
         public string Gemeente { get; set; }
         public int AantalWerkuren { get; set; }
@@ -25,12 +30,16 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Constructor
-        public Werkgever(string naam, int postcode, string gemeente)
+        public Werkgever(Analyse a, string naam, int postcode, string gemeente, string naamAfdeling)
         {
+            AnalyseId = a.AnalyseId;
+            JobCoachEmail = a.JobCoachEmail;
             Naam = naam;
             Postcode = postcode;
             Gemeente = gemeente;
+            NaamAfdeling = naamAfdeling;
             PatronaleBijdrage = _defaultPatronaleBijdrage;
+            AantalWerkuren = _defaultAantalWerkuren;
         }
         #endregion 
     }

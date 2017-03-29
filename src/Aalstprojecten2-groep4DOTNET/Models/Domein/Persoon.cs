@@ -13,7 +13,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public string Email { get; set; }
         #endregion
 
-        #region Contructor
+        #region Constructor
         protected Persoon(string naam, string voornaam, string email)
         {
             Naam = naam;
