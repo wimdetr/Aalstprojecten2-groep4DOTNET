@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,39 +8,54 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public class KostOfBaat
     {
-        public int Id { get; set; }
-        public IDictionary<int, KOBRij> Rijen { get; set; }
+        #region Properties
+        public int AnalyseId { get; set; }
+        public string JobCoachEmail { get; set; }
+        public int KostOfBaatId { get; set; }
+        public ICollection<KOBRij> Rijen { get; set; }
         public KOBEnum KostOfBaatEnum { get; set; }
         public Formule Formule { get; set; }
+        [NotMapped]
         public double Resultaat { get; set; }
+        #endregion
 
-        public KostOfBaat(int id, KOBEnum kobEnum, Formule formule)
+        #region Constructor
+        public KostOfBaat(Analyse a, int id, KOBEnum kobEnum, Formule formule)
         {
-            Id = id;
+            AnalyseId = a.AnalyseId;
+            JobCoachEmail = a.JobCoachEmail;
+            KostOfBaatId = id;
             KostOfBaatEnum = kobEnum;
             Resultaat = 0;
-            Rijen = new Dictionary<int, KOBRij>();
+            Rijen = new List<KOBRij>();
             Formule = formule;
         }
+        #endregion
 
-        public void VulKOBRijIn(int nummer, KOBRij rij)
+        #region Methods
+        public void VulKOBRijIn(KOBRij rij)
         {
-            Rijen[nummer] = rij;
+            if (ControleerOfKOBRijMetNummerAlIngevuldIs(rij.KOBRijId))
+            {
+                Rijen.Remove(GeefKOBRijMetNummer(rij.KOBRijId));
+            }
+            Rijen.Add(rij);
         }
 
         public KOBRij GeefKOBRijMetNummer(int nummer)
         {
-            return Rijen[nummer];
+            return Rijen.FirstOrDefault(r => r.KOBRijId == nummer);
         }
 
         public Boolean ControleerOfKOBRijMetNummerAlIngevuldIs(int nummer)
         {
-            return Rijen.ContainsKey(nummer);
+            return Rijen.Any(r => r.KOBRijId == nummer);
         }
 
         public void BerekenResultaat()
         {
-            Resultaat = Rijen.Values.Sum(r => r.Resultaat);
+            Resultaat = Rijen.Sum(r => r.Resultaat);
         }
+        #endregion
     }
 }

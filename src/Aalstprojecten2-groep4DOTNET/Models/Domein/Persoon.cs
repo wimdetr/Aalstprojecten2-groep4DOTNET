@@ -7,15 +7,19 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public abstract class Persoon
     {
+        #region Properties
         public string Naam { get; set; }
         public string Voornaam { get; set; }
         public string Email { get; set; }
+        #endregion
 
+        #region Constructor
         protected Persoon(string naam, string voornaam, string email)
         {
             Naam = naam;
             Voornaam = voornaam;
             Email = email;
         }
+        #endregion
     }
 }

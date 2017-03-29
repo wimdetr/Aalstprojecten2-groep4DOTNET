@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,30 +8,49 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public class KOBRij
     {
-        public int Id { get; set; }
-        public IDictionary<int, KOBVak> Vakken { get; set; }
+        #region Properties
+        public int AnalyseId { get; set; }
+        public string JobCoachEmail { get; set; }
+        public int KostOfBaatId { get; set; }
+        public KOBEnum KostOfBaatEnum { get; set; }
+        public int KOBRijId { get; set; }
+        public ICollection<KOBVak> Vakken { get; set; }
+        [NotMapped]
         public double Resultaat { get; set; }
+        #endregion
 
-        public KOBRij(int id)
+        #region Contructors
+        public KOBRij(KostOfBaat kostOfBaat, int id)
         {
-            Id = id;
-            Vakken = new Dictionary<int, KOBVak>();
+            KostOfBaatEnum = kostOfBaat.KostOfBaatEnum;
+            KostOfBaatId = kostOfBaat.KostOfBaatId;
+            AnalyseId = kostOfBaat.AnalyseId;
+            JobCoachEmail = kostOfBaat.JobCoachEmail;
+            KOBRijId = id;
+            Vakken = new List<KOBVak>();
             Resultaat = 0;
         }
+        #endregion
 
-        public void VulKOBVakIn(int nummer, KOBVak vak)
+        #region Methods
+        public void VulKOBVakIn(KOBVak vak)
         {
-            Vakken[nummer] = vak;
+            if (ControleerOfKOBVakMetNummerAlIngevuldIs(vak.KOBVakId))
+            {
+                Vakken.Remove(GeefKOBVakMetNummer(vak.KOBVakId));
+            }
+            Vakken.Add(vak);
         }
 
         public Boolean ControleerOfKOBVakMetNummerAlIngevuldIs(int nummer)
         {
-            return Vakken.ContainsKey(nummer);
+            return Vakken.Any(v => v.KOBVakId == nummer);
         }
 
         public KOBVak GeefKOBVakMetNummer(int nummer)
         {
-            return Vakken[nummer];
+            return Vakken.FirstOrDefault(v => v.KOBVakId == nummer);
         }
+        #endregion
     }
 }
