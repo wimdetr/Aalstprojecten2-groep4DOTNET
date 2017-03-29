@@ -19,7 +19,7 @@
 }
 
 .kostenBalk {
-    background-color: red;
+    background-color: #ff6666;
     width: 100%;
     text-align: left;
     border-bottom: 2px solid black;
@@ -32,7 +32,7 @@
 }
 
 .batenBalk {
-    background-color: green;
+    background-color: #9fdf9f;
     width: 100%;
     text-align: right;
     border-bottom: 2px solid black;
@@ -47,12 +47,11 @@
 .resultaat {
     border-top: 1px solid black;
     text-align: center;
-    background-color: green;
+    background-color: #9fdf9f;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top: 20px;
     font-size: 25px;
 }
 
@@ -89,4 +88,13 @@
 
 .werkgeverTekst {
     padding-top: 8px;
+}
+
+.kaartjeHeading {
+    background-color: #85BEB8;
+}
+
+.achtergrondKleurtje {
+    background-color: #FFFFFF;
+    padding-bottom: 20px;
 }
