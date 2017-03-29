@@ -231,6 +231,9 @@ body{
         margin: 10px 0px 10px;
     }
 
+    .rechterKant {
+        padding-bottom: 12em;
+    }
 
 
 @media only screen and (min-width: 1366px){
@@ -243,6 +246,7 @@ body{
     .rechterKant {
         float: left;
         margin-left: 50px;
+        
     }
 	
 }
