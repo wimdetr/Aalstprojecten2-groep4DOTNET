@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.AccountViewModels;
+using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Services;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
@@ -22,19 +23,22 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly IJobCoachRepository _jobCoachRepository;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IJobCoachRepository jobCoachRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _jobCoachRepository = jobCoachRepository;
         }
 
         //
@@ -105,19 +109,24 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Naam = model.Naam, Voornaam = model.Voornaam};
+                var result = await _userManager.CreateAsync(user, "Abc123");
                 if (result.Succeeded)
                 {
+                    JobCoach jc = new JobCoach(model.Naam, model.Voornaam, model.Email, model.NaamBedrijf, model.Straat, model.Nummer, model.Postcode, model.Gemeente);
+                    if (model.Bus != null)
+                    {
+                        jc.BusBedrijf = model.Bus;
+                    }
+                    _jobCoachRepository.Add(jc);
+                    _jobCoachRepository.SaveChanges();
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Login");
                 }
                 AddErrors(result);
             }
@@ -134,7 +143,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction("Login");
         }
 
         //

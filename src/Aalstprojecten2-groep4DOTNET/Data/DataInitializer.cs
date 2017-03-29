@@ -13,7 +13,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             context.Database.EnsureDeleted();
             if (context.Database.EnsureCreated())
             {
-                JobCoach mark = new JobCoach("De Bruyne", "Niels", "andreas.dewitte@hotmail.com", "tempo team", "Zevekootstraat", 567, 9420, "Erpe");
+                JobCoach mark = new JobCoach("De Bruyne", "Niels", "niels95debruyne@hotmail.com", "tempo team", "Zevekootstraat", 567, 9420, "Erpe");
                 context.JobCoaches.Add(mark);
 
                 Analyse a = new Analyse(mark, 1, DateTime.Now);
@@ -236,7 +236,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
                 Werkgever w = new Werkgever(a, "Carrefour", 9420, "Erpe", "magazijn");
                 context.Werkgevers.Add(w);
-                ContactPersoon cp = new ContactPersoon("De Troyer", "Wim", "niels95debruyne@hotmail.com");
+                ContactPersoon cp = new ContactPersoon("De Troyer", "Wim", "niels955debruyne@hotmail.com");
                 w.ContactPersoon = cp;
                 context.SaveChanges();
 

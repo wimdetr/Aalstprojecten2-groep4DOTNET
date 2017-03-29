@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Aalstprojecten2_groep4DOTNET.Data;
+using Aalstprojecten2_groep4DOTNET.Data.Repositories;
 using Aalstprojecten2_groep4DOTNET.Models;
+using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Services;
 
 namespace Aalstprojecten2_groep4DOTNET
@@ -47,9 +49,18 @@ namespace Aalstprojecten2_groep4DOTNET
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(Configuration["Data:DefaultConnection:ConnectionString"]));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequiredLength = 6;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IJobCoachRepository, JobCoachRepository>();
 
             services.AddMvc();
 
@@ -91,7 +102,7 @@ namespace Aalstprojecten2_groep4DOTNET
                     name: "default",
                     template: "{controller=Account}/{action=Login}/{id?}");
             });
-            DataInitializer.InitializeData(context);
+            //DataInitializer.InitializeData(context);
         }
     }
 }

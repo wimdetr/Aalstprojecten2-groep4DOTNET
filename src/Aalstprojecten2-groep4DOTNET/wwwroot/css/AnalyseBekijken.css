@@ -10,12 +10,7 @@
     margin-right: 15px;
 }
 
-.navbar-collapse {
-            width: 100%;
-    		position: relative;
-    		padding-top: 30px !important;
-    		max-height: 270px;
-    	}
+
     	.navbar-collapse form[role="search"] {
     		position: absolute;
     		top: 0px;
