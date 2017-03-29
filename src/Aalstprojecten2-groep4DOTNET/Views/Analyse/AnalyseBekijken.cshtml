@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Kairos";
+}
+
+<link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
+<link rel="stylesheet" href="~/css/analyseDetail.css" />
+<script src="~/js/AnalyseToolbar.js"></script>
+
+<h2>Archief - Gemaakte Analyses</h2>
+<hr />
+
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a asp-area="" asp-controller="Analyse" asp-action="AnalyseOverzicht"><img class="img-circle img-responsive mijnLogo opschuiven" src="~/images/iconen/toevoegen.png" alt="meh" /></a>
+            </li>
+
+            <li>
+                <img class="img-circle img-responsive mijnLogo opschuiven" src="~/images/iconen/search.png" alt="meh" />
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+@for (var i = 0; i < 5; i++)
+{
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 omlijn">
+            <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel">
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    @*logo werkgever*@
+                    <img class="img-circle img-responsive mijnLogo" src="~/images/analyseOverzicht/Carrefour.png" alt="meh" />
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 werkgeverTekst">
+                    @*naam werkgever*@
+                    <strong>Carrefour</strong>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 iconen">
+                    @*knoppen downloaden versturen verwijderen*@
+                    <div class="icoon">
+                        <img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/delete.png" alt="meh" />
+                    </div>
+                    <div class="icoon">
+                        <img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/send.png" alt="meh" />
+                    </div>
+                    <div class="icoon">
+                        <img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh" />
+                    </div>
+                </div>
+            </div>
+            @*informatie*@
+            <div class="col-lg-12 col-md-12 col-sm-12 omlijnBoven verhoogPaddingZijkant verhoogPaddingBovenOnder">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="infoTekst">
+                        <u><strong>Locatie</strong></u>
+                    </div>
+                    <div class="infoTekst">
+                        <strong>Aalst</strong>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="infoTekst">
+                        <u><strong>Gewijzigd Op</strong></u>
+                    </div>
+                    <div class="infoTekst">
+                        <strong>10/03/2017</strong>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="infoTekst">
+                        <u><strong>Jobcoach</strong></u>
+                    </div>
+                    <div class="infoTekst">
+                        <strong>Niels De Bruyne</strong>
+                    </div>
+                </div>
+            </div>
+            @*resultaten*@
+            <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant">
+                <div class="helft" style="width: 34.9%;">
+                    <div class="kosten">
+                        <strong>Kosten</strong>
+                    </div>
+                    <div class="kostenBalk">
+                        <strong>€12.456,00</strong>
+                    </div>
+                </div>
+                <div class="helft" style="width: 65.1%;">
+                    <div class="baten">
+                        <strong>Baten</strong>
+                    </div>
+                    <div class="batenBalk">
+                        <strong>€23.274,00</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 resultaat">
+                <strong>€10.818,00</strong>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,324 @@
+﻿/* import the fonts needed */
+@import url("http://fonts.googleapis.com/css?family=Cookie");
+@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* header settings */
+.header > input { display: none; }
+
+.header > label {
+  display: none;
+  width: 3em;
+  height: 3em;
+  margin-left: 1em;
+  margin-top: .5em;
+  background-size: contain;
+  background-image: url("https://drive.google.com/uc?export=view&id=0B6od18BhWGl5eWhtZzJUaFA0SjA");
+  background-repeat: no-repeat;
+}
+
+.header {
+  width: 100%;
+  height: 4em;
+  background-color: #85BEB8;
+  opacity: 0.9;
+  background-image: url("https://drive.google.com/uc?export=view&id=0B6od18BhWGl5YWN3emwyelRyUUE");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 4em;
+  position: fixed;
+  top: 0px;
+  z-index: 1000;
+}
+
+.header > .navbar {
+  width: auto;
+}
+
+.header > .navbar > li {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  font-size: 130%;
+  padding: 10px 12px 5px 12px;
+  text-align: center;
+}
+
+.header > .navbar > li > a {
+  color: white;
+  text-decoration: none;
+  font-family: Trebuchet MS, Charcoal, sans-serif;
+
+}
+
+.header > .navbar > li > a:hover {
+   
+}
+/* end header settings */
+
+/* body settings */
+.body {
+  margin-top: 3em;
+  z-index: -1000;
+  width: 100vw;
+  height: 100vh;
+  font-family: Trebuchet MS, Charcoal, sans-serif;
+  font-size: 130%;
+  color: #85BEB8;
+  background-size: 100%;
+  background-repeat: repeat-y;
+  background-image: url("https://drive.google.com/uc?export=view&id=0B6od18BhWGl5elFiRTlubVZfN0k");
+
+
+}
+
+.hoverKleur {
+    background-color: darkcyan;
+}
+
+.content {
+  width: 100%;
+  padding: 20px;
+  margin: 0 auto;
+  padding: 0 60px 0 0;
+}
+
+.centerplease {
+  margin: 0 auto;
+  width: 100vw;
+  font-size: 150%;
+  text-align: center;
+  margin-top: 3em;
+  padding: 5px;
+}
+
+.question {
+  position: relative;
+  background: #85BEB8;
+  margin: 0;
+  padding: 10px 10px 10px 50px;
+  display: block;
+  width:100%;
+  cursor: pointer;
+  color: white;
+}
+
+.question:hover {
+    background-color: darkcyan;
+}
+
+.answers {
+  background-color: rgba(153,153,153,0.3);
+  padding: 0px 15px;
+  margin: 5px 0;
+  height: 0;
+  overflow: hidden;
+  z-index: 15;
+  position: relative;
+  opacity: 0;
+  -webkit-transition: .7s ease;
+  -moz-transition: .7s ease;
+  -o-transition: .7s ease;
+  transition: .7s ease;
+}
+
+.questions:checked ~ .answers{
+  height: auto;
+  opacity: 1;
+  padding: 15px;
+}
+
+.plus {
+  position: absolute;
+  color: white;
+  margin-left: 10px;
+  z-index: 15;
+  font-size: 2em;
+  line-height: 100%;
+  -webkit-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-transition: .3s ease;
+  -moz-transition: .3s ease;
+  -o-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.questions:checked ~ .plus {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.questions {
+  display: none;
+}
+/* end of body settings */
+
+/* footer settings */
+.footer {
+  display: block;
+  width: 100%;
+  color: #242B39;
+  text-align: center;
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  padding: 5px;
+  z-index: 10;
+  opacity: .9;
+}
+
+.footer > .contact {
+  padding: 0px 0px 5px 0px;
+}
+
+.footer > .contact > li > a {
+  text-decoration: none;
+  color: #242B39;
+}
+
+.footer > .contact > li > a:hover {
+  text-decoration: underline;
+  text-transform: uppercase;
+  
+}
+
+.footer > .contact > li {
+  display: inline;
+  padding: 0px 8px 0px 8px;
+  border-right: 1px solid #242B39;
+}
+
+.footer > .contact > li:last-child{
+  border-right: 0;
+}
+/* end of footer settings */
+
+/* <= 600px settings*/
+@media (max-width: 600px) {
+  .header > label { 
+    display: inline-block; 
+  }
+  
+  .header > .navbar { 
+    display: none; 
+  }
+  
+  .header > input:checked + .navbar { 
+    display: block;
+    width: 220px;
+    height: 110vh;
+    position: absolute;
+    top: 4em;
+    z-index: 100;
+    background-color: #85BEB8; 
+  }
+
+  .header > input:checked + .navbar > li { 
+    width: 250px;
+    padding: 15px 0px 15px 15px;
+  }
+  
+  .body {
+    height: 120vh;
+    font-size: 90%;
+  }
+  
+  .footer {
+    display: inline-block;
+    width: 100%;
+    z-index: 16;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    padding: 0px 0px 2px 0px;
+  }
+  
+}
+
+/* 601-759px settings */
+@media all and (min-width:601px) and (max-width:749px) {
+  .header > label { 
+    display: inline-block; 
+  }
+  
+  .header > .navbar { 
+    display: none; 
+  }
+ 
+  .header > input:checked + .navbar { 
+    display: block;
+    width: 200px;
+    height: 130vh;
+    position: absolute;
+    top: 4em;
+    z-index: 100;
+    background-color: #85BEB8; 
+  }
+
+  .header > input:checked + .navbar > li { 
+    width: 250px;
+    padding: 15px 0px 15px 15px;
+  }
+ 
+  .body {
+    height: 100vh;
+    font-size: 100%;
+  }
+   .footer {
+    display: inline-block;
+    width: 100%;
+    z-index: 16;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    padding: 0px 0px 2px 0px;
+  }
+}
+
+/* 750-799px settings */
+@media all and (min-width:750px) and (max-width:799px) {
+  .body {
+    height: 100vh;
+    font-size: 100%;
+  }
+}
+
+/* 800-1300px settings*/
+@media all and (min-width:800px) and (max-width:1300px) {
+  .body {
+    height: 100vh;
+    font-size: 100%;
+  }
+    .footer {
+    display: inline-block;
+    width: 100%;
+    z-index: 16;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    padding: 0px 0px 2px 0px;
+  }
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #FFF;
+}
+
+.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+    border-top: 1px solid #FFF;
+}
+
+.form-group {
+    margin-bottom: 35px;
+}
