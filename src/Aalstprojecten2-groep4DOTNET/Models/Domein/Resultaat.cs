@@ -7,14 +7,19 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public class Resultaat
     {
+        #region Properties
         public KostOfBaat KostOfBaat { get; private set; }
         public Analyse Analyse { get; private set; }
+        #endregion
 
+        #region Contructor
         public Resultaat()
         {
             
         }
+        #endregion
 
+        #region Methods
         public void GeefParametersDoor(KostOfBaat kob, Analyse a)
         {
             KostOfBaat = kob;
@@ -104,5 +109,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             }
             return null;
         }
+        #endregion 
     }
 }
