@@ -1,0 +1,298 @@
+﻿@{
+    ViewData["Title"] = "Kairos";
+}
+
+<link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
+<link rel="stylesheet" href="~/css/Baat1.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="~/js/tableScript.js"></script>
+
+
+<h2>Nieuwe Analyse - Baten</h2>
+<hr />
+
+<div class="content">
+    <div>
+        <input type="checkbox" id="question1" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question1" class="question">
+            BAAT: Hoeveel uren telt een voltijdse werkweek in uw organisatie?
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput">1. Hoeveel uren telt een voltijdse werkweek in uw organisatie?</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Aantal uur">
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <input type="checkbox" id="question2" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question2" class="question">
+            BAAT: Welk bedrag krijgt u aan subsidie voor eventuele aanpassingen aan de werkomgeving?
+        </label>
+        <div class="answers">
+            <form>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Jaarbedrag</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="€">
+                </div>
+
+
+                
+
+                
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question3" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question3" class="question">
+            BAAT: Vul hier de lonen op hetzelfde niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Vul hier de lonen op hetzelfde niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</label>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered" id="tableAddRow">
+                                <thead>
+                                    <tr>
+                                        <th>Uren</th>
+                                        <th>Bruto maandloon fulltime</th>
+                                        <th>Totale loonkost per jaar (incl. patronale bijdragen en vakantiegeld)</th>
+                                        <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn" id="addBtn_0"></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="tr_0">
+                                        <td><input type="number" id="Uren" class="form-control" placeholder="€" /></td>
+                                        <td><input type="number" id="BrutoLoon" class="form-control" placeholder="€" /></td>
+                                        <td><input type="number" id="TotaleLoonKost" class="form-control" placeholder="€" disabled/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <input type="checkbox" id="question4" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question4" class="question">
+            BAAT: Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput3">Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</label>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered" id="tableAddRow2">
+                                <thead>
+                                    <tr>
+                                        <th>Uren</th>
+                                        <th>Bruto maandloon fulltime</th>
+                                        <th>Totale loonkost per jaar (incl. patronale bijdragen en vakantiegeld)</th>
+                                        <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn2" id="addBtn_1"></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="tr_0">
+                                        <td><input type="number" id="Uren" class="form-control" placeholder="€" /></td>
+                                        <td><input type="number" id="BrutoLoon" class="form-control" placeholder="€" /></td>
+                                        <td><input type="number" id="TotaleLoonKost" class="form-control" placeholder="€" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question5" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question5" class="question">
+            BAAT: Welke besparing denkt u te kunnen maken op uitzendkrachten?
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput3">3. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</label>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered" id="tableAddRow3">
+                                <thead>
+                                    <tr>
+                                        <th>Beschrijving</th>
+                                        <th>Jaarbedrag</th>
+                                        <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn3" id="addBtn_1"></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="tr_0">
+                                        <td><input type="text" id="Beschrijving" class="form-control" placeholder="Beschrijving" /></td>
+                                        <td><input type="number" id="Jaarbedrag" class="form-control" placeholder="€" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question6" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question6" class="question">
+            BAAT: Hoeveel omzet mist u doordat u personeel tekort komt?
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Jaarbedrag Omzetverlies</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="€">
+
+                <label for="formGroupExampleInput">% besparing</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Besparing in %">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question7" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question7" class="question">
+            BAAT: Hoeveel extra productiviteit denkt u te kunnen maken door inzet van mensen met een grote afstand tot de arbeidsmarkt?
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Jaarbedrag</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="€">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question8" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question8" class="question">
+            BAAT: Hoeveel denkt u te kunnen besparen op overuren?
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Jaarbedrag</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="€">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question9" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question9" class="question">
+            BAAT: Welke zaken worden extern ingekocht en kan op worden bespaard? Denk hierbij aan bijvoorbeeld uitbesteedde productie, schoonmaak, hoveniers enz.
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput3">3. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</label>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered" id="tableAddRow4">
+                                <thead>
+                                    <tr>
+                                        <th>Beschrijving</th>
+                                        <th>Jaarbedrag</th>
+                                        <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn4" id="addBtn_1"></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="tr_0">
+                                        <td><input type="text" id="Beschrijving" class="form-control" placeholder="Beschrijving" /></td>
+                                        <td><input type="number" id="Jaarbedrag" class="form-control" placeholder="€" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question10" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question10" class="question">
+            BAAT: Wat zijn de transportkosten van eventueel uitbesteedde zaken?
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Jaarbedrag</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="€">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question11" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question11" class="question">
+            BAAT: Wat zijn de logistieke handlingskosten van eventueel uitbesteedde zaken?
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Jaarbedrag</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="€">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="question12" name="q" class="questions">
+        <div class="plus">+</div>
+        <label for="question12" class="question">
+            BAAT: Aan welke besparingen kan er nog meer gedacht worden? Vul de bedragen in per jaar.
+        </label>
+        <div class="answers">
+            <div class="form-group">
+                <label for="formGroupExampleInput3">3. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</label>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered" id="tableAddRow5">
+                                <thead>
+                                    <tr>
+                                        <th>Beschrijving</th>
+                                        <th>Jaarbedrag</th>
+                                        <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn5" id="addBtn_1"></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="tr_0">
+                                        <td><input type="text" id="Beschrijving" class="form-control" placeholder="Beschrijving" /></td>
+                                        <td><input type="number" id="Jaarbedrag" class="form-control" placeholder="€" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/sidebar.css" />
+
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -45,13 +46,13 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse nieuweAchtergrond">
                     <ul class="nav navbar-nav side-nav intMidden">
                         <li>
-                            <a href="investigaciones/favoritas"><img src="~/images/iconen/home.png" class="icons" /></a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/iconen/home.png" class="icons" /></a>
                         </li>
                         <li>
-                            <a href="sugerencias"><img src="~/images/iconen/person.png" class="icons" /></a>
+                            <a  asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/person.png" class="icons" /></a>
                         </li>
                         <li>
-                            <a href="faq"><img src="~/images/iconen/multipleperson.png" class="icons" /></a>
+                            <a href="google.com"><img src="~/images/iconen/multipleperson.png" class="icons" /></a>
                         </li>
                         <li>
                             <a href="faq"><img src="~/images/iconen/admin.png" class="icons" /></a>

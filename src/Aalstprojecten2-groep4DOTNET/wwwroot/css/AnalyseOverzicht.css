@@ -1,0 +1,60 @@
+﻿body {
+
+}
+
+
+.table-condensed > thead > tr > .table-condensed > tbody > tr > .table-condensed > tfoot > tr > .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 17px;
+}
+
+.hoogte {
+    height: 50px;
+}
+
+th {
+    height: 50px;
+    font-size: 20px;
+}
+
+.table-bordered {
+    border: 3px solid #ddd;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 2px solid #ddd;
+}
+
+.vetGedrukt {
+    font-weight: bold;
+}
+
+tr td a {
+    color: #333;
+}
+
+tr td a:hover {
+    color: cadetblue;
+}
+
+.kosten1{
+    background-color: rgba(165,42,42,0.1);
+}
+
+.kosten2{
+    background-color: rgba(165,42,42,0.05);
+}
+
+.baten1{
+    background-color: rgba(0,139,139,0.1);
+}
+
+.baten2{
+    background-color: rgba(0,139,139,0.05);
+}
+
+.hiddenStuff {
+    visibility: hidden;
+}
