@@ -7,6 +7,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public interface IJobCoachRepository
     {
+        IEnumerable<JobCoach> GetAll();
         JobCoach GetByEmail(string email);
         void Add(JobCoach jobCoach);
         void SaveChanges();

@@ -8,11 +8,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "{0} is verplicht")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} is verplicht")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
