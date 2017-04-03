@@ -14,7 +14,13 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public string BusBedrijf { get; set; }
         public int PostcodeBedrijf { get; set; }
         public string GemeenteBedrijf { get; set; }
+        public bool MoetWachtwoordVeranderen { get; set; }
+        public string Wachtwoord { get; set; }
 
+        public JobCoach() : base(String.Empty, String.Empty, String.Empty)
+        {
+            
+        }
         public JobCoach(string naam, string voornaam, string email, string naamBedrijf, string straatBedrijf, int nummerBedrijf, int postcodeBedrijf, string gemeenteBedrijf): base(naam, voornaam, email)
         {
             Analyses = new List<Analyse>();
@@ -23,6 +29,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             NummerBedrijf = nummerBedrijf;
             PostcodeBedrijf = postcodeBedrijf;
             GemeenteBedrijf = gemeenteBedrijf;
+            MoetWachtwoordVeranderen = true;
         }
 
         public JobCoach(string naam, string voornaam, string email, string naamBedrijf, string straatBedrijf,

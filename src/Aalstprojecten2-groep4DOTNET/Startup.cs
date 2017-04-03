@@ -102,7 +102,7 @@ namespace Aalstprojecten2_groep4DOTNET
                     name: "default",
                     template: "{controller=Account}/{action=Login}/{id?}");
             });
-            //DataInitializer.InitializeData(context);
+            DataInitializer.InitializeData(context);
         }
     }
 }

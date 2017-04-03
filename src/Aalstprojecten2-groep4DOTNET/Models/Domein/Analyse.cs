@@ -20,7 +20,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Constructor
-
+        public Analyse() { }
         public Analyse(JobCoach jobCoach, int id, DateTime date)
         {
             JobCoachEmail = jobCoach.Email;

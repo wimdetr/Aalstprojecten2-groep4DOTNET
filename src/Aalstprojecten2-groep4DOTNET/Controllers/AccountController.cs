@@ -107,13 +107,20 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            if (_jobCoachRepository.GetAll().Select(j => j.Email).Contains(model.Email))
+            {
+                ModelState.AddModelError("Email", "Email is al in gebruik");
+            }
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Naam = model.Naam, Voornaam = model.Voornaam};
-                var result = await _userManager.CreateAsync(user, "Abc123");
+                string wachtwoord = WachtwoordGenerator.GeefRandomWachtwoord();
+                var result = await _userManager.CreateAsync(user, wachtwoord);
                 if (result.Succeeded)
                 {
+                    MailVerzender.VerzendMailEersteKeerInloggen(model.Naam + " " + model.Voornaam, model.Email, wachtwoord);
                     JobCoach jc = new JobCoach(model.Naam, model.Voornaam, model.Email, model.NaamBedrijf, model.Straat, model.Nummer, model.Postcode, model.Gemeente);
+                    jc.Wachtwoord = wachtwoord;
                     if (model.Bus != null)
                     {
                         jc.BusBedrijf = model.Bus;
@@ -468,6 +475,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             else
             {
+                
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
         }

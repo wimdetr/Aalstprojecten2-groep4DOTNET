@@ -9,9 +9,9 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein.HulpKlassenAnalyseDoelgroep
     {
         private readonly string _waarde;
 
-        public StringWaarde(string warde)
+        public StringWaarde(string waarde)
         {
-            _waarde = _waarde;
+            _waarde = waarde;
         }
 
         public String Waarde
