@@ -26,7 +26,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                         wachtwoord.Append((char)rd.Next(65, 91));
                         break;
                     case 3:
-                        wachtwoord.Append((char)rd.Next(97, 128));
+                        wachtwoord.Append((char)rd.Next(97, 123));
                         break;
                 }
             }
