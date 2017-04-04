@@ -15,5 +15,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.NogViewModels
         [DataType(DataType.Password)]
         [Compare("Wachtwoord", ErrorMessage = "De 2 wachtwoorden komen niet overeen.")]
         public string BevestigWachtwoord { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
     }
 }

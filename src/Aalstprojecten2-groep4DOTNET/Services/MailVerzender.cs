@@ -11,16 +11,29 @@ namespace Aalstprojecten2_groep4DOTNET.Services
     {
         public static void VerzendMailEersteKeerInloggen(string naam, string email, string wachtwoord)
         {
+            
+            VerzendMailMetBody(naam, email, wachtwoord, "Eerste keer inloggen");
+        }
+
+        public static void VerzendMailWachtwoordVergeten(string naam, string email, string callbackUrl)
+        {
+            VerzendMailMetBody(naam, email, callbackUrl, "Wachtwoord vergeten");
+            
+        }
+
+        //string body moet eventueel veranderen naar BodyBuilder object voor in de body te steken
+        private static void VerzendMailMetBody(string naam, string email, string body, string subject)
+        {
             //BodyBuilder builder = new BodyBuilder();
             //builder.
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Kairos ITSolutions", "ITSolutions.Kairos@gmail.com"));
             message.To.Add(new MailboxAddress(naam, email));
-            message.Subject = "Eerste keer inloggen";
+            message.Subject = subject;
 
             message.Body = new TextPart("plain")
             {
-                Text = wachtwoord
+                Text = body
             };
 
             using (var client = new SmtpClient())
