@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.AccountViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
+using Aalstprojecten2_groep4DOTNET.Models.NogViewModels;
 using Aalstprojecten2_groep4DOTNET.Services;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
@@ -66,8 +67,17 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    //_logger.LogInformation(1, "User logged in.");
+                    //return RedirectToLocal(returnUrl);
+
+                    if (_jobCoachRepository.GetByEmail(model.Email).MoetWachtwoordVeranderen)
+                    {
+                        ResetPasswordViewModel myModel = new ResetPasswordViewModel();
+                        myModel.Email = model.Email;
+                        return RedirectToAction(nameof(AccountController.ResetPassword), myModel);
+                    }
+                    return RedirectToAction("Index", "Home");
+
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -311,9 +321,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         // GET: /Account/ResetPassword
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string code = null)
+        public IActionResult ResetPassword(string code = null, string email = null)
         {
-            return code == null ? View("Error") : View();
+            
+            ResetPasswordViewModel model = new ResetPasswordViewModel();
+            model.Email = email;
+            model.Code = code;
+            return View(model);
+
         }
 
         //
@@ -333,9 +348,15 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 // Don't reveal that the user does not exist
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
-            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, token, model.Password);
             if (result.Succeeded)
             {
+                JobCoach jc = _jobCoachRepository.GetByEmail(user.Email);
+
+                jc.Wachtwoord = model.Password;
+                jc.MoetWachtwoordVeranderen = false;
+                _jobCoachRepository.SaveChanges();
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
             AddErrors(result);
