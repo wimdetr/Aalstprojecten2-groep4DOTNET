@@ -12,17 +12,17 @@ namespace Aalstprojecten2_groep4DOTNET.Services
         public static void VerzendMailEersteKeerInloggen(string naam, string email, string wachtwoord)
         {
             
-            VerzendMailMetBody(naam, email, wachtwoord, "Eerste keer inloggen");
+            VerzendMailMetBody(naam, email, wachtwoord, "Eerste keer inloggen").Wait();
         }
 
         public static void VerzendMailWachtwoordVergeten(string naam, string email, string callbackUrl)
         {
-            VerzendMailMetBody(naam, email, callbackUrl, "Wachtwoord vergeten");
+            VerzendMailMetBody(naam, email, callbackUrl, "Wachtwoord vergeten").Wait();
             
         }
 
         //string body moet eventueel veranderen naar BodyBuilder object voor in de body te steken
-        private static void VerzendMailMetBody(string naam, string email, string body, string subject)
+        private static async Task VerzendMailMetBody(string naam, string email, string body, string subject)
         {
             //BodyBuilder builder = new BodyBuilder();
             //builder.
@@ -50,7 +50,7 @@ namespace Aalstprojecten2_groep4DOTNET.Services
                 // Note: only needed if the SMTP server requires authentication
                 client.Authenticate("ITSolutions.Kairos@gmail.com", "ITSolutions123");
 
-                client.Send(message);
+                await client.SendAsync(message);
                 client.Disconnect(true);
             }
         }

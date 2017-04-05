@@ -61,6 +61,8 @@ namespace Aalstprojecten2_groep4DOTNET
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IJobCoachRepository, JobCoachRepository>();
+            services.AddScoped<IAnalyseRepository, AnalyseRepository>();
+            services.AddTransient<DataInitializer>();
 
             services.AddMvc();
 
@@ -70,7 +72,7 @@ namespace Aalstprojecten2_groep4DOTNET
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, DataInitializer dataInitializer)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -102,7 +104,7 @@ namespace Aalstprojecten2_groep4DOTNET
                     name: "default",
                     template: "{controller=Account}/{action=Login}/{id?}");
             });
-            //DataInitializer.InitializeData(context);
+            dataInitializer.InitializeData().Wait();
         }
     }
 }

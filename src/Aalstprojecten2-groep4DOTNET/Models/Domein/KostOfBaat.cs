@@ -20,6 +20,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Constructor
+
+        public KostOfBaat()
+        {
+            
+        }
         public KostOfBaat(Analyse a, int id, KOBEnum kobEnum, Formule formule)
         {
             AnalyseId = a.AnalyseId;

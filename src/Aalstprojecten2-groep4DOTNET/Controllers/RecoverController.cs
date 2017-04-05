@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
-using Aalstprojecten2_groep4DOTNET.Models.NogViewModels;
+using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Recover;
 using Aalstprojecten2_groep4DOTNET.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
