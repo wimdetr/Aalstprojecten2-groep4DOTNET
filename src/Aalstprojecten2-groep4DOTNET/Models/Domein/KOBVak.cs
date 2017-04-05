@@ -19,6 +19,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Contructor
+
+        public KOBVak()
+        {
+            
+        }
         public KOBVak(KOBRij kobRij, int id): this(kobRij, id, "")
         {
         }

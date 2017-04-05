@@ -30,6 +30,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Constructor
+
+        public Werkgever()
+        {
+            
+        }
         public Werkgever(Analyse a, string naam, int postcode, string gemeente, string naamAfdeling)
         {
             AnalyseId = a.AnalyseId;

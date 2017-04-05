@@ -13,8 +13,8 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Analyse> Analyses { get; set; }
         public DbSet<JobCoach> JobCoaches { get; set; }
+        public DbSet<Analyse> Analyses { get; set; }
         public DbSet<Werkgever> Werkgevers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

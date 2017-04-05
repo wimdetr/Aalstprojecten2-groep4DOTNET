@@ -2,22 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
+using Microsoft.AspNetCore.Identity;
 
 namespace Aalstprojecten2_groep4DOTNET.Data
 {
-    public static class DataInitializer
+    public class DataInitializer
     {
-        public static void InitializeData(ApplicationDbContext context)
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public DataInitializer(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            context.Database.EnsureDeleted();
-            if (context.Database.EnsureCreated())
+            _context = context;
+            _userManager = userManager;
+        }
+        public async Task InitializeData()
+        {
+            _context.Database.EnsureDeleted();
+            if (_context.Database.EnsureCreated())
             {
-                JobCoach mark = new JobCoach("De Bruyne", "Niels", "niels95debruyne@hotmail.com", "tempo team", "Zevekootstraat", 567, 9420, "Erpe");
-                context.JobCoaches.Add(mark);
+                JobCoach mark = new JobCoach("De Witte", "Andreas", "andreas.dewitte@hotmail.com", "Kairos", "Zevekootstraat", 129, 9420, "Erpe");
+                mark.Wachtwoord = "woopwoop";
+                mark.MoetWachtwoordVeranderen = false;
+                _context.JobCoaches.Add(mark);
 
                 Analyse a = new Analyse(mark, 1, DateTime.Now);
-                context.Analyses.Add(a);
 
                 KostOfBaat k1 = new KostOfBaat(a, 1, KOBEnum.Kost, Formule.FormuleKost1);
                 KOBRij k1Rij1 = new KOBRij(k1, 1);
@@ -37,11 +48,11 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 KOBVak k1R2Vak3 = new KOBVak(k1Rij2, 3, "2000");
                 KOBVak k1R2Vak4 = new KOBVak(k1Rij2, 4, "wn minder dan 25 jaar laaggeschoold");
                 KOBVak k1R2Vak5 = new KOBVak(k1Rij2, 5, "20");
-                k1Rij1.VulKOBVakIn(k1R2Vak1);
-                k1Rij1.VulKOBVakIn(k1R2Vak2);
-                k1Rij1.VulKOBVakIn(k1R2Vak3);
-                k1Rij1.VulKOBVakIn(k1R2Vak4);
-                k1Rij1.VulKOBVakIn(k1R2Vak5);
+                k1Rij2.VulKOBVakIn(k1R2Vak1);
+                k1Rij2.VulKOBVakIn(k1R2Vak2);
+                k1Rij2.VulKOBVakIn(k1R2Vak3);
+                k1Rij2.VulKOBVakIn(k1R2Vak4);
+                k1Rij2.VulKOBVakIn(k1R2Vak5);
                 k1.VulKOBRijIn(k1Rij1);
                 k1.VulKOBRijIn(k1Rij2);
                 a.SlaKostMetNummerOp(k1);
@@ -233,14 +244,19 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 a.SlaBaatMetNummerOp(b11);
 
                 mark.VoegAnalyseToe(a);
+                _context.Analyses.Add(a);
 
                 Werkgever w = new Werkgever(a, "Carrefour", 9420, "Erpe", "magazijn");
-                context.Werkgevers.Add(w);
+                _context.Werkgevers.Add(w);
                 ContactPersoon cp = new ContactPersoon("De Troyer", "Wim", "niels955debruyne@hotmail.com");
                 w.ContactPersoon = cp;
-                context.SaveChanges();
+                a.Werkgever = w;
+                _context.SaveChanges();
 
+                ApplicationUser user1 = new ApplicationUser { UserName = mark.Email, Email = mark.Email, Naam = "De Witte", Voornaam = "Andreas"};
+                await _userManager.CreateAsync(user1, "woopwoop");
 
+                
             }
         }
     }

@@ -20,6 +20,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Contructors
+
+        public KOBRij()
+        {
+            
+        }
         public KOBRij(KostOfBaat kostOfBaat, int id)
         {
             KostOfBaatEnum = kostOfBaat.KostOfBaatEnum;

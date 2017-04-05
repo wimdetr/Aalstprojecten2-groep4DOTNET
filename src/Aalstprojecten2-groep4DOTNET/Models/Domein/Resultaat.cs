@@ -27,6 +27,20 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             Analyse = a;
         }
 
+        public void BerekenResultaatVanAnalyse(Analyse a)
+        {
+            foreach (KostOfBaat kob in a.KostenEnBaten)
+            {
+                GeefParametersDoor(kob, a);
+                foreach (KOBRij rij in kob.Rijen)
+                {
+                    BerekenEnSetResultaat(rij);
+                }
+                kob.BerekenResultaat();
+            }
+            a.BerekenVolledigResultaat();
+        }
+
         public void BerekenEnSetResultaat(KOBRij mijnRij)
         {
             int aantalWerkuren = Analyse.Werkgever.AantalWerkuren;
@@ -44,7 +58,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                     }
                     else
                     {
-                        BerekenEnSetResultaat(kostRij);
+                        HerberekenKost1(kostRij, aantalWerkuren);
                         double tussenWaarde;
                         string dataVak4 = kostRij.GeefKOBVakMetNummer(4).Data;
                         double dataVak3 = kostRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble();
@@ -94,8 +108,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                     mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble();
                     break;
                     case Formule.FormuleKost6:
-                    mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()/152*
-                                        mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()*
+                    mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()/152*
+                                        mijnRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble()*
                                         (1 + Analyse.Werkgever.PatronaleBijdrage/100);
                     break;
                     case Formule.FormuleGeefVak1:
@@ -122,8 +136,20 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                                         mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble();
                     break;
                 default:
+                    mijnRij.Resultaat = 0;
                     break;
             }
+        }
+
+        private void HerberekenKost1(KOBRij mijnRij, int aantalWerkuren)
+        {
+            if (aantalWerkuren == 0)
+            {
+                //todo, divide by zero exception maken en throwen
+            }
+            mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble() / aantalWerkuren *
+                                  mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble() *
+                                 (1 + Analyse.Werkgever.PatronaleBijdrage / 100);
         }
 
         public KOBRij GeefRijVanKost(int kostId, int rijId)

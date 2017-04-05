@@ -11,7 +11,6 @@ using Microsoft.Extensions.Logging;
 using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.AccountViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
-using Aalstprojecten2_groep4DOTNET.Models.NogViewModels;
 using Aalstprojecten2_groep4DOTNET.Services;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
@@ -60,6 +59,17 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+
+            JobCoach jc = _jobCoachRepository.GetByEmail(model.Email);
+            if (jc == null)
+            {
+                ModelState.AddModelError("Email", "Er is geen gebruiker met dit emailadres geregistreerd");
+            }
+            else if(!jc.Wachtwoord.Equals(model.Password))
+            {
+                ModelState.AddModelError("Password", "Incorrect wachtwoord");
+            }
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout

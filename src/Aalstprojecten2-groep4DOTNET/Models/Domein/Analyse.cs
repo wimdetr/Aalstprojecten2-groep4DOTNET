@@ -16,7 +16,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public Werkgever Werkgever { get; set; }
         public DateTime LaatsteAanpasDatum { get; set; }
         [NotMapped]
-        public double Resultaat { get; set; }
+        public double KostenResultaat { get; set; }
+        [NotMapped]
+        public double BatenResultaat { get; set; }
+        [NotMapped]
+        public double NettoResultaat { get; set; }
         #endregion
 
         #region Constructor
@@ -69,21 +73,28 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             KostenEnBaten.Add(baat);
         }
 
-        public double GeefSubtotaalKosten()
+        public void BerekenSubtotaalKosten()
         {
-
-            return 0;
+            KostenResultaat = KostenEnBaten.Where(kob => kob.KostOfBaatEnum == KOBEnum.Kost).Sum(kob => kob.Resultaat);
+            
         }
 
-        public double GeefSubtotaalBaten()
+        public void BerekenSubtotaalBaten()
         {
-
-            return 0;
+            BatenResultaat = KostenEnBaten.Where(kob => kob.KostOfBaatEnum == KOBEnum.Baat).Sum(kob => kob.Resultaat);
+            
         }
 
-        public double GeefResultaat()
+        public void BerekenResultaat()
         {
-            return GeefSubtotaalBaten() - GeefSubtotaalKosten();
+            NettoResultaat = BatenResultaat - KostenResultaat;
+        }
+
+        public void BerekenVolledigResultaat()
+        {
+            BerekenSubtotaalBaten();
+            BerekenSubtotaalKosten();
+            BerekenResultaat();
         }
 
         public void VernieuwDatum()

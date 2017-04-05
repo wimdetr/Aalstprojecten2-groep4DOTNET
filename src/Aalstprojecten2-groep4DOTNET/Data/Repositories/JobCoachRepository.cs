@@ -20,7 +20,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
 
         public IEnumerable<JobCoach> GetAll()
         {
-            return _jobCoaches.OrderBy(j => j.Email).AsNoTracking().ToList();
+            return _jobCoaches.Include(jc => jc.Analyses).OrderBy(j => j.Email).AsNoTracking().ToList();
         }
 
         public JobCoach GetByEmail(string email)
