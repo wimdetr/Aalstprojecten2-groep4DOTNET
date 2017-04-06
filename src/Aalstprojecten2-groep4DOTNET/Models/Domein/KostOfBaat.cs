@@ -60,6 +60,10 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public void BerekenResultaat()
         {
             Resultaat = Rijen.Sum(r => r.Resultaat);
+            if (Formule == Formule.FormuleKost1)
+            {
+                Resultaat *= 12;
+            }
         }
         #endregion
     }

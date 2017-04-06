@@ -18,9 +18,14 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
             _analyses = context.Analyses;
         }
 
-        public ICollection<Analyse> GetAll(string jobcoachEmail)
+        public IEnumerable<Analyse> GetAllNietGearchiveerd(string jobcoachEmail)
         {
-            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail)).AsNoTracking().ToList();
+            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.IsGearchiveerd == false).AsNoTracking().ToList();
+        }
+
+        public IEnumerable<Analyse> GetAllWelGearchiveerd(string jobcoachEmail)
+        {
+            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.IsGearchiveerd == true).AsNoTracking().ToList();
         }
 
         public Analyse GetById(string jobcoachEmail, int id)

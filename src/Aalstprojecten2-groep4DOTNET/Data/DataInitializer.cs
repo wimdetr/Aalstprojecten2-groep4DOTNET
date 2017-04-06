@@ -107,10 +107,8 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
                 KostOfBaat k6 = new KostOfBaat(a, 6, KOBEnum.Kost, Formule.FormuleKost6);
                 KOBRij k6Rij1 = new KOBRij(k6, 1);
-                KOBVak k6R1Vak1 = new KOBVak(k6Rij1, 1, "zitte dinges");
-                KOBVak k6R1Vak2 = new KOBVak(k6Rij1, 2, "2467");
-                KOBVak k6R1Vak3 = new KOBVak(k6Rij1, 3, "2467");
-                k6Rij1.VulKOBVakIn(k6R1Vak1);
+                KOBVak k6R1Vak2 = new KOBVak(k6Rij1, 1, "2467");
+                KOBVak k6R1Vak3 = new KOBVak(k6Rij1, 2, "2467");
                 k6Rij1.VulKOBVakIn(k6R1Vak2);
                 k6Rij1.VulKOBVakIn(k6R1Vak3);
                 k6.VulKOBRijIn(k6Rij1);

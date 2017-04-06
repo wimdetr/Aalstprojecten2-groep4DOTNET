@@ -86,6 +86,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             a.HasKey(t => new { t.AnalyseId, t.JobCoachEmail});
 
             a.Property(t => t.LaatsteAanpasDatum).IsRequired();
+            a.Property(t => t.IsGearchiveerd).IsRequired();
 
             a.HasMany(t => t.KostenEnBaten).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
             a.HasOne(t => t.Werkgever).WithMany().IsRequired(false).OnDelete(DeleteBehavior.Restrict);

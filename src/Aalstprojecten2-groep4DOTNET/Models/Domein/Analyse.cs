@@ -15,6 +15,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public ICollection<KostOfBaat> KostenEnBaten { get; set; }
         public Werkgever Werkgever { get; set; }
         public DateTime LaatsteAanpasDatum { get; set; }
+        public bool IsGearchiveerd { get; set; }
         [NotMapped]
         public double KostenResultaat { get; set; }
         [NotMapped]
@@ -24,18 +25,22 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Constructor
-        public Analyse() { }
+
+        public Analyse()
+        {
+        }
         public Analyse(JobCoach jobCoach, int id, DateTime date)
         {
             JobCoachEmail = jobCoach.Email;
             AnalyseId = id;
             LaatsteAanpasDatum = date;
             KostenEnBaten = new List<KostOfBaat>();
+            IsGearchiveerd = false;
         }
         #endregion
 
         #region methods
-        public Boolean ControleerOfKostMetNummerAlIngevuldIs(int nummer)
+        public bool ControleerOfKostMetNummerAlIngevuldIs(int nummer)
         {
             return KostenEnBaten.Any(k => k.KostOfBaatId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
         }
@@ -45,7 +50,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             return KostenEnBaten.FirstOrDefault(k => k.KostOfBaatId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
         }
 
-        public Boolean ControleerOfBaatMetNummerAlIngevuldIs(int nummer)
+        public bool ControleerOfBaatMetNummerAlIngevuldIs(int nummer)
         {
             return KostenEnBaten.Any(b => b.KostOfBaatId == nummer && b.KostOfBaatEnum == KOBEnum.Baat);
         }

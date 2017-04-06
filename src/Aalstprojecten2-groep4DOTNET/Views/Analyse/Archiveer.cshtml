@@ -1,0 +1,10 @@
+﻿<h2>@ViewData["analyse"]</h2>
+
+<h4>Bent u zeker dat u de analyse @ViewData["analyse"] wilt archiveren?</h4>
+
+<form asp-action="Archiveer" method="post">
+    <div>
+        <button class="btn btn-primary" type="submit">Archiveer</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-default">annuleer</a>
+    </div>
+</form>
