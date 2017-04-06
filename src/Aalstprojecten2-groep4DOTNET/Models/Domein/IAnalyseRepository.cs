@@ -7,7 +7,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
     public interface IAnalyseRepository
     {
-        ICollection<Analyse> GetAll(string jobcoachEmail);
+        IEnumerable<Analyse> GetAllNietGearchiveerd(string jobcoachEmail);
+        IEnumerable<Analyse> GetAllWelGearchiveerd(string jobcoachEmail);
         Analyse GetById(string jobcoachEmail, int id);
         void Add(Analyse analyse);
         void SaveChanges();

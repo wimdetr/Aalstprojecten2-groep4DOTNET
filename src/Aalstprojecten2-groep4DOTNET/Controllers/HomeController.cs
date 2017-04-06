@@ -26,14 +26,15 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
         public IActionResult Index()
         {
-            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
-            jc.Analyses = _analyseRepository.GetAll(jc.Email);
+            IEnumerable<Analyse> analyses = _analyseRepository.GetAllNietGearchiveerd(User.Identity.Name);
             Resultaat r = new Resultaat();
-            foreach (Analyse a in jc.Analyses)
+            foreach (Analyse a in analyses)
             {
                 r.BerekenResultaatVanAnalyse(a);
             }
-            return View(new TeTonenAnalysesViewModel(jc.Analyses));
+            return View(new TeTonenAnalysesViewModel(analyses));
         }
+
+        
     }
 }
