@@ -32,7 +32,7 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                  <div class="col-lg-6 col-md-6 col-sm-6 iconen">
                      @*knoppen downloaden versturen verwijderen*@
                      <div class="icoon">
-                         <a><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/delete.png" alt="meh"/></a>
+                         <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/delete.png" alt="meh"/></a>
                      </div>
                      <div class="icoon">
                          <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/send.png" alt="meh"/></a>

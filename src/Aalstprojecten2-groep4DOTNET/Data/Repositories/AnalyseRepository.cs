@@ -38,6 +38,11 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
                     .SingleOrDefault(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.AnalyseId == id);
         }
 
+        public void Delete(Analyse analyse)
+        {
+            _analyses.Remove(analyse);
+        }
+
         public void Add(Analyse analyse)
         {
             _analyses.Add(analyse);

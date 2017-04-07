@@ -85,6 +85,31 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return RedirectToAction(nameof(AnalyseBekijken));
         }
 
+        public IActionResult Delete(int id)
+        {
+            Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
+            if (analyse == null)
+                return NotFound();
+            ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            return View();
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeleteConfirm(int id)
+        {
+            try
+            {
+                Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
+                _analyseRepository.Delete(analyse);
+                _analyseRepository.SaveChanges();
+            }
+            catch
+            {
+                
+            }
+            return RedirectToAction(nameof(AnalyseBekijken));
+        }
+
         public IActionResult AnalyseOverzicht()
         {
             return View();

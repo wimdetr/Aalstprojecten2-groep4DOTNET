@@ -10,6 +10,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         IEnumerable<Analyse> GetAllNietGearchiveerd(string jobcoachEmail);
         IEnumerable<Analyse> GetAllWelGearchiveerd(string jobcoachEmail);
         Analyse GetById(string jobcoachEmail, int id);
+        void Delete(Analyse analyse);
         void Add(Analyse analyse);
         void SaveChanges();
     }
