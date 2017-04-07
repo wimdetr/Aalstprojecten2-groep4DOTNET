@@ -29,10 +29,9 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public Analyse()
         {
         }
-        public Analyse(JobCoach jobCoach, int id, DateTime date)
+        public Analyse(JobCoach jobCoach, DateTime date)
         {
             JobCoachEmail = jobCoach.Email;
-            AnalyseId = id;
             LaatsteAanpasDatum = date;
             KostenEnBaten = new List<KostOfBaat>();
             IsGearchiveerd = false;

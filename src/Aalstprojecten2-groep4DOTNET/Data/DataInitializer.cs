@@ -28,7 +28,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 mark.MoetWachtwoordVeranderen = false;
                 _context.JobCoaches.Add(mark);
 
-                Analyse a = new Analyse(mark, 1, DateTime.Now);
+                Analyse a = new Analyse(mark, DateTime.Now);
 
                 KostOfBaat k1 = new KostOfBaat(a, 1, KOBEnum.Kost, Formule.FormuleKost1);
                 KOBRij k1Rij1 = new KOBRij(k1, 1);

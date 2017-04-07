@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
+using Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -110,9 +111,21 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return RedirectToAction(nameof(AnalyseBekijken));
         }
 
-        public IActionResult AnalyseOverzicht()
+        public IActionResult AnalyseOverzicht(int id = -1)
         {
-            return View();
+            Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
+            AnalyseResultaatOverzichtViewModel model;
+            if (analyse == null)
+            {
+                model = new AnalyseResultaatOverzichtViewModel();
+            }
+            else
+            {
+                Resultaat resultaat = new Resultaat();
+                resultaat.BerekenResultaatVanAnalyse(analyse);
+                model = new AnalyseResultaatOverzichtViewModel(analyse);
+            }
+            return View(model);
         }
 
         public IActionResult AnalyseBaat1()

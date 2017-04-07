@@ -38,7 +38,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         private void MapKOBVak(EntityTypeBuilder<KOBVak> v)
         {
             v.ToTable("KostOfBaatVak");
-            v.HasKey(t => new { t.KOBVakId, t.KOBRijId, t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId, t.JobCoachEmail});
+            v.HasKey(t => new { t.KOBVakId, t.KOBRijId, t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId});
 
             v.Property(t => t.Data).IsRequired();
         }
@@ -46,7 +46,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         private void MapKOBRij(EntityTypeBuilder<KOBRij> r)
         {
             r.ToTable("KostOfBaatRij");
-            r.HasKey(t => new { t.KOBRijId, t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId, t.JobCoachEmail});
+            r.HasKey(t => new { t.KOBRijId, t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId});
 
             r.HasMany(t => t.Vakken).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
@@ -54,7 +54,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         private void MapKostOfBaat(EntityTypeBuilder<KostOfBaat> k)
         {
             k.ToTable("KostOfBaat");
-            k.HasKey(t => new {t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId, t.JobCoachEmail});
+            k.HasKey(t => new {t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId});
 
             k.Property(t => t.Formule).IsRequired();
             k.HasMany(t => t.Rijen).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
@@ -83,8 +83,9 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         private void MapAnalyse(EntityTypeBuilder<Analyse> a)
         {
             a.ToTable("Analyse");
-            a.HasKey(t => new { t.AnalyseId, t.JobCoachEmail});
+            a.HasKey(t => t.AnalyseId);
 
+            a.Property(t => t.JobCoachEmail).IsRequired();
             a.Property(t => t.LaatsteAanpasDatum).IsRequired();
             a.Property(t => t.IsGearchiveerd).IsRequired();
 
