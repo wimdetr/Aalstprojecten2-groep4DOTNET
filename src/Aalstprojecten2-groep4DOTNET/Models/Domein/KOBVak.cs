@@ -10,7 +10,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #region Properties
 
         public int AnalyseId { get; set; }
-        public string JobCoachEmail { get; set; }
         public int KostOfBaatId { get; set; }
         public KOBEnum KostOfBaatEnum { get; set; }
         public int KOBRijId { get; set; }
@@ -33,7 +32,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             KOBRijId = kobRij.KOBRijId;
             KostOfBaatEnum = kobRij.KostOfBaatEnum;
             KostOfBaatId = kobRij.KostOfBaatId;
-            JobCoachEmail = kobRij.JobCoachEmail;
             AnalyseId = kobRij.AnalyseId;
             KOBVakId = id;
             Data = data;

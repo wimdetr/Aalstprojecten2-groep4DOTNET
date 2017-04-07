@@ -38,7 +38,7 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                          <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/send.png" alt="meh"/></a>
                      </div>
                      <div class="icoon">
-                         <a><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh"/></a>
+                         <a asp-controller="Analyse" asp-action="AnalyseOverzicht" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh"/></a>
                      </div>
                  </div>
              </div>

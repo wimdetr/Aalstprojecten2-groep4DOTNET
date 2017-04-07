@@ -136,7 +136,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _jobCoachRepository.SaveChanges();
                     return RedirectToAction(nameof(WachtwoordAanpassen));
                 }
-                catch (Exception e)
+                catch
                 {
                     
                 }
