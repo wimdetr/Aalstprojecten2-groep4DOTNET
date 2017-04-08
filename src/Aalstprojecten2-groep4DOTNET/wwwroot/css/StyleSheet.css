@@ -1,0 +1,36 @@
+﻿.container {
+    margin-top: 1%;
+}
+
+/*Wizard*/
+.list-group-item.success,
+.list-group-item.success:hover,
+.list-group-item.success:focus {
+    background-color: #7aba7b;
+    border-color: #7aba7b;
+    color: #ffffff;
+}
+
+.list-group-item.success > h4 {
+    color: #ffffff;
+}
+
+.list-group-item.error,
+.list-group-item.error:hover,
+.list-group-item.error:focus {
+    background-color: #d59392;
+    border-color: #d59392;
+    color: #ffffff;
+}
+
+.list-group-item.error > h4 {
+    color: #ffffff;
+}
+
+.zonderBottomPadding {
+    padding-bottom: 0px;
+}
+
+.Blok1 {
+    margin-bottom: 100px;
+}
