@@ -1,88 +1,111 @@
-﻿@{
-    ViewData["Title"] = "Kairos";
-}
+﻿@using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
+@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.TeTonenAnalysesViewModel
 
-<link rel="stylesheet" href="~/css/analyseDetail.css" />
+    @{
+        ViewData["Title"] = "Kairos";
+    }
 
-<h2>Home</h2>
-<hr />
+    <link rel="stylesheet" href="~/css/analyseDetail.css" />
 
-@for (var i = 0; i < 5; i++)
+    <h2>Home</h2>
+    <hr />
+
+@if (Model.IsLeeg)
 {
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="col-lg-12 col-md-12 col-sm-12 omlijn">
-            <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading">
-                <div class="col-lg-2 col-md-2 col-sm-2">
-                    @*logo werkgever*@
-                    <img class="img-circle img-responsive mijnLogo" src="~/images/analyseOverzicht/Carrefour.png" alt="meh" />
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 werkgeverTekst">
-                    @*naam werkgever*@
-                    <strong>Carrefour - Magazijn</strong>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 iconen">
-                    @*knoppen downloaden versturen verwijderen*@
-                    <div class="icoon">
-                        <img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/delete.png" alt="meh" />
-                    </div>
-                    <div class="icoon">
-                        <img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/send.png" alt="meh" />
-                    </div>
-                    <div class="icoon">
-                        <img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh" />
-                    </div>
-                </div>
-            </div>
-            @*informatie*@
-            <div class="col-lg-12 col-md-12 col-sm-12 omlijnBoven verhoogPaddingZijkant verhoogPaddingBovenOnder achtergrondKleurtje">
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="infoTekst">
-                        <u><strong>Locatie</strong></u>
-                    </div>
-                    <div class="infoTekst">
-                        <strong>Aalst</strong>
-</div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="infoTekst">
-                        <u><strong>Gewijzigd Op</strong></u>
-                    </div>
-                    <div class="infoTekst">
-                        <strong>10/03/2017</strong>
-</div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="infoTekst">
-                        <u><strong>Jobcoach</strong></u>
-                    </div>
-                    <div class="infoTekst">
-                        <strong>Niels De Bruyne</strong>
-</div>
-                </div>
-            </div>
-            @*resultaten*@
-            <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant achtergrondKleurtje">
-                <div class="helft" style="width: 34.9%;">
-                    <div class="kosten">
-                        <strong>Kosten</strong>
-</div>
-                    <div class="kostenBalk">
-                        <strong>€12.456,00</strong>
-</div>
-                </div>
-                <div class="helft" style="width: 65.1%;">
-                    <div class="baten">
-                        <strong>Baten</strong>
-</div>
-                    <div class="batenBalk">
-                        <strong>€23.274,00</strong>
-</div>
-                </div>
-            </div>
+    <p>Er zijn geen actieve analyses.</p>
+}
+else
+{
+foreach (AnalyseOverzichtViewModel item in Model.Analyses)
+ {
+     <div class="col-lg-4 col-md-6 col-sm-12">
+         <div class="col-lg-12 col-md-12 col-sm-12 omlijn">
+             <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading">
+                 <div class="col-lg-2 col-md-2 col-sm-2">
+                     @*logo werkgever*@
+                     <img class="img-circle img-responsive mijnLogo" src="~/images/analyseOverzicht/Carrefour.png" alt="meh"/>
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-4 werkgeverTekst">
+                     @*naam werkgever*@
+                     <strong>@item.Organisatie</strong>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-6 iconen">
+                     @*knoppen downloaden versturen verwijderen*@
+                     <div class="icoon">
+                         <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/delete.png" alt="meh"/></a>
+                     </div>
+                     <div class="icoon">
+                         <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/send.png" alt="meh"/></a>
+                     </div>
+                     <div class="icoon">
+                         <a asp-controller="Analyse" asp-action="AnalyseOverzicht" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh"/></a>
+                     </div>
+                 </div>
+             </div>
+             @*informatie*@
+             <div class="col-lg-12 col-md-12 col-sm-12 omlijnBoven verhoogPaddingZijkant verhoogPaddingBovenOnder achtergrondKleurtje">
+                 <div class="col-lg-4 col-md-4 col-sm-4">
+                     <div class="infoTekst">
+                         <u><strong>Afdeling</strong></u>
+                     </div>
+                     <div class="infoTekst">
+                         <strong>@item.Afdeling</strong>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-4">
+                     <div class="infoTekst">
+                         <u><strong>Locatie</strong></u>
+                     </div>
+                     <div class="infoTekst">
+                         <strong>@item.Locatie</strong>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-4">
+                     <div class="infoTekst">
+                         <u><strong>Gewijzigd Op</strong></u>
+                     </div>
+                     <div class="infoTekst">
+                         <strong>@string.Format("{0:dd/MM/yyyy}", item.GewijzigdOp)</strong>
+                     </div>
+                 </div>
+             </div>
+             @*resultaten*@
+             <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant achtergrondKleurtje">
+                 <div class="helft" style="width: @Math.Round(item.KostenResultaat/(item.BatenResultaat + item.KostenResultaat)*100)%;">
+                     <div class="kosten">
+                         <strong>Kosten</strong>
+                     </div>
+                     <div class="kostenBalk">
+                         <strong>@item.KostenResultaat.ToString("C")</strong>
+                     </div>
+                 </div>
+                 <div class="helft" style="width: @(100 - Math.Round(item.KostenResultaat/(item.BatenResultaat + item.KostenResultaat)*100))%;">
+                     <div class="baten">
+                         <strong>Baten</strong>
+                     </div>
+                     <div class="batenBalk">
+                         <strong>@item.BatenResultaat.ToString("C")</strong>
+                     </div>
+                 </div>
+             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 resultaat">
-                <strong>€10.818,00</strong>
-            </div>
-        </div>
-    </div>
+
+             @if (item.NettoResultaat >= 0)
+             {
+                 <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: #9fdf9f;">
+                     <strong>@item.NettoResultaat.ToString("C")</strong>
+                 </div>
+             }
+             else
+             {
+                 <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: #ff6666;">
+                     <strong>@(item.NettoResultaat*-1).ToString("C")</strong>
+                 </div>
+             }
+
+
+
+         </div>
+     </div>
+ }
 }

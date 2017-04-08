@@ -10,7 +10,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
     {
         #region Properties
         public int AnalyseId { get; set; }
-        public string JobCoachEmail { get; set; }
         public int KostOfBaatId { get; set; }
         public ICollection<KOBRij> Rijen { get; set; }
         public KOBEnum KostOfBaatEnum { get; set; }
@@ -20,10 +19,14 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #endregion
 
         #region Constructor
+
+        public KostOfBaat()
+        {
+            
+        }
         public KostOfBaat(Analyse a, int id, KOBEnum kobEnum, Formule formule)
         {
             AnalyseId = a.AnalyseId;
-            JobCoachEmail = a.JobCoachEmail;
             KostOfBaatId = id;
             KostOfBaatEnum = kobEnum;
             Resultaat = 0;
@@ -55,6 +58,10 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public void BerekenResultaat()
         {
             Resultaat = Rijen.Sum(r => r.Resultaat);
+            if (Formule == Formule.FormuleKost1)
+            {
+                Resultaat *= 12;
+            }
         }
         #endregion
     }

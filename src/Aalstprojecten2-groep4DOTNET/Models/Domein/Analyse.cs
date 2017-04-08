@@ -15,23 +15,31 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public ICollection<KostOfBaat> KostenEnBaten { get; set; }
         public Werkgever Werkgever { get; set; }
         public DateTime LaatsteAanpasDatum { get; set; }
+        public bool IsGearchiveerd { get; set; }
         [NotMapped]
-        public double Resultaat { get; set; }
+        public double KostenResultaat { get; set; }
+        [NotMapped]
+        public double BatenResultaat { get; set; }
+        [NotMapped]
+        public double NettoResultaat { get; set; }
         #endregion
 
         #region Constructor
-        public Analyse() { }
-        public Analyse(JobCoach jobCoach, int id, DateTime date)
+
+        public Analyse()
+        {
+        }
+        public Analyse(JobCoach jobCoach, DateTime date)
         {
             JobCoachEmail = jobCoach.Email;
-            AnalyseId = id;
             LaatsteAanpasDatum = date;
             KostenEnBaten = new List<KostOfBaat>();
+            IsGearchiveerd = false;
         }
         #endregion
 
         #region methods
-        public Boolean ControleerOfKostMetNummerAlIngevuldIs(int nummer)
+        public bool ControleerOfKostMetNummerAlIngevuldIs(int nummer)
         {
             return KostenEnBaten.Any(k => k.KostOfBaatId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
         }
@@ -41,7 +49,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             return KostenEnBaten.FirstOrDefault(k => k.KostOfBaatId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
         }
 
-        public Boolean ControleerOfBaatMetNummerAlIngevuldIs(int nummer)
+        public bool ControleerOfBaatMetNummerAlIngevuldIs(int nummer)
         {
             return KostenEnBaten.Any(b => b.KostOfBaatId == nummer && b.KostOfBaatEnum == KOBEnum.Baat);
         }
@@ -69,21 +77,28 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             KostenEnBaten.Add(baat);
         }
 
-        public double GeefSubtotaalKosten()
+        public void BerekenSubtotaalKosten()
         {
-
-            return 0;
+            KostenResultaat = KostenEnBaten.Where(kob => kob.KostOfBaatEnum == KOBEnum.Kost).Sum(kob => kob.Resultaat);
+            
         }
 
-        public double GeefSubtotaalBaten()
+        public void BerekenSubtotaalBaten()
         {
-
-            return 0;
+            BatenResultaat = KostenEnBaten.Where(kob => kob.KostOfBaatEnum == KOBEnum.Baat).Sum(kob => kob.Resultaat);
+            
         }
 
-        public double GeefResultaat()
+        public void BerekenResultaat()
         {
-            return GeefSubtotaalBaten() - GeefSubtotaalKosten();
+            NettoResultaat = BatenResultaat - KostenResultaat;
+        }
+
+        public void BerekenVolledigResultaat()
+        {
+            BerekenSubtotaalBaten();
+            BerekenSubtotaalKosten();
+            BerekenResultaat();
         }
 
         public void VernieuwDatum()

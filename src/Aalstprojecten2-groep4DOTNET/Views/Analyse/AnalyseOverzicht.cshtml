@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseResultaatOverzichtViewModel
+
+@{
     ViewData["Title"] = "Kairos";
 }
 
@@ -19,81 +21,81 @@
 
         <tr class="vet">
             <td height="60px" class="baten2"><a asp-area="" asp-controller="Analyse" asp-action="AnalyseBaat1">Totale loonkostsubsidies (VOP, IBO en doelgroepvermindering)</a></td>
-            <td class="text-center" >€ 0,00</td>
-            <td class="text-center">€ 0,00</td>
+            <td class="text-center" >@Model.Baat1.ToString("C")</td>
+            <td class="text-center">@Model.Kost1.ToString("C")</td>
             <td class="text-right kosten2"><a asp-area="" asp-controller="Analyse" asp-action="AnalyseKost">Loonkosten medewerkers met grote afstand tot arbeidsmarkt</a></td>
         </tr>
 
         <tr>
             <td height="60px" class="baten1">Tegemoetkoming in de kosten voor aanpassingen werkomgeving/aangepast gereedschap</td>
-            <td class="text-center">€ 0,00</td>
-            <td class="text-center" >€ 0,00</td>
+            <td class="text-center">@Model.Baat2.ToString("C")</td>
+            <td class="text-center" >@Model.Kost2.ToString("C")</td>
             <td class="text-right kosten1" >Voorbereiding start medewerker met grote afstand tot de arbeidsmarkt</td>
         </tr>
 
         <tr>
             <td height="60px" class="baten2">Besparing reguliere medew. op hetzelfde niveau</td>
-            <td class="text-center" >€ 0,00</td>
-            <td class="text-center">€ 0,00</td>
+            <td class="text-center" >@Model.Baat3.ToString("C")</td>
+            <td class="text-center">@Model.Kost3.ToString("C")</td>
             <td class="text-right kosten2">Extra kosten werkkleding e.a. personeelskosten</td>
         </tr>
 
         <tr>
             <td height="60px" class="baten1">Besparing reguliere medew. op hoger niveau</td>
-            <td class="text-center">€ 0,00</td>
-            <td class="text-center">€ 0,00</td>
-            <td class="text-right kosten1">Kosten enclave of onderaanneming?</td>
+            <td class="text-center">@Model.Baat4.ToString("C")</td>
+            <td class="text-center">@Model.Kost1Punt1.ToString("C")</td>
+            <td class="text-right kosten1">Kosten enclave of onderaanneming</td>
             
         </tr>
 
         <tr>
             <td height="60px" class="baten2">Besparing (extra) uitzendkrachten</td>
-            <td class="text-center" >€ 0,00</td>
-            <td class="text-center">€ 0,00</td>
+            <td class="text-center" >@Model.Baat5.ToString("C")</td>
+            <td class="text-center">@Model.Kost4.ToString("C")</td>
             <td class="text-right kosten2">Extra kosten voor aanpassingen werkomgeving/aangepast gereedschap</td>
             
         </tr>
 
         <tr>
             <td height="60px" class="baten1">Inperking omzetverlies</td>
-            <td class="text-center">€ 0,00</td>
-            <td class="text-center">€ 0,00</td>
+            <td class="text-center">@Model.Baat6.ToString("C")</td>
+            <td class="text-center">@Model.Kost5.ToString("C")</td>
             <td class="text-right kosten1">Extra kosten opleiding</td>
             
         </tr>
 
         <tr>
             <td height="60px" class="baten2">Productiviteitswinst</td>
-            <td class="text-center" >€ 0,00</td>
-            <td class="text-center">€ 0,00</td>
+            <td class="text-center" >@Model.Baat7.ToString("C")</td>
+            <td class="text-center">@Model.Kost6.ToString("C")</td>
             <td class="text-right kosten2">Extra kosten administratie en begeleiding</td>
             
         </tr>
 
         <tr>
             <td height="60px" class="baten1">Besparing op overuren</td>
-            <td class="text-center">€ 0,00</td>
-            <td class="text-center">€ 0,00</td>
+            <td class="text-center">@Model.Baat8.ToString("C")</td>
+            <td class="text-center">@Model.Kost7.ToString("C")</td>
             <td class="text-right kosten1">Andere kosten</td>
         </tr>
 
         <tr>
             <td height="60px" class="baten2">Besparing op outsourcing</td>
-            <td class="text-center" >€ 0,00</td>
+            <td class="text-center" >@Model.Baat9.ToString("C")</td>
             <td class="text-center"></td>
             <td class="kosten2"></td>
         </tr>
 
         <tr>
             <td height="60px" class="baten1">Logistieke besparing</td>
-            <td class="text-center">€ 0,00</td>
+            <td class="text-center">@Model.Baat10.ToString("C")</td>
             <td class="text-center"></td>
             <td class="kosten1"></td>
         </tr>
 
         <tr>
             <td height="60px" class="baten2">Andere besparingen</td>
-            <td class="text-center" >€ 0,00</td>
+            <td class="text-center" >@Model.Baat11.ToString("C")</td>
             <td class="text-center"></td>
             <td class="kosten2"></td>
         </tr>
@@ -104,14 +106,14 @@
 
         <tr>
             <td height="60px" class="baten1"><strong>Totaal Baten</strong></td>
-            <td class="text-center"><strong>€ 0,00</strong></td>
-            <td class="text-center"><strong>€ 0,00</strong></td>
+            <td class="text-center"><strong>@Model.SubtotaalBaten.ToString("C")</strong></td>
+            <td class="text-center"><strong>@Model.SubtotaalKosten.ToString("C")</strong></td>
             <td class="text-right kosten1"><strong>Totaal Kosten</strong></td>
         </tr>
 
         <tr>
             <td height="60px" style="visibility:hidden;"></td>
-            <td class="text-center vetGedrukt" style="background-color:lightgray; color:white;" colspan="2">€ 0,00</td>
+            <td class="text-center vetGedrukt" style="background-color:lightgray; color:white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
         </tr>
 
     </table>

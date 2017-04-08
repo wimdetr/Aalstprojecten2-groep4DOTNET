@@ -7,6 +7,7 @@
 /// <reference path="js/tablescriptbaten.js" />
 /// <reference path="js/wizard.js" />
 /// <reference path="js/wizardbaten.js" />
+/// <reference path="js/autocomplete.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
 /// <reference path="lib/jquery-validation/dist/jquery.validate.js" />
