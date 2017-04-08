@@ -9,7 +9,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
 {
     public class AnalyseRepository: IAnalyseRepository
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly DbSet<Analyse> _analyses;
 
         public AnalyseRepository(ApplicationDbContext context)
@@ -20,12 +20,12 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
 
         public IEnumerable<Analyse> GetAllNietGearchiveerd(string jobcoachEmail)
         {
-            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.IsGearchiveerd == false).AsNoTracking().ToList();
+            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && !a.IsGearchiveerd).OrderBy(a => a.LaatsteAanpasDatum).AsNoTracking().ToList();
         }
 
         public IEnumerable<Analyse> GetAllWelGearchiveerd(string jobcoachEmail)
         {
-            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.IsGearchiveerd == true).AsNoTracking().ToList();
+            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.IsGearchiveerd).OrderBy(a => a.LaatsteAanpasDatum).AsNoTracking().ToList();
         }
 
         public Analyse GetById(string jobcoachEmail, int id)

@@ -62,6 +62,7 @@ namespace Aalstprojecten2_groep4DOTNET
 
             services.AddScoped<IJobCoachRepository, JobCoachRepository>();
             services.AddScoped<IAnalyseRepository, AnalyseRepository>();
+            services.AddScoped<IWerkgeverRepository, WerkgeverRepository>();
             services.AddTransient<DataInitializer>();
 
             services.AddMvc();

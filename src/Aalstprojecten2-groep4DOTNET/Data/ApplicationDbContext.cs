@@ -65,6 +65,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             w.ToTable("Werkgever");
             w.HasKey(t => t.WerkgeverId);
 
+            w.Property(t => t.AnalyseId).IsRequired(false);
             w.Property(t => t.AantalWerkuren).IsRequired();
             w.Property(t => t.Bus).HasMaxLength(1).IsRequired(false);
             w.Property(t => t.Gemeente).IsRequired();
@@ -74,10 +75,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             w.Property(t => t.Nummer).IsRequired();
             w.Property(t => t.PatronaleBijdrage).HasMaxLength(3).IsRequired();
             w.Property(t => t.Postcode).HasMaxLength(4).IsRequired();
-            w.Property(t => t.Straat).IsRequired(false);
-            w.Property(t => t.WerkgeverId).ValueGeneratedOnAdd();
-
-            w.HasOne(t => t.ContactPersoon).WithMany().IsRequired().OnDelete(DeleteBehavior.Restrict);
+            w.Property(t => t.Straat).IsRequired();
         }
 
         private void MapAnalyse(EntityTypeBuilder<Analyse> a)
@@ -90,7 +88,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             a.Property(t => t.IsGearchiveerd).IsRequired();
 
             a.HasMany(t => t.KostenEnBaten).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
-            a.HasOne(t => t.Werkgever).WithMany().IsRequired(false).OnDelete(DeleteBehavior.Restrict);
+            a.HasOne(t => t.Werkgever).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
 
         private void MapJobCoach(EntityTypeBuilder<JobCoach> j)
@@ -114,7 +112,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
             p.HasKey(t => t.Email);
 
-            p.HasDiscriminator<string>("Type").HasValue<JobCoach>("JobCoach").HasValue<ContactPersoon>("ContactPersoon");
+            p.HasDiscriminator<string>("Type").HasValue<JobCoach>("JobCoach");
 
             p.Property(t => t.Email).IsRequired();
             p.Property(t => t.Naam).IsRequired();

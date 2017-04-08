@@ -9,7 +9,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
 {
     public class JobCoachRepository: IJobCoachRepository
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly DbSet<JobCoach> _jobCoaches;
 
         public JobCoachRepository(ApplicationDbContext context)
