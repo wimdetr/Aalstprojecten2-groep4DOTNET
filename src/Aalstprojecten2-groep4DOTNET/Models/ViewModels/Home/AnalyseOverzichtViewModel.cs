@@ -20,6 +20,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         [Display(Name = "Baten")]
         public double BatenResultaat { get; set; }
         public double NettoResultaat { get; set; }
+        public double BatenBalk { get; set; }
+        public double KostenBalk { get; set; }
 
         public AnalyseOverzichtViewModel(Analyse a)
         {
@@ -31,6 +33,18 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
             KostenResultaat = a.KostenResultaat;
             BatenResultaat = a.BatenResultaat;
             NettoResultaat = a.NettoResultaat;
+
+
+            if (BatenResultaat == KostenResultaat)
+            {
+                BatenBalk = 50;
+                KostenBalk = 50;
+            }
+            else
+            {
+                KostenBalk = Math.Round(KostenResultaat/(BatenResultaat + KostenResultaat)*100);
+                BatenBalk = 100 - Math.Round(KostenResultaat/(BatenResultaat + KostenResultaat)*100);
+            }
         }
     }
 }

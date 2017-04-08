@@ -246,8 +246,11 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
                 Werkgever w = new Werkgever(a, "Carrefour", 9420, "Erpe", "magazijn");
                 _context.Werkgevers.Add(w);
-                ContactPersoon cp = new ContactPersoon("De Troyer", "Wim", "niels955debruyne@hotmail.com");
-                w.ContactPersoon = cp;
+                w.ContactPersoonNaam = "De Troyer";
+                w.ContactPersoonVoornaam = "Wim";
+                w.ContactPersoonEmail = "andreas.dewitte@hotmail.com";
+                w.Straat = "Zevekootstraat";
+                w.Nummer = 129;
                 a.Werkgever = w;
                 _context.SaveChanges();
 

@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="" asp-controller="Analyse" asp-action="AnalyseOverzicht"><img class="img-circle img-responsive mijnLogo opschuiven" src="~/images/iconen/toevoegen.png" alt="meh" /></a>
+                <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img class="img-circle img-responsive mijnLogo opschuiven" src="~/images/iconen/toevoegen.png" alt="meh" /></a>
             </li>
 
             <li>
@@ -99,7 +99,7 @@ else
                 </div>
                 @*resultaten*@
                 <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant achtergrondKleurtje">
-                    <div class="helft" style="width: @Math.Round(item.KostenResultaat/(item.BatenResultaat + item.KostenResultaat)*100)%;">
+                    <div class="helft" style="width: @item.KostenBalk%;">
                         <div class="kosten">
                             <strong>Kosten</strong>
                         </div>
@@ -107,7 +107,7 @@ else
                             <strong>@item.KostenResultaat.ToString("C")</strong>
                         </div>
                     </div>
-                    <div class="helft" style="width: @(100 - Math.Round(item.KostenResultaat/(item.BatenResultaat + item.KostenResultaat)*100))%;">
+                    <div class="helft" style="width: @item.BatenBalk%;">
                         <div class="baten">
                             <strong>Baten</strong>
                         </div>
