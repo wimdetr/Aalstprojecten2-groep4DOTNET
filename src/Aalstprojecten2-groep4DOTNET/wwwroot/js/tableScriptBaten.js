@@ -45,8 +45,7 @@ $(document).ready(function () {
     })
     var i = 1;
     function addTableRow() {
-        var tempTr = $('<tr><td><input type="text" id="beschrijving" class="form-control" placeholder="Beschrijving" /></td>
-                                <td><input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" /></td></tr>').on('click', function () {
+        var tempTr = $('<tr><td><input type="text" id="beschrijving" class="form-control" placeholder="Beschrijving" /></td><td><input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" /></td></tr>').on('click', function () {
     });
     $("#tableAddRow3").append(tempTr)
     i++;
