@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Aalstprojecten2_groep4DOTNET.Data;
 using Aalstprojecten2_groep4DOTNET.Data.Repositories;
+using Aalstprojecten2_groep4DOTNET.Filters;
 using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Services;
@@ -63,8 +64,10 @@ namespace Aalstprojecten2_groep4DOTNET
             services.AddScoped<IJobCoachRepository, JobCoachRepository>();
             services.AddScoped<IAnalyseRepository, AnalyseRepository>();
             services.AddScoped<IWerkgeverRepository, WerkgeverRepository>();
+            services.AddScoped<AnalyseFilter>();
             services.AddTransient<DataInitializer>();
 
+            services.AddSession();
             services.AddMvc();
 
             // Add application services.

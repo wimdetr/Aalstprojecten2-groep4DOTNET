@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aalstprojecten2_groep4DOTNET.Filters;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
 {
+    [ServiceFilter(typeof(AnalyseFilter))]
     public class AnalyseController : Controller
     {
         private readonly IAnalyseRepository _analyseRepository;
