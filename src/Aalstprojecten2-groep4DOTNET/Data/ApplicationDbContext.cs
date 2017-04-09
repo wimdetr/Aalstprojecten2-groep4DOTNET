@@ -16,6 +16,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         public DbSet<JobCoach> JobCoaches { get; set; }
         public DbSet<Analyse> Analyses { get; set; }
         public DbSet<Werkgever> Werkgevers { get; set; }
+        public DbSet<InterneMailJobcoach> InterneMailJobcoaches { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -33,6 +34,35 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             builder.Entity<KostOfBaat>(MapKostOfBaat);
             builder.Entity<KOBRij>(MapKOBRij);
             builder.Entity<KOBVak>(MapKOBVak);
+            builder.Entity<InterneMail>(MapInterneMail);
+            builder.Entity<InterneMailJobcoach>(MapInterneMailJobcoach);
+        }
+
+        private void MapInterneMailJobcoach(EntityTypeBuilder<InterneMailJobcoach> i)
+        {
+            i.HasKey(t => new {t.InterneMailId, t.JobcoachEmail});
+
+            i.HasOne(t => t.Jobcoach)
+                .WithMany(t => t.InterneMailJobcoaches)
+                .HasForeignKey(t => t.JobcoachEmail)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            i.HasOne(t => t.InterneMail)
+                .WithMany()
+                .HasForeignKey(t => t.InterneMailId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
+        private void MapInterneMail(EntityTypeBuilder<InterneMail> m)
+        {
+            m.ToTable("InterneMail");
+            m.HasKey(t => t.InterneMailId);
+
+            m.Property(t => t.Onderwerp).HasMaxLength(100).IsRequired();
+            m.Property(t => t.Inhoud).IsRequired();
+            m.Property(t => t.VerzendDatum).IsRequired();
         }
 
         private void MapKOBVak(EntityTypeBuilder<KOBVak> v)

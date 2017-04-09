@@ -1,6 +1,17 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.ProfielAanpassenViewModel
 
 <h2>U bent vergeten uw profiel aan te passen!</h2>
-<a asp-controller="Home" asp-action="DoorgaanMetOpslaan" class="btn btn-default">Doorgaan en opslaan</a>
-<a asp-controller="Home" asp-action="DoorgaanZonderOpslaan" class="btn btn-default">Doorgaan zonder opslaan</a>
-<a asp-controller="Home" asp-action="NietDoorgaan" class="btn btn-default">Keer terug</a>
+<form method="post">
+    <input asp-for="Email" type="hidden" />
+    <input asp-for="Voornaam" type="hidden" />
+    <input asp-for="Naam" type="hidden" />
+    <input asp-for="NaamBedrijf" type="hidden" />
+    <input asp-for="Straat" type="hidden" />
+    <input asp-for="Nummer" type="hidden" />
+    <input asp-for="Bus" type="hidden" />
+    <input asp-for="Postcode" type="hidden" />
+    <input asp-for="Gemeente" type="hidden" />
+    <button formaction="DoorgaanMetOpslaan" class="btn btn-default">Doorgaan en opslaan</button>
+    <a asp-controller="Home" asp-action="DoorgaanZonderOpslaan" class="btn btn-default">Doorgaan zonder opslaan</a>
+    <button formaction="ProfielAanpassen" class="btn btn-default">Keer terug</button>
+</form>

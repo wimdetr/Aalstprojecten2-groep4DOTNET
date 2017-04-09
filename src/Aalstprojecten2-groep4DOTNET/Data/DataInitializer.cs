@@ -252,6 +252,21 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 w.Straat = "Zevekootstraat";
                 w.Nummer = 129;
                 a.Werkgever = w;
+
+                InterneMail mail1 = new InterneMail("welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail2 = new InterneMail("Hallo", "Hallo, nog wat tekst", DateTime.Now);
+
+                mark.AddMail(mail1);
+                foreach (InterneMailJobcoach i in mark.InterneMailJobcoaches)
+                {
+                    i.IsGelezen = true;
+                }
+                mark.AddMail(mail2);
+
+
+
+
+
                 _context.SaveChanges();
 
                 ApplicationUser user1 = new ApplicationUser { UserName = mark.Email, Email = mark.Email, Naam = "De Witte", Voornaam = "Andreas"};

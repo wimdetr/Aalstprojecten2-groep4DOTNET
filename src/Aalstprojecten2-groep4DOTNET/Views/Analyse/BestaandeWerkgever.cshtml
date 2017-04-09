@@ -48,13 +48,13 @@
             </tr>
             @foreach (var item in Model.Werkgevers)
             {
-                <tr class="klikbaar">
-                    <td><a asp-controller="Analyse" asp-action="NieuweWerkgever" asp-route-id="@item.WerkgeverId">@item.Naam</a></td>
-                    <td><a asp-controller="Analyse" asp-action="NieuweWerkgever" asp-route-id="@item.WerkgeverId">@item.Straat</a></td>
-                    <td><a asp-controller="Analyse" asp-action="NieuweWerkgever" asp-route-id="@item.WerkgeverId">@item.Postcode</a></td>
-                    <td><a asp-controller="Analyse" asp-action="NieuweWerkgever" asp-route-id="@item.WerkgeverId">@item.Gemeente</a></td>
-                    <td><a asp-controller="Analyse" asp-action="NieuweWerkgever" asp-route-id="@item.WerkgeverId">@item.NaamAfdeling</a></td>
-                    <td><a asp-controller="Analyse" asp-action="NieuweWerkgever" asp-route-id="@item.WerkgeverId">@item.ContactPersoonNaam</a></td>
+                <tr class="klikbaar" onclick="location.href = '@(Url.Action("NieuweWerkgever", "Analyse", new { Id = item.WerkgeverId }))'">
+                    <td>@item.Naam</td>
+                    <td>@item.Straat</td>
+                    <td>@item.Postcode</td>
+                    <td>@item.Gemeente</td>
+                    <td>@item.NaamAfdeling</td>
+                    <td>@item.ContactPersoonNaam</td>
                 </tr>
             }
         </table>

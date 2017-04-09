@@ -27,6 +27,11 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
             return _werkgevers.SingleOrDefault(w => w.WerkgeverId == id);
         }
 
+        public Werkgever GetByAnalyseId(int id)
+        {
+            return _werkgevers.SingleOrDefault(w => w.AnalyseId == id);
+        }
+
         public IEnumerable<Werkgever> GetByNaam(string jobcoachEmail, string naam)
         {
             return

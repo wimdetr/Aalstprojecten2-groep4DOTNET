@@ -9,7 +9,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
 {
     public class ProfielAanpassenViewModel
     {
-        public ProfielAanpassenViewModel Origineel { get; set; }
         [Required(ErrorMessage = "{0} is verplicht.")]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -49,23 +48,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         [Display(Name = "Gemeente")]
         public string Gemeente { get; set; }
 
-        public ProfielAanpassenViewModel()
-        {
-            
-        }
-        public ProfielAanpassenViewModel(ProfielAanpassenViewModel model)
-        {
-            Origineel = model;
-            Email = model.Email;
-            Voornaam = model.Voornaam;
-            Naam = model.Naam;
-            NaamBedrijf = model.NaamBedrijf;
-            Straat = model.Straat;
-            Nummer = model.Nummer;
-            Bus = model.Bus;
-            Postcode = model.Postcode;
-            Gemeente = model.Gemeente;
-        }
+        
     }
 
 }
