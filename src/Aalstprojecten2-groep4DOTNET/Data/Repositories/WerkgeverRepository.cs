@@ -36,7 +36,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
         {
             return
                 _werkgevers
-                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && w.Naam.Contains(naam))
+                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && w.Naam.ToLower().Contains(naam.ToLower()))
                     .AsNoTracking()
                     .ToList();
         }
@@ -45,7 +45,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
         {
             return
                 _werkgevers
-                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && w.Gemeente.Contains(gemeente))
+                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && w.Gemeente.ToLower().Contains(gemeente.ToLower()))
                     .AsNoTracking()
                     .ToList();
         }
@@ -63,7 +63,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
         {
             return
                 _werkgevers
-                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && ((w.ContactPersoonVoornaam + " " + w.ContactPersoonNaam).Contains(naam) || (w.ContactPersoonNaam + " " + w.ContactPersoonVoornaam).Contains(naam)))
+                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && ((w.ContactPersoonVoornaam + " " + w.ContactPersoonNaam).ToLower().Contains(naam.ToLower()) || (w.ContactPersoonNaam + " " + w.ContactPersoonVoornaam).ToLower().Contains(naam.ToLower())))
                     .AsNoTracking()
                     .ToList();
         }

@@ -7,6 +7,7 @@ using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.AccountViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
+using Aalstprojecten2_groep4DOTNET.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -200,47 +201,71 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View(new WachtwoordAanpassenViewModel());
         }
 
+        public IActionResult ContacteerAdmin()
+        {
+            return View(new ContacteerAdminViewModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ContacteerAdmin(ContacteerAdminViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+                    await MailVerzender.ContacteerAdmin(jc.Naam + " " + jc.Voornaam, jc.Email, model.Onderwerp, model.Inhoud);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            return View(model);
+        }
+
         private bool ControleerOfModelVerandertIs(ProfielAanpassenViewModel model)
         {
             JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
-            bool IsVerandert = (model.Bus == null && jc.BusBedrijf != null) || (model.Bus != null && jc.BusBedrijf == null);
+            bool isVerandert = (model.Bus == null && jc.BusBedrijf != null) || (model.Bus != null && jc.BusBedrijf == null);
 
             if (model.Naam == null)
             {
-                IsVerandert = true;
+                isVerandert = true;
             }
             if (model.Voornaam == null)
             {
-                IsVerandert = true;
+                isVerandert = true;
             }
             if (model.NaamBedrijf == null)
             {
-                IsVerandert = true;
+                isVerandert = true;
             }
             if (model.Straat == null)
             {
-                IsVerandert = true;
+                isVerandert = true;
             }
             if (model.Nummer != jc.NummerBedrijf)
             {
-                IsVerandert = true;
+                isVerandert = true;
             }
             if (model.Postcode != jc.PostcodeBedrijf)
             {
-                IsVerandert = true;
+                isVerandert = true;
             }
             if (model.Gemeente == null)
             {
-                IsVerandert = true;
+                isVerandert = true;
             }
             if (model.Bus != null && jc.BusBedrijf != null)
             {
                 if (!model.Bus.Equals(jc.BusBedrijf))
                 {
-                    IsVerandert = true;
+                    isVerandert = true;
                 }
             }
-            return IsVerandert;
+            return isVerandert;
         }
     }
 }

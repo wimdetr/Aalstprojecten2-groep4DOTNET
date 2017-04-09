@@ -9,6 +9,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
     {
         IEnumerable<InterneMailJobcoach> GetAll(string jobcoachEmail);
         InterneMailJobcoach GetById(int id);
+        int GetAantalOngelezen(string jobcoachEmail);
         void Delete(InterneMailJobcoach interneMailJobcoach);
         void Add(InterneMailJobcoach interneMailJobcoach);
         void SaveChanges();
