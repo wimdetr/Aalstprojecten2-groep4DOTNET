@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
 {
-    [ServiceFilter(typeof(AnalyseFilter))]
+    //[ServiceFilter(typeof(AnalyseFilter))]
     public class AnalyseController : Controller
     {
         private readonly IAnalyseRepository _analyseRepository;

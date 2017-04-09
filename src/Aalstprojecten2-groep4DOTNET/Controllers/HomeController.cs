@@ -64,7 +64,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult ProfielAanpassen()
         {
             JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
-            ProfielAanpassenViewModel origineelModel = new ProfielAanpassenViewModel()
+            ProfielAanpassenViewModel model = new ProfielAanpassenViewModel()
             {
                 Bus = jc.BusBedrijf,
                 Email = jc.Email,
@@ -76,8 +76,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 Straat = jc.StraatBedrijf,
                 Voornaam = jc.Voornaam
             };
-            ProfielAanpassenViewModel model = new ProfielAanpassenViewModel(origineelModel);
-
             return View(model);
         }
 
@@ -109,6 +107,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public IActionResult ProfielAanpassenDoorgaanZonderOpslaan(ProfielAanpassenViewModel model)
         {
             if (ControleerOfModelVerandertIs(model))
@@ -117,7 +116,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             return RedirectToAction(nameof(WachtwoordAanpassen));
         }
-
+        [HttpPost]
         public IActionResult DoorgaanMetOpslaan(ProfielAanpassenViewModel model)
         {
             if (ModelState.IsValid)
@@ -149,14 +148,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View(model);
         }
 
-        public IActionResult DoorgaanZonderOpslaan(ProfielAanpassenViewModel model)
+        public IActionResult DoorgaanZonderOpslaan()
         {
             return RedirectToAction(nameof(WachtwoordAanpassen));
-        }
-
-        public IActionResult NietDoorgaan(ProfielAanpassenViewModel model)
-        {
-            return RedirectToAction(nameof(ProfielAanpassen), model);
         }
 
         public IActionResult WachtwoordAanpassen()
@@ -204,14 +198,45 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         private bool ControleerOfModelVerandertIs(ProfielAanpassenViewModel model)
         {
-            return !model.Naam.Equals(model.Origineel.Naam) 
-                || !model.Voornaam.Equals(model.Origineel.Voornaam) 
-                || !model.NaamBedrijf.Equals(model.Origineel.NaamBedrijf)
-                || !model.Straat.Equals(model.Origineel.Straat)
-                || !model.Nummer.Equals(model.Origineel.Nummer)
-                || !model.Bus.Equals(model.Origineel.Bus)
-                || !model.Postcode.Equals(model.Origineel.Postcode)
-                || !model.Gemeente.Equals(model.Origineel.Gemeente);
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+            bool IsVerandert = (model.Bus == null && jc.BusBedrijf != null) || (model.Bus != null && jc.BusBedrijf == null);
+
+            if (model.Naam == null)
+            {
+                IsVerandert = true;
+            }
+            if (model.Voornaam == null)
+            {
+                IsVerandert = true;
+            }
+            if (model.NaamBedrijf == null)
+            {
+                IsVerandert = true;
+            }
+            if (model.Straat == null)
+            {
+                IsVerandert = true;
+            }
+            if (model.Nummer != jc.NummerBedrijf)
+            {
+                IsVerandert = true;
+            }
+            if (model.Postcode != jc.PostcodeBedrijf)
+            {
+                IsVerandert = true;
+            }
+            if (model.Gemeente == null)
+            {
+                IsVerandert = true;
+            }
+            if (model.Bus != null && jc.BusBedrijf != null)
+            {
+                if (!model.Bus.Equals(jc.BusBedrijf))
+                {
+                    IsVerandert = true;
+                }
+            }
+            return IsVerandert;
         }
     }
 }
