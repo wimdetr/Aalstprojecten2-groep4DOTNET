@@ -80,7 +80,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [HttpPost]
-        public IActionResult ProfielAanpassen(ProfielAanpassenViewModel model)
+        public async Task<IActionResult> ProfielAanpassen(ProfielAanpassenViewModel model)
         {
 
             if (ModelState.IsValid)
@@ -97,6 +97,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     jc.StraatBedrijf = model.Straat;
                     jc.Voornaam = model.Voornaam;
                     _jobCoachRepository.SaveChanges();
+                    ApplicationUser user = await _userManager.GetUserAsync(User);
+                    user.Naam = model.Naam;
+                    user.Voornaam = model.Voornaam;
+                    await _userManager.UpdateAsync(user);
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception e)
