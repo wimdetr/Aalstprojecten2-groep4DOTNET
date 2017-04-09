@@ -173,6 +173,13 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return RedirectToAction("Login");
         }
 
+        public async Task<IActionResult> LogUit()
+        {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation(4, "User logged out.");
+            return RedirectToAction("Login");
+        }
+
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
