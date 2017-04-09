@@ -27,6 +27,13 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
             return _interneMailJobcoaches.Include(i => i.InterneMail).SingleOrDefault(i => i.InterneMailId == id);
         }
 
+        public int GetAantalOngelezen(string jobcoachEmail)
+        {
+            return
+                _interneMailJobcoaches.Where(i => i.JobcoachEmail.Equals(jobcoachEmail))
+                    .Count(i => i.IsGelezen == false);
+        }
+
         public void Delete(InterneMailJobcoach interneMailJobcoach)
         {
             _interneMailJobcoaches.Remove(interneMailJobcoach);

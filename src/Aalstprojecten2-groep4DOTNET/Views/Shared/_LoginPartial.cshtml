@@ -1,15 +1,21 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.Threading.Tasks
+@using Aalstprojecten2_groep4DOTNET.Data.Repositories
+@using Microsoft.AspNetCore.Identity
 @using Aalstprojecten2_groep4DOTNET.Models
+@using Aalstprojecten2_groep4DOTNET.Models.Domein
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IInterneMailJobcoachRepository InterneMailJobcoachRepository
 
 @{
     ApplicationUser user = await UserManager.GetUserAsync(User);
     if (user != null)
     {
         ViewData["gebruikersnaam"] = user.Voornaam + " " + user.Naam;
+        ViewData["ongelezen"] = InterneMailJobcoachRepository.GetAantalOngelezen(user.Email);
     }
+
 }
 
 
@@ -20,9 +26,9 @@
                 <ul class="dropdown-menu">
                     <li><a asp-controller="Home" asp-action="ProfielAanpassen">Profiel wijzigen <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                     <li class="divider"></li>
-                    <li><a >Contacteer Admin <span class="glyphicon glyphicon-envelope pull-right"></span></a></li>
+                    <li><a asp-controller="Home" asp-action="ContacteerAdmin">Contacteer Admin <span class="glyphicon glyphicon-envelope pull-right"></span></a></li>
                     <li class="divider"></li>
-                    <li><a >Inbox <span class="badge pull-right"> 42 </span></a></li>
+                    <li><a >Inbox <span class="badge pull-right"> @ViewData["ongelezen"] </span></a></li>
                     <li class="divider"></li>
                     <li><a asp-controller="Account" asp-action="LogUit">Log uit<span class="glyphicon glyphicon-log-out pull-right" /></a></li>
                     <li class="divider"></li>
