@@ -114,7 +114,7 @@
     color: #fff;    
 }
 
-.extraPadding {
+.extraPaddingBeneden {
     padding-bottom:10px;
 }
 
@@ -168,4 +168,8 @@
 
 .kleurtje {
     color: white;
+}
+
+.extraMarginRight {
+    margin-right: 15px;
 }
