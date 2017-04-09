@@ -143,14 +143,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             Werkgever werkgever = _werkgeverRepository.GetById(id);
             WerkgeverViewModel model;
-            if (werkgever == null)
-            {
-                model = new WerkgeverViewModel();
-            }
-            else
-            {
-                model = new WerkgeverViewModel(werkgever);
-            }
+            model = werkgever == null ? new WerkgeverViewModel() : new WerkgeverViewModel(werkgever);
             
             return View(model);
         }
