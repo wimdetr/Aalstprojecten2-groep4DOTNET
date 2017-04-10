@@ -124,7 +124,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return RedirectToAction(nameof(WachtwoordAanpassen));
         }
         [HttpPost]
-        public IActionResult DoorgaanMetOpslaan(ProfielAanpassenViewModel model)
+        public async Task<IActionResult> DoorgaanMetOpslaan(ProfielAanpassenViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -140,6 +140,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     jc.StraatBedrijf = model.Straat;
                     jc.Voornaam = model.Voornaam;
                     _jobCoachRepository.SaveChanges();
+                    ApplicationUser user = await _userManager.GetUserAsync(User);
+                    user.Naam = model.Naam;
+                    user.Voornaam = model.Voornaam;
+                    await _userManager.UpdateAsync(user);
                     return RedirectToAction(nameof(WachtwoordAanpassen));
                 }
                 catch
@@ -300,7 +304,16 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 isVerandert = true;
             }
+            else if (!model.Naam.Equals(jc.Naam))
+            {
+                isVerandert = true;
+            }
+            
             if (model.Voornaam == null)
+            {
+                isVerandert = true;
+            }
+            else if (!model.Voornaam.Equals(jc.Voornaam))
             {
                 isVerandert = true;
             }
@@ -308,7 +321,15 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 isVerandert = true;
             }
+            else if (!model.NaamBedrijf.Equals(jc.NaamBedrijf))
+            {
+                isVerandert = true;
+            }
             if (model.Straat == null)
+            {
+                isVerandert = true;
+            }
+            else if (!model.Straat.Equals(jc.StraatBedrijf))
             {
                 isVerandert = true;
             }
@@ -321,6 +342,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 isVerandert = true;
             }
             if (model.Gemeente == null)
+            {
+                isVerandert = true;
+            }
+            else if (!model.Gemeente.Equals(jc.GemeenteBedrijf))
             {
                 isVerandert = true;
             }
