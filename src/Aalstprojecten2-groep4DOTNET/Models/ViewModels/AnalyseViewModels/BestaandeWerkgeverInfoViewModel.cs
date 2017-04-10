@@ -13,7 +13,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public string Straat { get; set; }
         public int Postcode { get; set; }
         public string Gemeente { get; set; }
-        public string NaamAfdeling { get; set; }
         public string ContactPersoonNaam { get; set; }
 
         public BestaandeWerkgeverInfoViewModel(Werkgever werkgever)
@@ -23,7 +22,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
             Straat = werkgever.Straat;
             Postcode = werkgever.Postcode;
             Gemeente = werkgever.Gemeente;
-            NaamAfdeling = werkgever.NaamAfdeling;
             ContactPersoonNaam = werkgever.ContactPersoonNaam + " " + werkgever.ContactPersoonVoornaam;
         }
     }

@@ -18,13 +18,15 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly IJobCoachRepository _jobCoachRepository;
         private readonly IAnalyseRepository _analyseRepository;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IInterneMailJobcoachRepository _interneMailJobcoachRepository;
 
 
-        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager)
+        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository)
         {
             _jobCoachRepository = jobCoachRepository;
             _analyseRepository = analyseRepository;
             _userManager = userManager;
+            _interneMailJobcoachRepository = interneMailJobcoachRepository;
         }
         public IActionResult Index()
         {
@@ -223,6 +225,70 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
             return View(model);
+        }
+
+        public IActionResult OverzichtMailbox()
+        {
+            return View(new OverzichtMailboxViewModel(_interneMailJobcoachRepository.GetAll(User.Identity.Name)));
+        }
+
+        public IActionResult GeselecteerdeMail(int id)
+        {
+            InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
+            mail.IsGelezen = true;
+            _interneMailJobcoachRepository.SaveChanges();
+            MailViewModel model = new MailViewModel(mail);
+            return View(model);
+        }
+
+        public IActionResult VerwijderMail(int id)
+        {
+            _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, id));
+            _interneMailJobcoachRepository.SaveChanges();
+            return RedirectToAction(nameof(OverzichtMailbox));
+        }
+
+        [HttpPost]
+        public IActionResult MarkeerGeselecteerdeAlsGelezen(OverzichtMailboxViewModel model)
+        {
+            foreach (MailViewModel m in model.Mails)
+            {
+                if (m.Geselecteerd)
+                {
+                    _interneMailJobcoachRepository.GetById(User.Identity.Name, m.MailId).IsGelezen = true;
+                    _interneMailJobcoachRepository.SaveChanges();
+                }
+            }
+            _interneMailJobcoachRepository.SaveChanges();
+            return RedirectToAction(nameof(OverzichtMailbox));
+        }
+
+        [HttpPost]
+        public IActionResult VerwijderGeselecteerde(OverzichtMailboxViewModel model)
+        {
+            foreach (MailViewModel m in model.Mails)
+            {
+                if (m.Geselecteerd)
+                {
+                    _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, m.MailId));
+                    _interneMailJobcoachRepository.SaveChanges();
+                }
+            }
+            
+            return RedirectToAction(nameof(OverzichtMailbox));
+        }
+
+        [HttpPost]
+        public IActionResult MarkeerAlleAlsGelezen(OverzichtMailboxViewModel model)
+        {
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                _interneMailJobcoachRepository.GetById(User.Identity.Name, m.InterneMailId).IsGelezen = true;
+                _interneMailJobcoachRepository.SaveChanges();
+            }
+            
+            return RedirectToAction(nameof(OverzichtMailbox));
         }
 
         private bool ControleerOfModelVerandertIs(ProfielAanpassenViewModel model)
