@@ -19,12 +19,12 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
         }
         public IEnumerable<InterneMailJobcoach> GetAll(string jobcoachEmail)
         {
-            return _interneMailJobcoaches.Include(i => i.InterneMail).Where(i => i.JobcoachEmail.Equals(jobcoachEmail)).AsNoTracking().ToList();
+            return _interneMailJobcoaches.Include(i => i.InterneMail).Where(i => i.JobcoachEmail.Equals(jobcoachEmail)).OrderBy(i => i.InterneMail.VerzendDatum).AsNoTracking().ToList();
         }
 
-        public InterneMailJobcoach GetById(int id)
+        public InterneMailJobcoach GetById(string jobcoachEmail, int id)
         {
-            return _interneMailJobcoaches.Include(i => i.InterneMail).SingleOrDefault(i => i.InterneMailId == id);
+            return _interneMailJobcoaches.Include(i => i.InterneMail).SingleOrDefault(i => i.JobcoachEmail.Equals(jobcoachEmail) && i.InterneMailId == id);
         }
 
         public int GetAantalOngelezen(string jobcoachEmail)

@@ -28,7 +28,7 @@
                     <li class="divider"></li>
                     <li><a asp-controller="Home" asp-action="ContacteerAdmin">Contacteer Admin <span class="glyphicon glyphicon-envelope pull-right"></span></a></li>
                     <li class="divider"></li>
-                    <li><a >Inbox <span class="badge pull-right"> @ViewData["ongelezen"] </span></a></li>
+                    <li><a asp-controller="Home" asp-action="OverzichtMailbox">Inbox <span class="badge pull-right"> @ViewData["ongelezen"] </span></a></li>
                     <li class="divider"></li>
                     <li><a asp-controller="Account" asp-action="LogUit">Log uit<span class="glyphicon glyphicon-log-out pull-right" /></a></li>
                     <li class="divider"></li>

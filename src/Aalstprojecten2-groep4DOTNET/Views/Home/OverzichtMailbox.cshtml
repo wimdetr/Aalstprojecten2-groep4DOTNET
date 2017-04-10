@@ -1,0 +1,50 @@
+﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.OverzichtMailboxViewModel
+
+<link rel="stylesheet" href="~/css/OverzichtMailbox.css" />
+
+
+@if (Model.IsLegeLijst)
+{
+    <p>U heeft geen ontvangen berichten van de admin in uw inbox.</p>
+}
+else
+{
+    <form method="post">
+        <button formaction="MarkeerGeselecteerdeAlsGelezen">Markeer geselecteerde als gelezen</button>
+        <button formaction="VerwijderGeselecteerde">Verwijder geselecteerde</button>
+        <button formaction="MarkeerAlleAlsGelezen">Markeer alle als gelezen</button>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Tijdstip</th>
+                <th>Onderwerp</th>
+                <th>Inhoud</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Mails)
+            {
+                if (item.Gelezen)
+                {
+                    <tr class="klikbaar gelezen">
+                        <td><input asp-for="@item.Geselecteerd"/></td>
+                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
+                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
+                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
+                        <td><a asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@item.MailId" class="btn btn-default">Verwijder</a></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="klikbaar nietgelezen">
+                        <td><input asp-for="@item.Geselecteerd"/></td>
+                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
+                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
+                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
+                        <td><a asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@item.MailId" class="btn btn-default">Verwijder</a></td>
+                    </tr>
+                }
+
+            }
+        </table>
+    </form>
+}
