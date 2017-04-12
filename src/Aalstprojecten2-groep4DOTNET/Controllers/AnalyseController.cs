@@ -231,7 +231,34 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View();
         }
 
+        public IActionResult AnalyseBaat2()
+        {
+            return View();
+        }
+        public IActionResult AnalyseBaat3()
+        {
+            return View();
+        }
+        public IActionResult AnalyseBaat4()
+        {
+            return View();
+        }
         public IActionResult AnalyseKost()
+        {
+            return View();
+        }
+
+        public IActionResult AnalyseKost2()
+        {
+            return View();
+        }
+
+        public IActionResult AnalyseKost3()
+        {
+            return View();
+        }
+
+        public IActionResult AnalyseKost4()
         {
             return View();
         }

@@ -26,13 +26,13 @@
     <div class="row form-group">
         <div class="col-xs-12">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel">
-                <li class="active">
+                <li>
                     <a asp-controller="Analyse" asp-action="AnalyseBaat1">
                         <h4 class="list-group-item-heading">Stap 1</h4>
                         <p>Lonen die vervangen worden</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a asp-controller="Analyse" asp-action="AnalyseBaat2">
                         <h4 class="list-group-item-heading">Stap 2</h4>
                         <p class="list-group-item-text">Uitzendkrachten, overuren en uitbesteede zaken</p>
@@ -57,35 +57,69 @@
         <div class="col-xs-12">
             <div class="col-md-12 well text-center">
                 <div class="Blok1 text-center">
-                    <h3 class="text-left">1. Vul hier de lonen op hetzelfde niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
-                    <table class="table table-bordered text-left" id="tableAddRow" style="margin-bottom: 55px;">
+                    <h3 class="text-left">1. Welke besparing denkt u te kunnen maken op uitzendkrachten?</h3>
+                    <table class="table table-bordered text-left" id="tableAddRow3" style="margin-bottom: 55px;">
                         <thead>
                             <tr>
-                                <th style="width:5%;"></th>
-                                <th>Uren</th>
-                                <th>Bruto Maandloon Fulltime</th>
-                                <th>Totale loonkost per jaar <br />(incl. patronale bijdrage en vakantiegeld)</th>
-                                <th style="width:5%;"></th>
+                                <th style="width:5%"></th>
+                                <th>Beschrijving</th>
+                                <th>Jaarbedrag</th>
+                                <th style="width:5%"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr id="tr_0">
                                 <td>1.</td>
-                                <td>15</td>
-                                <td>€ 22.000,00</td>
-                                <td>€ 22.000,00</td>
+                                <td>Een beschrijving</td>
+                                <td>€ 12.000,00</td>
                                 <td class="text-center">
                                     <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
                                     <button class="glyphicon glyphicon-remove" />
                                 </td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <h3>Gegevens van de nieuwe functie</h3>
-                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:23%;">
-                        <input type="number" id="uren" class="form-control" placeholder="Uren" style="float:left; margin-right:50px;" />
-                        <input type="number" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" style="float:left; margin-right:50px;" />
-                        <input type="number" id="totaleLoonkostPerJaar" class="form-control" placeholder="Loonkost Per Jaar" style="float:left; margin-right:50px;" />
+                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
+                        <input type="text" id="beschrijving" class="form-control" placeholder="Beschrijving" style="float:left; margin-right: 50px;" />
+                        <input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" style="float:left;" />
+                    </div>
+
+                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
+                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+
+
+                </div>
+
+                <div class="Blok1 text-center">
+                    <h3 class="text-left">2. Welke zaken worden extern ingekocht en kan op worden bespaard? Denk hierbij aan bijvoorbeeld uitbesteedde productie, schoonmaak, hoveniers enz.</h3>
+                    <table class="table table-bordered text-left" id="tableAddRow4" style="margin-bottom: 55px;">
+                        <thead>
+                            <tr>
+                                <th style="width:5%"></th>
+                                <th>Beschrijving</th>
+                                <th>Jaarbedrag</th>
+                                <th style="width:5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="tr_0">
+                                <td>1.</td>
+                                <td>Een beschrijving</td>
+                                <td>€ 12.000,00</td>
+                                <td class="text-center">
+                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
+                                    <button class="glyphicon glyphicon-remove" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Gegevens van de nieuwe functie</h3>
+                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
+                        <input type="text" id="beschrijving" class="form-control" placeholder="Beschrijving" style="float:left; margin-right: 50px;" />
+                        <input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" style="float:left;" />
                     </div>
 
                     <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
@@ -94,42 +128,22 @@
                 </div>
 
                 <div class="Blok1 text-center">
-                    <h3 class="text-left">2. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
-                    <table class="table table-bordered" id="tableAddRow2" style="margin-bottom: 55px;">
-                        <thead>
-                            <tr>
-                                <th style="width:5%;"></th>
-                                <th>Uren</th>
-                                <th>Bruto Maandloon Fulltime</th>
-                                <th>Totale loonkost per jaar <br />(incl. patronale bijdrage en vakantiegeld)</th>
-                                <th style="width:5%;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td>1.</td>
-                                <td>15</td>
-                                <td>€ 22.000,00</td>
-                                <td>€ 22.000,00</td>
-                                <td class="text-center">
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
-                                    <button class="glyphicon glyphicon-remove" />
-                                </td>
-                        </tbody>
-                    </table>
+                    <h3 class="text-left">3. Hoeveel denkt u te kunnen besparen op overuren?</h3>
+                    <input type="text" class="form-control" placeholder="€" />
+                </div>
 
-                    <h3>Gegevens van de nieuwe functie</h3>
-                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:23%;">
-                        <input type="number" id="uren" class="form-control" placeholder="Uren" style="float:left; margin-right:50px;" />
-                        <input type="number" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" style="float:left; margin-right:50px;" />
-                        <input type="number" id="totaleLoonkostPerJaar" class="form-control" placeholder="Loonkost Per Jaar" style="float:left; margin-right:50px;" />
-                    </div>
+                <div class="Blok1 text-center">
+                    <h3 class="text-left">4. Wat zijn de transportkosten van eventueel uitbesteedde zaken?</h3>
+                    <input type="text" class="form-control" placeholder="€" />
+                </div>
 
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+                <div class="Blok1 text-center">
+                    <h3 class="text-left">5. Wat zijn de logistieke handlingskosten van eventueel uitbesteedde zaken?</h3>
+                    <input type="text" class="form-control" placeholder="€" />
                     
                 </div>
-                <a asp-controller="Analyse" asp-action="AnalyseBaat2" class="btn btn-primary btn-lg">Volgende</a>
+                <a asp-controller="Analyse" asp-action="AnalyseBaat3" class="btn btn-primary btn-lg">Volgende</a>
             </div>
         </div>
-    </div>
+
+</div>
