@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="~/css/Baat1.css" />
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="~/js/Wizard.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScript.js"></script>
 
@@ -30,25 +29,25 @@
         <div class="col-xs-12">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel">
                 <li class="active">
-                    <a href="#step-1">
+                    <a asp-controller="Analyse" asp-action="AnalyseKost">
                         <h4 class="list-group-item-heading">Stap 1</h4>
-                        <p>Nieuwe functies, enclave en onderaannemingen</p>
+                        <p>Nieuwe functies</p>
                     </a>
                 </li>
-                <li class="disabled">
-                    <a href="#step-2">
+                <li>
+                    <a asp-controller="Analyse" asp-action="AnalyseKost2">
                         <h4 class="list-group-item-heading">Stap 2</h4>
                         <p class="list-group-item-text">Kosten aan maatwerkbedrijf via enclave of onderaanneming</p>
                     </a>
                 </li>
-                <li class="disabled">
-                    <a href="#step-3">
+                <li>
+                    <a asp-controller="Analyse" asp-action="AnalyseKost3">
                         <h4 class="list-group-item-heading">Stap 3</h4>
                         <p class="list-group-item-text">Extra structureel en materiaal huur</p>
                     </a>
                 </li>
-                <li class="disabled">
-                    <a href="#step-4">
+                <li>
+                    <a asp-controller="Analyse" asp-action="AnalyseKost4">
                         <h4 class="list-group-item-heading">Stap 4</h4>
                         <p class="list-group-item-text">Extra structureel en materiaal huur</p>
                     </a>
@@ -56,14 +55,15 @@
             </ul>
         </div>
     </div>
-    <div class="row setup-content" id="step-1">
+
         <div class="col-xs-12">
             <div class="col-md-12 well text-center">
                 <div class="Blok1 text-center">
-                    <h4 class="text-left">Welke nieuwe functies zet u in?</h4>
-                    <table class="table table-bordered" id="tableAddRow" style="margin-bottom: 25px;">
+                    <h3 class="text-left">1. Welke nieuwe functies zet u in?</h3>
+                    <table class="table table-bordered text-left" id="tableAddRow" style="margin-bottom: 55px;">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Functie</th>
                                 <th>Aantal Uren Per Week</th>
                                 <th>Bruto Maandloon Fulltime</th>
@@ -71,177 +71,71 @@
                                 <th>Vlaamse Ondersteunings Premie</th>
                                 <th>Aantal Maanden IBO</th>
                                 <th>Totale Productiviteits-Premie IBO</th>
-                                <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn"></span></th>
+                                <th></th>
+                                @*<th style="width:10px"><span class="glyphicon glyphicon-plus addBtn"></span></th>*@
                             </tr>
                         </thead>
                         <tbody>
                             <tr id="tr_0">
-                                <td><input type="text" id="Functie" class="form-control" placeholder="Functie" /></td>
-                                <td><input type="number" id="UrenPerWeek" class="form-control" placeholder="Uren per week" /></td>
-                                <td><input type="number" id="BrutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" /></td>
+                                <td>1.</td>
+                                <td>Ruitenwasser</td>
+                                <td>30 €</td>
+                                <td>2400 €</td>
 
-                                <td class="selectpicker">
-                                    <select class="btn btn-default selectpicker">
-                                        <option selected>Maak uw Keuze</option>
-                                        <option>Werknemers < 25 jaar laag geschoold</option>
-                                        <option>Werknemers < 25 jaar midden geschoold</option>
-                                        <option>Werknemers > 59 jaar</option>
-                                        <option>Ander</option>
-                                    </select>
+                                <td>
+                                    Werknemers < 25 jaar laag geschoold
                                 </td>
-                                <td class="selectpicker">
-                                    <select class="btn btn-default selectpicker" value="Maak uw keuze">
-                                        <option selected>Maak uw Keuze</option>
-                                        <option>40%</option>
-                                        <option>30%</option>
-                                        <option>20%</option>
-                                        <option>0%</option>
-                                    </select>
+                                <td>
+                                    40%
                                 </td>
-                                <td><input type="number" id="aantalMaandenIBO" class="form-control" placeholder="Aantal maanden" /></td>
-                                <td><input type="number" id="productiviteitsPremie" class="form-control" placeholder="Totale Premie" /></td>
+                                <td>12</td>
+                                <td>1500</td>
+                                <td>
+                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px;" />
+                                    <button class="glyphicon glyphicon-remove" />
+                                </td>
                         </tbody>
                     </table>
-                    <button id="activate-step-2" class="btn btn-primary btn-lg">Volgende</button>
-                </div>
 
-            </div>
-        </div>
-    </div>
-    <div class="row setup-content" id="step-2">
-        <div class="col-xs-12">
-            <div class="col-md-12 well">
-                <div class="Blok1 text-center">
-                    <h4 class="text-left">Hoeveel betaalt u als u werk laten uitvoeren door maatwerkbedrijf via enclave of onderaanneming?</h4>
-                    <table class="table table-bordered" id="tableAddRow2" style="margin-bottom: 25px;">
-                        <thead>
-                            <tr>
-                                <th>Beschrijving</th>
-                                <th>Jaarbedrag</th>
-                                <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn2"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td><input type="text" id="beschrijving" class="form-control" placeholder="Beschrijving" /></td>
-                                <td><input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button id="activate-step-3" class="btn btn-primary btn-lg">Volgende</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row setup-content" id="step-3">
-        <div class="col-xs-12">
-            <div class="col-md-12 well">
-                <div class="Blok1 text-center">
-                    <h4 class="text-left">Welke extra kosten moet u structureel extra maken voor deze inhuur? </br> (alleen kosten zoals werkkleding bij normale inhuur en bij reshoring alle kosten)</h4>
-                    <table class="table table-bordered" id="tableAddRow3" style="margin-bottom: 25px;">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Bedrag</th>
-                                <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn3"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td><input type="text" id="type" class="form-control" placeholder="Type" /></td>
-                                <td><input type="number" id="Bedrag" class="form-control" placeholder="Bedrag" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <button class="btn btn-primary btn-lg text-center" style="margin-bottom:20px;">Nieuwe Functie</button>
 
-                <div class="Blok1 text-center">
-                    <h4 class="text-left">Welke kosten moet u structureel jaarlijks extra maken voor deze inhuur? </br>(vul hier de gereedschapskosten ed in)</h4>
-                    <table class="table table-bordered" id="tableAddRow4" style="margin-bottom: 25px;">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Bedrag</th>
-                                <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn4"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td><input type="text" id="type" class="form-control" placeholder="Type" /></td>
-                                <td><input type="number" id="Bedrag" class="form-control" placeholder="Bedrag" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button id="activate-step-4" class="btn btn-primary btn-lg">Volgende</button>
+                    <div class="volledigeInvulveldjes" style="width:100%; height:200px;">
+                        <h3>Gegevens van de nieuwe functie</h3>
+                        <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:13%;">
+                            <input type="text" id="Functie" class="form-control" placeholder="Nieuwe functie" style="float:left;" />
+                            <input type="number" id="UrenPerWeek" class="form-control" placeholder="Aantal uren per week" style="float:left; margin-left:50px;" />
+                            <input type="number" id="BrutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" style="float:left; margin-left:50px;" />
+
+                            <select class="btn btn-default selectpicker" style="float:left; margin-left:50px;">
+                                <option selected>Kies uw doelgroep</option>
+                                <option>Werknemers < 25 jaar laag geschoold</option>
+                                <option>Werknemers < 25 jaar midden geschoold</option>
+                                <option>Werknemers > 59 jaar</option>
+                                <option>Ander</option>
+                            </select>
+                        </div>
+
+                        <div class="invulveldjes2" style="width:100%; height:100px; float:left; padding-left: 20%;">
+                            <select class="btn btn-default selectpicker" style="float:left; margin-left: 50px;">
+                                <option selected>Vlaamse ondersteuningspremie</option>
+                                <option>40%</option>
+                                <option>30%</option>
+                                <option>20%</option>
+                                <option>0%</option>
+                            </select>
+
+                            <input type="number" id="aantalMaandenIBO" class="form-control" placeholder="Aantal maanden" style="float:left; margin-left: 50px;" />
+                            <input type="number" id="productiviteitsPremie" class="form-control" placeholder="Totale Premie" style="float:left; margin-left: 50px;" />
+                        </div>
+
+                    </div>
+                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
+                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+
                 </div>
-            </div>
-        </div>
-    </div>
+                @*<button class="btn btn-primary btn-lg text-center">Volgende</button>*@
+                <a asp-controller="Analyse" asp-action="AnalyseKost2" class="btn btn-primary btn-lg">Volgende</a>
 
-
-    <div class="row setup-content" id="step-4">
-        <div class="col-xs-12">
-            <div class="col-md-12 well">
-                <div class="Blok1 text-center">
-                    <h4 class="text-left">Welke kosten moet u maken ter voorbereiding om dit te implementeren?</h4>
-                    <table class="table table-bordered" id="tableAddRow5" style="margin-bottom: 25px;">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Bedrag</th>
-                                <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn5"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td><input type="text" id="type" class="form-control" placeholder="Type" /></td>
-                                <td><input type="number" id="Bedrag" class="form-control" placeholder="Bedrag" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h4 class="text-left">Aanwelke kosten kan nog meer worden gedacht?</h4>
-                    <table class="table table-bordered" id="tableAddRow6" style="margin-bottom: 25px;">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Bedrag</th>
-                                <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn6"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td><input type="text" id="type" class="form-control" placeholder="Type" /></td>
-                                <td><input type="number" id="Bedrag" class="form-control" placeholder="Bedrag" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h4 class="text-left">Hoeveel uren spendeert u jaarlijks aan extra administratie en interne begeleiding?</h4>
-                    <table class="table table-bordered" id="tableAddRow7" style="margin-bottom: 25px;">
-                        <thead>
-                            <tr>
-                                <th>Uren</th>
-                                <th>Bruto Maandloon Begeleider</th>
-                                <th>Jaarbedrag</th>
-                                <th style="width:10px"><span class="glyphicon glyphicon-plus addBtn7"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td><input type="number" id="uren" class="form-control" placeholder="Uren" /></td>
-                                <td><input type="number" id="brutoMaandloonBegeleider" class="form-control" placeholder="Bruto Maandloon" /></td>
-                                <td><input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-primary btn-lg">Overzicht</button>
-</div>
-            </div>
             </div>
         </div>
     </div>

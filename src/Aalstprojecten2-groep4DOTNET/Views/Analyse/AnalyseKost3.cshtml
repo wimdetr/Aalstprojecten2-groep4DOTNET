@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "Kairos";
+}
+
+<link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
+<link rel="stylesheet" href="~/css/Baat1.css" />
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="~/js/tableScript.js"></script>
+
+<div class="row">
+    <div class="col-md-9">
+        <h2>Nieuwe Analyse - Kosten</h2>
+
+    </div>
+    <div class="col-md-3" style="padding-top:20px;">
+        <input type="image" style="margin-left: 20px; max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/overview.png" />
+        <input type="image" style="max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/save.png" />
+    </div>
+</div>
+<div>
+    <h5></h5>
+    <hr />
+</div>
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li>
+                    <a asp-controller="Analyse" asp-action="AnalyseKost">
+                        <h4 class="list-group-item-heading">Stap 1</h4>
+                        <p>Nieuwe functies</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Analyse" asp-action="AnalyseKost2">
+                        <h4 class="list-group-item-heading">Stap 2</h4>
+                        <p class="list-group-item-text">Kosten aan maatwerkbedrijf via enclave of onderaanneming</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a asp-controller="Analyse" asp-action="AnalyseKost3">
+                        <h4 class="list-group-item-heading">Stap 3</h4>
+                        <p class="list-group-item-text">Extra structureel en materiaal huur</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Analyse" asp-action="AnalyseKost4">
+                        <h4 class="list-group-item-heading">Stap 4</h4>
+                        <p class="list-group-item-text">Extra structureel en materiaal huur</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="col-md-12 well text-center">
+            <div class="Blok1 text-center">
+                <h3 class="text-left">1. Welke extra kosten moet u structureel extra maken voor deze inhuur?</h3>
+                <h4 class="text-left">(alleen kosten zoals werkkleding bij normale inhuur en bij reshoring alle kosten)</h4>
+                <table class="table table-bordered text-left" id="tableAddRow3" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%;"></th>
+                            <th>Type</th>
+                            <th>Bedrag</th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="tr_0">
+                            <td>1.</td>
+                            <td>Werkkledij</td>
+                            <td>€ 25.000,00</td>
+                            <td class="text-center">
+                                <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
+                                <button class="glyphicon glyphicon-remove" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Gegevens van de nieuwe functie</h3>
+                <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
+                    <input type="text" id="type" class="form-control" placeholder="Type van inhuur" style="float:left; margin-right: 50px;"/>
+                    <input type="number" id="Bedrag" class="form-control" placeholder="Bedrag van de inhuur" style="float:left;"/>
+                </div>
+
+                <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
+                <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+            </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">2. Welke kosten moet u structureel jaarlijks extra maken voor deze inhuur?</h3>
+                <h4 class="text-left">(vul hier de gereedschapskosten ed in)</h4>
+                    <table class="table table-bordered text-left" id="tableAddRow4" style="margin-bottom: 55px;">
+                        <thead>
+                            <tr>
+                                <th style="width:5%;"></th>
+                                <th>Type</th>
+                                <th>Bedrag</th>
+                                <th style="width:5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="tr_0">
+                                <td>1.</td>
+                                <td>Aftrekkers</td>
+                                <td>€ 2.000,00</td>
+                                <td class="text-center">
+                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
+                                    <button class="glyphicon glyphicon-remove" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Gegevens van de nieuwe functie</h3>
+                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
+                        <input type="text" id="type" class="form-control" placeholder="Type van inhuur" style="float:left; margin-right: 50px;" />
+                        <input type="number" id="Bedrag" class="form-control" placeholder="Bedrag van de inhuur" style="float:left;" />
+                    </div>
+
+                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
+                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+
+
+</div>
+            <a asp-controller="Analyse" asp-action="AnalyseKost4" class="btn btn-primary btn-lg">Volgende</a>
+        </div>
+    </div>
+
+</div>
