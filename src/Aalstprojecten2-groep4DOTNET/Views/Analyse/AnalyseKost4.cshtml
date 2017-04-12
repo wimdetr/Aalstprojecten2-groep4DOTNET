@@ -61,7 +61,7 @@
     <div class="col-xs-12">
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
-                <h3 class="text-left">1. Welke kosten moet u maken ter voorbereiding om dit te implementeren?</h3>
+                <h3 class="text-left">1. Welke kosten moet u maken ter voorbereiding om dit te implementeren? (K2)</h3>
                 <table class="table table-bordered text-left" id="tableAddRow5" style="margin-bottom: 55px;">
                     <thead>
                         <tr>
@@ -96,7 +96,7 @@
             </div>
 
             <div class="Blok1 text-center">
-                <h3 class="text-left">2. Aanwelke kosten kan nog meer worden gedacht?</h3>
+                <h3 class="text-left">2. Aanwelke kosten kan nog meer worden gedacht? (K7)</h3>
                 <table class="table table-bordered text-left" id="tableAddRow6" style="margin-bottom: 25px;">
                     <thead>
                         <tr>
@@ -131,7 +131,7 @@
             </div>
 
             <div class="Blok1 text-center">
-                <h3 class="text-left">3. Hoeveel uren spendeert u jaarlijks aan extra administratie en interne begeleiding?</h3>
+                <h3 class="text-left">3. Hoeveel uren spendeert u jaarlijks aan extra administratie en interne begeleiding? (K6)</h3>
                 <table class="table table-bordered text-left" id="tableAddRow7" style="margin-bottom: 55px;">
                     <thead>
                         <tr>
@@ -168,6 +168,47 @@
 
                 
             </div>
+
+
+            
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">2. Welke opleidingskosten moeten er gemaakt worden om de nieuwe kraachten op het gewenste niveau te krijgen? (K5)</h3>
+                <table class="table table-bordered text-left" id="tableAddRow6" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%;"></th>
+                            <th>Type</th>
+                            <th>Bedrag</th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="tr_0">
+                            <td>1.</td>
+                            <td>Leren lezen</td>
+                            <td>€ 25.000,00</td>
+                            <td class="text-center">
+                                <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
+                                <button class="glyphicon glyphicon-remove" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Gegevens van de nieuwe functie</h3>
+                <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
+                    <input type="text" id="type" class="form-control" placeholder="Type van kost" style="float:left; margin-right: 50px;" />
+                    <input type="number" id="Bedrag" class="form-control" placeholder="Bedrag van de kost" style="float:left;" />
+                </div>
+
+                <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
+                <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+
+            </div>
+
+
+
             <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Overzicht</a>
         </div>
     </div>
