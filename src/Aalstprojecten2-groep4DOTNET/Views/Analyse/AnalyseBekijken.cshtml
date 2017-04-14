@@ -8,10 +8,13 @@
 
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/analyseDetail.css" />
-<script src="~/js/AnalyseToolbar.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="~/js/Search.js"></script>
 
 <h2>Archief - Gemaakte Analyses</h2>
 <hr />
+
 
 <div class="container">
     <div class="navbar-header">
@@ -23,17 +26,39 @@
         </button>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img class="img-circle img-responsive mijnLogo opschuiven" src="~/images/iconen/toevoegen.png" alt="meh" /></a>
-            </li>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group">
 
-            <li>
-                <img class="img-circle img-responsive mijnLogo opschuiven" src="~/images/iconen/search.png" alt="meh" />
-            </li>
 
-        </ul>
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Geen filter</span> <span class="caret"></span>
+                        </button>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#contains">Optie 1</a></li>
+                            <li><a href="#its_equal">Optie 2</a></li>
+                            <li><a href="#greather_than">Optie 3</a></li>
+                            <li><a href="#less_than">Optie 4</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#all">All</a></li>
+                        </ul>
+
+                    </div>
+
+
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control fixVoorBreedte" name="x" placeholder="Search">
+                    </div>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

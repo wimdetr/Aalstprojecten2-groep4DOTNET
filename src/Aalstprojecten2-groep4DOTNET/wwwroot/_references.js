@@ -3,6 +3,7 @@
 /// <reference path="js/autocomplete.js" />
 /// <reference path="js/baat1.js" />
 /// <reference path="js/javascript.js" />
+/// <reference path="js/search.js" />
 /// <reference path="js/site.js" />
 /// <reference path="js/tableScript.js" />
 /// <reference path="js/tablescriptbaten.js" />
