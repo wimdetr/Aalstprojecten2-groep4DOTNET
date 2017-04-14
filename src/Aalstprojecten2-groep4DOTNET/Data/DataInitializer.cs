@@ -253,6 +253,24 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 w.Nummer = 129;
                 a.Werkgever = w;
 
+                Werkgever b = new Werkgever(a, "Delhaize", 9420, "Erpe", "Kassa");
+                _context.Werkgevers.Add(b);
+                b.ContactPersoonNaam = "De Bruyne";
+                b.ContactPersoonVoornaam = "Niels";
+                b.ContactPersoonEmail = "andreas.dewitte@hotmail.com";
+                b.Straat = "Eremietstraat";
+                b.Nummer = 2;
+                a.Werkgever = b;
+
+                Werkgever c = new Werkgever(a, "Dreamland", 9420, "Erpe", "Logistiek");
+                _context.Werkgevers.Add(c);
+                c.ContactPersoonNaam = "De Witte";
+                c.ContactPersoonVoornaam = "Andreas";
+                c.ContactPersoonEmail = "andreas.dewitte@hotmail.com";
+                c.Straat = "Benedenstraat";
+                c.Nummer = 46;
+                a.Werkgever = c;
+
                 InterneMail mail1 = new InterneMail("welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
                 InterneMail mail2 = new InterneMail("Hallo", "Hallo, nog wat tekst", DateTime.Now);
 

@@ -17,6 +17,10 @@ textarea {
     max-width: 280px;
 }
 
+.fixVoorBreedte {
+    max-width:none;
+}
+
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -75,7 +79,6 @@ hr {
 .dropdown ul.dropdown-menu {
     border-radius:4px;
     box-shadow:none;
-    margin-top:20px;
     width:300px;
 }
 

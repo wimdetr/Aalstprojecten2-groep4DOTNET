@@ -1,95 +1,107 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.WerkgeverViewModel
+<link rel="stylesheet" href="~/css/BestaandeWerkgeverAfdelingKiezen.css" />
+
+@{
+    ViewData["Title"] = "Kairos";
+}
+
+<div class="row">
+    <h2 style="padding-left:5px;">Nieuwe Analyse - Bestaande Werkgever</h2>
+    <hr />
+</div>
 
 <form asp-controller="Analyse" asp-action="NieuweWerkgever" method="post" class="form-horizontal">
     <div asp-validation-summary="All" class="text-danger"></div>
     
+    <h3>Gelieve de naam van de afdeling in te geven en indien nodig andere data aan te passen.</h3>
+
     <input asp-for="WerkgeverId" />
     <div class="form-group">
         <label asp-for="Naam" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Naam" value="@Model.Naam" class="form-control" />
+        <div class="col-md-12">
+            <input asp-for="Naam" value="@Model.Naam" class="form-control col-lg-6"/>
             <span asp-validation-for="Naam" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Straat" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
             <span asp-validation-for="Straat" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Nummer" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="Nummer" value="@Model.Nummer" id="street_number" class="form-control" />
             <span asp-validation-for="Nummer" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Bus" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="Bus" value="@Model.Bus" class="form-control" />
             <span asp-validation-for="Bus" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Postcode" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="Postcode" value="@Model.Postcode" id="postal_code" class="form-control" />
             <span asp-validation-for="Postcode" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Gemeente" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="Gemeente" value="@Model.Gemeente" id="locality" class="form-control" />
             <span asp-validation-for="Gemeente" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="AantalWerkuren" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="AantalWerkuren" value="@Model.AantalWerkuren" class="form-control" />
             <span asp-validation-for="AantalWerkuren" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="PatronaleBijdrage" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="PatronaleBijdrage" value="@Model.PatronaleBijdrage" class="form-control" />
             <span asp-validation-for="PatronaleBijdrage" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="NaamAfdeling" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="NaamAfdeling" value="@Model.NaamAfdeling" class="form-control" />
             <span asp-validation-for="NaamAfdeling" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="ContactPersoonNaam" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="ContactPersoonNaam" value="@Model.ContactPersoonNaam" class="form-control" />
             <span asp-validation-for="ContactPersoonNaam" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="ContactPersoonVoornaam" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="ContactPersoonVoornaam" value="@Model.ContactPersoonVoornaam" class="form-control" />
             <span asp-validation-for="ContactPersoonVoornaam" class="text-danger"></span>
         </div>
     </div><div class="form-group">
         <label asp-for="ContactPersoonEmail" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <input asp-for="ContactPersoonEmail" value="@Model.ContactPersoonEmail" class="form-control" />
             <span asp-validation-for="ContactPersoonEmail" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Doorgaan</button>
+        <div class="col-md-10" style="margin-top:25px;">
+            <button type="submit" class="btn btn-primary btn-lg">Doorgaan</button>
         </div>
     </div>
 </form>
