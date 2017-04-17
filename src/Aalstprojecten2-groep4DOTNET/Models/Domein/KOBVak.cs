@@ -9,10 +9,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
     {
         #region Properties
 
-        public int AnalyseId { get; set; }
-        public int KostOfBaatId { get; set; }
-        public KOBEnum KostOfBaatEnum { get; set; }
-        public int KOBRijId { get; set; }
+        public int id { get; set; }
         public int KOBVakId { get; set; }
         public string Data { get; set; }
         #endregion
@@ -29,10 +26,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 
         public KOBVak(KOBRij kobRij, int id, string data)
         {
-            KOBRijId = kobRij.KOBRijId;
-            KostOfBaatEnum = kobRij.KostOfBaatEnum;
-            KostOfBaatId = kobRij.KostOfBaatId;
-            AnalyseId = kobRij.AnalyseId;
             KOBVakId = id;
             Data = data;
         }

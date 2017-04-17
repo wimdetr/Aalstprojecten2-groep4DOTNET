@@ -9,9 +9,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
     public class KOBRij
     {
         #region Properties
-        public int AnalyseId { get; set; }
-        public int KostOfBaatId { get; set; }
-        public KOBEnum KostOfBaatEnum { get; set; }
+
+        public int id  { get; set; }
         public int KOBRijId { get; set; }
         public ICollection<KOBVak> Vakken { get; set; }
         [NotMapped]
@@ -26,9 +25,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         }
         public KOBRij(KostOfBaat kostOfBaat, int id)
         {
-            KostOfBaatEnum = kostOfBaat.KostOfBaatEnum;
-            KostOfBaatId = kostOfBaat.KostOfBaatId;
-            AnalyseId = kostOfBaat.AnalyseId;
             KOBRijId = id;
             Vakken = new List<KOBVak>();
             Resultaat = 0;

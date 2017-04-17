@@ -41,38 +41,38 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #region methods
         public bool ControleerOfKostMetNummerAlIngevuldIs(int nummer)
         {
-            return KostenEnBaten.Any(k => k.KostOfBaatId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
+            return KostenEnBaten.Any(k => k.VraagId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
         }
 
         public KostOfBaat GeefKostMetNummer(int nummer)
         {
-            return KostenEnBaten.FirstOrDefault(k => k.KostOfBaatId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
+            return KostenEnBaten.FirstOrDefault(k => k.VraagId == nummer && k.KostOfBaatEnum == KOBEnum.Kost);
         }
 
         public bool ControleerOfBaatMetNummerAlIngevuldIs(int nummer)
         {
-            return KostenEnBaten.Any(b => b.KostOfBaatId == nummer && b.KostOfBaatEnum == KOBEnum.Baat);
+            return KostenEnBaten.Any(b => b.VraagId == nummer && b.KostOfBaatEnum == KOBEnum.Baat);
         }
 
         public KostOfBaat GeefBaatMetNummer(int nummer)
         {
-            return KostenEnBaten.FirstOrDefault(b => b.KostOfBaatId == nummer && b.KostOfBaatEnum == KOBEnum.Baat);
+            return KostenEnBaten.FirstOrDefault(b => b.VraagId == nummer && b.KostOfBaatEnum == KOBEnum.Baat);
         }
 
         public void SlaKostMetNummerOp(KostOfBaat kost)
         {
-            if (ControleerOfKostMetNummerAlIngevuldIs(kost.KostOfBaatId))
+            if (ControleerOfKostMetNummerAlIngevuldIs(kost.VraagId))
             {
-                KostenEnBaten.Remove(GeefKostMetNummer(kost.KostOfBaatId));
+                KostenEnBaten.Remove(GeefKostMetNummer(kost.VraagId));
             }
             KostenEnBaten.Add(kost);
         }
 
         public void SlaBaatMetNummerOp(KostOfBaat baat)
         {
-            if (ControleerOfBaatMetNummerAlIngevuldIs(baat.KostOfBaatId))
+            if (ControleerOfBaatMetNummerAlIngevuldIs(baat.VraagId))
             {
-                KostenEnBaten.Remove(GeefBaatMetNummer(baat.KostOfBaatId));
+                KostenEnBaten.Remove(GeefBaatMetNummer(baat.VraagId));
             }
             KostenEnBaten.Add(baat);
         }

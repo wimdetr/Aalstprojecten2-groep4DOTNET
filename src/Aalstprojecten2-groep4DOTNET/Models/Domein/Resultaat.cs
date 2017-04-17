@@ -51,7 +51,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                     {
                         //todo, divide by zero exception maken en throwen
                     }
-                    KOBRij kostRij = GeefRijVanKost(KostOfBaat.KostOfBaatId, mijnRij.KOBRijId);
+                    KOBRij kostRij = GeefRijVanKost(KostOfBaat.VraagId, mijnRij.KOBRijId);
                     if (kostRij == null)
                     {
                         mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble();

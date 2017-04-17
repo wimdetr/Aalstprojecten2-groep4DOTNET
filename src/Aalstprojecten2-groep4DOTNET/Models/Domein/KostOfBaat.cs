@@ -9,8 +9,9 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
     public class KostOfBaat
     {
         #region Properties
-        public int AnalyseId { get; set; }
-        public int KostOfBaatId { get; set; }
+
+        public int id { get; set;}
+        public int VraagId { get; set; }
         public ICollection<KOBRij> Rijen { get; set; }
         public KOBEnum KostOfBaatEnum { get; set; }
         public Formule Formule { get; set; }
@@ -26,8 +27,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         }
         public KostOfBaat(Analyse a, int id, KOBEnum kobEnum, Formule formule)
         {
-            AnalyseId = a.AnalyseId;
-            KostOfBaatId = id;
+            VraagId = id;
             KostOfBaatEnum = kobEnum;
             Resultaat = 0;
             Rijen = new List<KOBRij>();
