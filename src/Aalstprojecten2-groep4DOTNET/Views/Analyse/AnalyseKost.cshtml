@@ -1,4 +1,4 @@
-﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseKostViewModel
+@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseKostViewModel
 
 @{
     ViewData["Title"] = "Kairos";
@@ -10,18 +10,19 @@
 <link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <script language="JavaScript" type="text/javascript" src="~/js/tableScript.js"></script>
 <script src="~/js/ShowHideFormulier.js"></script>
 
 <div class="row">
     <div class="col-md-9">
         <h2>Nieuwe Analyse - Kosten</h2>
-
     </div>
     <div class="col-md-3" style="padding-top:20px;">
         <a asp-controller="Analyse" asp-action="AnalyseOverzicht">
             <img style="margin-left: 20px; max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/overview.png" />
         </a>
+
     </div>
 </div>
 <div>
@@ -127,6 +128,7 @@
                             </div>
 
                             <select asp-for="Doelgroep" id="dropDown1" class="btn btn-default selectpicker" style="float:left; margin-left:50px;">
+
                                 <option selected>Kies uw doelgroep</option>
                                 <option>wn minder dan 25 jaar laaggeschoold</option>
                                 <option>wn minder dan 25 jaar middengeschoold</option>
@@ -135,6 +137,8 @@
                                 <option>ander</option>
                             </select>
                         </div>
+
+
 
                         <div class="invulveldjes2" style="width:100%; height:100px; float:left; padding-left: 20%;">
                             <select asp-for="VlaamseOndersteuningsPremie" id="dropDown2" class="btn btn-default selectpicker" style="float:left; margin-left: 50px;">

@@ -22,9 +22,7 @@
 <body>
 
         <div id="wrapper">
-            <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -49,32 +47,29 @@
                             <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/iconen/home.png" class="icons" /></a>
                         </li>
                         <li>
+                            <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img src="~/images/iconen/toevoegen.png" class="icons" /></a>
+                        </li>
+                        <li>
                             <a  asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/person.png" class="icons" /></a>
-                        </li>
-                        <li>
-                            <a><img src="~/images/iconen/multipleperson.png" class="icons" /></a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Home" asp-action="ProfielAanpassen"><img src="~/images/iconen/admin.png" class="icons" /></a>
                         </li>
                     </ul>
                 </div>
-                <!-- /.navbar-collapse -->
+                
             </nav>
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <!-- Page Heading -->
+                    
                     <div class="row" id="main">
                         <div class="col-sm-12 col-md-12 col-lg-12 well" id="content">
                             @RenderBody()
                         </div>
                     </div>
-                    <!-- /.row -->
+                    
                 </div>
-                <!-- /.container-fluid -->
+               
             </div>
-            <!-- /#page-wrapper -->
-        </div><!-- /#wrapper -->
+          
+        </div>
 
 
     <environment names="Development">
