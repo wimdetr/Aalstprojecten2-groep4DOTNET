@@ -44,7 +44,7 @@
             <td height="60px" class="baten1">Besparing reguliere medew. op hoger niveau</td>
             <td class="text-center">@Model.Baat4.ToString("C")</td>
             <td class="text-center">@Model.Kost1Punt1.ToString("C")</td>
-            <td class="text-right kosten1">Kosten enclave of onderaanneming</td>
+            <td class="text-right kosten1"><a asp-controller="Analyse" asp-action="AnalyseKost2">Kosten enclave of onderaanneming</a></td>
             
         </tr>
 
@@ -113,7 +113,19 @@
 
         <tr>
             <td height="60px" style="visibility:hidden;"></td>
-            <td class="text-center vetGedrukt" style="background-color:lightgray; color:white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
+            @if (Model.NettoResultaat == 0)
+            {
+                <td class="text-center vetGedrukt" style="background-color:lightgray; color:white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
+            }
+            else if (Model.NettoResultaat > 0)
+            {
+                <td class="text-center vetGedrukt" style="background-color:darkcyan; color:white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
+            }
+            else
+            {
+                <td class="text-center vetGedrukt" style="background-color:brown; color:white;" colspan="2">@((Model.NettoResultaat*-1).ToString("C"))</td>
+            }
+            
         </tr>
 
     </table>

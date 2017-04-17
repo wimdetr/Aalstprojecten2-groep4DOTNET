@@ -41,7 +41,7 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                          <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/archiveren.png" alt="meh"/></a>
                      </div>
                      <div class="icoon">
-                         <a asp-controller="Analyse" asp-action="AnalyseOverzicht" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh"/></a>
+                         <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh"/></a>
                      </div>
                  </div>
              </div>
@@ -93,16 +93,22 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
              </div>
 
 
-             @if (item.NettoResultaat >= 0)
+             @if (item.NettoResultaat == 0)
              {
-                 <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: #9fdf9f;">
+                 <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: lightgray;">
                      <strong>@item.NettoResultaat.ToString("C")</strong>
                  </div>
+             }
+             else if (item.NettoResultaat > 0)
+             {
+                <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: #9fdf9f;">
+                    <strong>@item.NettoResultaat.ToString("C")</strong>
+                </div>
              }
              else
              {
                  <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: #ff6666;">
-                     <strong>@(item.NettoResultaat*-1).ToString("C")</strong>
+                     <strong>@((item.NettoResultaat*-1).ToString("C"))</strong>
                  </div>
              }
 

@@ -46,5 +46,10 @@ namespace Aalstprojecten2_groep4DOTNET.Filters
         {
             context.Session.SetString("analyse", JsonConvert.SerializeObject(analyse));
         }
+
+        public static void PlaatsAnalyseInSession(Analyse analyse, HttpContext context)
+        {
+            context.Session.SetString("analyse", JsonConvert.SerializeObject(analyse));
+        }
     }
 }

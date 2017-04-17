@@ -103,6 +103,8 @@ namespace Aalstprojecten2_groep4DOTNET
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
