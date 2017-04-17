@@ -37,56 +37,56 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             analyse.KostenEnBaten = new List<KostOfBaat>();
             kost1 = new KostOfBaat
             {
-                KostOfBaatId = 1,
+                VraagId = 1,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
 
             kost1Punt1 = new KostOfBaat
             {
-                KostOfBaatId = 8,
+                VraagId = 8,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
 
             kost2 = new KostOfBaat
             {
-                KostOfBaatId = 2,
+                VraagId = 2,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
 
             kost3 = new KostOfBaat
             {
-                KostOfBaatId = 3,
+                VraagId = 3,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
 
             kost4 = new KostOfBaat
             {
-                KostOfBaatId = 4,
+                VraagId = 4,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
 
             kost5 = new KostOfBaat
             {
-                KostOfBaatId = 5,
+                VraagId = 5,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
 
             kost6 = new KostOfBaat
             {
-                KostOfBaatId = 6,
+                VraagId = 6,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
 
             kost7 = new KostOfBaat
             {
-                KostOfBaatId = 7,
+                VraagId = 7,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Kost
             };
@@ -94,77 +94,77 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
 
             baat1 = new KostOfBaat
             {
-                KostOfBaatId = 1,
+                VraagId = 1,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat2 = new KostOfBaat
             {
-                KostOfBaatId = 2,
+                VraagId = 2,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat3 = new KostOfBaat
             {
-                KostOfBaatId = 3,
+                VraagId = 3,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat4 = new KostOfBaat
             {
-                KostOfBaatId = 4,
+                VraagId = 4,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat5 = new KostOfBaat
             {
-                KostOfBaatId = 5,
+                VraagId = 5,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat6 = new KostOfBaat
             {
-                KostOfBaatId = 6,
+                VraagId = 6,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat7 = new KostOfBaat
             {
-                KostOfBaatId = 7,
+                VraagId = 7,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat8 = new KostOfBaat
             {
-                KostOfBaatId = 8,
+                VraagId = 8,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat9 = new KostOfBaat
             {
-                KostOfBaatId = 9,
+                VraagId = 9,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat10 = new KostOfBaat
             {
-                KostOfBaatId = 10,
+                VraagId = 10,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };
 
             baat11 = new KostOfBaat
             {
-                KostOfBaatId = 11,
+                VraagId = 11,
                 Resultaat = 1000,
                 KostOfBaatEnum = KOBEnum.Baat
             };

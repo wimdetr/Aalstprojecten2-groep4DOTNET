@@ -68,24 +68,29 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         private void MapKOBVak(EntityTypeBuilder<KOBVak> v)
         {
             v.ToTable("KostOfBaatVak");
-            v.HasKey(t => new { t.KOBVakId, t.KOBRijId, t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId});
+            v.HasKey(t =>t.id);
 
+            v.Property(t => t.KOBVakId).IsRequired();
             v.Property(t => t.Data).IsRequired();
         }
 
         private void MapKOBRij(EntityTypeBuilder<KOBRij> r)
         {
             r.ToTable("KostOfBaatRij");
-            r.HasKey(t => new { t.KOBRijId, t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId});
+            r.HasKey(t =>t.id);
 
+            r.Property(t => t.KOBRijId).IsRequired();
             r.HasMany(t => t.Vakken).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
 
         private void MapKostOfBaat(EntityTypeBuilder<KostOfBaat> k)
         {
             k.ToTable("KostOfBaat");
-            k.HasKey(t => new {t.KostOfBaatId, t.KostOfBaatEnum, t.AnalyseId});
+            k.HasKey(t =>t.id);
 
+
+            k.Property(t => t.VraagId).IsRequired();
+            k.Property(t => t.KostOfBaatEnum).IsRequired();
             k.Property(t => t.Formule).IsRequired();
             k.HasMany(t => t.Rijen).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
