@@ -50,7 +50,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             return Rijen.FirstOrDefault(r => r.KOBRijId == nummer);
         }
 
-        public Boolean ControleerOfKOBRijMetNummerAlIngevuldIs(int nummer)
+        public bool ControleerOfKOBRijMetNummerAlIngevuldIs(int nummer)
         {
             return Rijen.Any(r => r.KOBRijId == nummer);
         }
@@ -63,6 +63,16 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                 Resultaat *= 12;
             }
         }
+
+        public void VerwijderKOBRij(KOBRij rij)
+        {
+            if(rij != null && Rijen.Contains(rij))
+            {
+                Rijen.Remove(rij);
+            }
+        }
+
+
         #endregion
     }
 }

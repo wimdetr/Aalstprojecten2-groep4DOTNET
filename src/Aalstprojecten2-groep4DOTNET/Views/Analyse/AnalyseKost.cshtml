@@ -1,13 +1,17 @@
-﻿@{
+﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseKostViewModel
+
+@{
     ViewData["Title"] = "Kairos";
 }
 
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScript.js"></script>
+<script src="~/js/ShowHideFormulier.js"></script>
 
 <div class="row">
     <div class="col-md-9">
@@ -15,8 +19,9 @@
 
     </div>
     <div class="col-md-3" style="padding-top:20px;">
-        <input type="image" style="margin-left: 20px; max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/overview.png" />
-        <input type="image" style="max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/save.png" />
+        <a asp-controller="Analyse" asp-action="AnalyseOverzicht">
+            <img style="margin-left: 20px; max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/overview.png" />
+        </a>
     </div>
 </div>
 <div>
@@ -56,86 +61,110 @@
         </div>
     </div>
 
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">1. Welke nieuwe functies zet u in? (K1.1)</h3>
-                    <table class="table table-bordered text-left" id="tableAddRow" style="margin-bottom: 55px;">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Functie</th>
-                                <th>Aantal Uren Per Week</th>
-                                <th>Bruto Maandloon Fulltime</th>
-                                <th>Doelgroep</th>
-                                <th>Vlaamse Ondersteunings Premie</th>
-                                <th>Aantal Maanden IBO</th>
-                                <th>Totale Productiviteits-Premie IBO</th>
-                                <th></th>
-                                @*<th style="width:10px"><span class="glyphicon glyphicon-plus addBtn"></span></th>*@
-                            </tr>
-                        </thead>
-                        <tbody>
+    <div class="col-xs-12">
+        <div class="col-md-12 well text-center">
+            <div class="Blok1 text-center">
+                <h3 class="text-left">1. Welke nieuwe functies zet u in?</h3>
+                <table class="table table-bordered text-left" id="tableAddRow" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Functie</th>
+                            <th>Aantal Uren Per Week</th>
+                            <th>Bruto Maandloon Fulltime</th>
+                            <th>Doelgroep</th>
+                            <th>Vlaamse Ondersteunings Premie</th>
+                            <th>Aantal Maanden IBO</th>
+                            <th>Totale Productiviteits-Premie IBO</th>
+                            <th></th>
+                            @*<th style="width:10px"><span class="glyphicon glyphicon-plus addBtn"></span></th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 1; i <= Model.AantalLijnenKost1; i++)
+                        {
                             <tr id="tr_0">
-                                <td>1.</td>
-                                <td>Ruitenwasser</td>
-                                <td>30 €</td>
-                                <td>2400 €</td>
+                                <td>@i.</td>
+                                <td>@Model.LijnenKost1[i - 1].Functie</td>
+                                <td>@Model.LijnenKost1[i - 1].AantalUrenPerWeek</td>
+                                <td>@Model.LijnenKost1[i - 1].BrutoMaandloonFulltime.ToString("C")</td>
 
                                 <td>
-                                    Werknemers < 25 jaar laag geschoold
+                                    @Model.LijnenKost1[i - 1].Doelgroep
                                 </td>
                                 <td>
-                                    40%
+                                    @(Model.LijnenKost1[i - 1].VlaamseOndersteuningsPremie)%
                                 </td>
-                                <td>12</td>
-                                <td>1500</td>
+                                <td>@Model.LijnenKost1[i - 1].AantalMaandenIBO</td>
+                                <td>@Model.LijnenKost1[i - 1].TotaleProductiviteitsPremieIBO.ToString("C")</td>
                                 <td>
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px;" />
-                                    <button class="glyphicon glyphicon-remove" />
+                                    <a asp-controller="Analyse" asp-action="AnalyseKostRijAanpassen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-edit" style="margin-right: 5px;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseKostRijVerwijderen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-remove"></a>
                                 </td>
-                        </tbody>
-                    </table>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
-                    <button class="btn btn-primary btn-lg text-center" style="margin-bottom:20px;">Nieuwe Functie</button>
-
+                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuwe Functie</button>
+                <form asp-controller="Analyse" asp-action="AnalyseKost" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")" method="post">
                     <div class="volledigeInvulveldjes" style="width:100%; height:200px;">
                         <h3>Gegevens van de nieuwe functie</h3>
+                        <input asp-for="VolgendeLijn" type="hidden"/>
+                        <span asp-validation-for="VolgendeLijn" class="text-danger"></span>
                         <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:13%;">
-                            <input type="text" id="Functie" class="form-control" placeholder="Nieuwe functie" style="float:left;" />
-                            <input type="number" id="UrenPerWeek" class="form-control" placeholder="Aantal uren per week" style="float:left; margin-left:50px;" />
-                            <input type="number" id="BrutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" style="float:left; margin-left:50px;" />
+                            <div class="form-group" style="float:left;">
+                                <input asp-for="Functie" id="Functie" class="form-control" placeholder="Nieuwe functie" />
+                                <span asp-validation-for="Functie" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="float:left; margin-left:50px;">
+                                <input asp-for="AantalUrenPerWeek" type="number" id="UrenPerWeek" class="form-control" placeholder="Aantal uren per week" />
+                                <span asp-validation-for="AantalUrenPerWeek" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="float:left; margin-left:50px;" >
+                                <input asp-for="BrutoMaandloonFulltime" id="BrutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" />
+                                <span asp-validation-for="BrutoMaandloonFulltime" class="text-danger"></span>
+                            </div>
 
-                            <select class="btn btn-default selectpicker" style="float:left; margin-left:50px;">
+                            <select asp-for="Doelgroep" id="dropDown1" class="btn btn-default selectpicker" style="float:left; margin-left:50px;">
                                 <option selected>Kies uw doelgroep</option>
-                                <option>Werknemers < 25 jaar laag geschoold</option>
-                                <option>Werknemers < 25 jaar midden geschoold</option>
-                                <option>Werknemers > 59 jaar</option>
-                                <option>Ander</option>
+                                <option>wn minder dan 25 jaar laaggeschoold</option>
+                                <option>wn minder dan 25 jaar middengeschoold</option>
+                                <option>wn meer of gelijk aan 55 of minder dan 60 jaar</option>
+                                <option>wn meer of evenveel als 60 jaar</option>
+                                <option>ander</option>
                             </select>
                         </div>
 
                         <div class="invulveldjes2" style="width:100%; height:100px; float:left; padding-left: 20%;">
-                            <select class="btn btn-default selectpicker" style="float:left; margin-left: 50px;">
+                            <select asp-for="VlaamseOndersteuningsPremie" id="dropDown2" class="btn btn-default selectpicker" style="float:left; margin-left: 50px;">
                                 <option selected>Vlaamse ondersteuningspremie</option>
                                 <option>40%</option>
                                 <option>30%</option>
                                 <option>20%</option>
                                 <option>0%</option>
                             </select>
-
-                            <input type="number" id="aantalMaandenIBO" class="form-control" placeholder="Aantal maanden" style="float:left; margin-left: 50px;" />
-                            <input type="number" id="productiviteitsPremie" class="form-control" placeholder="Totale Premie" style="float:left; margin-left: 50px;" />
+                            
+                            
+                            <div class="form-group" style="float:left; margin-left: 50px;">
+                                <input asp-for="AantalMaandenIBO" type="number" id="aantalMaandenIBO" class="form-control" placeholder="Aantal maanden"  />
+                                <span asp-validation-for="AantalMaandenIBO" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="float:left; margin-left: 50px;" >
+                                <input asp-for="TotaleProductiviteitsPremieIBO" id="productiviteitsPremie" class="form-control" placeholder="Totale Premie" />
+                                <span asp-validation-for="TotaleProductiviteitsPremieIBO" class="text-danger"></span>
+                            </div>
                         </div>
 
                     </div>
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
-
-                </div>
-                @*<button class="btn btn-primary btn-lg text-center">Volgende</button>*@
-                <a asp-controller="Analyse" asp-action="AnalyseKost2" class="btn btn-primary btn-lg">Volgende</a>
+                    <button type="submit" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a class="btn btn-primary btn-lg text-center annuleerKnopKost1">Annuleer</a>
+                </form>
 
             </div>
+            @*<button class="btn btn-primary btn-lg text-center">Volgende</button>*@
+            <a asp-controller="Analyse" asp-action="AnalyseKost2" class="btn btn-primary btn-lg">Volgende</a>
+
         </div>
     </div>
+</div>

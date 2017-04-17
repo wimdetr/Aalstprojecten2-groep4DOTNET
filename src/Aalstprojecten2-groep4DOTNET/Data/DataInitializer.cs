@@ -45,7 +45,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 KOBRij k1Rij2 = new KOBRij(k1, 2);
                 KOBVak k1R2Vak1 = new KOBVak(k1Rij2, 1, "netwerker");
                 KOBVak k1R2Vak2 = new KOBVak(k1Rij2, 2, "15");
-                KOBVak k1R2Vak3 = new KOBVak(k1Rij2, 3, "2000");
+                KOBVak k1R2Vak3 = new KOBVak(k1Rij2, 3, "2000,30");
                 KOBVak k1R2Vak4 = new KOBVak(k1Rij2, 4, "wn minder dan 25 jaar laaggeschoold");
                 KOBVak k1R2Vak5 = new KOBVak(k1Rij2, 5, "20");
                 k1Rij2.VulKOBVakIn(k1R2Vak1);
