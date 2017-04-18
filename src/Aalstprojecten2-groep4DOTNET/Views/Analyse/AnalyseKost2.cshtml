@@ -101,8 +101,8 @@
                             <span asp-validation-for="Beschrijving" class="text-danger"></span>
                         </div>
                         <div class="form-group" style="float:left;">
-                            <input asp-for="Bedrag" type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag van de functie" />
-                            <span asp-validation-for="Bedrag" class="text-danger"></span>
+                            <input asp-for="Bedrag" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag van de functie" />
+                            <span asp-validation-for="Bedrag" class="text-danger foutMelding"></span>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg text-center">Vul In</button>

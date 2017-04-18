@@ -24,8 +24,7 @@ img{max-width:100%;}
 /*end reset*/
 body{
 	font-family: 'Open Sans', sans-serif;
-    background-color: #F9F9F9;
-	background-repeat: no-repeat;
+    	background: url(../images/login/blurred.jpg) no-repeat;
 	background-attachment: fixed;
 	background-position: center;
 	background-size: cover;
