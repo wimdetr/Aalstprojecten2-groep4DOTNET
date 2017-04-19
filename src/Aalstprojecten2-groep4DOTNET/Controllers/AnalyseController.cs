@@ -139,6 +139,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 resultaat.BerekenResultaatVanAnalyse(analyse);
                 model = new AnalyseResultaatOverzichtViewModel(analyse);
             }
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -179,7 +180,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.Add(a);
                     _analyseRepository.SaveChanges();
                     AnalyseFilter.PlaatsAnalyseInSession(a, HttpContext);
-                    return RedirectToAction(nameof(AnalyseOverzicht));
+                    return RedirectToAction(nameof(AnalyseKost));
                 }
                 catch (Exception e)
                 {
@@ -334,6 +335,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.Lijst2 = lijst2;
             model.AantalLijnenLijst2 = model.Lijst2.Count;
 
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -845,6 +848,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
 
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -1836,6 +1841,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
 
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -2279,6 +2286,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.Lijst = lijst1;
             model.AantalLijnenLijst = model.Lijst.Count;
 
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -2531,6 +2540,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             model.AantalLijnenKost1 = lijst.Count;
             model.LijnenKost1 = lijst;
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -2845,6 +2856,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.Lijst = lijst;
             model.AantalLijnenLijst = model.Lijst.Count;
 
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -3087,6 +3100,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.Lijst2 = lijst2;
             model.AantalLijnenLijst2 = model.Lijst2.Count;
 
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 
@@ -3666,6 +3681,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.Lijst4 = lijst4;
             model.AantalLijnenLijst4 = model.Lijst4.Count;
 
+
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(model);
         }
 

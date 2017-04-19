@@ -1,7 +1,6 @@
-﻿body {
-
+﻿.klikbaar {
+    cursor: pointer;
 }
-
 
 .table-condensed > thead > tr > .table-condensed > tbody > tr > .table-condensed > tfoot > tr > .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
     padding-top: 20px;

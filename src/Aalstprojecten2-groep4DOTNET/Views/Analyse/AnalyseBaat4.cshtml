@@ -13,12 +13,15 @@
 <script src="~/js/ShowHideFormulier.js"></script>
 
 <div class="row">
-    <div class="col-md-9">
-        <h2>Nieuwe Analyse - Baten</h2>
+    <div class="col-md-3">
+        <h2>@ViewData["werkgever"]</h2>
     </div>
-    <div class="col-md-3" style="padding-top:20px;">
+    <div class="col-md-6 text-center">
+        <h2>Baten</h2>
+    </div>
+    <div class="col-md-3" style="padding-top: 20px;">
         <a asp-controller="Analyse" asp-action="AnalyseOverzicht">
-            <img style="margin-left: 20px; max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/overview.png" />
+            <img style="margin-left: 20px; max-height: 30px; max-width: 50px; min-height: 30px; float: right;" src="~/images/iconen/overview.png" />
         </a>
 
     </div>
@@ -67,26 +70,26 @@
                 <h3 class="text-left">1. Aan welke besparingen kan er nog meer gedacht worden? Vul de bedragen in per jaar?</h3>
                 <table class="table table-bordered text-left" id="tableAddRow5" style="margin-bottom: 55px;">
                     <thead>
-                        <tr>
-                            <th style="width:5%"></th>
-                            <th>Type Besparing</th>
-                            <th>Jaarbedrag</th>
-                            <th style="width:5%"></th>
-                        </tr>
+                    <tr>
+                        <th style="width:5%"></th>
+                        <th>Type Besparing</th>
+                        <th>Jaarbedrag</th>
+                        <th style="width:5%"></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst; i++)
-                        {
-                            <tr id="tr_0">
-                                <td>@i.</td>
-                                <td>@Model.Lijst[i - 1].Beschrijving</td>
-                                <td>@Model.Lijst[i - 1].Bedrag.ToString("C")</td>
-                                <td class="text-center">
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat4RijAanpassen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat4RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
-                                </td>
-                            </tr>
-                        }
+                    @for (var i = 1; i <= Model.AantalLijnenLijst; i++)
+                    {
+                        <tr id="tr_0">
+                            <td>@i.</td>
+                            <td>@Model.Lijst[i - 1].Beschrijving</td>
+                            <td>@Model.Lijst[i - 1].Bedrag.ToString("C")</td>
+                            <td class="text-center">
+                                <a asp-controller="Analyse" asp-action="AnalyseBaat4RijAanpassen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                <a asp-controller="Analyse" asp-action="AnalyseBaat4RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
                 
@@ -111,7 +114,8 @@
                     <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
 
-</div>
+            </div>
+            <a asp-controller="Analyse" asp-action="AnalyseBaat3" class="btn btn-primary btn-lg">Vorige</a>
             <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Overzicht</a>
         </div>
     </div>

@@ -14,13 +14,15 @@
 <script src="~/js/ShowHideFormulier.js"></script>
 
 <div class="row">
-    <div class="col-md-9">
-        <h2>Nieuwe Analyse - Kosten</h2>
-
+    <div class="col-md-3">
+        <h2>@ViewData["werkgever"]</h2>
     </div>
-    <div class="col-md-3" style="padding-top:20px;">
+    <div class="col-md-6 text-center">
+        <h2>Kosten</h2>
+    </div>
+    <div class="col-md-3" style="padding-top: 20px;">
         <a asp-controller="Analyse" asp-action="AnalyseOverzicht">
-            <img style="margin-left: 20px; max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/overview.png" />
+            <img style="margin-left: 20px; max-height: 30px; max-width: 50px; min-height: 30px; float: right;" src="~/images/iconen/overview.png" />
         </a>
 
     </div>
@@ -264,8 +266,9 @@
                 </form>
             </div>
 
-
+            <a asp-controller="Analyse" asp-action="AnalyseKost3" class="btn btn-primary btn-lg">Vorige</a>
             <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Overzicht</a>
+            <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="btn btn-primary btn-lg">Volgende</a>
         </div>
     </div>
 
