@@ -1,3 +1,33 @@
 ﻿input, select, textarea {
     max-width: 429.5px;
 }
+
+.verwijderPaddingLinks {
+    padding-left:0px;
+}
+
+.verwijderPaddingRechts {
+    padding-right:0px;
+}
+
+.logo {
+    margin:auto;
+    margin-bottom: 25px;
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 25px;
+}
+
+.breddtefixen {
+    width:100%;
+    height:100%;
+}
+
+.divOpmaak {
+    border-radius: 5px;
+    background-color: white;
+    border: 2px solid #FFFFFF;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

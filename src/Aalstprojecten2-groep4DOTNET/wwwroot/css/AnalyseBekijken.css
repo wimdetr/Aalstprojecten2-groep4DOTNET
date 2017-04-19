@@ -90,7 +90,7 @@ tr:nth-child(odd) {
     background-color:#afcee9;
 }*/
 
-.table-striped > tbody > tr:nth-of-type(even) {
+.test tr:nth-of-type(even) {
     background-color: #e6e6e6;
     /*background-color: #f2f2f2;*/
 }
