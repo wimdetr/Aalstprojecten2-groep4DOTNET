@@ -15,11 +15,11 @@
         });
     $(".annuleerKnop")
         .click(function () {
-
+            var knop = $(this);
             $(this).parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
             setTimeout(function () {
-                $(".annuleerKnop").siblings(".invulgegevens").addClass("verbergFormulier");
-                var inputsToClean = $(this).siblings(".invulveldjes1").children(".form-group").find("input");
+                knop.parent().addClass("verbergFormulier");
+                var inputsToClean = knop.siblings(".invulveldjes1").children(".form-group").find("input");
                 var length = inputsToClean.length;
                 for (var i = 0; i < length; i++) {
                     inputsToClean[i].value = null;
@@ -28,11 +28,12 @@
             }, 1000);
         });
     $(".annuleerKnopKost1")
-        .click(function() {
+        .click(function () {
+            var knop = $(this);
             $(this).parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
             setTimeout(function () {
-                $(".annuleerKnopKost1").parent().addClass("verbergFormulier");
-                var volledigeInvulveldjes = $(this).siblings(".volledigeInvulveldjes");
+                knop.parent().addClass("verbergFormulier");
+                var volledigeInvulveldjes = knop.siblings(".volledigeInvulveldjes");
                 var inputsToClean1 = volledigeInvulveldjes.children(".invulveldjes1").children(".form-group").find("input");
                 var inputsToClean2 = volledigeInvulveldjes.children(".invulveldjes2").children(".form-group").find("input");
                 for (var i = 0; i < inputsToClean1.length; i++) {

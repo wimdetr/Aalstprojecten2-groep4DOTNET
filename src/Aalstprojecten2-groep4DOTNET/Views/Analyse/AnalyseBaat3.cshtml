@@ -1,12 +1,16 @@
-﻿@{
+﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseBaat3ViewModel
+
+@{
     ViewData["Title"] = "Kairos";
 }
 
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScriptBaten.js"></script>
+<script src="~/js/ShowHideFormulier.js"></script>
 
 <div class="row">
     <div class="col-md-9">
@@ -58,55 +62,80 @@
     </div>
 
 
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B6) 1. Hoeveel omzet mist u doordat u personeel tekort komt?</h3>
-                    <table class="table table-bordered text-left" style="margin-bottom: 55px;">
-                        <thead>
+    <div class="col-xs-12">
+        <div class="col-md-12 well text-center">
+            <div class="Blok1 text-center">
+                <h3 class="text-left">1. Hoeveel omzet mist u doordat u personeel tekort komt?</h3>
+                <table class="table table-bordered text-left" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%"></th>
+                            <th>Jaarbedrag Omzetverlies</th>
+                            <th>Besparing</th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
+                        {
                             <tr>
-                                <th style="width:5%"></th>
-                                <th>Jaarbedrag Omzetverlies</th>
-                                <th>Besparing</th>
-                                <th style="width:5%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>€ 12.000,00</td>
-                                <td>48 %</td>
+                                <td>@i.</td>
+                                <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
+                                <td>@(Model.Lijst1[i - 1].Percent)%</td>
                                 <td class="text-center">
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
-                                    <button class="glyphicon glyphicon-remove" />
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
+                        }
+                    </tbody>
+                </table>
 
-                    <h3>Gegevens van de nieuwe functie</h3>
+
+                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuwe Waarden</button>
+                <form method="post" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")">
+                    <h3>Gegevens van de nieuwe waarden</h3>
+                    <input asp-for="VolgendeLijn1" type="hidden" />
+                    <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
                     <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
-                        <input type="number" id="jaarbedragOmzetverlies" class="form-control" placeholder="Jaarbedrag Omzetverlies" style="float:left; margin-right: 50px;" />
-                        <input type="number" id="besparing" class="form-control" placeholder="Besparing in %" style="float:left;" />
+                        <div class="form-group" style="float: left; margin-right: 50px;">
+                            <input asp-for="Bedrag1" id="jaarbedragOmzetverlies" class="form-control" placeholder="Jaarbedrag Omzetverlies" />
+                            <span asp-validation-for="Bedrag1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="float: left;">
+                            <input asp-for="Percent1" type="number" id="besparing" class="form-control" placeholder="Besparing in %" />
+                            <span asp-validation-for="Percent1" class="text-danger"></span>
+                        </div>
                     </div>
 
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
-
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B7) 2. Hoeveel extra productiviteit denkt u te kunnen maken door inzet van mensen met een grote afstand tot de arbeidsmarkt?</h3>
-                    <input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B2) 3. Welk bedrag krijgt u aan subsidie voor eventuele aanpassingen aan de werkomgeving?</h3>
-                    <input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
-                    
-                </div>
-                <a asp-controller="Analyse" asp-action="AnalyseBaat4" class="btn btn-primary btn-lg">Volgende</a>
+                    <button formaction="AnalyseBaat3Punt1" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
+                </form>
             </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">2. Hoeveel extra productiviteit denkt u te kunnen maken door inzet van mensen met een grote afstand tot de arbeidsmarkt?</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input asp-for="Baat7" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
+                        <span asp-validation-for="Baat7" class="text-danger"></span>
+                    </div>
+                    <button formaction="AnalyseBaat3Punt2" class="btn btn-primary btn-lg text-center">Vul In</button>
+                </form>
+            </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">3. Welk bedrag krijgt u aan subsidie voor eventuele aanpassingen aan de werkomgeving?</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input asp-for="Baat2" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
+                        <span asp-validation-for="Baat2" class="text-danger"></span>
+                    </div>
+                    <button formaction="AnalyseBaat3Punt3" class="btn btn-primary btn-lg text-center">Vul In</button>
+                </form>
+            </div>
+            <a asp-controller="Analyse" asp-action="AnalyseBaat4" class="btn btn-primary btn-lg">Volgende</a>
         </div>
+    </div>
 
 </div>

@@ -239,25 +239,2191 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1(Analyse analyse, AnalyseBaat1ViewModel model)
         {
-            return View();
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(3);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<UrenMaandloonViewModel> lijst1 = new List<UrenMaandloonViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    UrenMaandloonViewModel m = new UrenMaandloonViewModel()
+                    {
+                        KostId = i,
+                        Uren = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Maandloon = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(4);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<UrenMaandloonViewModel> lijst2 = new List<UrenMaandloonViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    UrenMaandloonViewModel m = new UrenMaandloonViewModel()
+                    {
+                        KostId = i,
+                        Uren = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Maandloon = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+            return View(model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat2(Analyse analyse)
+        [HttpPost]
+        public IActionResult AnalyseBaat1Punt1(AnalyseBaat1ViewModel model, Analyse analyse)
         {
-            return View();
+            if (model.Uren1 == null && model.Maandloon1 == null)
+            {
+                ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(3);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 3, KOBEnum.Baat, Formule.FormuleBaat3En4);
+                        model.Lijst1 = new List<UrenMaandloonViewModel>();
+                    }
+                    KOBRij baatRij;
+                    if (model.VolgendeLijn1 == -1)
+                    {
+                        if (baat.Rijen.Count == 0)
+                        {
+                            baatRij = new KOBRij(baat, 1);
+                        }
+                        else
+                        {
+                            baatRij = new KOBRij(baat, baat.Rijen.Max(r => r.KOBRijId) + 1);
+                        }
+                    }
+                    else
+                    {
+                        baatRij = baat.GeefKOBRijMetNummer(model.VolgendeLijn1);
+                    }
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Uren1 == null ? 0.ToString() : model.Uren1);
+                    KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Maandloon1 == null ? 0.ToString() : model.Maandloon1);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(3));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(3));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat1));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(3);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<UrenMaandloonViewModel> lijst1 = new List<UrenMaandloonViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    UrenMaandloonViewModel m = new UrenMaandloonViewModel()
+                    {
+                        KostId = i,
+                        Uren = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Maandloon = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(4);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<UrenMaandloonViewModel> lijst2 = new List<UrenMaandloonViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    UrenMaandloonViewModel m = new UrenMaandloonViewModel()
+                    {
+                        KostId = i,
+                        Uren = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Maandloon = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            model.ToonGroep1 = true;
+            return View(nameof(AnalyseBaat1), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat3(Analyse analyse)
+        [HttpPost]
+        public IActionResult AnalyseBaat1Punt2(AnalyseBaat1ViewModel model, Analyse analyse)
         {
-            return View();
+            if (model.Uren2 == null && model.Maandloon2 == null)
+            {
+                ModelState.AddModelError("VolgendeLijn2", "Gelieve minstens 1 veld in te vullen.");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(4);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 4, KOBEnum.Baat, Formule.FormuleBaat3En4);
+                        model.Lijst2 = new List<UrenMaandloonViewModel>();
+                    }
+                    KOBRij baatRij;
+                    if (model.VolgendeLijn2 == -1)
+                    {
+                        if (baat.Rijen.Count == 0)
+                        {
+                            baatRij = new KOBRij(baat, 1);
+                        }
+                        else
+                        {
+                            baatRij = new KOBRij(baat, baat.Rijen.Max(r => r.KOBRijId) + 1);
+                        }
+                    }
+                    else
+                    {
+                        baatRij = baat.GeefKOBRijMetNummer(model.VolgendeLijn2);
+                    }
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Uren2 == null ? 0.ToString() : model.Uren2);
+                    KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Maandloon2 == null ? 0.ToString() : model.Maandloon2);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(4));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(4));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat1));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+
+
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(3);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<UrenMaandloonViewModel> lijst1 = new List<UrenMaandloonViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    UrenMaandloonViewModel m = new UrenMaandloonViewModel()
+                    {
+                        KostId = i,
+                        Uren = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Maandloon = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(4);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<UrenMaandloonViewModel> lijst2 = new List<UrenMaandloonViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    UrenMaandloonViewModel m = new UrenMaandloonViewModel()
+                    {
+                        KostId = i,
+                        Uren = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Maandloon = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            model.ToonGroep2 = true;
+            return View(nameof(AnalyseBaat1), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat4(Analyse analyse)
+        public IActionResult AnalyseBaat1Punt1RijAanpassen(int id, Analyse analyse)
         {
-            return View();
+            KOBRij baatrij = analyse.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
+            AnalyseBaat1ViewModel model = new AnalyseBaat1ViewModel();
+            if (baatrij != null)
+            {
+                model.Uren1 = baatrij.GeefKOBVakMetNummer(1).Data;
+                model.Maandloon1 = baatrij.GeefKOBVakMetNummer(2).Data;
+            }
+            model.Uren1 = Convert.ToInt16(model.Uren1) == 0 ? null : model.Uren1;
+            model.Maandloon1 = Convert.ToDouble(model.Maandloon1) == 0 ? null : model.Maandloon1;
+            model.VolgendeLijn1 = id;
+            model.ToonGroep1 = true;
+            return RedirectToAction(nameof(AnalyseBaat1), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat1Punt1RijVerwijderen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
+            Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+            KOBRij b = a.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
+            if (baatrij != null)
+            {
+                analyse.GeefBaatMetNummer(3).VerwijderKOBRij(baatrij);
+            }
+            if (b != null)
+            {
+                a.GeefBaatMetNummer(3).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(AnalyseBaat1));
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat1Punt2RijAanpassen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
+            AnalyseBaat1ViewModel model = new AnalyseBaat1ViewModel();
+            if (baatrij != null)
+            {
+                model.Uren2 = baatrij.GeefKOBVakMetNummer(1).Data;
+                model.Maandloon2 = baatrij.GeefKOBVakMetNummer(2).Data;
+            }
+            model.Uren2 = Convert.ToInt16(model.Uren2) == 0 ? null : model.Uren2;
+            model.Maandloon2 = Convert.ToDouble(model.Maandloon2) == 0 ? null : model.Maandloon2;
+            model.VolgendeLijn2 = id;
+            model.ToonGroep2 = true;
+            return RedirectToAction(nameof(AnalyseBaat1), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat1Punt2RijVerwijderen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
+            Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+            KOBRij b = a.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
+            if (baatrij != null)
+            {
+                analyse.GeefBaatMetNummer(4).VerwijderKOBRij(baatrij);
+            }
+            if (b != null)
+            {
+                a.GeefBaatMetNummer(4).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(AnalyseBaat1));
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat2(Analyse analyse, AnalyseBaat2ViewModel model)
+        {
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(5);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(9);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst2 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(8);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat8 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat4 = analyse.GeefBaatMetNummer(10);
+            if (baat4 != null)
+            {
+                KOBRij rij = baat4.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat10Punt1 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                    model.Baat10Punt2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(2).Data;
+                }
+            }
+
+            return View(model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat2Punt1(AnalyseBaat2ViewModel model, Analyse analyse)
+        {
+            if (model.Beschrijving1 == null && model.Bedrag1 == null)
+            {
+                ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(5);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 5, KOBEnum.Baat, Formule.FormuleGeefVak2);
+                        model.Lijst1 = new List<BeschrijvingBedragViewModel>();
+                    }
+                    KOBRij baatRij;
+                    if (model.VolgendeLijn1 == -1)
+                    {
+                        if (baat.Rijen.Count == 0)
+                        {
+                            baatRij = new KOBRij(baat, 1);
+                        }
+                        else
+                        {
+                            baatRij = new KOBRij(baat, baat.Rijen.Max(r => r.KOBRijId) + 1);
+                        }
+                    }
+                    else
+                    {
+                        baatRij = baat.GeefKOBRijMetNummer(model.VolgendeLijn1);
+                    }
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Beschrijving1 == null ? string.Empty : model.Beschrijving1);
+                    KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Bedrag1 == null ? 0.ToString() : model.Bedrag1);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(5));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(5));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat2));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(5);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(9);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst2 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(8);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat8 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat4 = analyse.GeefBaatMetNummer(10);
+            if (baat4 != null)
+            {
+                KOBRij rij = baat4.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat10Punt1 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                    model.Baat10Punt2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(2).Data;
+                }
+            }
+
+
+            model.ToonGroep1 = true;
+            return View(nameof(AnalyseBaat2), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat2Punt2(AnalyseBaat2ViewModel model, Analyse analyse)
+        {
+            if (model.Beschrijving2 == null && model.Bedrag2 == null)
+            {
+                ModelState.AddModelError("VolgendeLijn2", "Gelieve minstens 1 veld in te vullen.");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(9);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 9, KOBEnum.Baat, Formule.FormuleGeefVak2);
+                        model.Lijst2 = new List<BeschrijvingBedragViewModel>();
+                    }
+                    KOBRij baatRij;
+                    if (model.VolgendeLijn2 == -1)
+                    {
+                        if (baat.Rijen.Count == 0)
+                        {
+                            baatRij = new KOBRij(baat, 1);
+                        }
+                        else
+                        {
+                            baatRij = new KOBRij(baat, baat.Rijen.Max(r => r.KOBRijId) + 1);
+                        }
+                    }
+                    else
+                    {
+                        baatRij = baat.GeefKOBRijMetNummer(model.VolgendeLijn2);
+                    }
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Beschrijving2 == null ? string.Empty : model.Beschrijving2);
+                    KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Bedrag2 == null ? 0.ToString() : model.Bedrag2);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(9));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(9));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat2));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(5);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(9);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst2 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(8);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat8 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat4 = analyse.GeefBaatMetNummer(10);
+            if (baat4 != null)
+            {
+                KOBRij rij = baat4.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat10Punt1 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                    model.Baat10Punt2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(2).Data;
+                }
+            }
+
+
+            model.ToonGroep2 = true;
+            return View(nameof(AnalyseBaat2), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat2Punt3(AnalyseBaat2ViewModel model, Analyse analyse)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(8);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 8, KOBEnum.Baat, Formule.FormuleGeefVak1);
+                    }
+                    KOBRij baatRij = baat.GeefKOBRijMetNummer(1);
+                    if (baatRij == null)
+                    {
+                        baatRij = new KOBRij(baat, 1);
+                    }
+                    
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Baat8 == null ? 0.ToString() : model.Baat8);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(8));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(8));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat2));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(5);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(9);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst2 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(8);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat8 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat4 = analyse.GeefBaatMetNummer(10);
+            if (baat4 != null)
+            {
+                KOBRij rij = baat4.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat10Punt1 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                    model.Baat10Punt2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(2).Data;
+                }
+            }
+
+            return View(nameof(AnalyseBaat2), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat2Punt4(AnalyseBaat2ViewModel model, Analyse analyse)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(10);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 10, KOBEnum.Baat, Formule.FormuleSomVak1En2);
+                    }
+                    KOBRij baatRij = baat.GeefKOBRijMetNummer(1);
+                    if (baatRij == null)
+                    {
+                        baatRij = new KOBRij(baat, 1);
+                    }
+
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Baat10Punt1 == null ? 0.ToString() : model.Baat10Punt1);
+                    KOBVak kostVak2 = baatRij.GeefKOBVakMetNummer(2);
+                    if (kostVak2 == null)
+                    {
+                        kostVak2 = new KOBVak(baatRij, 2, 0.ToString());
+                    }
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(10));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(10));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat2));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(5);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(9);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst2 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(8);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat8 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat4 = analyse.GeefBaatMetNummer(10);
+            if (baat4 != null)
+            {
+                KOBRij rij = baat4.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat10Punt1 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                    model.Baat10Punt2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(2).Data;
+                }
+            }
+
+            return View(nameof(AnalyseBaat2), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat2Punt5(AnalyseBaat2ViewModel model, Analyse analyse)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(10);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 10, KOBEnum.Baat, Formule.FormuleSomVak1En2);
+                    }
+                    KOBRij baatRij = baat.GeefKOBRijMetNummer(1);
+                    if (baatRij == null)
+                    {
+                        baatRij = new KOBRij(baat, 1);
+                    }
+
+                    KOBVak kostVak1 = baatRij.GeefKOBVakMetNummer(1);
+                    if (kostVak1 == null)
+                    {
+                        kostVak1 = new KOBVak(baatRij, 1, 0.ToString());
+                    }
+                    KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Baat10Punt2 == null ? 0.ToString() : model.Baat10Punt2);
+                    
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(10));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(10));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat2));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(5);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(9);
+            int hoogsteId2;
+            if (baat2 == null)
+            {
+                hoogsteId2 = 0;
+            }
+            else
+            {
+                if (baat2.Rijen.Count == 0)
+                {
+                    hoogsteId2 = 0;
+                }
+                else
+                {
+                    hoogsteId2 = baat2.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst2 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId2; i++)
+            {
+                KOBRij baatRij;
+                if (baat2 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat2.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst2.Add(m);
+                }
+
+            }
+
+
+            model.Lijst2 = lijst2;
+            model.AantalLijnenLijst2 = model.Lijst2.Count;
+
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(8);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat8 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat4 = analyse.GeefBaatMetNummer(10);
+            if (baat4 != null)
+            {
+                KOBRij rij = baat4.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat10Punt1 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                    model.Baat10Punt2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(2).Data;
+                }
+            }
+
+            return View(nameof(AnalyseBaat2), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat2Punt1RijAanpassen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
+            AnalyseBaat2ViewModel model = new AnalyseBaat2ViewModel();
+            if (baatrij != null)
+            {
+                model.Beschrijving1 = baatrij.GeefKOBVakMetNummer(1).Data;
+                model.Bedrag1 = baatrij.GeefKOBVakMetNummer(2).Data;
+            }
+            model.Bedrag1 = Convert.ToDouble(model.Bedrag1) == 0 ? null : model.Bedrag1;
+            model.VolgendeLijn1 = id;
+            model.ToonGroep1 = true;
+            return RedirectToAction(nameof(AnalyseBaat2), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat2Punt1RijVerwijderen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
+            Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+            KOBRij b = a.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
+            if (baatrij != null)
+            {
+                analyse.GeefBaatMetNummer(5).VerwijderKOBRij(baatrij);
+            }
+            if (b != null)
+            {
+                a.GeefBaatMetNummer(5).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(AnalyseBaat2));
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat2Punt2RijAanpassen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
+            AnalyseBaat2ViewModel model = new AnalyseBaat2ViewModel();
+            if (baatrij != null)
+            {
+                model.Beschrijving2 = baatrij.GeefKOBVakMetNummer(1).Data;
+                model.Bedrag2 = baatrij.GeefKOBVakMetNummer(2).Data;
+            }
+            model.Bedrag2 = Convert.ToDouble(model.Bedrag2) == 0 ? null : model.Bedrag2;
+            model.VolgendeLijn2 = id;
+            model.ToonGroep2 = true;
+            return RedirectToAction(nameof(AnalyseBaat2), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat2Punt2RijVerwijderen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
+            Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+            KOBRij b = a.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
+            if (baatrij != null)
+            {
+                analyse.GeefBaatMetNummer(9).VerwijderKOBRij(baatrij);
+            }
+            if (b != null)
+            {
+                a.GeefBaatMetNummer(9).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(AnalyseBaat2));
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat3(Analyse analyse, AnalyseBaat3ViewModel model)
+        {
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(6);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BedragPercentViewModel> lijst1 = new List<BedragPercentViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BedragPercentViewModel m = new BedragPercentViewModel()
+                    {
+                        KostId = i,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Percent = (int)baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(7);
+            if (baat2 != null)
+            {
+                KOBRij rij = baat2.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat7 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(2);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            return View(model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat3Punt1(AnalyseBaat3ViewModel model, Analyse analyse)
+        {
+            if (model.Percent1 == null && model.Bedrag1 == null)
+            {
+                ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(6);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 6, KOBEnum.Baat, Formule.FormuleVermenigvuldigVak1En2);
+                        model.Lijst1 = new List<BedragPercentViewModel>();
+                    }
+                    KOBRij baatRij;
+                    if (model.VolgendeLijn1 == -1)
+                    {
+                        if (baat.Rijen.Count == 0)
+                        {
+                            baatRij = new KOBRij(baat, 1);
+                        }
+                        else
+                        {
+                            baatRij = new KOBRij(baat, baat.Rijen.Max(r => r.KOBRijId) + 1);
+                        }
+                    }
+                    else
+                    {
+                        baatRij = baat.GeefKOBRijMetNummer(model.VolgendeLijn1);
+                    }
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Bedrag1 == null ? 0.ToString() : model.Bedrag1);
+                    KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Percent1 == null ? 0.ToString() : model.Percent1);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(6));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(6));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat3));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(6);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BedragPercentViewModel> lijst1 = new List<BedragPercentViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BedragPercentViewModel m = new BedragPercentViewModel()
+                    {
+                        KostId = i,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Percent = (int)baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(7);
+            if (baat2 != null)
+            {
+                KOBRij rij = baat2.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat7 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(2);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            model.ToonGroep1 = true;
+            return View(nameof(AnalyseBaat3), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat3Punt2(AnalyseBaat3ViewModel model, Analyse analyse)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(7);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 7, KOBEnum.Baat, Formule.FormuleGeefVak1);
+                    }
+                    KOBRij baatRij = baat.GeefKOBRijMetNummer(1);
+                    if (baatRij == null)
+                    {
+                        baatRij = new KOBRij(baat, 1);
+                    }
+
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Baat7 == null ? 0.ToString() : model.Baat7);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(7));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(7));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat3));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(6);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BedragPercentViewModel> lijst1 = new List<BedragPercentViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BedragPercentViewModel m = new BedragPercentViewModel()
+                    {
+                        KostId = i,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Percent = (int)baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(7);
+            if (baat2 != null)
+            {
+                KOBRij rij = baat2.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat7 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(2);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+
+            return View(nameof(AnalyseBaat3), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult AnalyseBaat3Punt3(AnalyseBaat3ViewModel model, Analyse analyse)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(2);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 2, KOBEnum.Baat, Formule.FormuleGeefVak1);
+                    }
+                    KOBRij baatRij = baat.GeefKOBRijMetNummer(1);
+                    if (baatRij == null)
+                    {
+                        baatRij = new KOBRij(baat, 1);
+                    }
+
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Baat2 == null ? 0.ToString() : model.Baat2);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(2));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(2));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat3));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(6);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BedragPercentViewModel> lijst1 = new List<BedragPercentViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BedragPercentViewModel m = new BedragPercentViewModel()
+                    {
+                        KostId = i,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble(),
+                        Percent = (int)baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst1 = lijst1;
+            model.AantalLijnenLijst1 = model.Lijst1.Count;
+
+
+            KostOfBaat baat2 = analyse.GeefBaatMetNummer(7);
+            if (baat2 != null)
+            {
+                KOBRij rij = baat2.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat7 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+            KostOfBaat baat3 = analyse.GeefBaatMetNummer(2);
+            if (baat3 != null)
+            {
+                KOBRij rij = baat3.GeefKOBRijMetNummer(1);
+                if (rij != null)
+                {
+                    model.Baat2 = Convert.ToDouble(rij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()) == 0 ? null : rij.GeefKOBVakMetNummer(1).Data;
+                }
+            }
+
+
+            return View(nameof(AnalyseBaat3), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat3Punt1RijAanpassen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
+            AnalyseBaat3ViewModel model = new AnalyseBaat3ViewModel();
+            if (baatrij != null)
+            {
+                model.Bedrag1 = baatrij.GeefKOBVakMetNummer(1).Data;
+                model.Percent1 = baatrij.GeefKOBVakMetNummer(2).Data;
+            }
+            model.Bedrag1 = Convert.ToDouble(model.Bedrag1) == 0 ? null : model.Bedrag1;
+            model.Percent1 = Convert.ToInt16(model.Percent1) == 0 ? null : model.Percent1;
+            model.VolgendeLijn1 = id;
+            model.ToonGroep1 = true;
+            return RedirectToAction(nameof(AnalyseBaat3), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat3Punt1RijVerwijderen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
+            Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+            KOBRij b = a.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
+            if (baatrij != null)
+            {
+                analyse.GeefBaatMetNummer(6).VerwijderKOBRij(baatrij);
+            }
+            if (b != null)
+            {
+                a.GeefBaatMetNummer(6).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(AnalyseBaat3));
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat4(AnalyseBaat4ViewModel model, Analyse analyse)
+        {
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(11);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst = lijst1;
+            model.AantalLijnenLijst = model.Lijst.Count;
+
+            return View(model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost, ActionName("AnalyseBaat4")]
+        public IActionResult AnalyseBaat4Post(AnalyseBaat4ViewModel model, Analyse analyse)
+        {
+            if (model.Beschrijving == null && model.Bedrag == null)
+            {
+                ModelState.AddModelError("VolgendeLijn", "Gelieve minstens 1 veld in te vullen.");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    KostOfBaat baat = analyse.GeefBaatMetNummer(11);
+                    if (baat == null)
+                    {
+                        baat = new KostOfBaat(analyse, 11, KOBEnum.Baat, Formule.FormuleGeefVak2);
+                        model.Lijst = new List<BeschrijvingBedragViewModel>();
+                    }
+                    KOBRij baatRij;
+                    if (model.VolgendeLijn == -1)
+                    {
+                        if (baat.Rijen.Count == 0)
+                        {
+                            baatRij = new KOBRij(baat, 1);
+                        }
+                        else
+                        {
+                            baatRij = new KOBRij(baat, baat.Rijen.Max(r => r.KOBRijId) + 1);
+                        }
+                    }
+                    else
+                    {
+                        baatRij = baat.GeefKOBRijMetNummer(model.VolgendeLijn);
+                    }
+                    KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Beschrijving == null ? string.Empty : model.Beschrijving);
+                    KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Bedrag == null ? 0.ToString() : model.Bedrag);
+                    baatRij.VulKOBVakIn(kostVak1);
+                    baatRij.VulKOBVakIn(kostVak2);
+                    baat.VulKOBRijIn(baatRij);
+                    analyse.SlaBaatMetNummerOp(baat);
+
+                    Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+                    a.KostenEnBaten.Remove(a.GeefBaatMetNummer(11));
+                    _analyseRepository.SaveChanges();
+                    a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(11));
+                    _analyseRepository.SaveChanges();
+
+                    return RedirectToAction(nameof(AnalyseBaat4));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+
+            KostOfBaat baat1 = analyse.GeefBaatMetNummer(11);
+            int hoogsteId1;
+            if (baat1 == null)
+            {
+                hoogsteId1 = 0;
+            }
+            else
+            {
+                if (baat1.Rijen.Count == 0)
+                {
+                    hoogsteId1 = 0;
+                }
+                else
+                {
+                    hoogsteId1 = baat1.Rijen.Max(r => r.KOBRijId);
+                }
+            }
+            IList<BeschrijvingBedragViewModel> lijst1 = new List<BeschrijvingBedragViewModel>();
+            for (var i = 1; i <= hoogsteId1; i++)
+            {
+                KOBRij baatRij;
+                if (baat1 == null)
+                {
+                    baatRij = null;
+                }
+                else
+                {
+                    baatRij = baat1.GeefKOBRijMetNummer(i);
+                }
+
+                if (baatRij != null)
+                {
+                    BeschrijvingBedragViewModel m = new BeschrijvingBedragViewModel()
+                    {
+                        KostId = i,
+                        Beschrijving = baatRij.GeefKOBVakMetNummer(1).Data,
+                        Bedrag = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()
+                    };
+
+                    lijst1.Add(m);
+                }
+
+            }
+
+
+            model.Lijst = lijst1;
+            model.AantalLijnenLijst = model.Lijst.Count;
+
+            model.ToonGroep1 = true;
+            return View(nameof(AnalyseBaat4), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat4RijAanpassen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
+            AnalyseBaat4ViewModel model = new AnalyseBaat4ViewModel();
+            if (baatrij != null)
+            {
+                model.Beschrijving = baatrij.GeefKOBVakMetNummer(1).Data;
+                model.Bedrag = baatrij.GeefKOBVakMetNummer(2).Data;
+            }
+            model.Bedrag = Convert.ToDouble(model.Bedrag) == 0 ? null : model.Bedrag;
+            model.VolgendeLijn = id;
+            model.ToonGroep1 = true;
+            return RedirectToAction(nameof(AnalyseBaat4), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseBaat4RijVerwijderen(int id, Analyse analyse)
+        {
+            KOBRij baatrij = analyse.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
+            Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
+            KOBRij b = a.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
+            if (baatrij != null)
+            {
+                analyse.GeefBaatMetNummer(11).VerwijderKOBRij(baatrij);
+            }
+            if (b != null)
+            {
+                a.GeefBaatMetNummer(11).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(AnalyseBaat4));
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
@@ -458,6 +2624,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(1));
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(1));
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseKost));
                 }
@@ -1788,9 +3955,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     }
                     else
                     {
-                        kostRij = kost.GeefKOBRijMetNummer(model.VolgendeLijn1);
+                        kostRij = kost.GeefKOBRijMetNummer(model.VolgendeLijn2);
                     }
-                    KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Uren2 == null ? string.Empty : model.Uren2);
+                    KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Uren2 == null ? 0.ToString() : model.Uren2);
                     KOBVak kostVak2 = new KOBVak(kostRij, 2, model.Maandloon2 == null ? 0.ToString() : model.Maandloon2);
                     kostRij.VulKOBVakIn(kostVak1);
                     kostRij.VulKOBVakIn(kostVak2);
@@ -2039,7 +4206,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     }
                     else
                     {
-                        kostRij = kost.GeefKOBRijMetNummer(model.VolgendeLijn1);
+                        kostRij = kost.GeefKOBRijMetNummer(model.VolgendeLijn3);
                     }
                     KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Beschrijving3 == null ? string.Empty : model.Beschrijving3);
                     KOBVak kostVak2 = new KOBVak(kostRij, 2, model.Bedrag3 == null ? 0.ToString() : model.Bedrag3);
@@ -2290,7 +4457,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     }
                     else
                     {
-                        kostRij = kost.GeefKOBRijMetNummer(model.VolgendeLijn1);
+                        kostRij = kost.GeefKOBRijMetNummer(model.VolgendeLijn4);
                     }
                     KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Beschrijving4 == null ? string.Empty : model.Beschrijving4);
                     KOBVak kostVak2 = new KOBVak(kostRij, 2, model.Bedrag4 == null ? 0.ToString() : model.Bedrag4);

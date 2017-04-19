@@ -1,12 +1,16 @@
-﻿@{
+﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseBaat4ViewModel
+
+@{
     ViewData["Title"] = "Kairos";
 }
 
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScriptBaten.js"></script>
+<script src="~/js/ShowHideFormulier.js"></script>
 
 <div class="row">
     <div class="col-md-9">
@@ -57,44 +61,58 @@
         </div>
     </div>
 
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B11) 1. Aan welke besparingen kan er nog meer gedacht worden? Vul de bedragen in per jaar?</h3>
-                    <table class="table table-bordered text-left" id="tableAddRow5" style="margin-bottom: 55px;">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Type Besparing</th>
-                                <th>Jaarbedrag</th>
-                                <th style="width:5%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    <div class="col-xs-12">
+        <div class="col-md-12 well text-center">
+            <div class="Blok1 text-center">
+                <h3 class="text-left">1. Aan welke besparingen kan er nog meer gedacht worden? Vul de bedragen in per jaar?</h3>
+                <table class="table table-bordered text-left" id="tableAddRow5" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%"></th>
+                            <th>Type Besparing</th>
+                            <th>Jaarbedrag</th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 1; i <= Model.AantalLijnenLijst; i++)
+                        {
                             <tr id="tr_0">
-                                <td>1.</td>
-                                <td>Een besparing</td>
-                                <td>€ 12.000,00</td>
+                                <td>@i.</td>
+                                <td>@Model.Lijst[i - 1].Beschrijving</td>
+                                <td>@Model.Lijst[i - 1].Bedrag.ToString("C")</td>
                                 <td class="text-center">
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
-                                    <button class="glyphicon glyphicon-remove" />
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat4RijAanpassen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat4RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Gegevens van de nieuwe functie</h3>
+                        }
+                    </tbody>
+                </table>
+                
+                
+                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuwe Besparing</button>
+                <form asp-controller="Analyse" asp-action="AnalyseBaat4" method="post" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")">
+                    <h3>Gegevens van de nieuwe besparing</h3>
+                    <input asp-for="VolgendeLijn" type="hidden" />
+                    <span asp-validation-for="VolgendeLijn" class="text-danger"></span>
                     <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
-                        <input type="text" id="type" class="form-control" placeholder="Type Besparing" style="float:left; margin-right: 50px;" />
-                        <input type="number" id="jaarBedrag" class="form-control" placeholder="Jaarbedrag" style="float:left;" />
+                        <div class="form-group" style="float:left; margin-right: 50px;">
+                            <input asp-for="Beschrijving" id="type" class="form-control" placeholder="Type Besparing" />
+                            <span asp-validation-for="Beschrijving" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="float:left;">
+                            <input asp-for="Bedrag" id="jaarBedrag" class="form-control" placeholder="Jaarbedrag" />
+                            <span asp-validation-for="Bedrag" class="text-danger foutMelding"></span>
+                        </div>
                     </div>
 
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+                    <button type="submit" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
+                </form>
 
-                    
-                </div>
-                <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Overzicht</a>
-            </div>
+</div>
+            <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Overzicht</a>
         </div>
     </div>
+</div>
