@@ -1,12 +1,17 @@
-﻿@{
+﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseBaat1ViewModel
+
+@{
     ViewData["Title"] = "Kairos";
 }
 
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScriptBaten.js"></script>
+<script src="~/js/ShowHideFormulier.js"></script>
+
 
 <div class="row">
     <div class="col-md-9">
@@ -57,82 +62,106 @@
         </div>
     </div>
 
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B3) 1. Vul hier de lonen op hetzelfde niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
-                    <table class="table table-bordered text-left" id="tableAddRow" style="margin-bottom: 55px;">
-                        <thead>
-                            <tr>
-                                <th style="width:5%;"></th>
-                                <th>Uren</th>
-                                <th>Bruto Maandloon Fulltime</th>
-                                <th>Totale loonkost per jaar <br />(incl. patronale bijdrage en vakantiegeld)</th>
-                                <th style="width:5%;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    <div class="col-xs-12">
+        <div class="col-md-12 well text-center">
+            <div class="Blok1 text-center">
+                <h3 class="text-left">1. Vul hier de lonen op hetzelfde niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
+                <table class="table table-bordered text-left" id="tableAddRow" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%;"></th>
+                            <th>Uren</th>
+                            <th>Bruto Maandloon Fulltime</th>
+                            <th style="width:5%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
+                        {
                             <tr id="tr_0">
-                                <td>1.</td>
-                                <td>15</td>
-                                <td>€ 22.000,00</td>
-                                <td>€ 22.000,00</td>
+                                <td>@i.</td>
+                                <td>@Model.Lijst1[i - 1].Uren</td>
+                                <td>@Model.Lijst1[i - 1].Maandloon.ToString("C")</td>
                                 <td class="text-center">
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
-                                    <button class="glyphicon glyphicon-remove" />
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
-                        </tbody>
-                    </table>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
-                    <h3>Gegevens van de nieuwe functie</h3>
+                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuw Loon</button>
+                <form method="post" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")">
+                    <h3>Gegevens van het nieuw loon</h3>
+                    <input asp-for="VolgendeLijn1" type="hidden" />
+                    <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
                     <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:23%;">
-                        <input type="number" id="uren" class="form-control" placeholder="Uren" style="float:left; margin-right:50px;" />
-                        <input type="number" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" style="float:left; margin-right:50px;" />
-                        <input type="number" id="totaleLoonkostPerJaar" class="form-control" placeholder="Loonkost Per Jaar" style="float:left; margin-right:50px;" />
+                        <div class="form-group" style="float: left; margin-right: 50px;">
+                            <input asp-for="Uren1" type="number" id="uren" class="form-control" placeholder="Uren" />
+                            <span asp-validation-for="Uren1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="float: left; margin-right:50px;">
+                            <input asp-for="Maandloon1" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" />
+                            <span asp-validation-for="Maandloon1" class="text-danger"></span>
+                        </div>
+
                     </div>
 
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
-
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B4) 2. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
-                    <table class="table table-bordered" id="tableAddRow2" style="margin-bottom: 55px;">
-                        <thead>
-                            <tr>
-                                <th style="width:5%;"></th>
-                                <th>Uren</th>
-                                <th>Bruto Maandloon Fulltime</th>
-                                <th>Totale loonkost per jaar <br />(incl. patronale bijdrage en vakantiegeld)</th>
-                                <th style="width:5%;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td>1.</td>
-                                <td>15</td>
-                                <td>€ 22.000,00</td>
-                                <td>€ 22.000,00</td>
-                                <td class="text-center">
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
-                                    <button class="glyphicon glyphicon-remove" />
-                                </td>
-                        </tbody>
-                    </table>
-
-                    <h3>Gegevens van de nieuwe functie</h3>
-                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:23%;">
-                        <input type="number" id="uren" class="form-control" placeholder="Uren" style="float:left; margin-right:50px;" />
-                        <input type="number" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" style="float:left; margin-right:50px;" />
-                        <input type="number" id="totaleLoonkostPerJaar" class="form-control" placeholder="Loonkost Per Jaar" style="float:left; margin-right:50px;" />
-                    </div>
-
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
-                    
-                </div>
-                <a asp-controller="Analyse" asp-action="AnalyseBaat2" class="btn btn-primary btn-lg">Volgende</a>
+                    <button formaction="AnalyseBaat1Punt1" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
+                </form>
             </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">2. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
+                <table class="table table-bordered" id="tableAddRow2" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%;"></th>
+                            <th>Uren</th>
+                            <th>Bruto Maandloon Fulltime</th>
+                            <th style="width:5%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
+                        {
+                            <tr id="tr_0">
+                                <td>@i.</td>
+                                <td>@Model.Lijst2[i - 1].Uren</td>
+                                <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
+                                <td class="text-center">
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuw Loon</button>
+                <form method="post" class="invulgegevens @(Model.ToonGroep2?"toonFormulier":"verbergFormulier")">
+                    <h3>Gegevens van het nieuw loon</h3>
+                    <input asp-for="VolgendeLijn2" type="hidden" />
+                    <span asp-validation-for="VolgendeLijn2" class="text-danger"></span>
+                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:23%;">
+                        <div class="form-group" style="float: left; margin-right: 50px;">
+                            <input asp-for="Uren2" type="number" id="uren" class="form-control" placeholder="Uren" />
+                            <span asp-validation-for="Uren2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="float: left; margin-right:50px;">
+                            <input asp-for="Maandloon2" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" />
+                            <span asp-validation-for="Maandloon2" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <button formaction="AnalyseBaat1Punt2" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
+                </form>
+            </div>
+            <a asp-controller="Analyse" asp-action="AnalyseBaat2" class="btn btn-primary btn-lg">Volgende</a>
         </div>
     </div>
+</div>
