@@ -21,11 +21,11 @@
 
         <div class="col-lg-12">
             @*<select id="zoekKeuze" name="zoekKeuze" class=" col-lg-4">*@
-            <select class="btn btn-default col-lg-4" name="zoekKeuze" style="margin-right:15px;">
-                <option value="1">Organisatie naam</option>
-                <option value="2">Gemeente</option>
-                <option value="3">Postcode</option>
-                <option value="4">Contactpersoon naam</option>
+            <select asp-for="ChoiceboxWaarde" class="btn btn-default col-lg-4" style="margin-right:15px;">
+                <option selected>Organisatie naam</option>
+                <option>Gemeente</option>
+                <option>Postcode</option>
+                <option>Contactpersoon naam</option>
             </select>
 
             <div class="form-group col-lg-4">

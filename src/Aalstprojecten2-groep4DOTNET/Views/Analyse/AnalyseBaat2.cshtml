@@ -1,12 +1,16 @@
-﻿@{
+﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.AnalyseBaat2ViewModel
+
+@{
     ViewData["Title"] = "Kairos";
 }
 
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScriptBaten.js"></script>
+<script src="~/js/ShowHideFormulier.js"></script>
 
 <div class="row">
     <div class="col-md-9">
@@ -57,96 +61,141 @@
         </div>
     </div>
 
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B5) 1. Welke besparing denkt u te kunnen maken op uitzendkrachten?</h3>
-                    <table class="table table-bordered text-left" id="tableAddRow3" style="margin-bottom: 55px;">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Beschrijving</th>
-                                <th>Jaarbedrag</th>
-                                <th style="width:5%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    <div class="col-xs-12">
+        <div class="col-md-12 well text-center">
+            <div class="Blok1 text-center">
+                <h3 class="text-left">1. Welke besparing denkt u te kunnen maken op uitzendkrachten?</h3>
+                <table class="table table-bordered text-left" id="tableAddRow3" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%"></th>
+                            <th>Beschrijving</th>
+                            <th>Jaarbedrag</th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
+                        {
                             <tr id="tr_0">
-                                <td>1.</td>
-                                <td>Een beschrijving</td>
-                                <td>€ 12.000,00</td>
+                                <td>@i.</td>
+                                <td>@Model.Lijst1[i - 1].Beschrijving</td>
+                                <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
                                 <td class="text-center">
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
-                                    <button class="glyphicon glyphicon-remove" />
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
+                        }
+                    </tbody>
+                </table>
 
-                    <h3>Gegevens van de nieuwe functie</h3>
-                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
-                        <input type="text" id="beschrijving" class="form-control" placeholder="Beschrijving" style="float:left; margin-right: 50px;" />
-                        <input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" style="float:left;" />
+                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuwe Besparing</button>
+                <form method="post" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")">
+                    <h3>Gegevens van de nieuwe besparing</h3>
+                    <input asp-for="VolgendeLijn1" type="hidden" />
+                    <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
+                    <div class="invulveldjes1" style="width: 100%; height: 100px; float: left; padding-left: 30%;">
+                        <div class="form-group" style="float: left; margin-right: 50px;">
+                            <input asp-for="Beschrijving1" id="beschrijving" class="form-control" placeholder="Beschrijving" />
+                            <span asp-validation-for="Beschrijving1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="float: left;">
+                            <input asp-for="Bedrag1" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
+                            <span asp-validation-for="Bedrag1" class="text-danger"></span>
+                        </div>
                     </div>
 
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
+                    <button formaction="AnalyseBaat2Punt1" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
+                </form>
 
-
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B9) 2. Welke zaken worden extern ingekocht en kan op worden bespaard? Denk hierbij aan bijvoorbeeld uitbesteedde productie, schoonmaak, hoveniers enz.</h3>
-                    <table class="table table-bordered text-left" id="tableAddRow4" style="margin-bottom: 55px;">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Beschrijving</th>
-                                <th>Jaarbedrag</th>
-                                <th style="width:5%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_0">
-                                <td>1.</td>
-                                <td>Een beschrijving</td>
-                                <td>€ 12.000,00</td>
-                                <td class="text-center">
-                                    <button type="button" class="glyphicon glyphicon-edit" style="margin-right:5px; float:left;" />
-                                    <button class="glyphicon glyphicon-remove" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Gegevens van de nieuwe functie</h3>
-                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
-                        <input type="text" id="beschrijving" class="form-control" placeholder="Beschrijving" style="float:left; margin-right: 50px;" />
-                        <input type="number" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" style="float:left;" />
-                    </div>
-
-                    <button class="btn btn-primary btn-lg text-center">Voeg Toe</button>
-                    <button class="btn btn-primary btn-lg text-center">Annuleer</button>
-
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B8) 3. Hoeveel denkt u te kunnen besparen op overuren?</h3>
-                    <input type="text" class="form-control" placeholder="€" />
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B10.1) 4. Wat zijn de transportkosten van eventueel uitbesteedde zaken?</h3>
-                    <input type="text" class="form-control" placeholder="€" />
-                </div>
-
-                <div class="Blok1 text-center">
-                    <h3 class="text-left">(B10.2) 5. Wat zijn de logistieke handlingskosten van eventueel uitbesteedde zaken?</h3>
-                    <input type="text" class="form-control" placeholder="€" />
-                    
-                </div>
-                <a asp-controller="Analyse" asp-action="AnalyseBaat3" class="btn btn-primary btn-lg">Volgende</a>
             </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">2. Welke zaken worden extern ingekocht en kan op worden bespaard? Denk hierbij aan bijvoorbeeld uitbesteedde productie, schoonmaak, hoveniers enz.</h3>
+                <table class="table table-bordered text-left" id="tableAddRow4" style="margin-bottom: 55px;">
+                    <thead>
+                        <tr>
+                            <th style="width:5%"></th>
+                            <th>Beschrijving</th>
+                            <th>Jaarbedrag</th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
+                        {
+                            <tr id="tr_0">
+                                <td>@i.</td>
+                                <td>@Model.Lijst2[i - 1].Beschrijving</td>
+                                <td>@Model.Lijst2[i - 1].Bedrag.ToString("C")</td>
+                                <td class="text-center">
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuwe Besparing</button>
+                <form method="post" class="invulgegevens @(Model.ToonGroep2?"toonFormulier":"verbergFormulier")">
+                    <h3>Gegevens van de nieuwe besparing</h3>
+                    <input asp-for="VolgendeLijn2" type="hidden" />
+                    <span asp-validation-for="VolgendeLijn2" class="text-danger"></span>
+                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
+                        <div class="form-group" style="float: left; margin-right: 50px;">
+                            <input asp-for="Beschrijving2" id="beschrijving" class="form-control" placeholder="Beschrijving" />
+                            <span asp-validation-for="Beschrijving2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="float: left;">
+                            <input asp-for="Bedrag2" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
+                            <span asp-validation-for="Bedrag2" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <button formaction="AnalyseBaat2Punt2" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
+                </form>
+            </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">3. Hoeveel denkt u te kunnen besparen op overuren?</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input asp-for="Baat8" class="form-control" placeholder="€" />
+                        <span asp-validation-for="Baat8" class="text-danger"></span>
+                    </div>
+                    <button formaction="AnalyseBaat2Punt3" class="btn btn-primary btn-lg text-center">Vul In</button>
+                </form>
+            </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">4. Wat zijn de transportkosten van eventueel uitbesteedde zaken?</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input asp-for="Baat10Punt1" class="form-control" placeholder="€" />
+                        <span asp-validation-for="Baat10Punt1" class="text-danger"></span>
+                    </div>
+                    <button formaction="AnalyseBaat2Punt4" class="btn btn-primary btn-lg text-center">Vul In</button>
+                </form>
+            </div>
+
+            <div class="Blok1 text-center">
+                <h3 class="text-left">5. Wat zijn de logistieke handlingskosten van eventueel uitbesteedde zaken?</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <input asp-for="Baat10Punt2" class="form-control" placeholder="€" />
+                        <span asp-validation-for="Baat10Punt2" class="text-danger"></span>
+                    </div>
+                    <button formaction="AnalyseBaat2Punt5" class="btn btn-primary btn-lg text-center">Vul In</button>
+                </form>
+
+            </div>
+            <a asp-controller="Analyse" asp-action="AnalyseBaat3" class="btn btn-primary btn-lg">Volgende</a>
         </div>
+    </div>
 
 </div>
