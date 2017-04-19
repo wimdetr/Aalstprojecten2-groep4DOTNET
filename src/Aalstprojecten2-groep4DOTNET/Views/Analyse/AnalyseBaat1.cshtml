@@ -14,13 +14,15 @@
 
 
 <div class="row">
-    <div class="col-md-9">
-        <h2>Nieuwe Analyse - Baten</h2>
+    <div class="col-md-3">
+        <h2>@ViewData["werkgever"]</h2>
     </div>
-    <div class="col-md-3" style="padding-top:20px;">
-
+    <div class="col-md-6 text-center">
+        <h2>Baten</h2>
+    </div>
+    <div class="col-md-3" style="padding-top: 20px;">
         <a asp-controller="Analyse" asp-action="AnalyseOverzicht">
-            <img style="margin-left: 20px; max-height:30px; max-width: 50px; min-height: 30px; float:right;" src="~/images/iconen/overview.png" />
+            <img style="margin-left: 20px; max-height: 30px; max-width: 50px; min-height: 30px; float: right;" src="~/images/iconen/overview.png" />
         </a>
 
     </div>
@@ -117,26 +119,26 @@
                 <h3 class="text-left">2. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
                 <table class="table table-bordered" id="tableAddRow2" style="margin-bottom: 55px;">
                     <thead>
-                        <tr>
-                            <th style="width:5%;"></th>
-                            <th>Uren</th>
-                            <th>Bruto Maandloon Fulltime</th>
-                            <th style="width:5%;"></th>
-                        </tr>
+                    <tr>
+                        <th style="width:5%;"></th>
+                        <th>Uren</th>
+                        <th>Bruto Maandloon Fulltime</th>
+                        <th style="width:5%;"></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
-                        {
-                            <tr id="tr_0">
-                                <td>@i.</td>
-                                <td>@Model.Lijst2[i - 1].Uren</td>
-                                <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
-                                <td class="text-center">
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
-                                </td>
-                            </tr>
-                        }
+                    @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
+                    {
+                        <tr id="tr_0">
+                            <td>@i.</td>
+                            <td>@Model.Lijst2[i - 1].Uren</td>
+                            <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
+                            <td class="text-center">
+                                <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
 
@@ -161,6 +163,8 @@
                     <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
             </div>
+            <a asp-controller="Analyse" asp-action="AnalyseKost4" class="btn btn-primary btn-lg">Vorige</a>
+            <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Overzicht</a>
             <a asp-controller="Analyse" asp-action="AnalyseBaat2" class="btn btn-primary btn-lg">Volgende</a>
         </div>
     </div>
