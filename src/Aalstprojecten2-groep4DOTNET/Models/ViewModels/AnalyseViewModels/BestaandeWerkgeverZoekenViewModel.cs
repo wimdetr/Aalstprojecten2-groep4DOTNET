@@ -11,6 +11,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
     {
         [Display(Name = "Zoeken")]
         public string ZoekString { get; set; }
+        public string ChoiceboxWaarde { get; set; }
         public IEnumerable<BestaandeWerkgeverInfoViewModel> Werkgevers { get; set; }
         public bool IsLegeLijst { get; set; }
         public bool HeeftAlGezocht { get; set; }

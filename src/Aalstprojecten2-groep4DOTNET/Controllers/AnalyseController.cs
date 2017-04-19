@@ -204,7 +204,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost, ActionName("BestaandeWerkgever")]
         public IActionResult BestaandeWerkgeverPost(BestaandeWerkgeverZoekenViewModel model)
         {
-            string keuze = Request.Form["zoekKeuze"];
             IEnumerable<Werkgever> werkgevers;
             if (model.ZoekString == null || model.ZoekString.Trim().Equals(""))
             {
@@ -212,18 +211,18 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             else
             {
-                switch (keuze)
+                switch (model.ChoiceboxWaarde)
                 {
-                    case "1":
+                    case "Organisatie naam":
                         werkgevers = _werkgeverRepository.GetByNaam(User.Identity.Name, model.ZoekString.Trim());
                         break;
-                    case "2":
+                    case "Gemeente":
                         werkgevers = _werkgeverRepository.GetByGemeente(User.Identity.Name, model.ZoekString.Trim());
                         break;
-                    case "3":
+                    case "Postcode":
                         werkgevers = _werkgeverRepository.GetByPostcode(User.Identity.Name, model.ZoekString.Trim());
                         break;
-                    case "4":
+                    case "Contactpersoon naam":
                         werkgevers = _werkgeverRepository.GetByContactPersoonNaam(User.Identity.Name, model.ZoekString.Trim());
                         break;
                     default:
