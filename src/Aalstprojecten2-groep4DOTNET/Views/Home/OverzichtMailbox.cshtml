@@ -26,23 +26,24 @@ else
             </tr>
             @foreach (var item in Model.Mails)
             {
+                var id = "checkbox" + item.MailId;
                 if (item.Gelezen)
                 {
-                    <tr class="klikbaar gelezen">
-                        <td><input asp-for="@item.Geselecteerd"/></td>
-                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
-                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
-                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
+                    <tr class="gelezen">
+                        <td><input type="checkbox" name="@id"/></td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
                         <td><a asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@item.MailId" class="glyphicon glyphicon-trash"></a></td>
                     </tr>
                 }
                 else
                 {
-                    <tr class="klikbaar nietgelezen">
-                        <td><input asp-for="@item.Geselecteerd"/></td>
-                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
-                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
-                        <td onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
+                    <tr class="nietgelezen">
+                        <td><input type="checkbox" name="@id"/></td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
+                        <td class="klikbaar"  onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
                         <td><a asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@item.MailId" class="glyphicon glyphicon-trash"></a></td>
                     </tr>
                 }
