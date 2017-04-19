@@ -458,7 +458,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(1));
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(1));
-
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost));
                 }
                 catch (Exception e)

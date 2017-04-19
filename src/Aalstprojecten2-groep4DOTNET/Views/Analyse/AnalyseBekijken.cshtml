@@ -72,11 +72,11 @@ else
     foreach (AnalyseOverzichtViewModel item in Model.Analyses)
     {
         <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="col-lg-12 col-md-12 col-sm-12 omlijn">
-                <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading">
+            <div class="col-lg-12 col-md-12 col-sm-12 omlijn borderRadius">
+                <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading borderRadiusTop">
                     <div class="col-lg-2 col-md-2 col-sm-2">
                         @*logo werkgever*@
-                        <img class="img-circle img-responsive mijnLogo" src="~/images/analyseOverzicht/Carrefour.png" alt="meh" />
+                        <img class="img-responsive mijnLogo" src="~/images/analyseOverzicht/Carrefour.png"    alt="meh" />
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 werkgeverTekst">
                         @*naam werkgever*@
@@ -85,13 +85,17 @@ else
                     <div class="col-lg-6 col-md-6 col-sm-6 iconen">
                         @*knoppen downloaden versturen verwijderen*@
                         <div class="icoon">
-                            <a asp-controller="Analyse" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/delete.png" alt="meh" /></a>
+                            <a asp-controller="Analyse" asp-action="DeArchiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
+                        </div>
+
+                        <div class="icoon">
+                            <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh" /></a>
                         </div>
                         <div class="icoon">
-                            <a asp-controller="Analyse" asp-action="DeArchiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/send.png" alt="meh" /></a>
+                            <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
                         </div>
                         <div class="icoon">
-                            <a><img class="img-responsive img-rounded mijnIcoon" src="~/images/analyseOverzicht/save.png" alt="meh" /></a>
+                            <a asp-controller="Analyse" asp-action="DeArchiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/archiveren.png" alt="meh" /></a>
                         </div>
                     </div>
                 </div>
@@ -145,19 +149,19 @@ else
 
                 @if (item.NettoResultaat == 0)
                 {
-                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: lightgray;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: lightgray;">
                         <strong>@item.NettoResultaat.ToString("C")</strong>
                     </div>
                 }
                 else if (item.NettoResultaat > 0)
                 {
-                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: #9fdf9f;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #9fdf9f;">
                         <strong>@item.NettoResultaat.ToString("C")</strong>
                     </div>
                 }
                 else
                 {
-                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat" style="background-color: #ff6666;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #ff6666;">
                         <strong>@((item.NettoResultaat * -1).ToString("C"))</strong>
                     </div>
                 }
