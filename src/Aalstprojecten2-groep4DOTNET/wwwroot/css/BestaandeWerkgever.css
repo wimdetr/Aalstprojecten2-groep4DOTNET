@@ -2,4 +2,11 @@
     cursor: pointer;
 }
 
+.hover {
+    width:100%;
+    border-collapse:collapse;
+}
 
+.hover tr:not(:first-child):hover {
+    background-color: #e6e6e6;
+}

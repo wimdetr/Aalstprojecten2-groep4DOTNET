@@ -22,9 +22,10 @@
     background-color: #ff6666;
     width: 100%;
     text-align: left;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    height: 8px;
 }
 
 .baten {
@@ -35,9 +36,14 @@
     background-color: #9fdf9f;
     width: 100%;
     text-align: right;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    height: 8px;
+}
+
+.PaddingLinks {
+    padding-left: 10px;
 }
 
 .helft {
@@ -92,10 +98,24 @@
 }
 
 .kaartjeHeading {
-    background-color: #85BEB8;
+    background-color: #337AB7;
 }
 
 .achtergrondKleurtje {
     background-color: #FFFFFF;
     padding-bottom: 20px;
+}
+
+.borderRadiusTop {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.borderRadiusDown {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.borderRadius {
+    border-radius:5px;
 }

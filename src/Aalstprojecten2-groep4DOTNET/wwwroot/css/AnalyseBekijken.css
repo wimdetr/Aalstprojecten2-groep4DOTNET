@@ -77,7 +77,24 @@
     background-color: #85BEB8;
 }
 
-.achtergrondKleurtje {
+/*.achtergrondKleurtje {
     background-color: #FFFFFF;
     padding-bottom: 20px;
+}
+
+tr:nth-child(even) {
+    background-color:#74a9d8;
+}
+
+tr:nth-child(odd) {
+    background-color:#afcee9;
+}*/
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #e6e6e6;
+    /*background-color: #f2f2f2;*/
+}
+
+.table-striped > thead {
+    color: white;
 }
