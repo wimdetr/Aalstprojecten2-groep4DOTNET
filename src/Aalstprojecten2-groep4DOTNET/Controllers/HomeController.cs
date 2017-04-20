@@ -253,37 +253,46 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [HttpPost]
-        public IActionResult MarkeerGeselecteerdeAlsGelezen(OverzichtMailboxViewModel model)
+        public IActionResult MarkeerGeselecteerdeAlsGelezen()
         {
-            foreach (MailViewModel m in model.Mails)
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
             {
-                if (m.Geselecteerd)
+                string id = "checkbox" + m.InterneMailId;
+                string check = Request.Form[id];
+                if (check != null && check.Equals("on"))
                 {
-                    _interneMailJobcoachRepository.GetById(User.Identity.Name, m.MailId).IsGelezen = true;
+                    _interneMailJobcoachRepository.GetById(User.Identity.Name, m.InterneMailId).IsGelezen = true;
                     _interneMailJobcoachRepository.SaveChanges();
+
                 }
             }
+            return RedirectToAction(nameof(OverzichtMailbox));
+        }
+
+        [HttpPost]
+        public IActionResult VerwijderGeselecteerde()
+        {
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                string id = "checkbox" + m.InterneMailId;
+                string check = Request.Form[id];
+                if (check != null && check.Equals("on"))
+                {
+                    _interneMailJobcoachRepository.Delete(m);
+                    _interneMailJobcoachRepository.SaveChanges();
+
+                }
+            }
+
+
             _interneMailJobcoachRepository.SaveChanges();
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
         [HttpPost]
-        public IActionResult VerwijderGeselecteerde(OverzichtMailboxViewModel model)
-        {
-            foreach (MailViewModel m in model.Mails)
-            {
-                if (m.Geselecteerd)
-                {
-                    _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, m.MailId));
-                    _interneMailJobcoachRepository.SaveChanges();
-                }
-            }
-            
-            return RedirectToAction(nameof(OverzichtMailbox));
-        }
-
-        [HttpPost]
-        public IActionResult MarkeerAlleAlsGelezen(OverzichtMailboxViewModel model)
+        public IActionResult MarkeerAlleAlsGelezen()
         {
             IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
             foreach (InterneMailJobcoach m in mails)
