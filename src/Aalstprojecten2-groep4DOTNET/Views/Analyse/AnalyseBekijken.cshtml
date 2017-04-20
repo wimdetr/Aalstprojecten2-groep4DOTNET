@@ -128,19 +128,32 @@ else
                 </div>
                 @*resultaten*@
                 <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant achtergrondKleurtje">
-                    <div class="helft" style="width: @item.KostenBalk%;">
-                        <div class="kosten">
+                    <div>
+                        <div class="kosten text-left" style="width:50%; float:left;">
                             <strong>Kosten</strong>
                         </div>
+                        <div class="baten text-right" style="width:50%; float:right;">
+                            <strong>Baten</strong>
+                        </div>
+                    </div>
+
+                    <div class="helft" style="width: @item.KostenBalk%;">
                         <div class="kostenBalk">
-                            <strong>@item.KostenResultaat.ToString("C")</strong>
+
                         </div>
                     </div>
                     <div class="helft" style="width: @item.BatenBalk%;">
-                        <div class="baten">
-                            <strong>Baten</strong>
-                        </div>
+
                         <div class="batenBalk">
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="kosten text-left" style="width:50%; float:left;">
+                            <strong>@item.KostenResultaat.ToString("C")</strong>
+                        </div>
+                        <div class="baten text-right" style="width:50%; float:right">
                             <strong>@item.BatenResultaat.ToString("C")</strong>
                         </div>
                     </div>
