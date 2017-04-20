@@ -42,7 +42,6 @@
             </div>
 </form>
 
-
 @if (Model.HeeftAlGezocht)
 {
     if (Model.IsLegeLijst)
@@ -51,14 +50,16 @@
     }
     else
     {
-        <table class="table hover">
-            <tr>
-                <th>Organisatie naam</th>
-                <th>Straat</th>
-                <th>Postcode</th>
-                <th>Gemeente</th>
-                <th>Contact persoon</th>
-            </tr>
+        <table class="table table-striped table-hover text-left test">
+            <thead style="background-color:#337AB7;">
+                <tr>
+                    <th>Organisatie naam</th>
+                    <th>Straat</th>
+                    <th>Postcode</th>
+                    <th>Gemeente</th>
+                    <th>Contact persoon</th>
+                </tr>
+            </thead>
             @foreach (var item in Model.Werkgevers)
             {
                 <tr class="klikbaar" onclick="location.href = '@(Url.Action("NieuweWerkgever", "Analyse", new { Id = item.WerkgeverId }))'">
