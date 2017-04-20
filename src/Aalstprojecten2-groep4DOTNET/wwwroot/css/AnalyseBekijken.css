@@ -41,7 +41,6 @@
     		display: none;
     	}
 
-    
     	@media (min-width: 768px) {
     		.navbar-collapse {
     			padding-top: 0px !important;
