@@ -10,3 +10,17 @@
 .hover tr:not(:first-child):hover {
     background-color: #e6e6e6;
 }
+
+.test tr:nth-of-type(even) {
+    /*background-color: #e6e6e6;*/
+    background-color: #f2f2f2;
+}
+
+.table-striped > thead {
+    color: white;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: rgba(51,122,183, 0.6);
+    color: white;
+}
