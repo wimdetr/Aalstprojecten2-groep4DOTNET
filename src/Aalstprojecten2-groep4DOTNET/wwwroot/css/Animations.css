@@ -2885,6 +2885,7 @@
 @-webkit-keyframes zoomOut {
   from {
     opacity: 1;
+      max-height: 300px;
   }
 
   50% {
@@ -2895,12 +2896,14 @@
 
   to {
     opacity: 0;
+      max-height: 0;
   }
 }
 
 @keyframes zoomOut {
   from {
     opacity: 1;
+      max-height: 300px;
   }
 
   50% {
@@ -2911,10 +2914,12 @@
 
   to {
     opacity: 0;
+      max-height: 0;
   }
 }
 
 .zoomOut {
+    box-sizing: margin-box;
   -webkit-animation-name: zoomOut;
   animation-name: zoomOut;
 }
