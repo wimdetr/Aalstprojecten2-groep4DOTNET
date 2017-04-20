@@ -19,7 +19,6 @@
 .table-striped > thead {
     color: white;
 }
-
 .table-hover > tbody > tr:hover {
     background-color: rgba(51,122,183, 0.6);
     color: white;
