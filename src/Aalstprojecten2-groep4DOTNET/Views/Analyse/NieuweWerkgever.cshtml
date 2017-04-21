@@ -6,7 +6,7 @@
 }
 
 <div class="row">
-    <h2 style="padding-left:5px;">Nieuwe Analyse - Bestaande Werkgever</h2>
+    <h2 style="padding-left:5px;">@ViewData["werkgever"]</h2>
     <hr />
 </div>
 
@@ -100,8 +100,16 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-10" style="margin-top:25px;">
-            <button type="submit" class="btn btn-primary btn-lg">Doorgaan</button>
+        <div class="col-md-10" style="margin-top: 25px;">
+            @if (Model.WerkgeverId == -1)
+            {
+                <button type="submit" class="btn btn-primary btn-lg">Doorgaan</button>
+            }
+            else
+            {
+                <button formaction="" class="btn btn-primary btn-lg">Sla op</button>
+                <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Annuleer</a>
+            }
         </div>
     </div>
 </form>
