@@ -552,6 +552,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
 
             model.ToonGroep1 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseBaat1), model);
         }
 
@@ -712,6 +714,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
 
             model.ToonGroep2 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseBaat1), model);
         }
 
@@ -1094,6 +1098,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
 
             model.ToonGroep1 = true;
+            model.BevatFout = true;
             return View(nameof(AnalyseBaat2), model);
         }
 
@@ -1274,6 +1279,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
 
             model.ToonGroep2 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseBaat2), model);
         }
 
@@ -2052,6 +2059,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
 
             model.ToonGroep1 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseBaat3), model);
         }
 
@@ -2279,7 +2288,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
 
-
+            
             return View(nameof(AnalyseBaat3), model);
         }
 
@@ -2484,6 +2493,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst = model.Lijst.Count;
 
             model.ToonGroep1 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseBaat4), model);
         }
 
@@ -2837,6 +2848,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.LijnenKost1 = lijst;
 
             model.ToonGroep1 = true;
+
+            model.BevatFout = true;
             return View(model);
         }
 
@@ -3061,6 +3074,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst = model.Lijst.Count;
 
             model.ToonGroep1 = true;
+
+            model.BevatFout = true;
             return View(model);
         }
 
@@ -3358,6 +3373,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst2 = model.Lijst2.Count;
 
             model.ToonGroep1 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseKost3), model);
         }
 
@@ -3514,6 +3531,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst2 = model.Lijst2.Count;
 
             model.ToonGroep2 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseKost3), model);
         }
 
@@ -4041,6 +4060,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst4 = model.Lijst4.Count;
 
             model.ToonGroep1 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseKost4), model);
         }
 
@@ -4293,6 +4314,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst4 = model.Lijst4.Count;
 
             model.ToonGroep2 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseKost4), model);
         }
 
@@ -4545,6 +4568,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst4 = model.Lijst4.Count;
 
             model.ToonGroep3 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseKost4), model);
         }
 
@@ -4797,6 +4822,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             model.AantalLijnenLijst4 = model.Lijst4.Count;
 
             model.ToonGroep4 = true;
+
+            model.BevatFout = true;
             return View(nameof(AnalyseKost4), model);
         }
 

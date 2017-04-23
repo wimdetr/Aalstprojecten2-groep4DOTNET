@@ -4,11 +4,15 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
+<link rel="stylesheet" href="~/css/LoginEnRegister.css" />
+
 <dl>
     <dd class="users"><a asp-area="" asp-controller="Account" asp-action="Login" class="user"> Aanmelden</a></dd>
     <dd class="messages"><a asp-area="" asp-controller="Account" asp-action="Register" class="msg active"> Registreren</a></dd>
 </dl>
-<ul>
+
+<ul class="beginToestand animated fadeIn">
+   
         <form asp-controller="Account" asp-action="Register" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="row">
@@ -78,12 +82,14 @@
         </form>
         <div class="clear"> </div>
 </ul>
+    
 
 
 
-        @section Scripts {
-            @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-            <script src="~/js/AutoComplete.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHogrgooACi21TbM_0F_uSU2vbJAYai24&libraries=places&callback=initAutocomplete" async defer></script>
-        }
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/js/AutoComplete.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHogrgooACi21TbM_0F_uSU2vbJAYai24&libraries=places&callback=initAutocomplete" async defer></script>
+    <link rel="stylesheet" href="~/css/Animations.css">
+}
 

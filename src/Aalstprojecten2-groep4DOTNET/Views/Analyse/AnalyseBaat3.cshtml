@@ -12,6 +12,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScriptBaten.js"></script>
 <script src="~/js/ShowHideFormulier.js"></script>
+<script src="~/js/KostEnBaatVulIn/Baat3.js"></script>
 
 <div class="row">
     <div class="col-md-3">
@@ -98,7 +99,8 @@
 
 
                 <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Waarden</button>
-                <form method="post" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")">
+                <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
+
                     <h3>Gegevens van de nieuwe waarden</h3>
                     <input asp-for="VolgendeLijn1" type="hidden" />
                     <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
@@ -113,7 +115,7 @@
                         </div>
                     </div>
 
-                    <button formaction="AnalyseBaat3Punt1" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a id="vulInKnop" class="btn btn-primary btn-lg text-center">Vul In</a>
                     <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
             </div>
