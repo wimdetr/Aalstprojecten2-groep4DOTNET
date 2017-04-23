@@ -1,5 +1,7 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels.BestaandeWerkgeverZoekenViewModel
 
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+<link rel="stylesheet" href="~/css/Baat1.css" />
 <link rel="stylesheet" href="~/css/BestaandeWerkgever.css" />
 
 @{
@@ -7,7 +9,7 @@
 }
 
 <div class="row">
-    <h2 style="padding-left:5px;">Nieuwe Analyse - Bestaande werkgever</h2>
+    <h2 class="kleinePaddingLinks">Nieuwe Analyse - Bestaande werkgever</h2>
     <hr />
 </div>
 
@@ -21,7 +23,7 @@
 
         <div class="col-lg-12">
             @*<select id="zoekKeuze" name="zoekKeuze" class=" col-lg-4">*@
-            <select asp-for="ChoiceboxWaarde" class="btn btn-default col-lg-4" style="margin-right:15px;">
+            <select asp-for="ChoiceboxWaarde" class="btn btn-default col-lg-4 marginRechtsMidden">
                 <option selected>Organisatie naam</option>
                 <option>Gemeente</option>
                 <option>Postcode</option>
@@ -51,7 +53,7 @@
     else
     {
         <table class="table table-striped table-hover text-left test">
-            <thead style="background-color:#337AB7;">
+            <thead class="achtergrondKleurVanDeTabelHeader">
                 <tr>
                     <th>Organisatie naam</th>
                     <th>Straat</th>

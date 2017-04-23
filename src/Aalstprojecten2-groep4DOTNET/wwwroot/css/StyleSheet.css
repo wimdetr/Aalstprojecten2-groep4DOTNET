@@ -32,5 +32,28 @@
 }
 
 .Blok1 {
-    margin-bottom: 100px;
+    margin-bottom: 80px;
+}
+
+.groteAfbeeldingenInKnoppen {
+    height: 100%;
+    width: 100%;
+}
+
+.fototjeKosten {
+    max-width: 30px;
+    max-height: 30px;
+    min-height: 30px;
+}
+
+.kleinePaddingLinks {
+    padding-left:5px;
+}
+
+.marginTopMidden {
+    margin-top: 25px;
+}
+
+.marginRechtsMidden {
+    margin-right: 25px;
 }

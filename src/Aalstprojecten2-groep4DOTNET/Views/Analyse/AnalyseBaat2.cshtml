@@ -5,6 +5,7 @@
 }
 
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
 <link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -19,11 +20,12 @@
     <div class="col-md-6 text-center">
         <h2>Baten</h2>
     </div>
-    <div class="col-md-3" style="padding-top: 20px;">
-        <a asp-controller="Analyse" asp-action="AnalyseOverzicht">
-            <img style="margin-left: 20px; max-height: 30px; max-width: 50px; min-height: 30px; float: right;" src="~/images/iconen/overview.png" />
-        </a>
-
+    <div class="col-md-3 text-right">
+        <div class="btn-group marginTopKlein" role="group">
+            <a asp-controller="Analyse" asp-action="AnalyseKost" class="btn btn-primary btn-lg"><img src="~/images/iconen/kosten_wit.png" class="fototjeKosten" /></a>
+            <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten" /></a>
+            <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="btn btn-primary btn-lg"><img src="~/images/iconen/baten_wit.png" class="fototjeKosten" /></a>
+        </div>
     </div>
 </div>
 <div>
@@ -67,13 +69,13 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Welke besparing denkt u te kunnen maken op uitzendkrachten?</h3>
-                <table class="table table-bordered text-left" id="tableAddRow3" style="margin-bottom: 55px;">
-                    <thead>
+                <table class="table table-striped text-left test marginBenedenGroot">
+                    <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
-                            <th style="width:5%"></th>
+                            <th class="kleineBreedte"></th>
                             <th>Beschrijving</th>
                             <th>Jaarbedrag</th>
-                            <th style="width:5%"></th>
+                            <th class="kleineBreedte"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +86,7 @@
                                 <td>@Model.Lijst1[i - 1].Beschrijving</td>
                                 <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
                                 <td class="text-center">
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
                             </tr>
@@ -92,17 +94,17 @@
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuwe Besparing</button>
+                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Besparing</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")">
                     <h3>Gegevens van de nieuwe besparing</h3>
                     <input asp-for="VolgendeLijn1" type="hidden" />
                     <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
-                    <div class="invulveldjes1" style="width: 100%; height: 100px; float: left; padding-left: 30%;">
-                        <div class="form-group" style="float: left; margin-right: 50px;">
+                    <div class="invulveldjes1 opmaakInvulveldjes">
+                        <div class="form-group opmaakFormGroup">
                             <input asp-for="Beschrijving1" id="beschrijving" class="form-control" placeholder="Beschrijving" />
                             <span asp-validation-for="Beschrijving1" class="text-danger"></span>
                         </div>
-                        <div class="form-group" style="float: left;">
+                        <div class="form-group floatLinks">
                             <input asp-for="Bedrag1" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
                             <span asp-validation-for="Bedrag1" class="text-danger"></span>
                         </div>
@@ -114,15 +116,19 @@
 
             </div>
 
+            <div class="or-spacer">
+                <div class="mask"></div>
+            </div>
+
             <div class="Blok1 text-center">
                 <h3 class="text-left">2. Welke zaken worden extern ingekocht en kan op worden bespaard? Denk hierbij aan bijvoorbeeld uitbesteedde productie, schoonmaak, hoveniers enz.</h3>
-                <table class="table table-bordered text-left" id="tableAddRow4" style="margin-bottom: 55px;">
-                    <thead>
+                <table class="table table-striped text-left test marginBenedenGroot">
+                    <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
-                            <th style="width:5%"></th>
+                            <th class="kleineBreedte"></th>
                             <th>Beschrijving</th>
                             <th>Jaarbedrag</th>
-                            <th style="width:5%"></th>
+                            <th class="kleineBreedte"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,7 +139,7 @@
                                 <td>@Model.Lijst2[i - 1].Beschrijving</td>
                                 <td>@Model.Lijst2[i - 1].Bedrag.ToString("C")</td>
                                 <td class="text-center">
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit" style="margin-right: 5px; float: left;"></a>
+                                    <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
                             </tr>
@@ -142,17 +148,17 @@
                 </table>
 
 
-                <button class="btn btn-primary btn-lg text-center toverknop" style="margin-bottom:20px;">Nieuwe Besparing</button>
+                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Besparing</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?"toonFormulier":"verbergFormulier")">
                     <h3>Gegevens van de nieuwe besparing</h3>
                     <input asp-for="VolgendeLijn2" type="hidden" />
                     <span asp-validation-for="VolgendeLijn2" class="text-danger"></span>
-                    <div class="invulveldjes1" style="width:100%; height: 100px; float:left; padding-left:30%;">
-                        <div class="form-group" style="float: left; margin-right: 50px;">
+                    <div class="invulveldjes1 opmaakInvulveldjes">
+                        <div class="form-group opmaakFormGroup">
                             <input asp-for="Beschrijving2" id="beschrijving" class="form-control" placeholder="Beschrijving" />
                             <span asp-validation-for="Beschrijving2" class="text-danger"></span>
                         </div>
-                        <div class="form-group" style="float: left;">
+                        <div class="form-group floatLinks">
                             <input asp-for="Bedrag2" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag" />
                             <span asp-validation-for="Bedrag2" class="text-danger"></span>
                         </div>
@@ -161,6 +167,10 @@
                     <button formaction="AnalyseBaat2Punt2" class="btn btn-primary btn-lg text-center">Vul In</button>
                     <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
+            </div>
+
+            <div class="or-spacer">
+                <div class="mask"></div>
             </div>
 
             <div class="Blok1 text-center">
@@ -174,6 +184,10 @@
                 </form>
             </div>
 
+            <div class="or-spacer">
+                <div class="mask"></div>
+            </div>
+
             <div class="Blok1 text-center">
                 <h3 class="text-left">4. Wat zijn de transportkosten van eventueel uitbesteedde zaken?</h3>
                 <form method="post">
@@ -183,6 +197,10 @@
                     </div>
                     <button formaction="AnalyseBaat2Punt4" class="btn btn-primary btn-lg text-center">Vul In</button>
                 </form>
+            </div>
+
+            <div class="or-spacer">
+                <div class="mask"></div>
             </div>
 
             <div class="Blok1 text-center">
