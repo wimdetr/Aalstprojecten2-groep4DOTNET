@@ -31,20 +31,20 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                  </div>
                  <div class="col-lg-6 col-md-6 col-sm-6 iconen">
                      @*knoppen downloaden versturen verwijderen*@
-                     <div class="icoon">
-                         <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh"/></a>
+                     <div class="icoon" id="verwijderIcoon">
+                         <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img id="verwijderPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh"/></a>
                      </div>
-                     <div class="icoon">
-                         <a><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
+                     <div class="icoon" id="verstuurIcoon">
+                         <a><img id="verstuurPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
                      </div>
-                     <div class="icoon">
-                         <a><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
+                     <div class="icoon" id="downloadIcoon">
+                         <a><img id="downloadPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
                      </div>
-                     <div class="icoon">
-                         <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/archiveren.png" alt="meh"/></a>
+                     <div class="icoon" id="archiveerIcoon">
+                         <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img id="archiveerPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/archiveren.png" alt="meh"/></a>
                      </div>
-                     <div class="icoon">
-                         <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/pencil.png" alt="meh"/></a>
+                     <div class="icoon" id="potloodIcoon">
+                         <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img id="potloodPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/pencil.png" alt="meh"/></a>
                      </div>
                  </div>
              </div>
@@ -78,10 +78,10 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
              @*resultaten*@
              <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant achtergrondKleurtje">
                  <div>
-                     <div class="kosten text-left" style="width:50%; float:left;">
+                     <div class="kosten text-left halveBreedte links">
                          <strong>Kosten</strong>
                      </div>
-                     <div class="baten text-right" style="width:50%; float:right;">
+                     <div class="baten text-right halveBreedte rechts">
                          <strong>Baten</strong>
                      </div>
                  </div>

@@ -3,6 +3,7 @@
 /// <reference path="js/archief.js" />
 /// <reference path="js/autocomplete.js" />
 /// <reference path="js/baat1.js" />
+/// <reference path="js/hovericonen.js" />
 /// <reference path="js/javascript.js" />
 /// <reference path="js/kostenbaatvulin/baat1.js" />
 /// <reference path="js/kostenbaatvulin/baat2.js" />
@@ -12,6 +13,7 @@
 /// <reference path="js/kostenbaatvulin/kost2.js" />
 /// <reference path="js/kostenbaatvulin/kost3.js" />
 /// <reference path="js/kostenbaatvulin/kost4.js" />
+
 /// <reference path="js/search.js" />
 /// <reference path="js/showhideformulier.js" />
 /// <reference path="js/site.js" />

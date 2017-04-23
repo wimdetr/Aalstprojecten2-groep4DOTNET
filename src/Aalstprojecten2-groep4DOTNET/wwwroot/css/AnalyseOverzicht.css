@@ -57,3 +57,20 @@ tr td a:hover {
 .hiddenStuff {
     visibility: hidden;
 }
+
+.linkerKol {
+    background-color:darkcyan; padding-top:10px; color:white; width:38%;
+}
+
+.rechterKol {
+    background-color:brown; padding-top:10px; color:white; width:38%;
+}
+
+.middenKol {
+    width:24%;
+    visibility:hidden;
+}
+
+.hoogte {
+    height:60px;
+}
