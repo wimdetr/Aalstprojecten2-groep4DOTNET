@@ -45,6 +45,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
         public string Bedrag4 { get; set; }
         public bool ToonGroep4 { get; set; }
+        public bool BevatFout { get; set; } = false;
+    
 
         public AnalyseKost4ViewModel()
         {

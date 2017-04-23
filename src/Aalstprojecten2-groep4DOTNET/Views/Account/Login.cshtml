@@ -9,11 +9,13 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
+<link rel="stylesheet" href="~/css/LoginEnRegister.css" />
+
 <dl>
     <dd class="users"><a asp-area="" asp-controller="Account" asp-action="Login" class="user active"> Aanmelden</a></dd>
     <dd class="messages"><a asp-area="" asp-controller="Account" asp-action="Register" class="msg"> Registreren</a></dd>
 </dl>
-<ul>
+<ul class="beginToestand animated fadeIn">
     <form asp-controller="Account" asp-action="Login" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="row">
@@ -62,6 +64,10 @@
     </form>
 </ul>
 
+
+@section Scripts{
+    <link rel="stylesheet" href="~/css/Animations.css">
+}
 
 
 @*@using System.Collections.Generic
