@@ -35,10 +35,10 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                          <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img id="verwijderPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh"/></a>
                      </div>
                      <div class="icoon" id="verstuurIcoon">
-                         <a asp-controller="Home" asp-action="Send" asp-route-id="@item.Id"><img id="verstuurPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
+                         <a><img id="verstuurPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
                      </div>
                      <div class="icoon" id="downloadIcoon">
-                         <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img id="downloadPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
+                         <a><img id="downloadPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
                      </div>
                      <div class="icoon" id="archiveerIcoon">
                          <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img id="archiveerPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/archiveren.png" alt="meh"/></a>

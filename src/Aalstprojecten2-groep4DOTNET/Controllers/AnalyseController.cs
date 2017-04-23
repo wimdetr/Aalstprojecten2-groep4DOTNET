@@ -152,6 +152,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             Werkgever werkgever = _werkgeverRepository.GetById(id);
             var model = werkgever == null ? new WerkgeverViewModel() : new WerkgeverViewModel(werkgever);
+            if (werkgever == null)
+            {
+                ViewData["werkgever"] = "Nieuwe Analyse";
+            }
+            else
+            {
+                ViewData["werkgever"] = werkgever.Naam + " - " + werkgever.NaamAfdeling;
+            }
 
             return View(model);
         }
@@ -188,6 +196,54 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
             return View(model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult WerkgeverAanpassen(Analyse analyse)
+        {
+            WerkgeverViewModel model = new WerkgeverViewModel(analyse.Werkgever);
+            model.NaamAfdeling = analyse.Werkgever.NaamAfdeling;
+            return View(nameof(NieuweWerkgever), model);
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        [HttpPost]
+        public IActionResult WerkgeverAanpassen(WerkgeverViewModel model, Analyse analyse)
+        {
+            if (model.WerkgeverId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Werkgever w = _werkgeverRepository.GetById(model.WerkgeverId.Value);
+                    w.Naam = model.Naam;
+                    w.Straat = model.Straat;
+                    w.Nummer = model.Nummer;
+                    w.Bus = model.Bus;
+                    w.Postcode = model.Postcode;
+                    w.Gemeente = model.Gemeente;
+                    w.AantalWerkuren = model.AantalWerkuren;
+                    w.PatronaleBijdrage = model.PatronaleBijdrage;
+                    w.LinkNaarLogoPrent = model.LinkNaarLogoPrent;
+                    w.NaamAfdeling = model.NaamAfdeling;
+                    w.ContactPersoonNaam = model.ContactPersoonNaam;
+                    w.ContactPersoonVoornaam = model.ContactPersoonVoornaam;
+                    w.ContactPersoonEmail = model.ContactPersoonEmail;
+                    analyse.Werkgever = w;
+                    _werkgeverRepository.SaveChanges();
+                    _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId).VernieuwDatum();
+                    _analyseRepository.SaveChanges();
+                    return RedirectToAction(nameof(AnalyseOverzicht));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            return View(nameof(NieuweWerkgever), model);
         }
 
         public IActionResult BestaandeWerkgever(BestaandeWerkgeverZoekenViewModel m = null)
@@ -387,6 +443,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(3));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat1));
                 }
@@ -544,6 +602,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(4));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat1));
                 }
@@ -686,6 +746,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 a.GeefBaatMetNummer(3).VerwijderKOBRij(b);
                 _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
+                _analyseRepository.SaveChanges();
             }
 
             return RedirectToAction(nameof(AnalyseBaat1));
@@ -721,6 +783,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (b != null)
             {
                 a.GeefBaatMetNummer(4).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
 
@@ -900,6 +964,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(5));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat2));
                 }
@@ -1078,6 +1144,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(9));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat2));
                 }
@@ -1238,6 +1306,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     a.KostenEnBaten.Remove(a.GeefBaatMetNummer(8));
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(8));
+                    _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
                     _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat2));
@@ -1403,6 +1473,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     a.KostenEnBaten.Remove(a.GeefBaatMetNummer(10));
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(10));
+                    _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
                     _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat2));
@@ -1570,6 +1642,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(10));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat2));
                 }
@@ -1729,6 +1803,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 a.GeefBaatMetNummer(5).VerwijderKOBRij(b);
                 _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
+                _analyseRepository.SaveChanges();
             }
 
             return RedirectToAction(nameof(AnalyseBaat2));
@@ -1763,6 +1839,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (b != null)
             {
                 a.GeefBaatMetNummer(9).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
 
@@ -1893,6 +1971,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(6));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat3));
                 }
@@ -2005,6 +2085,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(7));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat3));
                 }
@@ -2116,6 +2198,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     a.KostenEnBaten.Remove(a.GeefBaatMetNummer(2));
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(2));
+                    _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
                     _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat3));
@@ -2230,6 +2314,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 a.GeefBaatMetNummer(6).VerwijderKOBRij(b);
                 _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
+                _analyseRepository.SaveChanges();
             }
 
             return RedirectToAction(nameof(AnalyseBaat3));
@@ -2338,6 +2424,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(11));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseBaat4));
                 }
@@ -2428,6 +2516,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (b != null)
             {
                 a.GeefBaatMetNummer(11).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
 
@@ -2635,6 +2725,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     a.SlaBaatMetNummerOp(analyse.GeefBaatMetNummer(1));
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(1));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost));
                 }
                 catch (Exception e)
@@ -2792,6 +2884,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 a.GeefKostMetNummer(1).VerwijderKOBRij(k);
                 _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
+                _analyseRepository.SaveChanges();
             }
             if (baatrij != null)
             {
@@ -2800,6 +2894,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (b != null)
             {
                 a.GeefBaatMetNummer(1).VerwijderKOBRij(b);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
             
@@ -2909,6 +3005,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(8));
                     _analyseRepository.SaveChanges();
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
 
                     return RedirectToAction(nameof(AnalyseKost2));
                 }
@@ -2995,6 +3093,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (k != null)
             {
                 a.GeefKostMetNummer(8).VerwijderKOBRij(k);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
             
@@ -3152,7 +3252,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(3));
                     _analyseRepository.SaveChanges();
-
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost3));
                 }
                 catch (Exception e)
@@ -3307,7 +3408,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(4));
                     _analyseRepository.SaveChanges();
-
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost3));
                 }
                 catch (Exception e)
@@ -3445,6 +3547,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 a.GeefKostMetNummer(3).VerwijderKOBRij(k);
                 _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
+                _analyseRepository.SaveChanges();
             }
             
             return RedirectToAction(nameof(AnalyseKost3));
@@ -3479,6 +3583,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (k != null)
             {
                 a.GeefKostMetNummer(4).VerwijderKOBRij(k);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
             
@@ -3733,7 +3839,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(2));
                     _analyseRepository.SaveChanges();
-
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost4));
                 }
                 catch (Exception e)
@@ -3984,7 +4091,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(6));
                     _analyseRepository.SaveChanges();
-
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost4));
                 }
                 catch (Exception e)
@@ -4235,7 +4343,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(5));
                     _analyseRepository.SaveChanges();
-
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost4));
                 }
                 catch (Exception e)
@@ -4486,7 +4595,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _analyseRepository.SaveChanges();
                     a.SlaKostMetNummerOp(analyse.GeefKostMetNummer(7));
                     _analyseRepository.SaveChanges();
-
+                    a.VernieuwDatum();
+                    _analyseRepository.SaveChanges();
                     return RedirectToAction(nameof(AnalyseKost4));
                 }
                 catch (Exception e)
@@ -4720,6 +4830,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 a.GeefKostMetNummer(2).VerwijderKOBRij(k);
                 _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
+                _analyseRepository.SaveChanges();
             }
 
             return RedirectToAction(nameof(AnalyseKost4));
@@ -4754,6 +4866,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (k != null)
             {
                 a.GeefKostMetNummer(6).VerwijderKOBRij(k);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
 
@@ -4790,6 +4904,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 a.GeefKostMetNummer(5).VerwijderKOBRij(k);
                 _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
+                _analyseRepository.SaveChanges();
             }
 
             return RedirectToAction(nameof(AnalyseKost4));
@@ -4824,6 +4940,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             if (k != null)
             {
                 a.GeefKostMetNummer(7).VerwijderKOBRij(k);
+                _analyseRepository.SaveChanges();
+                a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
 
