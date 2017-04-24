@@ -2692,24 +2692,28 @@
 @-webkit-keyframes zoomIn {
   from {
     opacity: 0;
+      max-height: 0;
     -webkit-transform: scale3d(.3, .3, .3);
     transform: scale3d(.3, .3, .3);
   }
 
   50% {
     opacity: 1;
+      max-height: 300px;
   }
 }
 
 @keyframes zoomIn {
   from {
     opacity: 0;
+      max-height: 0;
     -webkit-transform: scale3d(.3, .3, .3);
     transform: scale3d(.3, .3, .3);
   }
 
   50% {
     opacity: 1;
+      max-height: 300px;
   }
 }
 

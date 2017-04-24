@@ -30,6 +30,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public string TotaleProductiviteitsPremieIBO { get; set; }
 
         public bool ToonGroep1 { get; set; } = false;
+        public bool BevatFout { get; set; } = false;
     }
 
     
