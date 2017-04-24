@@ -152,14 +152,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             Werkgever werkgever = _werkgeverRepository.GetById(id);
             var model = werkgever == null ? new WerkgeverViewModel() : new WerkgeverViewModel(werkgever);
-            if (werkgever == null)
-            {
-                ViewData["werkgever"] = "Nieuwe Analyse";
-            }
-            else
-            {
-                ViewData["werkgever"] = werkgever.Naam + " - " + werkgever.NaamAfdeling;
-            }
+            ViewData["werkgever"] = "Nieuwe Analyse";
 
             return View(model);
         }
@@ -203,6 +196,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             WerkgeverViewModel model = new WerkgeverViewModel(analyse.Werkgever);
             model.NaamAfdeling = analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(nameof(NieuweWerkgever), model);
         }
 
