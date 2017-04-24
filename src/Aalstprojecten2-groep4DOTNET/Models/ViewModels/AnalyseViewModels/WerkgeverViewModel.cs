@@ -28,7 +28,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public string Gemeente { get; set; }
         [Required(ErrorMessage = "{0} is verplicht.")]
         [RegularExpression("[1-9][0-9]*", ErrorMessage = "{0} moet minstens 1 zijn.")]
-        [Display(Name = "Aantal werkuren per week")]
+        [Display(Name = "Aantal uren per week")]
         public int AantalWerkuren { get; set; }
         [Required(ErrorMessage = "{0} is verplicht.")]
         [RegularExpression("^[1-9][0-9]?$|^100$", ErrorMessage = "{0} moet minstens 1 en maximaal 100 zijn.")]

@@ -46,4 +46,34 @@
     }, function () {
         $("#potloodPrent").attr("src", "/images/iconen/edit.png");
     });
+
+
+
+
+
+
+
+    $("#sendIcoon").hover(function () {
+        $("#sendPrent").attr("src", "/images/iconen/send_hover.png");
+    }, function () {
+        $("#sendPrent").attr("src", "/images/iconen/send.png");
+    });
+
+    $("#binIcoon").hover(function () {
+        $("#binPrent").attr("src", "/images/iconen/bin_hover.png");
+    }, function () {
+        $("#binPrent").attr("src", "/images/iconen/bin.png");
+    });
+
+    $("#downloadIcoon").hover(function () {
+        $("#downloadPrent").attr("src", "/images/iconen/download_hover.png");
+    }, function () {
+        $("#downloadPrent").attr("src", "/images/iconen/download.png");
+    });
+
+    $("#deArchiveerIcoon").hover(function () {
+        $("#deArchiveerPrent").attr("src", "/images/iconen/unarchive_hover.png");
+    }, function () {
+        $("#deArchiveerPrent").attr("src", "/images/iconen/unarchive.png");
+    });
 });
