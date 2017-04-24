@@ -404,3 +404,8 @@
     float: left;
     padding-left: 20%;
 }
+
+.beetjePaddingTopEnMarginBottom {
+    padding-top: 15px;
+    margin-bottom: 20px;
+}

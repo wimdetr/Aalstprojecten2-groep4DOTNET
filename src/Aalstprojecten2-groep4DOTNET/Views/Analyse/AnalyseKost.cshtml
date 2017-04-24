@@ -35,6 +35,7 @@
 
 <div class="container">
     <div class="row form-group">
+        
         <div class="col-xs-12">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel">
                 <li class="active">
@@ -62,10 +63,18 @@
                     </a>
                 </li>
             </ul>
+            <div class="text-center">
+                <div class="col-md-12">
+                    <div class="btn-group marginTopKlein" role="group">
+                        <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten2" /></a>
+                        <a asp-controller="Analyse" asp-action="AnalyseKost2" class="btn btn-primary btn-lg"><img src="~/images/iconen/rechts.png" class="fototjeKosten2" /></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="col-xs-12">
+    <div class="col-xs-12 text-center">
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Welke nieuwe functies zet u in?</h3>
@@ -81,10 +90,11 @@
                             <th>Aantal Maanden IBO</th>
                             <th>Totale Productiviteits-Premie IBO</th>
                             <th></th>
-                            @*<th style="width:10px"><span class="glyphicon glyphicon-plus addBtn"></span></th>*@
+                            <th style="width:10px; background-color:lightgray;"><button class="glyphicon glyphicon-plus addBtn"></button></th>
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @for (var i = 1; i <= Model.AantalLijnenKost1; i++)
                         {
                             <tr id="tr_0">
@@ -172,11 +182,6 @@
                 
 
             </div>
-
-            
-            <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg">Overzicht</a>
-            <a asp-controller="Analyse" asp-action="AnalyseKost2" class="btn btn-primary btn-lg">Volgende</a>
-
         </div>
     </div>
 </div>

@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
     $(".toverknop")
         .click(function () {
-            if ($(this).siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
             } else {
-                $(this)
+                $(this).parent().parent().parent().parent()
                     .siblings(".invulgegevens")
                     .removeClass("toonFormulier animated zoomIn")
                     .addClass("animated zoomOut");

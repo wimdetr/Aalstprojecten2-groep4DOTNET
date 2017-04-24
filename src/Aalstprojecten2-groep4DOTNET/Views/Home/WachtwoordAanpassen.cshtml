@@ -1,34 +1,43 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.WachtwoordAanpassenViewModel
 
-<form asp-controller="Home" asp-action="WachtwoordAanpassen" method="post" class="form-horizontal">
-    <div asp-validation-summary="All" class="text-danger"></div>
+<link rel="stylesheet" href="~/css/ProfielAanpassen.css" />
 
-    <div class="form-group">
-        <label asp-for="OldPassword" class="col-md-2 text-left"></label>
-        <div class="col-md-12">
-            <input asp-for="OldPassword" class="form-control text-left" placeholder="Oud Wachtwoord" />
-            <span asp-validation-for="OldPassword" class="text-danger"></span>
+<h2 class="text-center ">Wachtwoord Aanpassen</h2>
+<hr class="marginBenedenMidden" />
+<div class="row customRij divOpmaak divBorder text-center marginBenedenGrootMaarNietZoGrootAlsMarginBenedenMiddenDitMetOnzeExcuses_Pardon">
+
+    <form asp-controller="Home" asp-action="WachtwoordAanpassen" method="post" class="form-horizontal text-center">
+        
+
+        <div class="logo">
+            <img src="~/images/login/login foto.png" class="breddtefixen" />
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password" class="col-md-2 text-left"></label>
-        <div class="col-md-12">
-            <input asp-for="Password" class="form-control text-left" placeholder="Nieuw Wachtwoord"/>
-            <span asp-validation-for="Password" class="text-danger"></span>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group colmd col-md-12 verwijderPaddingRechts">
+            <label asp-for="OldPassword" class="col-md-12 text-left"></label>
+            <div class="col-md-12 verwijderPaddingRechts">
+                <input asp-for="OldPassword" class="form-control text-left" placeholder="Oud Wachtwoord" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="ConfirmPassword" class="col-md-2 text-left"></label>
-        <div class="col-md-12">
-            <input asp-for="ConfirmPassword" class="form-control text-left" placeholder="Bevestig Nieuw Wachtwoord" />
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        <div class="form-group col-md-12 verwijderPaddingRechts">
+            <label asp-for="Password" class="col-md-12 text-left"></label>
+            <div class="col-md-12 verwijderPaddingRechts">
+                <input asp-for="Password" class="form-control text-left" placeholder="Nieuw Wachtwoord" />
+            </div>
         </div>
-    </div>
-    
-    <div class="form-group">
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">Opslaan</button>
-            <a asp-controller="Home" asp-action="ProfielAanpassen" class="btn btn-primary">annuleer</a>
+        <div class="form-group col-md-12 verwijderPaddingRechts">
+            <label asp-for="ConfirmPassword" class="col-md-12 text-left"></label>
+            <div class="col-md-12 verwijderPaddingRechts">
+                <input asp-for="ConfirmPassword" class="form-control text-left" placeholder="Bevestig Nieuw Wachtwoord" />
+            </div>
         </div>
-    </div>
-</form>
+
+
+        <div class="btn-group col-md-12 margins" role="group">
+            <button type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
+            <a asp-controller="Home" asp-action="ProfielAanpassen" class="btn btn-danger btn-lg col-md-6 marginBenedenGroot">Annuleer</a>
+        </div>
+    </form>
+</div>

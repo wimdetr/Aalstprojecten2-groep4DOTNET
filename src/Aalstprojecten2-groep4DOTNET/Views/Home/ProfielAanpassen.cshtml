@@ -5,12 +5,14 @@
 <hr />
 
 <form asp-controller="Home" asp-action="ProfielAanpassen" method="post">
-    <div asp-validation-summary="All"></div>
+    
         <div class="row col-md-offset-3 col-md-6 divOpmaak divBorder">
 
             <div class="logo">
                 <img src="~/images/login/login foto.png" class="breddtefixen"/>
             </div>
+
+            <div asp-validation-summary="All"></div>
 
             <div class="col-md-6">
                 <input asp-for="Email" type="hidden" />
@@ -18,7 +20,6 @@
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <div class="form-group">
                         <input value="@Model.Email" class="form-control" disabled />
-                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -26,7 +27,6 @@
                     <div class="col-xs-12 col-sm-6 col-md-12">
                         <div class="form-group">
                             <input asp-for="Voornaam" value="@Model.Voornaam" class="form-control" />
-                            <span asp-validation-for="Voornaam" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -34,7 +34,6 @@
                     <div class="col-xs-12 col-sm-6 col-md-12">
                         <div class="form-group">
                             <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
-                            <span asp-validation-for="Straat" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -43,7 +42,6 @@
                     <div class="col-xs-12 col-sm-6 col-md-12">
                         <div class="form-group">
                             <input asp-for="Gemeente" value="@Model.Gemeente" id="locality" class="form-control" />
-                            <span asp-validation-for="Gemeente" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -55,7 +53,6 @@
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <div class="form-group">
                         <input asp-for="Naam" value="@Model.Naam" class="form-control" />
-                        <span asp-validation-for="Naam" class="text-danger"></span>
                     </div>
                 </div>
                     
@@ -63,7 +60,6 @@
                     <div class="col-xs-12 col-sm-6 col-md-12">
                         <div class="form-group">
                             <input asp-for="NaamBedrijf" value="@Model.NaamBedrijf" class="form-control" />
-                            <span asp-validation-for="NaamBedrijf" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -74,7 +70,6 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingLinks">
                             <div class="form-group">
                                 <input asp-for="Nummer" value="@Model.Nummer" id="street_number" class="form-control" />
-                                <span asp-validation-for="Nummer" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -84,7 +79,6 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
                             <div class="form-group">
                                 <input asp-for="Bus" value="@Model.Bus" class="form-control" />
-                                <span asp-validation-for="Bus" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -95,7 +89,6 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <input asp-for="Postcode" value="@Model.Postcode" id="postal_code" class="form-control" />
-                        <span asp-validation-for="Postcode" class="text-danger"></span>
                     </div>
                 </div>
 

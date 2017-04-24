@@ -74,3 +74,11 @@ tr td a:hover {
 .hoogte {
     height:60px;
 }
+
+.hoverkeKost:hover {
+    background-color: rgba(0,139,139,0.6);
+}
+
+.hoverkeBaat:hover {
+    background-color:rgba(165,42,42,0.6);
+}
