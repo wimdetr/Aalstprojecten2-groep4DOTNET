@@ -17,7 +17,7 @@
     $(".annuleerKnop")
         .click(function () {
             var knop = $(this);
-            $(this).parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+            knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
             setTimeout(function () {
                 knop.parent().addClass("verbergFormulier");
                 var inputsToClean = knop.siblings(".invulveldjes1").children(".form-group").find("input");

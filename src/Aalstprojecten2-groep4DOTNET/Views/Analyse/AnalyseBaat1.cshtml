@@ -12,7 +12,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScriptBaten.js"></script>
 <script src="~/js/ShowHideFormulier.js"></script>
-
+<script src="~/js/KostEnBaatVulIn/Baat1.js"></script>
 
 <div class="row">
     <div class="col-md-3">
@@ -109,24 +109,24 @@
                     </tbody>
                 </table>
 
-                
-                <form method="post" class="invulgegevens @(Model.ToonGroep1?"toonFormulier":"verbergFormulier")">
+                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <h3>Gegevens van het nieuw loon</h3>
                     <input asp-for="VolgendeLijn1" type="hidden" />
                     <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
                     <div class="invulveldjes1 opmaakInvulveldjes2">
                         <div class="form-group opmaakFormGroup">
-                            <input asp-for="Uren1" type="number" id="uren" class="form-control" placeholder="Uren" />
+                            <input asp-for="Uren1" type="number" id="uren1" class="form-control" placeholder="Uren" />
                             <span asp-validation-for="Uren1" class="text-danger"></span>
                         </div>
                         <div class="form-group opmaakFormGroup">
-                            <input asp-for="Maandloon1" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" />
+                            <input asp-for="Maandloon1" id="brutoMaandloonFulltime1" class="form-control" placeholder="Bruto maandloon fulltime" />
+
                             <span asp-validation-for="Maandloon1" class="text-danger"></span>
                         </div>
 
                     </div>
 
-                    <button formaction="AnalyseBaat1Punt1" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a id="vulInKnop1" class="btn btn-primary btn-lg text-center">Vul In</a>
                     <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
             </div>
@@ -163,23 +163,24 @@
                 </table>
 
                 <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuw Loon</button>
-                <form method="post" class="invulgegevens @(Model.ToonGroep2?"toonFormulier":"verbergFormulier")">
+                <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <h3>Gegevens van het nieuw loon</h3>
                     <input asp-for="VolgendeLijn2" type="hidden" />
                     <span asp-validation-for="VolgendeLijn2" class="text-danger"></span>
                     <div class="invulveldjes1 opmaakInvulveldjes2">
                         <div class="form-group opmaakFormGroup">
-                            <input asp-for="Uren2" type="number" id="uren" class="form-control" placeholder="Uren" />
+                            <input asp-for="Uren2" type="number" id="uren2" class="form-control" placeholder="Uren" />
                             <span asp-validation-for="Uren2" class="text-danger"></span>
                         </div>
                         <div class="form-group opmaakFormGroup">
-                            <input asp-for="Maandloon2" id="brutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" />
+                            <input asp-for="Maandloon2" id="brutoMaandloonFulltime2" class="form-control" placeholder="Bruto maandloon fulltime" />
+
                             <span asp-validation-for="Maandloon2" class="text-danger"></span>
                         </div>
 
                     </div>
 
-                    <button formaction="AnalyseBaat1Punt2" class="btn btn-primary btn-lg text-center">Vul In</button>
+                    <a id="vulInKnop2" class="btn btn-primary btn-lg text-center">Vul In</a>
                     <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
             </div>

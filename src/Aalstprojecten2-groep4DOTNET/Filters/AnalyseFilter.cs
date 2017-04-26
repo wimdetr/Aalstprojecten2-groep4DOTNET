@@ -51,5 +51,10 @@ namespace Aalstprojecten2_groep4DOTNET.Filters
         {
             context.Session.SetString("analyse", JsonConvert.SerializeObject(analyse));
         }
+
+        public static void ZetSessieLeeg(HttpContext context)
+        {
+            context.Session.Clear();
+        }
     }
 }
