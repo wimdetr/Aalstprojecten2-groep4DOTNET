@@ -89,6 +89,11 @@
                             <th>Type</th>
                             <th>Bedrag</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst1 == 0)
+                            {
+                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -102,12 +107,16 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenLijst1)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Kost</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <h3>Gegevens van de nieuwe kost</h3>
                     <input asp-for="VolgendeLijn1" type="hidden" />
@@ -142,6 +151,11 @@
                             <th>Uren</th>
                             <th>Bruto Maandloon Begeleider</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst2 == 0)
+                            {
+                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -155,13 +169,17 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenLijst2)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Kost</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
 
                     <h3>Gegevens van de nieuwe kost</h3>
@@ -197,6 +215,11 @@
                             <th>Type</th>
                             <th>Bedrag</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst3 == 0)
+                            {
+                                <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -210,12 +233,16 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijAanpassen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijVerwijderen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenLijst3)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Opleidingskost</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep3?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <h3>Gegevens van de nieuwe opleidingskost</h3>
                     <input asp-for="VolgendeLijn3" type="hidden" />
@@ -252,6 +279,11 @@
                             <th>Type</th>
                             <th>Bedrag</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst4 == 0)
+                            {
+                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -265,6 +297,11 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijAanpassen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijVerwijderen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenLijst4)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
