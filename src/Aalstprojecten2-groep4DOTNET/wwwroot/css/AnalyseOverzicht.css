@@ -77,8 +77,10 @@ tr td a:hover {
 
 .hoverkeKost:hover {
     background-color: rgba(0,139,139,0.6);
+    color: white;
 }
 
 .hoverkeBaat:hover {
     background-color:rgba(165,42,42,0.6);
+    color:white;
 }
