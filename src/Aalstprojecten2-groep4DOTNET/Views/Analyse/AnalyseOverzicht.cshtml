@@ -27,90 +27,90 @@
         </tr>
 
         <tr class="vet">
-            <td class="baten2 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseKost", "Analyse"))'" >Totale loonkostsubsidies (VOP, IBO en doelgroepvermindering)</td>
+            <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseKost", "Analyse"))'" >Totale loonkostsubsidies (VOP, IBO en doelgroepvermindering)</td>
             <td class="text-center" >@Model.Baat1.ToString("C")</td>
             <td class="text-center">@Model.Kost1.ToString("C")</td>
-            <td class="text-right kosten2 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost", "Analyse"))'">Loonkosten medewerkers met grote afstand tot arbeidsmarkt</td>
+            <td class="text-right kosten2 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost", "Analyse"))'">Loonkosten medewerkers met grote afstand tot arbeidsmarkt</td>
         </tr>
 
         <tr>
             
-            <td class="baten1 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat1", "Analyse"))'" >Besparing reguliere medew. op hetzelfde niveau</td>
+            <td class="baten1 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat1", "Analyse"))'" >Besparing reguliere medew. op hetzelfde niveau</td>
             <td class="text-center">@Model.Baat3.ToString("C")</td>
             <td class="text-center">@Model.Kost1Punt1.ToString("C")</td>
-            <td class="text-right kosten1 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost2", "Analyse"))'">Kosten enclave of onderaanneming</td>
+            <td class="text-right kosten1 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost2", "Analyse"))'">Kosten enclave of onderaanneming</td>
             
         </tr>
 
         <tr>
-            <td class="baten2 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat1", "Analyse"))'" >Besparing reguliere medew. op hoger niveau</td>
+            <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat1", "Analyse"))'" >Besparing reguliere medew. op hoger niveau</td>
             <td class="text-center">@Model.Baat4.ToString("C")</td>
             <td class="text-center">@Model.Kost3.ToString("C")</td>
-            <td class="text-right kosten2 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost3", "Analyse"))'">Extra kosten werkkleding e.a. personeelskosten</td>
+            <td class="text-right kosten2 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost3", "Analyse"))'">Extra kosten werkkleding e.a. personeelskosten</td>
         </tr>
 
         <tr>
             
-            <td class="baten1 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Besparing (extra) uitzendkrachten</td>
+            <td class="baten1 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Besparing (extra) uitzendkrachten</td>
             <td class="text-center">@Model.Baat5.ToString("C")</td>
             <td class="text-center">@Model.Kost4.ToString("C")</td>
-            <td class="text-right kosten1 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost3", "Analyse"))'">Extra kosten voor aanpassingen werkomgeving/aangepast gereedschap</td>
+            <td class="text-right kosten1 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost3", "Analyse"))'">Extra kosten voor aanpassingen werkomgeving/aangepast gereedschap</td>
             
             
         </tr>
 
         <tr>
-            <td class="baten2 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Besparing op outsourcing</td>
+            <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Besparing op outsourcing</td>
             <td class="text-center">@Model.Baat9.ToString("C")</td>
             <td class="text-center">@Model.Kost2.ToString("C")</td>
-            <td class="text-right kosten2 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Voorbereiding start medewerker met grote afstand tot de arbeidsmarkt</td>
+            <td class="text-right kosten2 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Voorbereiding start medewerker met grote afstand tot de arbeidsmarkt</td>
             
         </tr>
 
         <tr>
             
-            <td class="baten1 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Besparing op overuren</td>
+            <td class="baten1 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Besparing op overuren</td>
             <td class="text-center">@Model.Baat8.ToString("C")</td>
             <td class="text-center">@Model.Kost6.ToString("C")</td>
-            <td class="text-right kosten1 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Extra kosten administratie en begeleiding</td>
+            <td class="text-right kosten1 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Extra kosten administratie en begeleiding</td>
             
             
         </tr>
 
         <tr>
             
-            <td class="baten2 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Logistieke besparing</td>
+            <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat2", "Analyse"))'" >Logistieke besparing</td>
             <td class="text-center">@Model.Baat10.ToString("C")</td>
             <td class="text-center">@Model.Kost5.ToString("C")</td>
-            <td class="text-right kosten2 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Extra kosten opleiding</td>
+            <td class="text-right kosten2 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Extra kosten opleiding</td>
             
         </tr>
 
         <tr>
-            <td class="baten1 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat3", "Analyse"))'" >Inperking omzetverlies</td>
+            <td class="baten1 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat3", "Analyse"))'" >Inperking omzetverlies</td>
             <td class="text-center">@Model.Baat6.ToString("C")</td>
             <td class="text-center">@Model.Kost7.ToString("C")</td>
-            <td class="text-right kosten1 klikbaar" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Andere kosten</td>
+            <td class="text-right kosten1 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost4", "Analyse"))'">Andere kosten</td>
         </tr>
 
         <tr>
             
             
-            <td class="baten2 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat3", "Analyse"))'" >Productiviteitswinst</td>
+            <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat3", "Analyse"))'" >Productiviteitswinst</td>
             <td class="text-center">@Model.Baat7.ToString("C")</td>
             <td class="text-center"></td>
             <td class="kosten2"></td>
         </tr>
 
         <tr>
-            <td class="baten1 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat3", "Analyse"))'" >Tegemoetkoming in de kosten voor aanpassingen werkomgeving/aangepast gereedschap</td>
+            <td class="baten1 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat3", "Analyse"))'" >Tegemoetkoming in de kosten voor aanpassingen werkomgeving/aangepast gereedschap</td>
             <td class="text-center">@Model.Baat2.ToString("C")</td>
             <td class="text-center"></td>
             <td class="kosten1"></td>
         </tr>
 
         <tr>
-            <td class="baten2 klikbaar hoogte" onclick="location.href = '@(Url.Action("AnalyseBaat4", "Analyse"))'" >Andere besparingen</td>
+            <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseBaat4", "Analyse"))'" >Andere besparingen</td>
             <td class="text-center" >@Model.Baat11.ToString("C")</td>
             <td class="text-center"></td>
             <td class="kosten2"></td>

@@ -1,5 +1,7 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.ProfielAanpassenViewModel
 
+<link rel="stylesheet" href="~/css/ProfielAanpassen.css" />
+
 <h2>U bent vergeten uw profiel aan te passen!</h2>
 <form method="post">
     <input asp-for="Email" type="hidden" />
@@ -11,7 +13,10 @@
     <input asp-for="Bus" type="hidden" />
     <input asp-for="Postcode" type="hidden" />
     <input asp-for="Gemeente" type="hidden" />
-    <button formaction="DoorgaanMetOpslaan" class="btn btn-default">Doorgaan en opslaan</button>
-    <a asp-controller="Home" asp-action="DoorgaanZonderOpslaan" class="btn btn-default">Doorgaan zonder opslaan</a>
-    <button formaction="ProfielAanpassenKeerTerug" class="btn btn-default">Keer terug</button>
+
+    <div class="btn-group col-md-6 margins verwijderPaddingLinks" role="group">
+        <button formaction="DoorgaanMetOpslaan" class="btn btn-primary col-md-4 btn-lg marginBenedenKlein">Doorgaan en opslaan</button>
+        <a asp-controller="Home" asp-action="DoorgaanZonderOpslaan" class="btn btn-danger btn-lg col-md-4 marginBenedenGroot">Doorgaan zonder opslaan</a>
+        <button formaction="ProfielAanpassenKeerTerug" class="btn btn-primary btn-lg col-md-4">Keer terug</button>
+
 </form>
