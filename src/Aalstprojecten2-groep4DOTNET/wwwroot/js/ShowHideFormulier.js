@@ -9,7 +9,7 @@
                     .removeClass("toonFormulier animated zoomIn")
                     .addClass("animated zoomOut");
                 setTimeout(function () {
-                    $(".toverknop").siblings(".invulgegevens").addClass("verbergFormulier");
+                    $(".toverknop").parent().parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
                 }, 1000);
             }
         });

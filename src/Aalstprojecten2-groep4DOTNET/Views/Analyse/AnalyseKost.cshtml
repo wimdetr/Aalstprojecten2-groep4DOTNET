@@ -92,7 +92,11 @@
                             <th>Aantal Maanden IBO</th>
                             <th>Totale Productiviteits-Premie IBO</th>
                             <th></th>
-                            <th style="width:10px; background-color:lightgray;"><button class="glyphicon glyphicon-plus addBtn"></button></th>
+                            @if (Model.AantalLijnenKost1 == 0)
+                            {
+                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -117,12 +121,16 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKostRijAanpassen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKostRijVerwijderen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenKost1)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Functie</button>
                 <form asp-controller="Analyse" asp-action="AnalyseKost" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")" method="post">
                     <div class="volledigeInvulveldjes">
 

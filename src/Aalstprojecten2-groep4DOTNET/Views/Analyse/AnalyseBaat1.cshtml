@@ -86,6 +86,11 @@
                             <th>Uren</th>
                             <th>Bruto Maandloon Fulltime</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst1 == 0)
+                            {
+                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -144,6 +149,11 @@
                             <th>Uren</th>
                             <th>Bruto Maandloon Fulltime</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst2 == 0)
+                            {
+                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -157,12 +167,16 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenLijst2)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuw Loon</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <h3>Gegevens van het nieuw loon</h3>
                     <input asp-for="VolgendeLijn2" type="hidden" />

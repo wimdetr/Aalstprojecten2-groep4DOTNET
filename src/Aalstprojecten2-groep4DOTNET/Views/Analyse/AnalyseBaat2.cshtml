@@ -86,6 +86,11 @@
                             <th>Beschrijving</th>
                             <th>Jaarbedrag</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst1 == 0)
+                            {
+                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -99,12 +104,16 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenLijst1)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Besparing</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <h3>Gegevens van de nieuwe besparing</h3>
                     <input asp-for="VolgendeLijn1" type="hidden" />
@@ -140,6 +149,11 @@
                             <th>Beschrijving</th>
                             <th>Jaarbedrag</th>
                             <th class="kleineBreedte"></th>
+                            @if (Model.AantalLijnenLijst1 == 0)
+                            {
+                                <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -153,13 +167,17 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
+                                @if (i == Model.AantalLijnenLijst1)
+                                {
+                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
+
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Besparing</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <h3>Gegevens van de nieuwe besparing</h3>
                     <input asp-for="VolgendeLijn2" type="hidden" />
