@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aalstprojecten2_groep4DOTNET.Filters;
 using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.AccountViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
 using Aalstprojecten2_groep4DOTNET.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IJobCoachRepository _jobCoachRepository;
@@ -30,6 +33,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
         public IActionResult Index()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<Analyse> analyses = _analyseRepository.GetAllNietGearchiveerd(User.Identity.Name);
             Resultaat r = new Resultaat();
             foreach (Analyse a in analyses)
@@ -41,6 +45,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult Delete(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
             if (analyse == null)
                 return NotFound();
@@ -51,6 +56,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ActionName("Delete")]
         public IActionResult DeleteConfirm(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             try
             {
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
@@ -66,6 +72,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult ProfielAanpassen()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
             ProfielAanpassenViewModel model = new ProfielAanpassenViewModel()
             {
@@ -83,9 +90,16 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [HttpPost]
+        public IActionResult ProfielAanpassenKeerTerug(ProfielAanpassenViewModel model)
+        {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
+            return View("ProfielAanpassen", model);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> ProfielAanpassen(ProfielAanpassenViewModel model)
         {
-
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             if (ModelState.IsValid)
             {
                 try
@@ -117,6 +131,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult ProfielAanpassenDoorgaanZonderOpslaan(ProfielAanpassenViewModel model)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             if (ControleerOfModelVerandertIs(model))
             {
                 return View(model);
@@ -126,6 +141,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public async Task<IActionResult> DoorgaanMetOpslaan(ProfielAanpassenViewModel model)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             if (ModelState.IsValid)
             {
                 try
@@ -156,23 +172,26 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult ProfielAanpassenDoorgaanMetOpslaanNietMogelijk(ProfielAanpassenViewModel model)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             return View(model);
         }
 
         public IActionResult DoorgaanZonderOpslaan()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             return RedirectToAction(nameof(WachtwoordAanpassen));
         }
 
         public IActionResult WachtwoordAanpassen()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             return View(new WachtwoordAanpassenViewModel());
         }
 
         [HttpPost]
         public async Task<IActionResult> WachtwoordAanpassen(WachtwoordAanpassenViewModel model)
         {
-            
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             if (ModelState.IsValid)
             {
                 try
@@ -209,12 +228,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult ContacteerAdmin()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             return View(new ContacteerAdminViewModel());
         }
 
         [HttpPost]
         public async Task<IActionResult> ContacteerAdmin(ContacteerAdminViewModel model)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             if (ModelState.IsValid)
             {
                 try
@@ -233,11 +254,13 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult OverzichtMailbox()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             return View(new OverzichtMailboxViewModel(_interneMailJobcoachRepository.GetAll(User.Identity.Name)));
         }
 
         public IActionResult GeselecteerdeMail(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
             mail.IsGelezen = true;
             _interneMailJobcoachRepository.SaveChanges();
@@ -247,6 +270,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult VerwijderMail(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, id));
             _interneMailJobcoachRepository.SaveChanges();
             return RedirectToAction(nameof(OverzichtMailbox));
@@ -255,6 +279,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult MarkeerGeselecteerdeAlsGelezen()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
             foreach (InterneMailJobcoach m in mails)
             {
@@ -273,6 +298,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult VerwijderGeselecteerde()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
             foreach (InterneMailJobcoach m in mails)
             {
@@ -294,6 +320,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult MarkeerAlleAlsGelezen()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
             foreach (InterneMailJobcoach m in mails)
             {

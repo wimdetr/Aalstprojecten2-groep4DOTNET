@@ -7,6 +7,7 @@ using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -14,7 +15,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
 {
-    //[ServiceFilter(typeof(AnalyseFilter))]
+    [Authorize]
     public class AnalyseController : Controller
     {
         private readonly IAnalyseRepository _analyseRepository;
@@ -30,6 +31,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         // GET: /<controller>/
         public IActionResult AnalyseBekijken()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<Analyse> analyses = _analyseRepository.GetAllWelGearchiveerd(User.Identity.Name);
             Resultaat r = new Resultaat();
             foreach (Analyse a in analyses)
@@ -41,10 +43,11 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult Archiveer(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
             if (analyse == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Home");
             }
             ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View();
@@ -53,6 +56,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost, ActionName("Archiveer")]
         public IActionResult BevestigArchiveer(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             try
             {
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
@@ -68,10 +72,11 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult DeArchiveer(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
             if (analyse == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Home");
             }
             ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View();
@@ -80,6 +85,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost, ActionName("DeArchiveer")]
         public IActionResult BevestigDeArchiveer(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             try
             {
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
@@ -95,9 +101,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult Delete(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
             if (analyse == null)
-                return NotFound();
+                return RedirectToAction("Index", "Home");
             ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View();
         }
@@ -105,6 +112,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ActionName("Delete")]
         public IActionResult DeleteConfirm(int id)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             try
             {
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
@@ -120,6 +128,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult PasAnalyseAan(int id = -1)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, id);
             AnalyseFilter.PlaatsAnalyseInSession(a, HttpContext);
             return RedirectToAction(nameof(AnalyseOverzicht));
@@ -128,6 +137,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseOverzicht(Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             AnalyseResultaatOverzichtViewModel model;
             if (analyse == null)
             {
@@ -145,11 +158,13 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult WerkgeverKeuze()
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             return View();
         }
 
         public IActionResult NieuweWerkgever(int id = -1)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             Werkgever werkgever = _werkgeverRepository.GetById(id);
             var model = werkgever == null ? new WerkgeverViewModel() : new WerkgeverViewModel(werkgever);
             ViewData["werkgever"] = "Nieuwe Analyse";
@@ -160,6 +175,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult NieuweWerkgever(WerkgeverViewModel model)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             if (ModelState.IsValid)
             {
                 try
@@ -194,6 +210,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult WerkgeverAanpassen(Analyse analyse)
         {
+            if (analyse == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             WerkgeverViewModel model = new WerkgeverViewModel(analyse.Werkgever);
             model.NaamAfdeling = analyse.Werkgever.NaamAfdeling;
             ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
@@ -204,6 +224,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult WerkgeverAanpassen(WerkgeverViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.WerkgeverId == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -242,6 +266,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public IActionResult BestaandeWerkgever(BestaandeWerkgeverZoekenViewModel m = null)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             BestaandeWerkgeverZoekenViewModel model;
             if (m == null || m.HeeftAlGezocht == false)
             {
@@ -255,6 +280,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost, ActionName("BestaandeWerkgever")]
         public IActionResult BestaandeWerkgeverPost(BestaandeWerkgeverZoekenViewModel model)
         {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<Werkgever> werkgevers;
             if (model.ZoekString == null || model.ZoekString.Trim().Equals(""))
             {
@@ -289,6 +315,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1(Analyse analyse, AnalyseBaat1ViewModel model)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat baat1 = analyse.GeefBaatMetNummer(3);
             int hoogsteId1;
             if (baat1 == null)
@@ -394,6 +424,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat1Punt1(AnalyseBaat1ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Uren1 == null && model.Maandloon1 == null)
             {
                 ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
@@ -555,6 +589,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat1Punt2(AnalyseBaat1ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Uren2 == null && model.Maandloon2 == null)
             {
                 ModelState.AddModelError("VolgendeLijn2", "Gelieve minstens 1 veld in te vullen.");
@@ -716,6 +754,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt1RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
             AnalyseBaat1ViewModel model = new AnalyseBaat1ViewModel();
             if (baatrij != null)
@@ -733,6 +775,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij b = a.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
@@ -754,6 +800,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt2RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
             AnalyseBaat1ViewModel model = new AnalyseBaat1ViewModel();
             if (baatrij != null)
@@ -771,6 +821,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij b = a.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
@@ -792,6 +846,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2(Analyse analyse, AnalyseBaat2ViewModel model)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat baat1 = analyse.GeefBaatMetNummer(5);
             int hoogsteId1;
             if (baat1 == null)
@@ -919,6 +977,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt1(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Beschrijving1 == null && model.Bedrag1 == null)
             {
                 ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
@@ -1100,6 +1162,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt2(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Beschrijving2 == null && model.Bedrag2 == null)
             {
                 ModelState.AddModelError("VolgendeLijn2", "Gelieve minstens 1 veld in te vullen.");
@@ -1282,6 +1348,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt3(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -1443,6 +1513,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt4(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -1610,6 +1684,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt5(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -1777,6 +1855,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt1RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
             AnalyseBaat2ViewModel model = new AnalyseBaat2ViewModel();
             if (baatrij != null)
@@ -1793,6 +1875,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij b = a.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
@@ -1814,6 +1900,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt2RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
             AnalyseBaat2ViewModel model = new AnalyseBaat2ViewModel();
             if (baatrij != null)
@@ -1830,6 +1920,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij b = a.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
@@ -1851,6 +1945,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat3(Analyse analyse, AnalyseBaat3ViewModel model)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat baat1 = analyse.GeefBaatMetNummer(6);
             int hoogsteId1;
             if (baat1 == null)
@@ -1929,6 +2027,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat3Punt1(AnalyseBaat3ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Percent1 == null && model.Bedrag1 == null)
             {
                 ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
@@ -2062,6 +2164,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat3Punt2(AnalyseBaat3ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -2176,6 +2282,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat3Punt3(AnalyseBaat3ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -2289,6 +2399,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat3Punt1RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
             AnalyseBaat3ViewModel model = new AnalyseBaat3ViewModel();
             if (baatrij != null)
@@ -2306,6 +2420,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat3Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij b = a.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
@@ -2327,6 +2445,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat4(AnalyseBaat4ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat baat1 = analyse.GeefBaatMetNummer(11);
             int hoogsteId1;
             if (baat1 == null)
@@ -2384,6 +2506,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost, ActionName("AnalyseBaat4")]
         public IActionResult AnalyseBaat4Post(AnalyseBaat4ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Beschrijving == null && model.Bedrag == null)
             {
                 ModelState.AddModelError("VolgendeLijn", "Gelieve minstens 1 veld in te vullen.");
@@ -2495,6 +2621,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat4RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
             AnalyseBaat4ViewModel model = new AnalyseBaat4ViewModel();
             if (baatrij != null)
@@ -2511,6 +2641,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat4RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij baatrij = analyse.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij b = a.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
@@ -2532,6 +2666,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost(Analyse analyse, AnalyseKostViewModel model)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat kost1 = analyse.GeefKostMetNummer(1);
             KostOfBaat baat1 = analyse.GeefBaatMetNummer(1);
             int hoogsteId;
@@ -2644,6 +2782,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost(AnalyseKostViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat kost1 = analyse.GeefKostMetNummer(1);
             KostOfBaat baat1 = analyse.GeefBaatMetNummer(1);
             if (model.Functie == null && model.AantalUrenPerWeek == null && model.BrutoMaandloonFulltime == null && model.Doelgroep.Equals("Kies uw doelgroep") && model.VlaamseOndersteuningsPremie.Equals("Vlaamse ondersteuningspremie") && model.AantalMaandenIBO == null && model.TotaleProductiviteitsPremieIBO == null)
@@ -2850,6 +2992,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKostRijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(1).GeefKOBRijMetNummer(id);
             KOBRij baatrij = analyse.GeefBaatMetNummer(1).GeefKOBRijMetNummer(id);
             AnalyseKostViewModel model = new AnalyseKostViewModel();
@@ -2878,6 +3024,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKostRijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(1).GeefKOBRijMetNummer(id);
             KOBRij baatrij = analyse.GeefBaatMetNummer(1).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
@@ -2912,7 +3062,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost2(Analyse analyse, AnalyseKost2ViewModel model)
         {
-
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat kost1 = analyse.GeefKostMetNummer(8);
             int hoogsteId;
             if (kost1 == null)
@@ -2968,6 +3121,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost2(AnalyseKost2ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat kost = analyse.GeefKostMetNummer(8);
             if (model.Bedrag == null && model.Beschrijving == null)
             {
@@ -3076,6 +3233,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost2RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(8).GeefKOBRijMetNummer(id);
             AnalyseKost2ViewModel model = new AnalyseKost2ViewModel();
             if (kostrij != null)
@@ -3092,6 +3253,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost2RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(8).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij k = a.GeefKostMetNummer(8).GeefKOBRijMetNummer(id);
@@ -3113,6 +3278,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3(Analyse analyse, AnalyseKost3ViewModel model)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat kost1 = analyse.GeefKostMetNummer(3);
             int hoogsteId1;
             if (kost1 == null)
@@ -3218,6 +3387,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost3Punt1(AnalyseKost3ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Bedrag1 == null && model.Beschrijving1 == null)
             {
                 ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
@@ -3376,6 +3549,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost3Punt2(AnalyseKost3ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Bedrag2 == null && model.Beschrijving2 == null)
             {
                 ModelState.AddModelError("VolgendeLijn2", "Gelieve minstens 1 veld in te vullen.");
@@ -3533,6 +3710,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt1RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(3).GeefKOBRijMetNummer(id);
             AnalyseKost3ViewModel model = new AnalyseKost3ViewModel();
             if (kostrij != null)
@@ -3549,6 +3730,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(3).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij k = a.GeefKostMetNummer(3).GeefKOBRijMetNummer(id);
@@ -3570,6 +3755,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt2RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(4).GeefKOBRijMetNummer(id);
             AnalyseKost3ViewModel model = new AnalyseKost3ViewModel();
             if (kostrij != null)
@@ -3586,6 +3775,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(4).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij k = a.GeefKostMetNummer(4).GeefKOBRijMetNummer(id);
@@ -3607,6 +3800,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4(Analyse analyse, AnalyseKost4ViewModel model)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KostOfBaat kost1 = analyse.GeefKostMetNummer(2);
             int hoogsteId1;
             if (kost1 == null)
@@ -3809,6 +4006,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt1(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Bedrag1 == null && model.Beschrijving1 == null)
             {
                 ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
@@ -4063,6 +4264,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt2(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Uren2 == null && model.Maandloon2 == null)
             {
                 ModelState.AddModelError("VolgendeLijn2", "Gelieve minstens 1 veld in te vullen.");
@@ -4317,6 +4522,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt3(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Beschrijving3 == null && model.Bedrag3 == null)
             {
                 ModelState.AddModelError("VolgendeLijn3", "Gelieve minstens 1 veld in te vullen.");
@@ -4571,6 +4780,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt4(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.Beschrijving4 == null && model.Bedrag4 == null)
             {
                 ModelState.AddModelError("VolgendeLijn4", "Gelieve minstens 1 veld in te vullen.");
@@ -4824,6 +5037,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt1RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(2).GeefKOBRijMetNummer(id);
             AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
             if (kostrij != null)
@@ -4840,6 +5057,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(2).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij k = a.GeefKostMetNummer(2).GeefKOBRijMetNummer(id);
@@ -4861,6 +5082,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt2RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(6).GeefKOBRijMetNummer(id);
             AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
             if (kostrij != null)
@@ -4877,6 +5102,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(6).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij k = a.GeefKostMetNummer(6).GeefKOBRijMetNummer(id);
@@ -4898,6 +5127,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt3RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(5).GeefKOBRijMetNummer(id);
             AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
             if (kostrij != null)
@@ -4914,6 +5147,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt3RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(5).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij k = a.GeefKostMetNummer(5).GeefKOBRijMetNummer(id);
@@ -4935,6 +5172,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt4RijAanpassen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(7).GeefKOBRijMetNummer(id);
             AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
             if (kostrij != null)
@@ -4951,6 +5192,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt4RijVerwijderen(int id, Analyse analyse)
         {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             KOBRij kostrij = analyse.GeefKostMetNummer(7).GeefKOBRijMetNummer(id);
             Analyse a = _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId);
             KOBRij k = a.GeefKostMetNummer(7).GeefKOBRijMetNummer(id);
@@ -4967,6 +5212,11 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
 
             return RedirectToAction(nameof(AnalyseKost4));
+        }
+
+        public bool ControleerOfSessieVerlopenIs(Analyse analyse)
+        {
+            return (analyse == null) || (analyse.JobCoachEmail == null && analyse.KostenEnBaten == null && analyse.Werkgever == null);
         }
 
         public IEnumerable<Werkgever> GeefUniekeWerkgevers(IEnumerable<Werkgever> lijst)
