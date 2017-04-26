@@ -11,6 +11,7 @@
         $("#nieuwPrent").attr("src", "/images/iconen/nieuw.png");
     });
 
+
     $("#archiefIcoon").hover(function () {
         $("#archiefPrent").attr("src", "/images/iconen/archief_hover.png");
     }, function () {

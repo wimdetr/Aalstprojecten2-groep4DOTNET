@@ -13,6 +13,7 @@
                 }, 1000);
             }
         });
+
     $(".annuleerKnop")
         .click(function () {
             var knop = $(this);
