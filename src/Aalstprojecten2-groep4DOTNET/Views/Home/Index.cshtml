@@ -87,17 +87,38 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                      </div>
                  </div>
                  
-                 <div class="helft" style="width: @item.KostenBalk%;">
-                     <div class="kostenBalk">
-                         
-                     </div>
-                 </div>
-                 <div class="helft" style="width: @item.BatenBalk%;">
-                     
-                     <div class="batenBalk" >
-                         
-                     </div>
-                 </div>
+                 @if (item.KostenResultaat == 0)
+                 {
+                    <div class="helft" style="width: 100%;">
+
+                        <div class="batenBalk">
+
+                        </div>
+                    </div>
+                 }
+                 else if (item.BatenResultaat == 0)
+                 {
+                    <div class="helft" style="width:100%;">
+                        <div class="kostenBalk2">
+
+                        </div>
+                    </div>
+                 }
+                 else
+                 {
+                    <div class="helft" style="width: @item.KostenBalk%;">
+                        <div class="kostenBalk">
+
+                        </div>
+                    </div>
+                    <div class="helft" style="width: @item.BatenBalk%;">
+
+                        <div class="batenBalk">
+
+                        </div>
+                    </div>
+                 }
+                 
 
                  <div>
                      <div class="kosten text-left" style="width:50%; float:left;">
