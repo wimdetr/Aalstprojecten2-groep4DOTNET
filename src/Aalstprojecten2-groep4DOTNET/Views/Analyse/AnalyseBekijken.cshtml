@@ -32,23 +32,16 @@
             <div class="col-lg-12">
                 <div class="input-group">
 
-
-                    <div class="input-group-btn search-panel">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span id="search_concept">Geen filter</span> <span class="caret"></span>
-                        </button>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#contains">Optie 1</a></li>
-                            <li><a href="#its_equal">Optie 2</a></li>
-                            <li><a href="#greather_than">Optie 3</a></li>
-                            <li><a href="#less_than">Optie 4</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#all">All</a></li>
-                        </ul>
-
-                    </div>
-
+                    <ul class="dropdown-menu">
+                        <li><a asp-controller="Home" asp-action="ProfielAanpassen">Profiel wijzigen <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a asp-controller="Home" asp-action="ContacteerAdmin">Contacteer Admin <span class="glyphicon glyphicon-envelope pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a asp-controller="Home" asp-action="OverzichtMailbox">Inbox <span class="badge pull-right"> @ViewData["ongelezen"] </span></a></li>
+                        <li class="divider"></li>
+                        <li><a asp-controller="Account" asp-action="LogUit">Log uit<span class="glyphicon glyphicon-log-out pull-right" /></a></li>
+                        <li class="divider"></li>
+                    </ul>
 
                     <input type="hidden" name="search_param" value="all" id="search_param">
                     <div class="col-lg-4">

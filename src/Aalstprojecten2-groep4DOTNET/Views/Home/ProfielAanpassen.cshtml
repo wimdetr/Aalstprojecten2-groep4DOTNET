@@ -5,114 +5,107 @@
 <hr />
 
 <form asp-controller="Home" asp-action="ProfielAanpassen" method="post">
-    <div asp-validation-summary="All"></div>
-    <div class="row col-md-offset-3 col-md-6 divOpmaak divBorder">
+    
+        <div class="row col-md-offset-3 col-md-6 divOpmaak divBorder">
 
-        <div class="logo">
-            <img src="~/images/login/login foto.png" class="breddtefixen" />
-        </div>
-
-        <div class="col-md-6">
-            <input asp-for="Email" type="hidden" />
-            <label asp-for="Email" class="col-md-12 text-left"></label>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="form-group">
-                    <input value="@Model.Email" class="form-control" disabled />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
+            <div class="logo">
+                <img src="~/images/login/login foto.png" class="breddtefixen"/>
             </div>
+            <div asp-validation-summary="All"></div>
 
-            <label asp-for="Voornaam" class="col-md-12 text-left"></label>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="form-group">
-                    <input asp-for="Voornaam" value="@Model.Voornaam" class="form-control" />
-                    <span asp-validation-for="Voornaam" class="text-danger"></span>
+
+            <div class="col-md-6">
+                <input asp-for="Email" type="hidden" />
+                <label asp-for="Email" class="col-md-12 text-left"></label>
+                <div class="col-xs-12 col-sm-6 col-md-12">
+                    <div class="form-group">
+                        <input value="@Model.Email" class="form-control" disabled />
+                    </div>
                 </div>
-            </div>
 
-            <label asp-for="Straat" class="col-md-12 text-left"></label>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="form-group">
-                    <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
-                    <span asp-validation-for="Straat" class="text-danger"></span>
-                </div>
-            </div>
-
-
-            <label asp-for="Gemeente" class="col-md-12 text-left"></label>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="form-group">
-                    <input asp-for="Gemeente" value="@Model.Gemeente" id="locality" class="form-control" />
-                    <span asp-validation-for="Gemeente" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-6">
-            <label asp-for="Naam" class="col-md-12 text-left"></label>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="form-group">
-                    <input asp-for="Naam" value="@Model.Naam" class="form-control" />
-                    <span asp-validation-for="Naam" class="text-danger"></span>
-                </div>
-            </div>
-
-            <label asp-for="NaamBedrijf" class="col-md-12 text-left"></label>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="form-group">
-                    <input asp-for="NaamBedrijf" value="@Model.NaamBedrijf" class="form-control" />
-                    <span asp-validation-for="NaamBedrijf" class="text-danger"></span>
-                </div>
-            </div>
-
-
-            <div class="col-md-12">
-                <div class="col-md-6 verwijderPaddingLinks">
-                    <label asp-for="Nummer" class="col-md-12 text-left verwijderPaddingLinks"></label>
-                    <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingLinks">
+                <label asp-for="Voornaam" class="col-md-12 text-left"></label>
+                    <div class="col-xs-12 col-sm-6 col-md-12">
                         <div class="form-group">
-                            <input asp-for="Nummer" value="@Model.Nummer" id="street_number" class="form-control" />
-                            <span asp-validation-for="Nummer" class="text-danger"></span>
+                            <input asp-for="Voornaam" value="@Model.Voornaam" class="form-control" />
+                        </div>
+                    </div>
+
+                    <label asp-for="Straat" class="col-md-12 text-left"></label>
+                    <div class="col-xs-12 col-sm-6 col-md-12">
+                        <div class="form-group">
+                            <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
+                        </div>
+                    </div>
+
+
+                <label asp-for="Gemeente" class="col-md-12 text-left"></label>
+                    <div class="col-xs-12 col-sm-6 col-md-12">
+                        <div class="form-group">
+                            <input asp-for="Gemeente" value="@Model.Gemeente" id="locality" class="form-control" />
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 verwijderPaddingRechts">
-                    <label asp-for="Bus" class="col-md-12 text-left verwijderPaddingRechts"></label>
-                    <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
+
+
+            <div class="col-md-6">
+                <label asp-for="Naam" class="col-md-12 text-left"></label>
+                <div class="col-xs-12 col-sm-6 col-md-12">
+                    <div class="form-group">
+                        <input asp-for="Naam" value="@Model.Naam" class="form-control" />
+                    </div>
+                </div>
+                    
+                    <label asp-for="NaamBedrijf" class="col-md-12 text-left"></label>
+                    <div class="col-xs-12 col-sm-6 col-md-12">
                         <div class="form-group">
-                            <input asp-for="Bus" value="@Model.Bus" class="form-control" />
-                            <span asp-validation-for="Bus" class="text-danger"></span>
+                            <input asp-for="NaamBedrijf" value="@Model.NaamBedrijf" class="form-control" />
                         </div>
+                    </div>
+
+
+                <div class="col-md-12">
+                    <div class="col-md-6 verwijderPaddingLinks">
+                        <label asp-for="Nummer" class="col-md-12 text-left verwijderPaddingLinks"></label>
+                        <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingLinks">
+                            <div class="form-group">
+                                <input asp-for="Nummer" value="@Model.Nummer" id="street_number" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 verwijderPaddingRechts">
+                        <label asp-for="Bus" class="col-md-12 text-left verwijderPaddingRechts"></label>
+                        <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
+                            <div class="form-group">
+                                <input asp-for="Bus" value="@Model.Bus" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <label asp-for="Postcode" class="col-md-12 text-left"></label>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <input asp-for="Postcode" value="@Model.Postcode" id="postal_code" class="form-control" />
                     </div>
                 </div>
 
-            </div>
 
-            <label asp-for="Postcode" class="col-md-12 text-left"></label>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <input asp-for="Postcode" value="@Model.Postcode" id="postal_code" class="form-control" />
-                    <span asp-validation-for="Postcode" class="text-danger"></span>
+
+
+
                 </div>
+
+            <div class="btn-group col-md-12 margins" role="group">
+                <button type="submit" class="btn btn-primary col-md-4 btn-lg marginBenedenKlein">Wijzigingen opslaan</button>
+                <button type="submit" formaction="ProfielAanpassenDoorgaanZonderOpslaan" class="btn btn-danger btn-lg col-md-4 marginBenedenGroot">Wachtwoord aanpassen</button>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg col-md-4">Keer terug</a>
             </div>
-
-
-
-
-
-        </div>
-
-        <div class="btn-group col-md-12 margins" role="group">
-            <button type="submit" class="btn btn-primary col-md-4 btn-lg marginBenedenKlein">Wijzigingen opslaan</button>
-            <button type="submit" formaction="ProfielAanpassenDoorgaanZonderOpslaan" class="btn btn-danger btn-lg col-md-4 marginBenedenGroot">Wachtwoord aanpassen</button>
-            <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg col-md-4">Keer terug</a>
-        </div>
-
-    </div>
-</form>
+            
+            </div>
+    </form>
 
 @section Scripts {
     <script src="~/js/AutoComplete.js"></script>
