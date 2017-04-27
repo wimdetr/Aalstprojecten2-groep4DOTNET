@@ -105,14 +105,15 @@ else
                         <strong>@item.Organisatie</strong>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 iconen">
-                        @*knoppen downloaden versturen verwijderen*@
+                        <div class="icoon" id="binIcoon">
+                            <a asp-controller="Analyse" asp-action="Delete" asp-route-id="@item.Id"><img id="binPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh" /></a>
+                        </div>                    
+    @*knoppen downloaden versturen verwijderen*@
                         <div class="icoon" id="sendIcoon">
                             <a><img id="sendPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
                         </div>
 
-                        <div class="icoon" id="binIcoon">
-                            <a asp-controller="Analyse" asp-action="Delete" asp-route-id="@item.Id"><img id="binPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh" /></a>
-                        </div>
+                        
                         <div class="icoon" id="downloadIcoon">
                             <a><img id="downloadPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
                         </div>
