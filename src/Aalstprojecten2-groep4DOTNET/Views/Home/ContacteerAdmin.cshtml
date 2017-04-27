@@ -1,26 +1,42 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.ContacteerAdminViewModel
 
+<link rel="stylesheet" href="~/css/ProfielAanpassen.css" />
+<link rel="stylesheet" href="~/css/ContacteerAdmin.css" />
+
+<h2 class="text-center">Contacteer Administrator</h2>
+<hr />
 
 <form asp-controller="Home" asp-action="ContacteerAdmin" method="post" class="form-horizontal">
     <div asp-validation-summary="All" class="text-danger"></div>
 
-    <div class="form-group">
-        <label asp-for="Onderwerp" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Onderwerp" class="form-control" />
-            <span asp-validation-for="Onderwerp" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Inhoud" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <textarea asp-for="Inhoud" class="form-control" ></textarea>
-            <span asp-validation-for="Inhoud" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Verzenden</button>
-        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-offset-4 col-md-4 text-center divOpmaak divBorder">
+                <div class="logo">
+                    <img src="~/images/login/login foto.png" class="breddtefixen" />
+                </div>
+                <div class="form-group col-md-12 text-left verwijderPaddingRechts">
+                    <label asp-for="Onderwerp" class="col-md-12"></label>
+                    <div class="col-md-12 verwijderPaddingRechts">
+                        <input asp-for="Onderwerp" class="form-control verwijderPaddingRechts" placeholder="Onderwerp" />
+                        <span asp-validation-for="Onderwerp" class="text-danger verwijderPaddingRechts"></span>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 text-left verwijderPaddingRechts">
+                    <label asp-for="Inhoud" class="col-md-12"></label>
+                    <div class="col-md-12 verwijderPaddingRechts">
+                        <textarea asp-for="Inhoud" class="form-control minimumGrootte verwijderPaddingRechts"></textarea>
+                        <span asp-validation-for="Inhoud" class="text-danger verwijderPaddingRechts"></span>
+                    </div>
+                </div>
+
+                <div class="btn-group col-md-12 margins" role="group">
+                    <button type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Verzend</button>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-danger btn-lg col-md-6">Annuleer</a>
+                </div>
+            </div>
+            
+        </div>  
     </div>
 </form>
