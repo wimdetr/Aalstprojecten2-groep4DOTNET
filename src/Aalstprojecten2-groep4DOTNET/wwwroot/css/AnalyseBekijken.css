@@ -153,3 +153,42 @@ tr:nth-child(odd) {
 .veldjesGroote {
     max-width: 500px;
 }
+
+.zetCardZichtbaar {
+    display: block;
+}
+
+.zetCardOnzichtbaar {
+    display: none;
+}
+
+.fancySearch {
+    -webkit-animation-name: fancySearch;
+    animation-name: fancySearch;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+
+
+@-webkit-keyframes fancySearch {
+  from {
+    max-width: 280px;
+  }
+
+  to {
+    max-width: 400px;
+  }
+}
+
+@keyframes fancySearch {
+  from {
+    max-width: 280px;
+  }
+
+  to {
+    max-width: 400px;
+  }
+}
