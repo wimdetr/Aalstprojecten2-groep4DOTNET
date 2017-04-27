@@ -4014,6 +4014,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
             }
+            
             if (ModelState.IsValid)
             {
                 try
