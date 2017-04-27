@@ -1,0 +1,8 @@
+﻿.minimumGrootte {
+    min-height: 150px;
+    max-width: 100%;
+}
+
+input, select, textarea {
+    max-width: none;
+}
