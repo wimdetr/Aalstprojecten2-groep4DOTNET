@@ -18,5 +18,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public int VlaamseOndersteuningsPremie { get; set; }
         public int AantalMaandenIBO { get; set; }
         public double TotaleProductiviteitsPremieIBO { get; set; }
+        public double KostUitkomst { get; set; }
+        public double BaatUitkomst { get; set; }
     }
 }
