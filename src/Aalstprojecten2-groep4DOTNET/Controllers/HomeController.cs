@@ -22,20 +22,22 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly IAnalyseRepository _analyseRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IInterneMailJobcoachRepository _interneMailJobcoachRepository;
+        private readonly IDoelgroepRepository _doelgroepRepository;
 
 
-        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository)
+        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository, IDoelgroepRepository doelgroepRepository)
         {
             _jobCoachRepository = jobCoachRepository;
             _analyseRepository = analyseRepository;
             _userManager = userManager;
             _interneMailJobcoachRepository = interneMailJobcoachRepository;
+            _doelgroepRepository = doelgroepRepository;
         }
         public IActionResult Index()
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<Analyse> analyses = _analyseRepository.GetAllNietGearchiveerd(User.Identity.Name);
-            Resultaat r = new Resultaat();
+            Resultaat r = new Resultaat(_doelgroepRepository.GetAll());
             foreach (Analyse a in analyses)
             {
                 r.BerekenResultaatVanAnalyse(a);

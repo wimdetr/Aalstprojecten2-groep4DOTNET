@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aalstprojecten2_groep4DOTNET.Models.Domein.HulpKlassenAnalyseDoelgroep;
 
 namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 {
@@ -11,12 +10,13 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #region Properties
         public KostOfBaat KostOfBaat { get; private set; }
         public Analyse Analyse { get; private set; }
+        public IEnumerable<Doelgroep> Doelgroepen { get; set; }
         #endregion
 
         #region Contructor
-        public Resultaat()
+        public Resultaat(IEnumerable<Doelgroep> doelgroepen)
         {
-            
+            Doelgroepen = doelgroepen;
         }
         #endregion
 
@@ -63,26 +63,10 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                         string dataVak4 = kostRij.GeefKOBVakMetNummer(4).Data;
                         double dataVak3 = kostRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble();
                         double dataVak2 = kostRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble();
-                        if (dataVak4.Equals(StringEnum.GeefStringWaarde(AnalyseDoelgroep.WnMinderDan25JaarLaaggeschoold)) && dataVak3 < 2500)
+                        Doelgroep doelgroep = Doelgroepen.SingleOrDefault(d => d.DoelgroepText.Equals(dataVak4));
+                        if (dataVak3 < doelgroep.DoelgroepMaxLoon)
                         {
-                            tussenWaarde = (double) AnalyseDoelgroep.WnMinderDan25JaarLaaggeschoold/aantalWerkuren*dataVak2/
-                                           4;
-                        }else if (dataVak4.Equals(StringEnum.GeefStringWaarde(AnalyseDoelgroep.WnMinderDan25JaarMiddengeschoold)) &&
-                                  dataVak3 < 2500)
-                        {
-                            tussenWaarde = (double) AnalyseDoelgroep.WnMinderDan25JaarMiddengeschoold/aantalWerkuren*
-                                           dataVak2/4;
-                        }else if (dataVak4.Equals(StringEnum.GeefStringWaarde(AnalyseDoelgroep.WnMeerOfGelijkAan55OfMinderDan60Jaar)) &&
-                                  dataVak3 < 4466.66)
-                        {
-                            tussenWaarde = (double) AnalyseDoelgroep.WnMeerOfGelijkAan55OfMinderDan60Jaar/aantalWerkuren*
-                                           dataVak2/4;
-                        }else if (dataVak4.Equals(StringEnum.GeefStringWaarde(AnalyseDoelgroep.WnMeerOfEvenveelAls60Jaar)) && dataVak3 < 4466.66)
-                        {
-                            tussenWaarde = (double) AnalyseDoelgroep.WnMeerOfEvenveelAls60Jaar/aantalWerkuren*dataVak2/4;
-                        }else if (dataVak4.Equals(StringEnum.GeefStringWaarde(AnalyseDoelgroep.Ander)))
-                        {
-                            tussenWaarde = (double) AnalyseDoelgroep.Ander/aantalWerkuren*dataVak2;
+                            tussenWaarde = doelgroep.DoelgroepWaarde/aantalWerkuren*dataVak2/4;
                         }
                         else
                         {
