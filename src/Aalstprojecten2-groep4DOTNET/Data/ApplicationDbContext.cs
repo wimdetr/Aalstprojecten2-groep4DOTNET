@@ -17,6 +17,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         public DbSet<Analyse> Analyses { get; set; }
         public DbSet<Werkgever> Werkgevers { get; set; }
         public DbSet<InterneMailJobcoach> InterneMailJobcoaches { get; set; }
+        public DbSet<Doelgroep> Doelgroepen { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -36,6 +37,17 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             builder.Entity<KOBVak>(MapKOBVak);
             builder.Entity<InterneMail>(MapInterneMail);
             builder.Entity<InterneMailJobcoach>(MapInterneMailJobcoach);
+            builder.Entity<Doelgroep>(MapDoelgroepen);
+        }
+
+        private void MapDoelgroepen(EntityTypeBuilder<Doelgroep> d)
+        {
+            d.ToTable("Doelgroep");
+            d.HasKey(t => t.DoelgroepId);
+
+            d.Property(t => t.DoelgroepText).IsRequired();
+            d.Property(t => t.DoelgroepWaarde).IsRequired();
+            d.Property(t => t.DoelgroepMaxLoon).IsRequired();
         }
 
         private void MapInterneMailJobcoach(EntityTypeBuilder<InterneMailJobcoach> i)

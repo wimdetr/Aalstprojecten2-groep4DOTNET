@@ -154,11 +154,10 @@
                             <select asp-for="Doelgroep" id="dropDown1" class="btn btn-default selectpicker marginLinksEnFloatLeft">
 
                                 <option selected>Kies uw doelgroep</option>
-                                <option>wn minder dan 25 jaar laaggeschoold</option>
-                                <option>wn minder dan 25 jaar middengeschoold</option>
-                                <option>wn meer of gelijk aan 55 of minder dan 60 jaar</option>
-                                <option>wn meer of evenveel als 60 jaar</option>
-                                <option>ander</option>
+                                @foreach (string groep in Model.Doelgroepen)
+                                {
+                                    <option>@groep</option>
+                                }
                             </select>
                         </div>
 

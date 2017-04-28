@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,13 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
 
         public ResultaatTest()
         {
-            resultaat = new Resultaat();
+            ICollection<Doelgroep> doelgroepen = new List<Doelgroep>(); 
+            doelgroepen.Add(new Doelgroep("werknemer minder dan 25 jaar laaggeschoold", 1550, 2500, false));
+            doelgroepen.Add(new Doelgroep("werknemer minder dan 25 jaar middengeschoold", 1000, 2500, false));
+            doelgroepen.Add(new Doelgroep("werknemer meer of gelijk aan 55 of minder dan 60 jaar", 1150, 4466.66, false));
+            doelgroepen.Add(new Doelgroep("werknemer meer of evenveel als 60 jaar", 1500, 4466.66, false));
+            doelgroepen.Add(new Doelgroep("ander", 0, 0, false));
+            resultaat = new Resultaat(doelgroepen);
             analyse = new Analyse();
             analyse.KostenEnBaten = new List<KostOfBaat>();
             werkgever = new Werkgever();
@@ -33,7 +40,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -55,7 +62,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -77,7 +84,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -99,7 +106,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -121,7 +128,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -143,7 +150,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -165,7 +172,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -187,7 +194,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -209,7 +216,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -231,7 +238,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -253,7 +260,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -275,7 +282,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -297,7 +304,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -319,7 +326,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -341,7 +348,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -363,7 +370,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -476,7 +483,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -510,7 +517,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -544,7 +551,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -578,7 +585,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -612,7 +619,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -646,7 +653,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -680,7 +687,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -714,7 +721,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "3500");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -748,7 +755,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -782,7 +789,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -816,7 +823,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -850,7 +857,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -884,7 +891,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -918,7 +925,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -952,7 +959,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -986,7 +993,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "5000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1156,7 +1163,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1190,7 +1197,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1224,7 +1231,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1258,7 +1265,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar laaggeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar laaggeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1292,7 +1299,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1326,7 +1333,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1360,7 +1367,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1394,7 +1401,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn minder dan 25 jaar middengeschoold");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer minder dan 25 jaar middengeschoold");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1428,7 +1435,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1462,7 +1469,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1496,7 +1503,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1530,7 +1537,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of gelijk aan 55 of minder dan 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of gelijk aan 55 of minder dan 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1564,7 +1571,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "40");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1598,7 +1605,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "30");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1632,7 +1639,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "20");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
@@ -1666,7 +1673,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             KOBVak vak1 = new KOBVak(rij, 1, "programmeur");
             KOBVak vak2 = new KOBVak(rij, 2, "10");
             KOBVak vak3 = new KOBVak(rij, 3, "2000");
-            KOBVak vak4 = new KOBVak(rij, 4, "wn meer of evenveel als 60 jaar");
+            KOBVak vak4 = new KOBVak(rij, 4, "werknemer meer of evenveel als 60 jaar");
             KOBVak vak5 = new KOBVak(rij, 5, "0");
             rij.VulKOBVakIn(vak1);
             rij.VulKOBVakIn(vak2);
