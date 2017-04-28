@@ -86,15 +86,10 @@
                 <table class="table table-striped text-left test marginBottomGroot">
                     <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
-                            <th class="kleineBreedte"></th>
+                            <th class="kleineBreedte2"></th>
                             <th>Type</th>
                             <th>Bedrag</th>
-                            <th class="kleineBreedte"></th>
-                            @if (Model.AantalLijnenLijst1 == 0)
-                            {
-                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
-
-                            }
+                            <th class="kleineBreedte2"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,39 +103,69 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
-                                @if (i == Model.AantalLijnenLijst1)
-                                {
-                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
-
-                                }
                             </tr>
                         }
+
+                        <tr>
+                            <td class="opmaakKnopje" style="padding-top:0;">
+                                <div class="SpecialeHoogteDoorNielsGemaakt">
+                                    <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
-                    <h3>Gegevens van de nieuwe kost</h3>
-                    <input asp-for="VolgendeLijn1" type="hidden" />
-                    <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
-                    <div class="invulveldjes1 opmaakInvulveldjes">
-                        <div class="form-group opmaakFormGroup">
-                            <input asp-for="Beschrijving1" id="type1" class="form-control" placeholder="Type van voorbereiding" />
-                            <span asp-validation-for="Beschrijving1" class="text-danger"></span>
-                        </div>
-                        <div class="form-group floatLinks">
-                            <input asp-for="Bedrag1" id="Bedrag1" class="form-control" placeholder="Bedrag van de voorbereiding" />
 
-                            <span asp-validation-for="Bedrag1" class="text-danger"></span>
+                    <div class="row">
+                        <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe kost</u></h3>
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="marginBenedenTekstvelden">
+                                <input asp-for="VolgendeLijn1" type="hidden" />
+                                <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
+                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
+                                    <div class="col-md-6">
+                                        <div style="float:right;">
+                                            <label asp-for="Beschrijving1" id="type1" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12 text-center">
+                                                <div class="form-group">
+                                                    <input asp-for="Beschrijving1" id="type1" class="form-control" placeholder="Type van voorbereiding" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div style="float:left;">
+                                            <label asp-for="Bedrag1" type="number" id="Bedrag1" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12">
+                                                <div class="form-group">
+                                                    <input asp-for="Bedrag1" id="Bedrag1" class="form-control" placeholder="Bedrag van de voorbereiding" />
+                                                    <span asp-validation-for="Bedrag1" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-offset-4 col-md-4 ">
+                                <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                    <a id="vulInKnop1" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                    <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <a id="vulInKnop1" class="btn btn-primary btn-lg text-center">Vul In</a>
-                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
             </div>
 
-            <div class="or-spacer">
-                <div class="mask"></div>
+            <div>
+                <img src="~/images/iconen/divider.png" class="betereMarginBeneden" />
             </div>
 
             <div class="Blok1 text-center">
@@ -148,15 +173,10 @@
                 <table class="table table-striped text-left test marginBenedenGroot">
                     <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
-                            <th class="kleineBreedte"></th>
+                            <th class="kleineBreedte2"></th>
                             <th>Uren</th>
                             <th>Bruto Maandloon Begeleider</th>
-                            <th class="kleineBreedte"></th>
-                            @if (Model.AantalLijnenLijst2 == 0)
-                            {
-                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
-
-                            }
+                            <th class="kleineBreedte2"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -170,41 +190,69 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijAanpassen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
-                                @if (i == Model.AantalLijnenLijst2)
-                                {
-                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
-
-                                }
                             </tr>
                         }
+
+                        <tr>
+                            <td class="opmaakKnopje" style="padding-top:0;">
+                                <div class="SpecialeHoogteDoorNielsGemaakt">
+                                    <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
 
-                    <h3>Gegevens van de nieuwe kost</h3>
-                    <input asp-for="VolgendeLijn2" type="hidden" />
-                    <span asp-validation-for="VolgendeLijn2" class="text-danger"></span>
-                    <div class="invulveldjes1 opmaakInvulveldjes2">
-                        <div class="form-group marginRechtsEnFloatLeft">
-                            <input asp-for="Uren2" type="number" id="uren" class="form-control" placeholder="Aantal Uren" />
-                            <span asp-validation-for="Uren2" class="text-danger"></span>
-                        </div>
-                        <div class="form-group floatLinks">
-                            <input asp-for="Maandloon2" id="brutoMaandloonBegeleider" class="form-control" placeholder="Bruto Maandloon" />
-                            <span asp-validation-for="Maandloon2" class="text-danger"></span>
+                    <div class="row">
+                        <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe kost</u></h3>
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="marginBenedenTekstvelden">
+                                <input asp-for="VolgendeLijn2" type="hidden" />
+                                <span asp-validation-for="VolgendeLijn2" class="text-danger"></span>
+                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
+                                    <div class="col-md-6">
+                                        <div style="float:right;">
+                                            <label asp-for="Uren2" id="uren" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12 text-center">
+                                                <div class="form-group">
+                                                    <input asp-for="Uren2" id="uren" class="form-control" placeholder="Aantal Uren" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div style="float:left;">
+                                            <label asp-for="Maandloon2" type="number" id="brutoMaandloonBegeleider" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12">
+                                                <div class="form-group">
+                                                    <input asp-for="Maandloon2" id="brutoMaandloonBegeleider" class="form-control" placeholder="Bruto Maandloon" />
+                                                    <span asp-validation-for="Maandloon2" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-offset-4 col-md-4 ">
+                                <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                    <a id="vulInKnop2" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                    <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <a id="vulInKnop2" class="btn btn-primary btn-lg text-center">Vul In</a>
-                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
 
             </div>
 
-            <div class="or-spacer">
-                <div class="mask"></div>
+            <div>
+                <img src="~/images/iconen/divider.png" class="betereMarginBeneden" />
             </div>
 
             <div class="Blok1 text-center">
@@ -212,15 +260,10 @@
                 <table class="table table-striped text-left test marginBenedenGroot">
                     <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
-                            <th class="kleineBreedte"></th>
+                            <th class="kleineBreedte2"></th>
                             <th>Type</th>
                             <th>Bedrag</th>
-                            <th class="kleineBreedte"></th>
-                            @if (Model.AantalLijnenLijst3 == 0)
-                            {
-                                <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
-
-                            }
+                            <th class="kleineBreedte2"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -234,41 +277,69 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijAanpassen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijVerwijderen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
-                                @if (i == Model.AantalLijnenLijst3)
-                                {
-                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
-
-                                }
                             </tr>
                         }
+
+                        <tr>
+                            <td class="opmaakKnopje" style="padding-top:0;">
+                                <div class="SpecialeHoogteDoorNielsGemaakt">
+                                    <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep3?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
-                    <h3>Gegevens van de nieuwe opleidingskost</h3>
-                    <input asp-for="VolgendeLijn3" type="hidden" />
-                    <span asp-validation-for="VolgendeLijn3" class="text-danger"></span>
-                    <div class="invulveldjes1 opmaakInvulveldjes">
-                        <div class="form-group opmaakFormGroup">
-                            <input asp-for="Beschrijving3" id="type3" class="form-control" placeholder="Type van kost" />
-                            <span asp-validation-for="Beschrijving3" class="text-danger"></span>
-                        </div>
-                        <div class="form-group floatLinks">
-                            <input asp-for="Bedrag3" id="Bedrag3" class="form-control" placeholder="Bedrag van de kost" />
 
-                            <span asp-validation-for="Bedrag3" class="text-danger"></span>
+                    <div class="row">
+                        <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe opleidingskost</u></h3>
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="marginBenedenTekstvelden">
+                                <input asp-for="VolgendeLijn3" type="hidden" />
+                                <span asp-validation-for="VolgendeLijn3" class="text-danger"></span>
+                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
+                                    <div class="col-md-6">
+                                        <div style="float:right;">
+                                            <label asp-for="Beschrijving3" id="type3" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12 text-center">
+                                                <div class="form-group">
+                                                    <input asp-for="Beschrijving3" id="type3" class="form-control" placeholder="Type van kost" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div style="float:left;">
+                                            <label asp-for="Bedrag3" type="number" id="Bedrag3" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12">
+                                                <div class="form-group">
+                                                    <input asp-for="Bedrag3" id="Bedrag3" class="form-control" placeholder="Bedrag van de kost" />
+                                                    <span asp-validation-for="Bedrag3" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-offset-4 col-md-4 ">
+                                <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                    <a id="vulInKnop3" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                    <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <a id="vulInKnop3" class="btn btn-primary btn-lg text-center">Vul In</a>
-                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
 
             </div>
 
 
-            <div class="or-spacer">
-                <div class="mask"></div>
+            <div>
+                <img src="~/images/iconen/divider.png" class="betereMarginBeneden" />
             </div>
 
             <div class="Blok1 text-center">
@@ -276,15 +347,10 @@
                 <table class="table table-striped text-left test marginBenedenGroot">
                     <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
-                            <th class="kleineBreedte"></th>
+                            <th class="kleineBreedte2"></th>
                             <th>Type</th>
                             <th>Bedrag</th>
-                            <th class="kleineBreedte"></th>
-                            @if (Model.AantalLijnenLijst4 == 0)
-                            {
-                                <th><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></th>
-
-                            }
+                            <th class="kleineBreedte2"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -298,35 +364,61 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijAanpassen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijVerwijderen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
-                                @if (i == Model.AantalLijnenLijst4)
-                                {
-                                    <td><a class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden"><img src="~/images/iconen/archive.png" /></a></td>
-
-                                }
                             </tr>
                         }
+
+                        <tr>
+                            <td class="opmaakKnopje" style="padding-top:0;">
+                                <div class="SpecialeHoogteDoorNielsGemaakt">
+                                    <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-lg text-center toverknop marginBenedenMidden">Nieuwe Kost</button>
                 <form method="post" class="invulgegevens @(Model.ToonGroep4?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
-                    <h3>Gegevens van de nieuwe kost</h3>
-                    <input asp-for="VolgendeLijn4" type="hidden" />
-                    <span asp-validation-for="VolgendeLijn4" class="text-danger"></span>
-                    <div class="invulveldjes1 opmaakInvulveldjes">
-                        <div class="form-group marginRechtsEnFloatLeft">
-                            <input asp-for="Beschrijving4" id="type4" class="form-control" placeholder="Type van kost" />
-                            <span asp-validation-for="Beschrijving4" class="text-danger"></span>
-                        </div>
-                        <div class="form-group floatLinks">
-                            <input asp-for="Bedrag4" id="Bedrag4" class="form-control" placeholder="Bedrag van de kost" />
+                    <div class="row">
+                        <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe kost</u></h3>
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="marginBenedenTekstvelden">
+                                <input asp-for="VolgendeLijn4" type="hidden" />
+                                <span asp-validation-for="VolgendeLijn4" class="text-danger"></span>
+                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
+                                    <div class="col-md-6">
+                                        <div style="float:right;">
+                                            <label asp-for="Beschrijving4" id="type4" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12 text-center">
+                                                <div class="form-group">
+                                                    <input asp-for="Beschrijving4" id="type4" class="form-control" placeholder="Type van kost" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div style="float:left;">
+                                            <label asp-for="Bedrag4" type="number" id="Bedrag4" class="col-md-12 text-left"></label>
+                                            <div class="col-xs-6 col-sm-6 col-md-12">
+                                                <div class="form-group">
+                                                    <input asp-for="Bedrag4" id="Bedrag4" class="form-control" placeholder="Bedrag van de kost" />
+                                                    <span asp-validation-for="Bedrag4" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <span asp-validation-for="Bedrag4" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-offset-4 col-md-4 ">
+                                <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                    <a id="vulInKnop4" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                    <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <a id="vulInKnop4" class="btn btn-primary btn-lg text-center">Vul In</a>
-                    <a class="btn btn-primary btn-lg text-center annuleerKnop">Annuleer</a>
                 </form>
             </div>
 

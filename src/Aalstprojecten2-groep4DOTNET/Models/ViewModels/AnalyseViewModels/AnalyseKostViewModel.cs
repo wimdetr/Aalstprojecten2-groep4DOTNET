@@ -13,12 +13,13 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public int VolgendeLijn { get; set; } = -1;
 
         public string Functie { get; set; }
-        [Display(Name = "Aantal uren per week")]
+        [Display(Name = "Uren per week")]
         [RegularExpression("[1-9][0-9]*", ErrorMessage = "{0} moet een positief getal zijn")]
         public string AantalUrenPerWeek { get; set; }
-        [Display(Name = "Bruto maandloon fulltime")]
+        [Display(Name = "Bruto maandloon")]
         [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
         public string BrutoMaandloonFulltime { get; set; }
+        [Display(Name = "Doelgroep")]
         public string Doelgroep { get; set; }
         [Display(Name = "Vlaamse ondersteuningspremie")]
         public string VlaamseOndersteuningsPremie { get; set; }

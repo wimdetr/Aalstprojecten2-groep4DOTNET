@@ -298,19 +298,28 @@
 
 /* 800-1300px settings*/
 @media all and (min-width:800px) and (max-width:1300px) {
-  .body {
-    height: 100vh;
-    font-size: 100%;
-  }
+    .body {
+        height: 100vh;
+        font-size: 100%;
+    }
+
     .footer {
-    display: inline-block;
-    width: 100%;
-    z-index: 16;
-    text-align: center;
-    position: fixed;
-    bottom: 0px;
-    padding: 0px 0px 2px 0px;
-  }
+        display: inline-block;
+        width: 100%;
+        z-index: 16;
+        text-align: center;
+        position: fixed;
+        bottom: 0px;
+        padding: 0px 0px 2px 0px;
+    }
+
+    .well {
+        min-height: 20px;
+        padding-top: 19px;
+        padding-bottom: 19px;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
@@ -325,11 +334,8 @@
     margin-bottom: 35px;
 }
 
-.or-spacer {
-  margin-bottom: 80px;
-  padding-left: 30%;
-  padding-right: 30%;
-  position: relative;
+.betereMarginBeneden {
+  margin-bottom: 50px;
 }
 .or-spacer .mask {
   overflow: hidden;
@@ -359,6 +365,26 @@
 
 .kleineBreedte {
     width:5%;
+}
+
+.kleineBreedte2 {
+    width:2%;
+}
+
+.kleineBreedte3 {
+    width:8%;
+}
+
+.kleineBreedte4 {
+    width:12%;
+}
+
+.kleineBreedte5 {
+    width:20%;
+}
+
+.kleineBreedte6 {
+    width:10%;
 }
 
 .marginRechtsEnFloatLeft {
@@ -408,4 +434,64 @@
 .beetjePaddingTopEnMarginBottom {
     padding-top: 15px;
     margin-bottom: 20px;
+}
+
+.knopInstellingen {
+    max-width: 15px;
+    max-height: 15px;
+}
+
+.SpecialeHoogteDoorNielsGemaakt {
+    max-height: 20px;
+    min-height: 20px;
+}
+
+.opmaakKnopje {
+    background-color:#337AB7;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 0;
+    cursor:pointer;
+}
+
+.fancyKnopkesLinkerKnop {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.fancyKnopkesRechterKnop {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.btn-group .btn {
+    border-radius: 6px;
+    margin-left: -1px;
+}
+
+.marginBenedenKnoppen {
+    margin-bottom: 80px;
+}
+
+.marginBenedenTitel {
+    margin-bottom: 40px;
+}
+
+.marginBovenKnoppen {
+    margin-top: 30px;
+}
+
+u {
+    text-decoration:none;
+    border-bottom: 2px solid black;
+}
+
+.breedte {
+    width: 100%;
 }

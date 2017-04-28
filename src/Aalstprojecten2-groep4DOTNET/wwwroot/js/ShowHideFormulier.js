@@ -1,15 +1,15 @@
 ﻿$(document).ready(function () {
     $(".toverknop")
         .click(function () {
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
             } else {
-                $(this).parent().parent().parent().parent()
+                $(this).parent().parent().parent().parent().parent()
                     .siblings(".invulgegevens")
                     .removeClass("toonFormulier animated zoomIn")
                     .addClass("animated zoomOut");
                 setTimeout(function () {
-                    $(".toverknop").parent().parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
+                    $(".toverknop").parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
                 }, 1000);
             }
         });
@@ -17,15 +17,19 @@
     $(".annuleerKnop")
         .click(function () {
             var knop = $(this);
-            knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+            knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
             setTimeout(function () {
-                knop.parent().addClass("verbergFormulier");
-                var inputsToClean = knop.siblings(".invulveldjes1").children(".form-group").find("input");
-                var length = inputsToClean.length;
-                for (var i = 0; i < length; i++) {
-                    inputsToClean[i].value = null;
-                }
-                $("span").text("");
+                knop.parent().parent().parent().parent().parent().addClass("verbergFormulier");
+                console.log(knop.parent().parent().siblings(".vanKnopNaarInputVelden"));
+                knop.parent().parent().siblings(".vanKnopNaarInputVelden").children().each(function () {
+                    console.log($(this));
+                });
+                //var inputsToClean = knop.siblings(".invulveldjes1").children(".form-group").find("input");
+                //var length = inputsToClean.length;
+                //for (var i = 0; i < length; i++) {
+                //    inputsToClean[i].value = null;
+                //}
+                //$("span").text("");
             }, 1000);
         });
     $(".annuleerKnopKost1")
