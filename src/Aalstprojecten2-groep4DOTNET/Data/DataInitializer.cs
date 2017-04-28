@@ -23,6 +23,12 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             _context.Database.EnsureDeleted();
             if (_context.Database.EnsureCreated())
             {
+                _context.Doelgroepen.Add(new Doelgroep("werknemer minder dan 25 jaar laaggeschoold", 1550, 2500, false));
+                _context.Doelgroepen.Add(new Doelgroep("werknemer minder dan 25 jaar middengeschoold", 1000, 2500, false));
+                _context.Doelgroepen.Add(new Doelgroep("werknemer meer of gelijk aan 55 of minder dan 60 jaar", 1150, 4466.66, false));
+                _context.Doelgroepen.Add(new Doelgroep("werknemer meer of evenveel als 60 jaar", 1500, 4466.66, false));
+                _context.Doelgroepen.Add(new Doelgroep("ander", 0, 0, false));
+
                 JobCoach mark = new JobCoach("De Witte", "Andreas", "andreas.dewitte@hotmail.com", "Kairos", "Zevekootstraat", 129, 9420, "Erpe");
                 mark.Wachtwoord = "woopwoop";
                 mark.MoetWachtwoordVeranderen = false;
@@ -35,7 +41,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 KOBVak k1R1Vak1 = new KOBVak(k1Rij1, 1, "programmeur");
                 KOBVak k1R1Vak2 = new KOBVak(k1Rij1, 2, "10");
                 KOBVak k1R1Vak3 = new KOBVak(k1Rij1, 3, "3000");
-                KOBVak k1R1Vak4 = new KOBVak(k1Rij1, 4, "wn minder dan 25 jaar middengeschoold");
+                KOBVak k1R1Vak4 = new KOBVak(k1Rij1, 4, "werknemer minder dan 25 jaar middengeschoold");
                 KOBVak k1R1Vak5 = new KOBVak(k1Rij1, 5, "30");
                 k1Rij1.VulKOBVakIn(k1R1Vak1);
                 k1Rij1.VulKOBVakIn(k1R1Vak2);
@@ -46,7 +52,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 KOBVak k1R2Vak1 = new KOBVak(k1Rij2, 1, "netwerker");
                 KOBVak k1R2Vak2 = new KOBVak(k1Rij2, 2, "15");
                 KOBVak k1R2Vak3 = new KOBVak(k1Rij2, 3, "2000,30");
-                KOBVak k1R2Vak4 = new KOBVak(k1Rij2, 4, "wn minder dan 25 jaar laaggeschoold");
+                KOBVak k1R2Vak4 = new KOBVak(k1Rij2, 4, "werknemer minder dan 25 jaar laaggeschoold");
                 KOBVak k1R2Vak5 = new KOBVak(k1Rij2, 5, "20");
                 k1Rij2.VulKOBVakIn(k1R2Vak1);
                 k1Rij2.VulKOBVakIn(k1R2Vak2);

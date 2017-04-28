@@ -21,19 +21,21 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly IAnalyseRepository _analyseRepository;
         private readonly IWerkgeverRepository _werkgeverRepository;
         private readonly IJobCoachRepository _jobCoachRepository;
+        private readonly IDoelgroepRepository _doelgroepRepository;
 
-        public AnalyseController(IAnalyseRepository analyseRepository, IWerkgeverRepository werkgeverRepository, IJobCoachRepository jobCoachRepository)
+        public AnalyseController(IAnalyseRepository analyseRepository, IWerkgeverRepository werkgeverRepository, IJobCoachRepository jobCoachRepository, IDoelgroepRepository doelgroepRepository)
         {
             _analyseRepository = analyseRepository;
             _werkgeverRepository = werkgeverRepository;
             _jobCoachRepository = jobCoachRepository;
+            _doelgroepRepository = doelgroepRepository;
         }
         // GET: /<controller>/
         public IActionResult AnalyseBekijken()
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<Analyse> analyses = _analyseRepository.GetAllWelGearchiveerd(User.Identity.Name);
-            Resultaat r = new Resultaat();
+            Resultaat r = new Resultaat(_doelgroepRepository.GetAll());
             foreach (Analyse a in analyses)
             {
                 r.BerekenResultaatVanAnalyse(a);
@@ -148,7 +150,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             else
             {
-                Resultaat resultaat = new Resultaat();
+                Resultaat resultaat = new Resultaat(_doelgroepRepository.GetAll());
                 resultaat.BerekenResultaatVanAnalyse(analyse);
                 model = new AnalyseResultaatOverzichtViewModel(analyse);
             }
@@ -2771,6 +2773,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
 
             }
+            model.Doelgroepen = _doelgroepRepository.GetAllSelecteerbaar().Select(d => d.DoelgroepText).ToList();
+
+
             model.AantalLijnenKost1 = lijst.Count;
             model.LijnenKost1 = lijst;
 
@@ -2980,6 +2985,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
 
             }
+            model.Doelgroepen = _doelgroepRepository.GetAllSelecteerbaar().Select(d => d.DoelgroepText).ToList();
+
             model.AantalLijnenKost1 = lijst.Count;
             model.LijnenKost1 = lijst;
 
@@ -5236,3 +5243,4 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
     }
 }
+

@@ -29,6 +29,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [Display(Name = "Totale productiviteits premie IBO")]
         [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
         public string TotaleProductiviteitsPremieIBO { get; set; }
+        public IEnumerable<string> Doelgroepen { get; set; }
 
         public bool ToonGroep1 { get; set; } = false;
         public bool BevatFout { get; set; } = false;
