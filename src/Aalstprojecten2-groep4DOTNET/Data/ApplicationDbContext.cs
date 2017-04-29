@@ -18,6 +18,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         public DbSet<Werkgever> Werkgevers { get; set; }
         public DbSet<InterneMailJobcoach> InterneMailJobcoaches { get; set; }
         public DbSet<Doelgroep> Doelgroepen { get; set; }
+        public DbSet<AdminMail> AdminMails { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -37,10 +38,29 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             builder.Entity<KOBVak>(MapKOBVak);
             builder.Entity<InterneMail>(MapInterneMail);
             builder.Entity<InterneMailJobcoach>(MapInterneMailJobcoach);
-            builder.Entity<Doelgroep>(MapDoelgroepen);
+            builder.Entity<AdminMail>(MapAdminMail);
+            builder.Entity<Doelgroep>(MapDoelgroep);
+            
         }
 
-        private void MapDoelgroepen(EntityTypeBuilder<Doelgroep> d)
+        private void MapAdminMail(EntityTypeBuilder<AdminMail> a)
+        {
+            a.ToTable("AdminMail");
+            a.HasKey(t => t.AdminMailId);
+
+            a.Property(t => t.Onderwerp).HasMaxLength(100).IsRequired();
+            a.Property(t => t.Inhoud).IsRequired();
+            a.Property(t => t.Ontvanger).IsRequired();
+            a.Property(t => t.IsGelezen).IsRequired();
+            a.Property(t => t.VerzendDatum).IsRequired();
+
+            a.HasOne(t => t.Afzender)
+                .WithMany()
+                .HasForeignKey(t => t.AfzenderMail)
+                .IsRequired();
+        }
+
+        private void MapDoelgroep(EntityTypeBuilder<Doelgroep> d)
         {
             d.ToTable("Doelgroep");
             d.HasKey(t => t.DoelgroepId);

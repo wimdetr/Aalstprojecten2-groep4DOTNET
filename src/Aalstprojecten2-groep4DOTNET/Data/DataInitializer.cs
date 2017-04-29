@@ -277,8 +277,8 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 c.Nummer = 46;
                 a.Werkgever = c;
 
-                InterneMail mail1 = new InterneMail("welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
-                InterneMail mail2 = new InterneMail("Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail1 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail2 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
 
                 mark.AddMail(mail1);
                 foreach (InterneMailJobcoach i in mark.InterneMailJobcoaches)
@@ -287,8 +287,9 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 }
                 mark.AddMail(mail2);
 
-
-
+                AdminMail adminMail = new AdminMail(mark, "andreas.dewitte@hotmail.com",
+                    "admin mail", "dit is een mail voor de admin", DateTime.Now);
+                _context.AdminMails.Add(adminMail);
 
 
                 _context.SaveChanges();

@@ -23,15 +23,16 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IInterneMailJobcoachRepository _interneMailJobcoachRepository;
         private readonly IDoelgroepRepository _doelgroepRepository;
+        private readonly IAdminMailRepository _adminMailRepository;
 
-
-        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository, IDoelgroepRepository doelgroepRepository)
+        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository, IDoelgroepRepository doelgroepRepository, IAdminMailRepository adminMailRepository)
         {
             _jobCoachRepository = jobCoachRepository;
             _analyseRepository = analyseRepository;
             _userManager = userManager;
             _interneMailJobcoachRepository = interneMailJobcoachRepository;
             _doelgroepRepository = doelgroepRepository;
+            _adminMailRepository = adminMailRepository;
         }
         public IActionResult Index()
         {
@@ -331,6 +332,36 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             
             return RedirectToAction(nameof(OverzichtMailbox));
+        }
+
+        public IActionResult BeantwoordMail(int id)
+        {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
+            InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
+            BeantwoordMailViewModel model = new BeantwoordMailViewModel(mail);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult BeantwoordMail(BeantwoordMailViewModel model)
+        {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+                    AdminMail mail = new AdminMail(jc, model.AdminMail, model.Onderwerp, model.Inhoud, DateTime.Now);
+                    _adminMailRepository.Add(mail);
+                    _adminMailRepository.SaveChanges();
+                    return RedirectToAction(nameof(OverzichtMailbox));
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            return View(model);
         }
 
         private bool ControleerOfModelVerandertIs(ProfielAanpassenViewModel model)

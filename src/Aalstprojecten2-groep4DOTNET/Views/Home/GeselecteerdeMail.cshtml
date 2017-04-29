@@ -2,6 +2,11 @@
 
 <p>@Model.DatumTijd</p>
 
+<p>@Model.Afzender</p>
+
 <p>@Model.Onderwerp</p>
 
 <p>@Model.Inhoud</p>
+
+<a asp-controller="Home" asp-action="OverzichtMailbox">Terug</a>
+<a asp-controller="Home" asp-action="BeantwoordMail" asp-route-id="@Model.MailId">beantwoord</a>
