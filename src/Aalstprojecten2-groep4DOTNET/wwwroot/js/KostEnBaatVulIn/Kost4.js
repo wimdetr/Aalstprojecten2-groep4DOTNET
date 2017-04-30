@@ -17,13 +17,13 @@
 
 
             if (bevatFout) {
-                knop.parent().attr("action", "AnalyseKost4Punt1");
-                knop.parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt1");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
                 setTimeout(function () {
-                    knop.parent().attr("action", "AnalyseKost4Punt1");
-                    knop.parent().submit();
+                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt1");
+                    knop.parent().parent().parent().parent().parent().submit();
                 },
                     1000);
             }
@@ -53,13 +53,13 @@
             }
 
             if (bevatFout) {
-                knop.parent().attr("action", "AnalyseKost4Punt2");
-                knop.parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt2");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
                 setTimeout(function () {
-                    knop.parent().attr("action", "AnalyseKost4Punt2");
-                    knop.parent().submit();
+                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt2");
+                    knop.parent().parent().parent().parent().parent().submit();
                 },
                     1000);
             }
@@ -84,13 +84,13 @@
 
 
             if (bevatFout) {
-                knop.parent().attr("action", "AnalyseKost4Punt3");
-                knop.parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt3");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
                 setTimeout(function () {
-                    knop.parent().attr("action", "AnalyseKost4Punt3");
-                    knop.parent().submit();
+                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt3");
+                    knop.parent().parent().parent().parent().parent().submit();
                 },
                     1000);
             }
@@ -115,13 +115,13 @@
 
 
             if (bevatFout) {
-                knop.parent().attr("action", "AnalyseKost4Punt4");
-                knop.parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt4");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
                 setTimeout(function () {
-                    knop.parent().attr("action", "AnalyseKost4Punt4");
-                    knop.parent().submit();
+                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt4");
+                    knop.parent().parent().parent().parent().parent().submit();
                 },
                     1000);
             }

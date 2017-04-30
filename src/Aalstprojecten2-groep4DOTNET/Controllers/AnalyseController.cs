@@ -1369,7 +1369,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     {
                         baatRij = new KOBRij(baat, 1);
                     }
-                    
+
                     KOBVak kostVak1 = new KOBVak(baatRij, 1, model.Baat8 == null ? 0.ToString() : model.Baat8);
                     baatRij.VulKOBVakIn(kostVak1);
                     baat.VulKOBRijIn(baatRij);
@@ -1712,7 +1712,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         kostVak1 = new KOBVak(baatRij, 1, 0.ToString());
                     }
                     KOBVak kostVak2 = new KOBVak(baatRij, 2, model.Baat10Punt2 == null ? 0.ToString() : model.Baat10Punt2);
-                    
+
                     baatRij.VulKOBVakIn(kostVak1);
                     baatRij.VulKOBVakIn(kostVak2);
                     baat.VulKOBRijIn(baatRij);
@@ -2394,7 +2394,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
 
-            
+
             return View(nameof(AnalyseBaat3), model);
         }
 
@@ -2730,6 +2730,24 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
             IList<AnalyseKostLijstObjectViewModel> lijst = new List<AnalyseKostLijstObjectViewModel>();
+            Resultaat resultaat = new Resultaat(_doelgroepRepository.GetAll());
+            if (kost1 != null)
+            {
+                resultaat.GeefParametersDoor(kost1, analyse);
+                foreach (KOBRij rij in kost1.Rijen)
+                {
+                    resultaat.BerekenEnSetResultaat(rij);
+                }
+            }
+            if (baat1 != null)
+            {
+
+                resultaat.GeefParametersDoor(baat1, analyse);
+                foreach (KOBRij rij in baat1.Rijen)
+                {
+                    resultaat.BerekenEnSetResultaat(rij);
+                }
+            }
             for (var i = 1; i <= hoogsteId; i++)
             {
                 KOBRij kostRij;
@@ -2762,12 +2780,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         m.BrutoMaandloonFulltime = kostRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble();
                         m.Doelgroep = kostRij.GeefKOBVakMetNummer(4).Data;
                         m.VlaamseOndersteuningsPremie = (int)kostRij.GeefKOBVakMetNummer(5).GeefDataAlsDouble();
+                        m.KostUitkomst = kostRij.Resultaat*12;
                     }
                     if (baatRij != null)
                     {
                         m.Kost1Id = i;
                         m.AantalMaandenIBO = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble();
                         m.TotaleProductiviteitsPremieIBO = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble();
+                        m.BaatUitkomst = baatRij.Resultaat;
                     }
                     lijst.Add(m);
                 }
@@ -2795,13 +2815,13 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             KostOfBaat baat1 = analyse.GeefBaatMetNummer(1);
             if (model.Functie == null && model.AantalUrenPerWeek == null && model.BrutoMaandloonFulltime == null && model.Doelgroep.Equals("Kies uw doelgroep") && model.VlaamseOndersteuningsPremie.Equals("Vlaamse ondersteuningspremie") && model.AantalMaandenIBO == null && model.TotaleProductiviteitsPremieIBO == null)
             {
-                ModelState.AddModelError("VolgendeLijn","Gelieve minstens 1 veld in te vullen.");
+                ModelState.AddModelError("VolgendeLijn", "Gelieve minstens 1 veld in te vullen.");
             }
             if (ModelState.IsValid)
             {
                 try
                 {
-                    
+
 
                     if (kost1 == null)
                     {
@@ -2851,7 +2871,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         kostRij = kost1.GeefKOBRijMetNummer(model.VolgendeLijn);
                         baatRij = baat1.GeefKOBRijMetNummer(model.VolgendeLijn);
                     }
-                    KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Functie == null? string.Empty : model.Functie);
+                    KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Functie == null ? string.Empty : model.Functie);
                     KOBVak kostVak2 = new KOBVak(kostRij, 2, model.AantalUrenPerWeek == null ? 0.ToString() : model.AantalUrenPerWeek);
                     KOBVak kostVak3 = new KOBVak(kostRij, 3, model.BrutoMaandloonFulltime == null ? 0.ToString() : model.BrutoMaandloonFulltime);
                     KOBVak kostVak4 = new KOBVak(kostRij, 4, model.Doelgroep.Equals("Kies uw doelgroep") ? "ander" : model.Doelgroep);
@@ -2942,6 +2962,24 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
             IList<AnalyseKostLijstObjectViewModel> lijst = new List<AnalyseKostLijstObjectViewModel>();
+            Resultaat resultaat = new Resultaat(_doelgroepRepository.GetAll());
+            if (kost1 != null)
+            {
+                resultaat.GeefParametersDoor(kost1, analyse);
+                foreach (KOBRij rij in kost1.Rijen)
+                {
+                    resultaat.BerekenEnSetResultaat(rij);
+                }
+            }
+            if (baat1 != null)
+            {
+
+                resultaat.GeefParametersDoor(baat1, analyse);
+                foreach (KOBRij rij in baat1.Rijen)
+                {
+                    resultaat.BerekenEnSetResultaat(rij);
+                }
+            }
             for (var i = 1; i <= hoogsteId; i++)
             {
                 KOBRij kostRij;
@@ -2974,12 +3012,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         m.BrutoMaandloonFulltime = kostRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble();
                         m.Doelgroep = kostRij.GeefKOBVakMetNummer(4).Data;
                         m.VlaamseOndersteuningsPremie = (int)kostRij.GeefKOBVakMetNummer(5).GeefDataAlsDouble();
+                        m.KostUitkomst = kostRij.Resultaat * 12;
                     }
                     if (baatRij != null)
                     {
                         m.Kost1Id = i;
                         m.AantalMaandenIBO = (int)baatRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble();
                         m.TotaleProductiviteitsPremieIBO = baatRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble();
+                        m.BaatUitkomst = baatRij.Resultaat;
                     }
                     lijst.Add(m);
                 }
@@ -3062,7 +3102,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
-            
+
             return RedirectToAction(nameof(AnalyseKost));
         }
 
@@ -3142,7 +3182,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 try
                 {
-                    
+
                     if (kost == null)
                     {
                         kost = new KostOfBaat(analyse, 8, KOBEnum.Kost, Formule.FormuleGeefVak2);
@@ -3164,7 +3204,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     {
                         kostRij = kost.GeefKOBRijMetNummer(model.VolgendeLijn);
                     }
-                    KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Beschrijving == null? string.Empty:model.Beschrijving);
+                    KOBVak kostVak1 = new KOBVak(kostRij, 1, model.Beschrijving == null ? string.Empty : model.Beschrijving);
                     KOBVak kostVak2 = new KOBVak(kostRij, 2, model.Bedrag == null ? 0.ToString() : model.Bedrag);
                     kostRij.VulKOBVakIn(kostVak1);
                     kostRij.VulKOBVakIn(kostVak2);
@@ -3278,7 +3318,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
-            
+
             return RedirectToAction(nameof(AnalyseKost2));
         }
 
@@ -3406,7 +3446,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 try
                 {
-                    
+
                     KostOfBaat kost = analyse.GeefKostMetNummer(3);
                     if (kost == null)
                     {
@@ -3568,7 +3608,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 try
                 {
-                    
+
                     KostOfBaat kost = analyse.GeefKostMetNummer(4);
                     if (kost == null)
                     {
@@ -3755,7 +3795,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
-            
+
             return RedirectToAction(nameof(AnalyseKost3));
         }
 
@@ -3800,7 +3840,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 a.VernieuwDatum();
                 _analyseRepository.SaveChanges();
             }
-            
+
             return RedirectToAction(nameof(AnalyseKost3));
         }
 
@@ -4021,7 +4061,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 ModelState.AddModelError("VolgendeLijn1", "Gelieve minstens 1 veld in te vullen.");
             }
-            
+
             if (ModelState.IsValid)
             {
                 try

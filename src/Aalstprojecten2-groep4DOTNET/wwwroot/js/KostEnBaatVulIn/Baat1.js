@@ -22,13 +22,13 @@
             }
 
             if (bevatFout) {
-                knop.parent().attr("action", "AnalyseBaat1Punt1");
-                knop.parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat1Punt1");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
                 setTimeout(function () {
-                    knop.parent().attr("action", "AnalyseBaat1Punt1");
-                    knop.parent().submit();
+                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat1Punt1");
+                    knop.parent().parent().parent().parent().parent().submit();
                 },
                     1000);
             }
@@ -58,15 +58,14 @@
             }
 
             if (bevatFout) {
-                knop.parent().attr("action", "AnalyseBaat1Punt2");
-                knop.parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat1Punt2");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
                 setTimeout(function () {
-                    knop.parent().attr("action", "AnalyseBaat1Punt2");
-                    knop.parent().submit();
-                },
-                    1000);
+                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat1Punt2");
+                    knop.parent().parent().parent().parent().parent().submit();
+                }, 1000);
             }
         });
 });

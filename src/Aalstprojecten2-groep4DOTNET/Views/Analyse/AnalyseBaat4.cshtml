@@ -125,10 +125,11 @@
                                 <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
                                     <div class="col-md-6">
                                         <div style="float:right;">
-                                            <label asp-for="Beschrijving" id="type" class="col-md-12 text-left"></label>
+                                            <label asp-for="Beschrijving"class="col-md-12 text-left"></label>
                                             <div class="col-xs-6 col-sm-6 col-md-12 text-center">
                                                 <div class="form-group">
                                                     <input asp-for="Beschrijving" id="type" class="form-control" placeholder="Type Besparing" />
+                                                    <span asp-validation-for="Beschrijving" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -136,7 +137,7 @@
 
                                     <div class="col-md-6">
                                         <div style="float:left;">
-                                            <label asp-for="Bedrag" type="number" id="jaarBedrag" class="col-md-12 text-left"></label>
+                                            <label asp-for="Bedrag" type="number" class="col-md-12 text-left"></label>
                                             <div class="col-xs-6 col-sm-6 col-md-12">
                                                 <div class="form-group">
                                                     <input asp-for="Bedrag" id="jaarBedrag" class="form-control" placeholder="Jaarbedrag" />
