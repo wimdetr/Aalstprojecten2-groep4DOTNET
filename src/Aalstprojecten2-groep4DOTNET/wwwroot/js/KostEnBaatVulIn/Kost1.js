@@ -32,11 +32,11 @@
             }
 
             if (bevatFout) {
-                knop.parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
                 setTimeout(function () {
-                    knop.parent().submit();
+                    knop.parent().parent().parent().parent().parent().submit();
                 },
                     1000);
             }

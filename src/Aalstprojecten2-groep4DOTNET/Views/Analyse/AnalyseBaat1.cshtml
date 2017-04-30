@@ -125,10 +125,11 @@
                                 <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
                                     <div class="col-md-6">
                                         <div style="float:right;">
-                                            <label asp-for="Uren1" type="number" id="uren1" placeholder="Uren" class="col-md-12 text-left"></label>
+                                            <label asp-for="Uren1" type="number" placeholder="Uren" class="col-md-12 text-left"></label>
                                             <div class="col-xs-6 col-sm-6 col-md-12 text-center">
                                                 <div class="form-group">
                                                     <input asp-for="Uren1" type="number" id="uren1" class="form-control" placeholder="Uren" />
+                                                    <span asp-validation-for="Uren1" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,7 +138,7 @@
 
                                     <div class="col-md-6">
                                         <div style="float:left;">
-                                            <label asp-for="Maandloon1" type="number" id="uren1" placeholder="Maandloon" class="col-md-12 text-left"></label>
+                                            <label asp-for="Maandloon1" type="number" placeholder="Maandloon" class="col-md-12 text-left"></label>
                                             <div class="col-xs-6 col-sm-6 col-md-12">
                                                 <div class="form-group">
                                                     <input asp-for="Maandloon1" id="brutoMaandloonFulltime1" class="form-control" placeholder="Bruto maandloon fulltime" />
@@ -214,10 +215,11 @@
                                 <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
                                     <div class="col-md-6">
                                         <div style="float:right;">
-                                            <label asp-for="Uren2" type="number" id="uren2" placeholder="Uren" class="col-md-12 text-left"></label>
+                                            <label asp-for="Uren2" type="number" placeholder="Uren" class="col-md-12 text-left"></label>
                                             <div class="col-xs-6 col-sm-6 col-md-12 text-center">
                                                 <div class="form-group">
                                                     <input asp-for="Uren2" type="number" id="uren2" class="form-control" placeholder="Uren" />
+                                                    <span asp-validation-for="Uren2" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -226,7 +228,7 @@
 
                                     <div class="col-md-6">
                                         <div style="float:left;">
-                                            <label asp-for="Maandloon2" type="number" id="uren1" placeholder="Maandloon" class="col-md-12 text-left"></label>
+                                            <label asp-for="Maandloon2" type="number" placeholder="Maandloon" class="col-md-12 text-left"></label>
                                             <div class="col-xs-6 col-sm-6 col-md-12">
                                                 <div class="form-group">
                                                     <input asp-for="Maandloon2" id="brutoMaandloonFulltime2" class="form-control" placeholder="Bruto maandloon fulltime" />
