@@ -10,8 +10,10 @@ using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
 using Aalstprojecten2_groep4DOTNET.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Aalstprojecten2_groep4DOTNET.Controllers
 {
@@ -51,7 +53,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
             if (analyse == null)
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View();
         }
@@ -274,6 +276,18 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult VerwijderMail(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
+            InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
+            if (mail == null)
+                return RedirectToAction(nameof(OverzichtMailbox));
+            ViewData["mail"] = mail.InterneMail.Afzender + " met onderwerp " + mail.InterneMail.Onderwerp;
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("VerwijderMail")]
+        public IActionResult BevestigVerwijderMail(int id)
+        {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
             _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, id));
             _interneMailJobcoachRepository.SaveChanges();
             return RedirectToAction(nameof(OverzichtMailbox));
@@ -303,20 +317,44 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            ICollection<InterneMailJobcoach> geselecteerdeMails = new List<InterneMailJobcoach>();
             foreach (InterneMailJobcoach m in mails)
             {
                 string id = "checkbox" + m.InterneMailId;
                 string check = Request.Form[id];
                 if (check != null && check.Equals("on"))
                 {
-                    _interneMailJobcoachRepository.Delete(m);
-                    _interneMailJobcoachRepository.SaveChanges();
-
+                    geselecteerdeMails.Add(m);
                 }
             }
+            HttpContext.Session.SetString("mails", JsonConvert.SerializeObject(geselecteerdeMails));
 
+            return RedirectToAction(nameof(BevestigVerwijderGeselecteerde));
+        }
 
-            _interneMailJobcoachRepository.SaveChanges();
+        public IActionResult BevestigVerwijderGeselecteerde()
+        {
+            AnalyseFilter.HaalAnalyseUitSessie(HttpContext);
+            ViewData["mails"] =
+                JsonConvert.DeserializeObject<ICollection<InterneMailJobcoach>>(HttpContext.Session.GetString("mails")).Count;
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("BevestigVerwijderGeselecteerde")]
+        public IActionResult BevestigBevestigVerwijderGeselecteerde()
+        {
+            AnalyseFilter.HaalAnalyseUitSessie(HttpContext);
+            ICollection<InterneMailJobcoach> mails = JsonConvert.DeserializeObject<ICollection<InterneMailJobcoach>>(HttpContext.Session.GetString("mails"));
+            if (mails == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            foreach (InterneMailJobcoach m in mails)
+            {
+                _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, m.InterneMailId));
+                _interneMailJobcoachRepository.SaveChanges();
+            }
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
@@ -362,6 +400,13 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
             return View(model);
+        }
+
+        public bool ControleerOfMailSessieVerlopenIs()
+        {
+            ICollection<InterneMailJobcoach> mails = JsonConvert.DeserializeObject<ICollection<InterneMailJobcoach>>(HttpContext.Session.GetString("mails"));
+            //return (analyse == null) || (analyse.JobCoachEmail == null && analyse.KostenEnBaten == null && analyse.Werkgever == null);
+            return true;
         }
 
         private bool ControleerOfModelVerandertIs(ProfielAanpassenViewModel model)

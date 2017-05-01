@@ -1,0 +1,9 @@
+﻿<h4>
+    Bent u zeker dat u de @ViewData["mails"] mails wilt verwijderen?
+</h4>
+<form asp-action="BevestigVerwijderGeselecteerde" method="post">
+    <div>
+        <button class="btn btn-primary" type="submit">Bevestig</button>
+        <a asp-action="OverzichtMailbox" class="btn btn-default">annuleer</a>
+    </div>
+</form>

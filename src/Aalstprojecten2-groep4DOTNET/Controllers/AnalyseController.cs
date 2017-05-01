@@ -317,6 +317,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1(Analyse analyse, AnalyseBaat1ViewModel model)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -426,6 +427,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat1Punt1(AnalyseBaat1ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -591,6 +593,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat1Punt2(AnalyseBaat1ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -756,6 +759,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt1RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -777,6 +781,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -802,6 +807,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt2RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -823,6 +829,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -848,6 +855,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2(Analyse analyse, AnalyseBaat2ViewModel model)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -979,6 +987,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt1(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1164,6 +1173,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt2(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1350,6 +1360,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt3(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1515,6 +1526,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt4(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1686,6 +1698,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat2Punt5(AnalyseBaat2ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1857,6 +1870,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt1RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1877,6 +1891,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1902,6 +1917,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt2RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1922,6 +1938,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -1947,6 +1964,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat3(Analyse analyse, AnalyseBaat3ViewModel model)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2029,6 +2047,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat3Punt1(AnalyseBaat3ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2166,6 +2185,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat3Punt2(AnalyseBaat3ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2284,6 +2304,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseBaat3Punt3(AnalyseBaat3ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2401,6 +2422,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat3Punt1RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2422,6 +2444,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat3Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2447,6 +2470,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat4(AnalyseBaat4ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2508,6 +2532,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost, ActionName("AnalyseBaat4")]
         public IActionResult AnalyseBaat4Post(AnalyseBaat4ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2623,6 +2648,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat4RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2643,6 +2669,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat4RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2668,6 +2695,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost(Analyse analyse, AnalyseKostViewModel model)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -2807,6 +2835,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost(AnalyseKostViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3039,6 +3068,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKostRijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3071,6 +3101,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKostRijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3109,6 +3140,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost2(Analyse analyse, AnalyseKost2ViewModel model)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3168,6 +3200,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost2(AnalyseKost2ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3280,6 +3313,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost2RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3300,6 +3334,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost2RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3325,6 +3360,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3(Analyse analyse, AnalyseKost3ViewModel model)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3434,6 +3470,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost3Punt1(AnalyseKost3ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3596,6 +3633,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost3Punt2(AnalyseKost3ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3757,6 +3795,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt1RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3777,6 +3816,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3802,6 +3842,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt2RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3822,6 +3863,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -3847,6 +3889,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4(Analyse analyse, AnalyseKost4ViewModel model)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -4053,6 +4096,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt1(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -4312,6 +4356,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt2(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -4570,6 +4615,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt3(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -4828,6 +4874,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult AnalyseKost4Punt4(AnalyseKost4ViewModel model, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5085,6 +5132,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt1RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5105,6 +5153,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt1RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5130,6 +5179,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt2RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5150,6 +5200,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt2RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5175,6 +5226,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt3RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5195,6 +5247,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt3RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5220,6 +5273,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt4RijAanpassen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
@@ -5240,6 +5294,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt4RijVerwijderen(int id, Analyse analyse)
         {
+            AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
