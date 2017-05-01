@@ -56,5 +56,15 @@ namespace Aalstprojecten2_groep4DOTNET.Filters
         {
             context.Session.Clear();
         }
+
+        public static void HaalAnalyseUitSessie(HttpContext context)
+        {
+            context.Session.Remove("analyse");
+        }
+
+        public static void HaalMailsUitSessie(HttpContext context)
+        {
+            context.Session.Remove("mails");
+        }
     }
 }
