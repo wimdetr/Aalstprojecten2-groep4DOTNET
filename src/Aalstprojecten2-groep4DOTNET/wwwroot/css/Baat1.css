@@ -335,7 +335,8 @@
 }
 
 .betereMarginBeneden {
-  margin-bottom: 50px;
+  margin-bottom: 80px;
+    margin-top: 50px;
 }
 .or-spacer .mask {
   overflow: hidden;
@@ -494,4 +495,8 @@ u {
 
 .breedte {
     width: 100%;
+}
+
+.invulgegevens {
+    overflow: hidden;
 }

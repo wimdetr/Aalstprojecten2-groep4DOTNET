@@ -10,7 +10,7 @@
                     .addClass("animated zoomOut");
                 setTimeout(function () {
                     $(".toverknop").parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
-                }, 1000);
+                }, 1500);
             }
         });
 
@@ -24,7 +24,7 @@
                     $(this).children().children("div").children(".form-group").find("input").val("");
                 });
                 $("span").text("");
-            }, 1000);
+            }, 1500);
         });
     $(".annuleerKnopKost1")
         .click(function () {
@@ -52,6 +52,6 @@
                 $("#dropDown1").val("Kies uw doelgroep");
                 $("#dropDown2").val("Vlaamse ondersteuningspremie");
                 $("span").text("");
-            }, 1000);
+            }, 1500);
         });
 });

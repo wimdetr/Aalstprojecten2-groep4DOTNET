@@ -1,8 +1,8 @@
 ﻿@charset "UTF-8";
 
 .animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -2699,7 +2699,11 @@
 
   50% {
     opacity: 1;
-      max-height: 300px;
+  }
+
+    to {
+    opacity: 1;
+      max-height: 500px;
   }
 }
 
@@ -2713,7 +2717,11 @@
 
   50% {
     opacity: 1;
-      max-height: 300px;
+  }
+
+  to {
+    opacity: 1;
+      max-height: 500px;
   }
 }
 
@@ -2889,7 +2897,7 @@
 @-webkit-keyframes zoomOut {
   from {
     opacity: 1;
-      max-height: 300px;
+      max-height: 500px;
   }
 
   50% {
@@ -2907,7 +2915,7 @@
 @keyframes zoomOut {
   from {
     opacity: 1;
-      max-height: 300px;
+      max-height: 500px;
   }
 
   50% {
