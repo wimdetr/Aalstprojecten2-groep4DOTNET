@@ -33,4 +33,29 @@
             }
         });
 
+    $(".editKnop1")
+        .click(function () {
+            var knop = $(this);
+            var waarden = knop.parent().siblings("td").map(function () {
+                return $(this).text();
+            });
+
+            var lijnId = waarden[0];
+            var jaarbedrag = waarden[2].substring(2, waarden[2].length).replace(".", "");
+            var besparing = waarden[3].substring(0, waarden[3].length-1);
+            if (parseFloat(jaarbedrag) === 0) {
+                jaarbedrag = "";
+            }
+            if (parseFloat(besparing) === 0) {
+                besparing = "";
+            }
+
+            $("#volgendeLijn1").val(lijnId);
+            $("#jaarbedragOmzetverlies").val(jaarbedrag);
+            $("#besparing").val(besparing);
+
+            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+            }
+        });
 });

@@ -93,11 +93,12 @@
                         @for (var i = 1; i <= Model.AantalLijnenLijst; i++)
                         {
                             <tr id="tr_0">
+                                <td style="display: none;">@Model.Lijst[i - 1].KostId</td>
                                 <td>@i.</td>
                                 <td>@Model.Lijst[i - 1].Beschrijving</td>
                                 <td>@Model.Lijst[i - 1].Bedrag.ToString("C")</td>
                                 <td class="text-center">
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat4RijAanpassen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
+                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat4RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
                             </tr>
@@ -120,7 +121,7 @@
                         <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe besparin</u></h3>
                         <div class="col-md-offset-1 col-md-10">
                             <div class="marginBenedenTekstvelden">
-                                <input asp-for="VolgendeLijn" type="hidden" />
+                                <input asp-for="VolgendeLijn" id="volgendeLijn1" type="hidden" />
                                 <span asp-validation-for="VolgendeLijn" class="text-danger"></span>
                                 <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
                                     <div class="col-md-6">
@@ -153,7 +154,7 @@
 
                             <div class="col-md-offset-4 col-md-4 ">
                                 <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
-                                    <a id="vulInKnop2" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                    <a id="vulInKnop" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
                                     <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
                                 </div>
                             </div>

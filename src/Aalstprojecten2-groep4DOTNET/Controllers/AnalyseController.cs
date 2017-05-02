@@ -472,28 +472,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat1Punt1RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij baatrij = analyse.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
-            AnalyseBaat1ViewModel model = new AnalyseBaat1ViewModel();
-            if (baatrij != null)
-            {
-                model.Uren1 = baatrij.GeefKOBVakMetNummer(1).Data;
-                model.Maandloon1 = baatrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Uren1 = Convert.ToInt16(model.Uren1) == 0 ? null : model.Uren1;
-            model.Maandloon1 = Convert.ToDouble(model.Maandloon1) == 0 ? null : model.Maandloon1;
-            model.VolgendeLijn1 = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseBaat1), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat1Punt1RijVerwijderen(int id, Analyse analyse)
         {
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
@@ -517,28 +495,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
 
             return RedirectToAction(nameof(AnalyseBaat1));
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat1Punt2RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij baatrij = analyse.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
-            AnalyseBaat1ViewModel model = new AnalyseBaat1ViewModel();
-            if (baatrij != null)
-            {
-                model.Uren2 = baatrij.GeefKOBVakMetNummer(1).Data;
-                model.Maandloon2 = baatrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Uren2 = Convert.ToInt16(model.Uren2) == 0 ? null : model.Uren2;
-            model.Maandloon2 = Convert.ToDouble(model.Maandloon2) == 0 ? null : model.Maandloon2;
-            model.VolgendeLijn2 = id;
-            model.ToonGroep2 = true;
-            return RedirectToAction(nameof(AnalyseBaat1), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
@@ -892,27 +848,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat2Punt1RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij baatrij = analyse.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
-            AnalyseBaat2ViewModel model = new AnalyseBaat2ViewModel();
-            if (baatrij != null)
-            {
-                model.Beschrijving1 = baatrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag1 = baatrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag1 = Convert.ToDouble(model.Bedrag1) == 0 ? null : model.Bedrag1;
-            model.VolgendeLijn1 = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseBaat2), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat2Punt1RijVerwijderen(int id, Analyse analyse)
         {
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
@@ -936,27 +871,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
 
             return RedirectToAction(nameof(AnalyseBaat2));
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat2Punt2RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij baatrij = analyse.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
-            AnalyseBaat2ViewModel model = new AnalyseBaat2ViewModel();
-            if (baatrij != null)
-            {
-                model.Beschrijving2 = baatrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag2 = baatrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag2 = Convert.ToDouble(model.Bedrag2) == 0 ? null : model.Bedrag2;
-            model.VolgendeLijn2 = id;
-            model.ToonGroep2 = true;
-            return RedirectToAction(nameof(AnalyseBaat2), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
@@ -1176,28 +1090,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat3Punt1RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij baatrij = analyse.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
-            AnalyseBaat3ViewModel model = new AnalyseBaat3ViewModel();
-            if (baatrij != null)
-            {
-                model.Bedrag1 = baatrij.GeefKOBVakMetNummer(1).Data;
-                model.Percent1 = baatrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag1 = Convert.ToDouble(model.Bedrag1) == 0 ? null : model.Bedrag1;
-            model.Percent1 = Convert.ToInt16(model.Percent1) == 0 ? null : model.Percent1;
-            model.VolgendeLijn1 = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseBaat3), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseBaat3Punt1RijVerwijderen(int id, Analyse analyse)
         {
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
@@ -1307,27 +1199,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
             model.BevatFout = true;
             return View(nameof(AnalyseBaat4), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseBaat4RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij baatrij = analyse.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
-            AnalyseBaat4ViewModel model = new AnalyseBaat4ViewModel();
-            if (baatrij != null)
-            {
-                model.Beschrijving = baatrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag = baatrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag = Convert.ToDouble(model.Bedrag) == 0 ? null : model.Bedrag;
-            model.VolgendeLijn = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseBaat4), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
@@ -1485,39 +1356,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKostRijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(1).GeefKOBRijMetNummer(id);
-            KOBRij baatrij = analyse.GeefBaatMetNummer(1).GeefKOBRijMetNummer(id);
-            AnalyseKostViewModel model = new AnalyseKostViewModel();
-            if (kostrij != null)
-            {
-                model.Functie = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.AantalUrenPerWeek = kostrij.GeefKOBVakMetNummer(2).Data;
-                model.BrutoMaandloonFulltime = kostrij.GeefKOBVakMetNummer(3).Data;
-                model.Doelgroep = kostrij.GeefKOBVakMetNummer(4).Data;
-                model.VlaamseOndersteuningsPremie = kostrij.GeefKOBVakMetNummer(5).Data + "%";
-            }
-            if (baatrij != null)
-            {
-                model.AantalMaandenIBO = baatrij.GeefKOBVakMetNummer(1).Data;
-                model.TotaleProductiviteitsPremieIBO = baatrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.AantalUrenPerWeek = Convert.ToInt16(model.AantalUrenPerWeek) == 0 ? null : model.AantalUrenPerWeek;
-            model.BrutoMaandloonFulltime = Convert.ToDouble(model.BrutoMaandloonFulltime) == 0 ? null : model.BrutoMaandloonFulltime;
-            model.AantalMaandenIBO = Convert.ToInt16(model.AantalMaandenIBO) == 0 ? null : model.AantalMaandenIBO;
-            model.TotaleProductiviteitsPremieIBO = Convert.ToDouble(model.TotaleProductiviteitsPremieIBO) == 0 ? null : model.TotaleProductiviteitsPremieIBO;
-            model.VolgendeLijn = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseKost), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKostRijVerwijderen(int id, Analyse analyse)
         {
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
@@ -1641,27 +1479,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
             model.BevatFout = true;
             return View(model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKost2RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(8).GeefKOBRijMetNummer(id);
-            AnalyseKost2ViewModel model = new AnalyseKost2ViewModel();
-            if (kostrij != null)
-            {
-                model.Beschrijving = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag = kostrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag = Convert.ToDouble(model.Bedrag) == 0 ? null : model.Bedrag;
-            model.VolgendeLijn = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseKost2), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
@@ -1846,27 +1663,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKost3Punt1RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(3).GeefKOBRijMetNummer(id);
-            AnalyseKost3ViewModel model = new AnalyseKost3ViewModel();
-            if (kostrij != null)
-            {
-                model.Beschrijving1 = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag1 = kostrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag1 = Convert.ToDouble(model.Bedrag1) == 0 ? null : model.Bedrag1;
-            model.VolgendeLijn1 = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseKost3), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost3Punt1RijVerwijderen(int id, Analyse analyse)
         {
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
@@ -1890,27 +1686,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
 
             return RedirectToAction(nameof(AnalyseKost3));
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKost3Punt2RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(4).GeefKOBRijMetNummer(id);
-            AnalyseKost3ViewModel model = new AnalyseKost3ViewModel();
-            if (kostrij != null)
-            {
-                model.Beschrijving2 = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag2 = kostrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag2 = Convert.ToDouble(model.Bedrag2) == 0 ? null : model.Bedrag2;
-            model.VolgendeLijn2 = id;
-            model.ToonGroep2 = true;
-            return RedirectToAction(nameof(AnalyseKost3), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
@@ -2236,27 +2011,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKost4Punt1RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(2).GeefKOBRijMetNummer(id);
-            AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
-            if (kostrij != null)
-            {
-                model.Beschrijving1 = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag1 = kostrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag1 = Convert.ToDouble(model.Bedrag1) == 0 ? null : model.Bedrag1;
-            model.VolgendeLijn1 = id;
-            model.ToonGroep1 = true;
-            return RedirectToAction(nameof(AnalyseKost4), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt1RijVerwijderen(int id, Analyse analyse)
         {
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
@@ -2280,27 +2034,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
 
             return RedirectToAction(nameof(AnalyseKost4));
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKost4Punt2RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(6).GeefKOBRijMetNummer(id);
-            AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
-            if (kostrij != null)
-            {
-                model.Uren2 = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.Maandloon2 = kostrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Maandloon2 = Convert.ToDouble(model.Maandloon2) == 0 ? null : model.Maandloon2;
-            model.VolgendeLijn2 = id;
-            model.ToonGroep2 = true;
-            return RedirectToAction(nameof(AnalyseKost4), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
@@ -2330,27 +2063,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKost4Punt3RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(5).GeefKOBRijMetNummer(id);
-            AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
-            if (kostrij != null)
-            {
-                model.Beschrijving3 = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag3 = kostrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag3 = Convert.ToDouble(model.Bedrag3) == 0 ? null : model.Bedrag3;
-            model.VolgendeLijn3 = id;
-            model.ToonGroep3 = true;
-            return RedirectToAction(nameof(AnalyseKost4), model);
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
         public IActionResult AnalyseKost4Punt3RijVerwijderen(int id, Analyse analyse)
         {
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
@@ -2374,27 +2086,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
 
             return RedirectToAction(nameof(AnalyseKost4));
-        }
-
-        [ServiceFilter(typeof(AnalyseFilter))]
-        public IActionResult AnalyseKost4Punt4RijAanpassen(int id, Analyse analyse)
-        {
-            AnalyseFilter.HaalMailsUitSessie(HttpContext);
-            if (ControleerOfSessieVerlopenIs(analyse))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            KOBRij kostrij = analyse.GeefKostMetNummer(7).GeefKOBRijMetNummer(id);
-            AnalyseKost4ViewModel model = new AnalyseKost4ViewModel();
-            if (kostrij != null)
-            {
-                model.Beschrijving4 = kostrij.GeefKOBVakMetNummer(1).Data;
-                model.Bedrag4 = kostrij.GeefKOBVakMetNummer(2).Data;
-            }
-            model.Bedrag4 = Convert.ToDouble(model.Bedrag4) == 0 ? null : model.Bedrag4;
-            model.VolgendeLijn4 = id;
-            model.ToonGroep4 = true;
-            return RedirectToAction(nameof(AnalyseKost4), model);
         }
 
         [ServiceFilter(typeof(AnalyseFilter))]

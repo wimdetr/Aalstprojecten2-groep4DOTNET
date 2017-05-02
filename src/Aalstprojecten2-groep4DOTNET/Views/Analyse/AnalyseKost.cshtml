@@ -101,28 +101,25 @@
                         @for (var i = 1; i <= Model.AantalLijnenKost1; i++)
                         {
                             <tr id="tr_0">
+                                <td style="display: none;">@Model.LijnenKost1[i - 1].Kost1Id</td>
                                 <td>@i.</td>
                                 <td>@Model.LijnenKost1[i - 1].Functie</td>
                                 <td>@Model.LijnenKost1[i - 1].AantalUrenPerWeek</td>
                                 <td>@Model.LijnenKost1[i - 1].BrutoMaandloonFulltime.ToString("C")</td>
 
-                                <td>
-                                    @Model.LijnenKost1[i - 1].Doelgroep
-                                </td>
-                                
-                                
-                                <td>
-                                    @(Model.LijnenKost1[i - 1].VlaamseOndersteuningsPremie)%
-                                </td>
+                                <td>@Model.LijnenKost1[i - 1].Doelgroep</td>
+
+
+                                <td>@(Model.LijnenKost1[i - 1].VlaamseOndersteuningsPremie)%</td>
                                 <td>@Model.LijnenKost1[i - 1].KostUitkomst.ToString("C")</td>
                                 <td>@Model.LijnenKost1[i - 1].AantalMaandenIBO</td>
                                 <td>@Model.LijnenKost1[i - 1].TotaleProductiviteitsPremieIBO.ToString("C")</td>
                                 <td>@Model.LijnenKost1[i - 1].BaatUitkomst.ToString("C")</td>
                                 <td>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKostRijAanpassen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
+                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKostRijVerwijderen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-remove"></a>
                                 </td>
-                                
+
                             </tr>
 
                         }
@@ -144,7 +141,7 @@
                         <div class="row">
                             <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe functie</u></h3>
                             <div class="col-md-offset-1 col-md-10">
-                                <input asp-for="VolgendeLijn" type="hidden" />
+                                <input asp-for="VolgendeLijn" id="volgendeLijn1" type="hidden" />
                                 <span asp-validation-for="VolgendeLijn" class="text-danger"></span>
                                 <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
                                     <div class="col-md-12" style="margin-bottom: 25px;">

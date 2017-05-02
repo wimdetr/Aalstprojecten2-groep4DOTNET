@@ -94,11 +94,12 @@
                         @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
                         {
                             <tr>
+                                <td style="display: none;">@Model.Lijst1[i - 1].KostId</td>
                                 <td>@i.</td>
                                 <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
                                 <td>@(Model.Lijst1[i - 1].Percent)%</td>
                                 <td class="text-center">
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijAanpassen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-edit marginRechtsEnFloatLeft"></a>
+                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                 </td>
                             </tr>
@@ -119,7 +120,7 @@
                         <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe besparing</u></h3>
                         <div class="col-md-offset-1 col-md-10">
                             <div class="marginBenedenTekstvelden">
-                                <input asp-for="VolgendeLijn1" type="hidden" />
+                                <input asp-for="VolgendeLijn1" id="volgendeLijn1" type="hidden" />
                                 <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
                                 <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
                                     <div class="col-md-6">
