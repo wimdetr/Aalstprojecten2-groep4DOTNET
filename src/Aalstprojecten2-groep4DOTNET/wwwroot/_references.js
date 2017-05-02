@@ -13,7 +13,7 @@
 /// <reference path="js/kostenbaatvulin/kost2.js" />
 /// <reference path="js/kostenbaatvulin/kost3.js" />
 /// <reference path="js/kostenbaatvulin/kost4.js" />
-
+/// <reference path="js/loginscreen.js" />
 /// <reference path="js/search.js" />
 /// <reference path="js/showhideformulier.js" />
 /// <reference path="js/site.js" />

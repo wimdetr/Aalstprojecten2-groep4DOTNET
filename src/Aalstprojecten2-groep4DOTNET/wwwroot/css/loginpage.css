@@ -231,25 +231,13 @@ body{
         margin: 10px 0px 10px;
     }
 
-    .rechterKant {
-        padding-bottom: 12em;
-    }
-
-
-@media only screen and (min-width: 1366px){
-
     .linkerKant {
-        float: right;
         margin-right: 50px;
     }
 
     .rechterKant {
-        float: left;
         margin-left: 50px;
-        
     }
-	
-}
 
 @media only screen and (max-width: 1280px){
 	.wrap{
@@ -269,6 +257,21 @@ body{
 	}
 	
 }
+
+@media only screen and (min-width: 1000px){
+	.flex { 
+  display: flex;    
+}
+.flex > #a { order: 1; }
+.flex > #b { order: 4; }
+.flex > #c { order: 3; }
+.flex > #d { order: 2; }
+.flex > #e { order: 5; }
+}
+
+
+
+
 @media only screen and (max-width: 640px){
 	.wrap{
 		width:95%;
@@ -340,4 +343,93 @@ body{
 
 .marginRechts {
     margin-right: 15px;
+}
+
+.style-1 {
+    max-width:600px;
+}
+
+
+
+.tab.style-1 dl dd.users a.active {
+    padding: 0;
+}
+
+.tab.style-1 dl dd.users a.active {
+    padding: 0;
+}
+
+.tab.style-1 dl dd.users a.user {
+    padding: 0;
+}
+
+.tab.style-1 dl dd a {
+    padding: 0;
+}
+
+.tab.style-1 dl dd.messages a.msg {
+    padding: 0;
+}
+
+.tab.style-1 dl dd a {
+    padding: 0;
+}
+
+.tab.style-1 dl dd a {
+    padding: 0;
+}
+
+.user {
+    padding-bottom: 50%;
+    text-align: center;
+}
+
+.msg {
+    padding-bottom: 50%;
+    text-align: center;
+}
+
+.beetjeMargin {
+    margin-top: 5%;
+}
+
+.kleineFixes {
+    max-width: 600px;
+}
+
+.minBreedte {
+    min-width: 600px;
+}
+
+.fixedAfmetingen {
+    min-width:600px;
+    max-width:600px;
+}
+
+@media only screen and (max-width: 1475px) {
+    .kant2 {
+        margin-bottom: 25%;
+    }
+
+    .kant1 {
+        margin-bottom: 15%;
+    }
+}
+
+.floatRechts {
+    float: right;
+}
+
+.floatLinks {
+    float: left;
+}
+
+.maxBreedte {
+    max-width: 600px;
+    min-width:600px;
+    margin: auto;
+}
+
+.beetjeMarginBeneden {
+    margin-bottom: 5%;
 }
