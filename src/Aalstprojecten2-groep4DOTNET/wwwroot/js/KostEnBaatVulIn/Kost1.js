@@ -41,4 +41,46 @@
                     1000);
             }
         });
+
+    $(".editKnop1")
+        .click(function () {
+            var knop = $(this);
+            var waarden = knop.parent().siblings("td").map(function () {
+                return $(this).text();
+            });
+
+            var lijnId = waarden[0];
+            var functie = waarden[2];
+            var uren = waarden[3];
+            var maandloon = waarden[4].substring(2, waarden[4].length).replace(".", "");
+            var doelgroep = waarden[5];
+            var ondersteurningsPremie = waarden[6];
+            var maanden = waarden[8];
+            var premie = waarden[9].substring(2, waarden[4].length).replace(".", "");
+            if (parseFloat(uren) === 0) {
+                uren = "";
+            }
+            if (parseFloat(maandloon) === 0) {
+                maandloon = "";
+            }
+            if (parseFloat(maanden) === 0) {
+                maanden = "";
+            }
+            if (parseFloat(premie) === 0) {
+                premie = "";
+            }
+
+            $("#volgendeLijn1").val(lijnId);
+            $("#Functie").val(functie);
+            $("#UrenPerWeek").val(uren);
+            $("#BrutoMaandloonFulltime").val(maandloon);
+            $("#dropDown1").val(doelgroep);
+            $("#aantalMaandenIBO").val(maanden);
+            $("#productiviteitsPremie").val(premie);
+            $("#dropDown2").val(ondersteurningsPremie);
+
+            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+            }
+        });
 });
