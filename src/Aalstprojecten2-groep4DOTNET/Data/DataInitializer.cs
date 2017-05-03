@@ -279,14 +279,25 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
                 InterneMail mail1 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
                 InterneMail mail2 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail3 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail4 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail5 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail6 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail7 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail8 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
 
                 mark.AddMail(mail1);
+                mark.AddMail(mail3);
+                mark.AddMail(mail5);
+                mark.AddMail(mail6);
                 foreach (InterneMailJobcoach i in mark.InterneMailJobcoaches)
                 {
                     i.IsGelezen = true;
                 }
                 mark.AddMail(mail2);
-
+                mark.AddMail(mail4);
+                mark.AddMail(mail7);
+                mark.AddMail(mail8);
                 AdminMail adminMail = new AdminMail(mark, "andreas.dewitte@hotmail.com",
                     "admin mail", "dit is een mail voor de admin", DateTime.Now);
                 _context.AdminMails.Add(adminMail);

@@ -1,7 +1,10 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.OverzichtMailboxViewModel
 
 <link rel="stylesheet" href="~/css/OverzichtMailbox.css" />
-
+<link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+<link rel="stylesheet" href="~/css/Baat1.css" />
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 
 @if (Model.IsLegeLijst)
 {
@@ -10,36 +13,155 @@
 
 else
 {
-    <form method="post">
-        <div class="row">
-            <button formaction="MarkeerGeselecteerdeAlsGelezen" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Markeer geselecteerde als gelezen</button>
-            <button formaction="VerwijderGeselecteerde" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Verwijder geselecteerde</button>
-            <button formaction="MarkeerAlleAlsGelezen" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Markeer alle als gelezen</button>
+    @*<form method="post">
+            <div class="row">
+                <button formaction="MarkeerGeselecteerdeAlsGelezen" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Markeer geselecteerde als gelezen</button>
+                <button formaction="VerwijderGeselecteerde" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Verwijder geselecteerde</button>
+                <button formaction="MarkeerAlleAlsGelezen" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Markeer alle als gelezen</button>
+            </div>
+
+            <table class="table hover">
+                <tr>
+                    <th></th>
+                    <th>Tijdstip</th>
+                    <th>Afzender</th>
+                    <th>Onderwerp</th>
+                    <th>Inhoud</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.Mails)
+                {
+                    var id = "checkbox" + item.MailId;
+                    <tr class="@(item.Gelezen?"gelezen":"nietgelezen")">
+                        <td><input type="checkbox" name="@id" /></td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Afzender</td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
+                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
+                        <td><a asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@item.MailId" class="glyphicon glyphicon-trash"></a></td>
+                    </tr>
+
+
+                }
+            </table>
+        </form>*@
+
+    <div class="row" style="padding:0px;">
+        <div class="col-md-12" style="height: 70px;padding:0px;">
+            <div class="col-md-4" style="height: 70px; padding:0px;">
+                <div class="col-md-12 btn-group" role="group" style="padding-top: 8px; padding-left: 25px;">
+                    <button formaction="Selecteer" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/select.png" class="fototjeKosten" /></button>
+                    <button formaction="MarkeerGeselecteerdeAlsGelezen" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/markeerGeselecteerdAlsGelezen.png" class="fototjeKosten" /></button>
+                    <button formaction="VerwijderGeselecteerde" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></button>
+                </div>
+            </div>
+
+            <div class="col-md-8" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
+                <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
+                    <button formaction="Antwoord" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/antwoord.png" class="fototjeKosten"/></button>
+                    <button formaction="VerwijderGeselecteerde" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="min-height: 1000px; padding-left:0px; padding-right:0px;">
+            @* linker kant *@
+
+            <div class="col-md-4" style="padding-right:0px; min-height: 1000px; overflow-y:scroll; max-height:1000px;">
+                @foreach (var item in Model.Mails)
+                {
+                    <div class="col-md-12 hoverOpMails" style="min-height: 175px; border:1px solid #808080; padding-left:0px; padding-right:0px;">
+
+                        <div class="@(item.Gelezen?"alGelezen": "nogNietGelezen")" style="float:left;">
+
+                        </div>
+                    <div style="float:left; width:99%;">
+                        @* rij 1 *@
+                        <div class="col-md-12" style="margin-bottom:15px; padding-top:20px;">
+                            <div class="col-md-6 text-left" style="float:left; font-size: 20px; font-weight:bold; padding-left:0px;">
+                                @item.Afzender
+                            </div>
+                            <div class="col-md-3 text-right" style="float:right; font-size: 16px;">
+                                @item.DatumTijd
+                            </div>
+                        </div>
+
+                        @* rij 2 *@
+                        <div class="col-md-10 text-left" style="margin-bottom:15px; font-size: 18px;">
+                            @item.Onderwerp
+                        </div>
+
+                        @* rij 2 *@
+                        <div class="col-md-10 text-left" style="font-size: 16px;">
+                            @item.Inhoud
+                        </div>
+                    </div>
+                        
+
+
+
+                    </div>
+                }
+            </div>
+
+
+            @* rechter kant *@
+            <div class="col-md-8" style="min-height: 1000px; background-color:white;">
+                    @* rij 1 *@
+                    <div class="col-md-12" style="margin-bottom:15px; padding-top:50px;">
+                        <div class="col-md-offset-1 col-md-6 text-left" style="float:left; font-size: 16px; padding-left:0px;">
+                            Van Niels De Bruyne
+                        </div>
+                        <div class="col-md-3 text-right" style="float:right; font-size: 16px;">
+                            30/05/2017 - 18:02
+                        </div>
+                        <div class="col-md-offset-1 col-md-11" style="padding-left:0px; padding-right:0px;">
+                            niels95debruyne@hotmail.com
+                        </div>
+                    </div>
+
+                    @* rij 2 *@
+                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-bottom:50px; font-size: 36px;">
+                        Design for health project
+                    </div>
+
+                    @* rij 2 *@
+                    <div class="col-md-offset-1 col-md-10 text-left" style="font-size: 20px;">
+                        <p>Hey Andreas,</p>
+                        <p>
+                            <br />
+                        </p>
+                        <p></p>
+                        <p style="margin-bottom:20px;">
+                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
+                            Hallo ik ben wat tekst aan he
+                            
+                            
+                            t typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
+                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
+                        </p>
+
+                        <p style="margin-bottom:20px;">
+                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
+                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen iste hebben terwijl Andreas rocket league gaan spelen is.
+                            Hallo ik ben wat tekst aan het typen om wat opvullineeeeeeeeeeeeeeeeeeeeeeeeeg te hebben terwijl Andreas rocket league gaan spelen is.
+                        <br />
+                            <br />
+                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
+                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
+                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
+                        </p>
+
+                        <p>
+                            Mvg,
+                        </p>
+
+                        <p>
+                            Niels De Bruyne
+                        </p>
+                    </div>
+
+            </div>
         </div>
 
-        <table class="table hover">
-            <tr>
-                <th></th>
-                <th>Tijdstip</th>
-                <th>Afzender</th>
-                <th>Onderwerp</th>
-                <th>Inhoud</th>
-                <th></th>
-            </tr>
-            @foreach (var item in Model.Mails)
-            {
-                var id = "checkbox" + item.MailId;
-                <tr class="@(item.Gelezen?"gelezen":"nietgelezen")">
-                    <td><input type="checkbox" name="@id" /></td>
-                    <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
-                    <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Afzender</td>
-                    <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
-                    <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
-                    <td><a asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@item.MailId" class="glyphicon glyphicon-trash"></a></td>
-                </tr>
-
-
-            }
-        </table>
-    </form>
+    </div>
 }

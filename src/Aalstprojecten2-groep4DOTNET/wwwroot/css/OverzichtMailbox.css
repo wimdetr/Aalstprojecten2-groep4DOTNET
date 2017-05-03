@@ -29,3 +29,29 @@
 .marginButtons {
     margin-right: 15px;
 }
+
+
+.hoverOpMails {
+    background-color: rgb(235,235,235);
+}
+
+.hoverOpMails:hover {
+    background-color:white;
+}
+
+.well {
+    padding: 0px;
+}
+
+.alGelezen {
+    width: 1%;
+    height: 175px;
+    float:left;
+}
+
+.nogNietGelezen {
+    width: 1%;
+    height: 175px;
+    float:left;
+    background-color:#337AB7;
+}
