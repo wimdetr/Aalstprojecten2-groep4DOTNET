@@ -64,10 +64,12 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
                 analyse.IsGearchiveerd = true;
                 _analyseRepository.SaveChanges();
+                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " +
+                                      analyse.Werkgever.NaamAfdeling + " is succesvol gearchiveerd.";
             }
             catch
             {
-
+                TempData["error"] = "Iets is misgelopen, de analyse is niet gearchiveerd.";
             }
             return RedirectToAction("Index", "Home");
         }
@@ -93,10 +95,12 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
                 analyse.IsGearchiveerd = false;
                 _analyseRepository.SaveChanges();
+                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " +
+                                      analyse.Werkgever.NaamAfdeling + " is succesvol gedearchiveerd en op de home pagina geplaatst.";
             }
             catch
             {
-
+                TempData["error"] = "Iets is misgelopen, de analyse is niet gedearchiveerd.";
             }
             return RedirectToAction(nameof(AnalyseBekijken));
         }
@@ -120,10 +124,12 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
                 _analyseRepository.Delete(analyse);
                 _analyseRepository.SaveChanges();
+                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " +
+                                      analyse.Werkgever.NaamAfdeling + " is succesvol verwijderd.";
             }
             catch
             {
-
+                TempData["error"] = "Iets is misgelopen, de analyse is niet verwijderd.";
             }
             return RedirectToAction(nameof(AnalyseBekijken));
         }

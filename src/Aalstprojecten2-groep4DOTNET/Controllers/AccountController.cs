@@ -147,6 +147,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     }
                     _jobCoachRepository.Add(jc);
                     _jobCoachRepository.SaveChanges();
+                    TempData["message"] =
+                        "U heeft succesvol geregistreerd, u heeft een e-mail ontvangen met uw eerste wachtwoord.";
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -157,7 +159,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
                 AddErrors(result);
             }
-
+            TempData["error"] = "Iets is misgelopen, de registratie is niet voltooid.";
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -177,6 +179,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
+            TempData["message"] = "U bent succesvol uitgelogd";
             return RedirectToAction("Login");
         }
 
@@ -374,9 +377,12 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 jc.Wachtwoord = model.Password;
                 jc.MoetWachtwoordVeranderen = false;
                 _jobCoachRepository.SaveChanges();
+                TempData["message"] =
+                        "Uw wachtwoord werd succesvol aangepast.";
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
             AddErrors(result);
+            TempData["error"] = "Iets is misgelopen.";
             return View();
         }
 
