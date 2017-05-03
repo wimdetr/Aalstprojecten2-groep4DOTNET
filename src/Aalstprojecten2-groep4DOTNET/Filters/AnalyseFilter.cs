@@ -54,7 +54,8 @@ namespace Aalstprojecten2_groep4DOTNET.Filters
 
         public static void ZetSessieLeeg(HttpContext context)
         {
-            context.Session.Clear();
+            context.Session.Remove("analyse");
+            context.Session.Remove("mails");
         }
 
         public static void HaalAnalyseUitSessie(HttpContext context)
