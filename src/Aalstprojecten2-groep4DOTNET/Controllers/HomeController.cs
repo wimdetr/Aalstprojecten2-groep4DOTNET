@@ -269,17 +269,32 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult OverzichtMailbox()
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
-            return View(new OverzichtMailboxViewModel(_interneMailJobcoachRepository.GetAll(User.Identity.Name)));
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                m.Jobcoach = jc;
+            }
+            return View(new OverzichtMailboxViewModel(mails));
         }
 
         public IActionResult GeselecteerdeMail(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
+
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
             InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
             mail.IsGelezen = true;
             _interneMailJobcoachRepository.SaveChanges();
-            MailViewModel model = new MailViewModel(mail);
-            return View(model);
+            mail.Jobcoach = jc;
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                m.Jobcoach = jc;
+            }
+            OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
+            model.GeopendeMail = new MailViewModel(mail);
+            return View(nameof(OverzichtMailbox), model);
         }
 
         public IActionResult VerwijderMail(int id)
@@ -395,9 +410,17 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult BeantwoordMail(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
             InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
-            BeantwoordMailViewModel model = new BeantwoordMailViewModel(mail);
-            return View(model);
+            mail.Jobcoach = jc;
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                m.Jobcoach = jc;
+            }
+            OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
+            model.GeopendeMail = new MailViewModel(mail);
+            return View(nameof(OverzichtMailbox));
         }
 
         [HttpPost]

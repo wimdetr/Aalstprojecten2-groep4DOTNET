@@ -1,4 +1,5 @@
-﻿.klikbaar {
+﻿@import url('overzichtmailbox.css');
+.klikbaar {
     cursor: pointer;
 }
 
@@ -54,4 +55,16 @@
     height: 175px;
     float:left;
     background-color:#337AB7;
+}
+
+.isGeselecteerd {
+    background-color:white;
+}
+
+.verbergMail {
+    display: none;
+}
+
+.toonMail {
+    display: block;
 }
