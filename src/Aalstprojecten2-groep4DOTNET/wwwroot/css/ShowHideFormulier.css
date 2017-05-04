@@ -5,3 +5,17 @@
 .verbergFormulier {
     display: none;
 }
+
+.whoopwhoop {
+    border: 2px solid;
+    padding: 20px 0px 0px 0px;
+}
+
+.whoopwhoop2 {
+    padding: 20px 40px 20px 40px;
+    background-color: #f2f2f2;
+}
+
+.whoopwhoop3 {
+    padding: 20px 40px 20px 40px;
+}

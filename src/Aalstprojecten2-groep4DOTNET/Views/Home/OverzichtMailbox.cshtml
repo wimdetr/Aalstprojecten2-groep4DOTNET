@@ -56,7 +56,7 @@ else
                                     <div class="col-md-6 text-left" style="float:left; font-size: 20px; font-weight:bold; padding-left:0px;">
                                         @item.AfzenderKort
                                     </div>
-                                    <div class="col-md-3 text-right" style="float:right; font-size: 16px;">
+                                    <div class="col-md-3 text-right" style="float:right; font-size: 16px; font-weight:bold;">
                                         @item.DatumTijdKort
                                     </div>
                                 </div>
@@ -80,7 +80,92 @@ else
                 </div>
 
 
-                @* rechter kant *@
+                @* rechter kant antwoord*@
+                <div class="col-md-8" style="min-height: 1000px; background-color:white; margin-bottom: 100px;">
+
+                    @* rij 1 *@
+                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-top:50px;">
+                        <div class="col-md-12">
+                            <label style="color:darkgrey;font-size:20px;">Aan: Niels95debruyne@hotmail.com</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-bottom:25px; margin-top:10px;">
+                        <div class="col-md-12">
+                            <label style="color:darkgrey;font-size:20px;">Onderwerp: Een onderwerp</label>
+                        </div>
+                    </div>
+
+                    @* rij 2 *@
+                    <div class="col-md-offset-1 col-md-10 text-left" style="font-size: 22px;">
+                        <div class="col-md-12">
+                            <label>Inhoud</label>
+                        </div>
+
+                        <div class="col-md-12" style="margin-bottom: 100px;">
+                            <div class="whoopwhoop" style="overflow-y:scroll; max-height:1000px;">
+                                <div contenteditable="true" class="whoopwhoop3" style="min-height:250px; min-width: 100%;">
+                                    <p>
+                                        Dag Niels,
+                                        <br /><br />
+                                        Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
+                                        <br /><br />
+                                        Mvg,
+                                        Andreas
+
+                                        Dag Niels,
+                                        <br /><br />
+                                        Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
+                                        <br /><br />
+                                        Mvg,
+                                        Andreas
+
+                                        Dag Niels,
+                                        <br /><br />
+                                        Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
+                                        <br /><br />
+                                        Mvg,
+                                        Andreas
+                                    </p>
+                                    <br />
+
+                                </div>                       
+                                
+                                <div contenteditable="false" class="whoopwhoop2" style="min-height:300px; min-width: 100%;">
+                                    Van: Niels De Bruyne <niels95debruyne@hotmail.com><br />
+                                    Verstuurd: 4/05/2017 - 15:28<br />
+                                    Subject: Nieuwe aanbevolen onderwerpen<br />
+                                    <br /><br />
+                                    Hey Andreas,
+                                                             <br /><br />
+                                    Wat denk jij ervan om onze mailbox opnieuw te bekijken zodat de mailbox toch wat meer stijl heeft en zodat hij er veel beter uitziet?
+                                                             <br /><br />
+                                    Mvg,
+                                    Niels
+
+                                                             Dag Niels,
+                                                             <br /><br />
+                                                             Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
+                                                             <br /><br />
+                                                             Mvg,
+                                                             Andreas
+
+                                                             Dag Niels,
+                                                             <br /><br />
+                                                             Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
+                                                             <br /><br />
+                                                             Mvg,
+                                                             Andreas
+                                </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @* rechter kant ontvangen*@
                 <div id="geopendeMail" class="col-md-8 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail")" style="min-height: 1000px; background-color:white;">
                     @* rij 1 *@
                     <div class="col-md-12" style="margin-bottom:15px; padding-top:50px;">
