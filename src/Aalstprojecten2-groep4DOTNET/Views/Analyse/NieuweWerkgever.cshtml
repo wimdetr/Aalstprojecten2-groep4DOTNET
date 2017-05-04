@@ -9,11 +9,11 @@
 
 
 <div class="row">
-    <h2 style="padding-left:5px;">@ViewData["werkgever"]</h2>
+        <h2 style="padding-left: 5px;">@Model.Titel</h2>
     <hr />
 </div>
 
-<form asp-controller="Analyse" asp-action="NieuweWerkgever" method="post" class="form-horizontal">
+<form method="post" class="form-horizontal">
     <div asp-validation-summary="All" class="text-danger"></div>
     
     <div class="row col-md-offset-3 col-md-6 divOpmaak divBorder">
@@ -182,14 +182,14 @@
                 
                 <div class="form-group">
                     <div class="col-md-12" style="margin-top: 25px;">
-                        @if (Model.WerkgeverId == -1)
+                        @if (Model.Aanpassen == false)
                         {
-                            <button type="submit" class="btn btn-primary btn-lg">Doorgaan</button>
+                            <button formaction="NieweWerkgever" type="submit" class="btn btn-primary btn-lg">Doorgaan</button>
                         }
                         else
                         {
                             <div class="btn-group col-md-12 margins" role="group">
-                                <button formaction="WerkgeverAanpassen" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
+                                <button formaction="WerkgeverAanpassen" type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
                                 <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-danger col-md-6 btn-lg marginBenedenKlein">Annuleer</a>
                             </div>
                          }

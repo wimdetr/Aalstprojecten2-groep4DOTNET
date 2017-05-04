@@ -175,7 +175,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             Werkgever werkgever = _werkgeverRepository.GetById(id);
             var model = werkgever == null ? new WerkgeverViewModel() : new WerkgeverViewModel(werkgever);
-            ViewData["werkgever"] = "Nieuwe Analyse";
+            model.Titel = "Nieuwe Analyse";
 
             return View(model);
         }
@@ -184,6 +184,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult NieuweWerkgever(WerkgeverViewModel model)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
+            model.Titel = "Nieuwe Analyse";
             if (ModelState.IsValid)
             {
                 try
@@ -224,7 +225,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             WerkgeverViewModel model = new WerkgeverViewModel(analyse.Werkgever);
             model.NaamAfdeling = analyse.Werkgever.NaamAfdeling;
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            model.Aanpassen = true;
+            model.Titel = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             return View(nameof(NieuweWerkgever), model);
         }
 
@@ -232,6 +234,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         [HttpPost]
         public IActionResult WerkgeverAanpassen(WerkgeverViewModel model, Analyse analyse)
         {
+            model.Aanpassen = true;
+            model.Titel = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");

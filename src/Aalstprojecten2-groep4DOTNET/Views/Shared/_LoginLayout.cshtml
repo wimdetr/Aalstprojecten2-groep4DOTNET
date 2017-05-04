@@ -21,11 +21,11 @@
 <body>
     @if (TempData["error"] != null)
             {
-        <div class="alert alert-danger tempdataStijl">@TempData["error"]</div>
+        <div class="alert alert-danger tempdataStijl animated slideInDown">@TempData["error"]</div>
     }
     @if (TempData["message"] != null)
             {
-        <div class="alert alert-success tempdataStijl">@TempData["message"]</div>
+        <div class="alert alert-success tempdataStijl animated slideInDown">@TempData["message"]</div>
     }
     <row>
         <div class="col-sm-12 col-md-12 col-lg-12 beetjeMargin text-center flex">

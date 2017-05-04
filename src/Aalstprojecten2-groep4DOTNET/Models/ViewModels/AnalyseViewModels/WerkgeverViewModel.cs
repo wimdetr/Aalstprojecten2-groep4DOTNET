@@ -12,6 +12,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
     {
         [HiddenInput]
         public int? WerkgeverId { get; set; }
+        public string Titel { get; set; }
+        public bool Aanpassen { get; set; } = false;
         [Required(ErrorMessage = "{0} is verplicht.")]
         public string Naam { get; set; }
         [Required(ErrorMessage = "{0} is verplicht.")]
