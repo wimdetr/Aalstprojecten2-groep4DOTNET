@@ -175,3 +175,19 @@
     padding: 12px 16px;
     z-index: 1;
 }
+
+.verbergKnoppenBlok {
+    display: none;
+}
+
+.toonKnoppenBlok {
+    display: block;
+}
+
+.toonAnalyseKaart {
+    display: block;
+}
+
+.verbergAnalyseKaart {
+    display: none;
+}

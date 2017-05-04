@@ -10,16 +10,19 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
     {
         public IEnumerable<AnalyseOverzichtViewModel> Analyses { get; set; }
         public bool IsLeeg { get; set; }
+        public bool ActiveerKnoppen { get; set; }
 
         public TeTonenAnalysesViewModel(IEnumerable<Analyse> analyses)
         {
             IsLeeg = true;
             Analyses = analyses.Select(a => new AnalyseOverzichtViewModel(a)).ToList();
+            int teller = 0;
             foreach (AnalyseOverzichtViewModel a in Analyses)
             {
                 IsLeeg = false;
-                break;
+                teller++;
             }
+            ActiveerKnoppen = teller > 10;
         }
     }
 }
