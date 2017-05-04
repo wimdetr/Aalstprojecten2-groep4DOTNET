@@ -216,6 +216,24 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
 
 
          </div>
+
+         
      </div>
- }
+    }
+    <div class="col-md-12" style="margin-top: 50px;">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-right:0px; float:left;">
+                <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles1"><img src="~/images/iconen/eerstePagina.png" class="fototjeKosten" /></a>
+                <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/vorigePagina.png" class="fototjeKosten" /></a>
+            </div>
+            <div class="col-md-2 marginTopKlein" style="padding-left:0px; padding-right:0px; float:left; text-align:center;">
+                <label style="font-size: 20px;margin-top:5%;">4 van 16</label>
+            </div>
+            <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-left:0px; float:left;">
+                <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/volgendePagina.png" class="fototjeKosten" /></a>
+                <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles3"><img src="~/images/iconen/laatstePagina.png" class="fototjeKosten" /></a>
+            </div>
+        </div>
+
+    </div>
 }
