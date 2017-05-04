@@ -1,17 +1,20 @@
 ﻿@using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
 @model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.TeTonenAnalysesViewModel
 
-    @{
-        ViewData["Title"] = "Kairos";
-    }
+@{
+    ViewData["Title"] = "Kairos";
+}
 
 <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
-    <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
-    <link rel="stylesheet" href="~/css/StyleSheet.css" />
-    
-    <link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
-    <link rel="stylesheet" href="~/css/analyseDetail.css" />
-    
+<link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
+<link rel="stylesheet" href="~/css/analyseDetail.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/js/HomePage.js"></script>
+
 
 <div class="row">
     <div class="col-md-12">
@@ -21,11 +24,11 @@
         <div class="col-md-9">
             <div class="col-md-5 pull-right">
                 <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-right:0px; float:left;">
-                    <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles1"><img src="~/images/iconen/eerstePagina.png" class="fototjeKosten" /></a>
-                    <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/vorigePagina.png" class="fototjeKosten" /></a>
+                    <button class="col-md-6 btn btn-primary btn-sm borderstyles1 eerstePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/eerstePagina.png" class="fototjeKosten" /></button>
+                    <button class="col-md-6 btn btn-primary btn-sm borderstyles2 vorigePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/vorigePagina.png" class="fototjeKosten" /></button>
                 </div>
                 <div class="col-md-2 marginTopKlein" style="padding-left:0px; padding-right:0px; float:left;">
-                    <select style="width: 100%; height: 42px; text-align:center;">
+                    <select id="choiceBoxAantal" style="width: 100%; height: 42px; text-align:center;">
                         <option selected>Aantal</option>
                         <option>5</option>
                         <option>10</option>
@@ -34,14 +37,14 @@
                     </select>
                 </div>
                 <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-left:0px; float:left;">
-                    <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/volgendePagina.png" class="fototjeKosten" /></a>
-                    <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles3"><img src="~/images/iconen/laatstePagina.png" class="fototjeKosten" /></a>
+                    <button class="col-md-6 btn btn-primary btn-sm borderstyles2 volgendePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/volgendePagina.png" class="fototjeKosten" /></button>
+                    <button class="col-md-6 btn btn-primary btn-sm borderstyles3 laatstePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/laatstePagina.png" class="fototjeKosten" /></button>
                 </div>
             </div>
 
         </div>
     </div>
-    
+
 </div>
 
 <div>
@@ -64,174 +67,174 @@
 }
 else
 {
-foreach (AnalyseOverzichtViewModel item in Model.Analyses)
- {
-     <div class="col-lg-4 col-md-6 col-sm-12">
-         <div class="col-lg-12 col-md-12 col-sm-12 omlijn borderRadius">
-             <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading borderRadiusTop">
-                 <div class="col-lg-2 col-md-2 col-sm-2">
-                     @*logo werkgever*@
-                     <img class="img-responsive mijnLogo" src="~/images/analyseOverzicht/Carrefour.png" alt="meh"/>
-                 </div>
-                 <div class="col-lg-4 col-md-4 col-sm-4 werkgeverTekst">
-                     @*naam werkgever*@
-                     <strong>@item.Organisatie</strong>
-                 </div>
-                 <div class="col-lg-6 col-md-6 col-sm-6 iconen">
-                     @*knoppen downloaden versturen verwijderen*@
-                     <div class="icoon verwijderIcoon">
-                         <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon verwijderPrent" src="~/images/iconen/bin.png" alt="meh"/></a>
-                     </div>
-                     <div class="icoon verstuurIcoon">
-                         <a><img class="img-responsive img-rounded mijnIcoon verstuurPrent" src="~/images/iconen/send.png" alt="meh" /></a>
-                     </div>
-                     <div class="icoon downloadIcoon">
-                         <a><img class="img-responsive img-rounded mijnIcoon downloadPrent" src="~/images/iconen/download.png" alt="meh" /></a>
-                     </div>
-                     <div class="icoon archiveerIcoon">
-                         <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon archiveerPrent" src="~/images/iconen/archive.png" alt="meh"/></a>
-                     </div>
-                     <div class="icoon potloodIcoon">
-                         <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon potloodPrent" src="~/images/iconen/edit.png" alt="meh"/></a>
-                     </div>
-                 </div>
-             </div>
-             @*informatie*@
-             <div class="col-lg-12 col-md-12 col-sm-12 omlijnBoven verhoogPaddingZijkant verhoogPaddingBovenOnder achtergrondKleurtje">
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                     <div class="infoTekst">
-                         <u><strong>Afdeling</strong></u>
-                     </div>
-                     <div class="infoTekst">
-                         <strong>@item.Afdeling</strong>
-                     </div>
-                 </div>
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                     <div class="infoTekst">
-                         <u><strong>Locatie</strong></u>
-                     </div>
-                     <div class="infoTekst">
-                         <strong>@item.Locatie</strong>
-                     </div>
-                 </div>
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                     <div class="infoTekst">
-                         <u><strong>Gewijzigd Op</strong></u>
-                     </div>
-                     <div class="infoTekst">
-                         <strong>@string.Format("{0:dd/MM/yyyy}", item.GewijzigdOp)</strong>
-                     </div>
-                 </div>
-             </div>
-             @*resultaten*@
-             <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant achtergrondKleurtje">
-                 <div>
-                     <div class="kosten text-left halveBreedte links">
-                         <strong>Kosten</strong>
-                     </div>
-                     <div class="baten text-right halveBreedte rechts">
-                         <strong>Baten</strong>
-                     </div>
-                 </div>
-
-                 @if (item.KostenResultaat == 0 && item.BatenResultaat == 0)
-                 {
-                    <div class="helft" style="width: 50%;">
-
-                        <div class="batenBalk3">
-
+    foreach (AnalyseOverzichtViewModel item in Model.Analyses)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-12 analyseKaarten verbergAnalyseKaart">
+            <div class="col-lg-12 col-md-12 col-sm-12 omlijn borderRadius">
+                <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading borderRadiusTop">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        @*logo werkgever*@
+                        <img class="img-responsive mijnLogo" src="~/images/analyseOverzicht/Carrefour.png" alt="meh" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 werkgeverTekst">
+                        @*naam werkgever*@
+                        <strong>@item.Organisatie</strong>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 iconen">
+                        @*knoppen downloaden versturen verwijderen*@
+                        <div class="icoon verwijderIcoon">
+                            <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon verwijderPrent" src="~/images/iconen/bin.png" alt="meh" /></a>
+                        </div>
+                        <div class="icoon verstuurIcoon">
+                            <a><img class="img-responsive img-rounded mijnIcoon verstuurPrent" src="~/images/iconen/send.png" alt="meh" /></a>
+                        </div>
+                        <div class="icoon downloadIcoon">
+                            <a><img class="img-responsive img-rounded mijnIcoon downloadPrent" src="~/images/iconen/download.png" alt="meh" /></a>
+                        </div>
+                        <div class="icoon archiveerIcoon">
+                            <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon archiveerPrent" src="~/images/iconen/archive.png" alt="meh" /></a>
+                        </div>
+                        <div class="icoon potloodIcoon">
+                            <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon potloodPrent" src="~/images/iconen/edit.png" alt="meh" /></a>
                         </div>
                     </div>
-
-                    <div class="helft" style="width:50%;">
-                        <div class="kostenBalk2">
-
-                        </div>
-                    </div>
-
-                 }
-                 else if (item.KostenResultaat == 0)
-                 {
-                    <div class="helft" style="width: 100%;">
-
-                        <div class="batenBalk2">
-
-                        </div>
-                    </div>
-                 }
-                 else if (item.BatenResultaat == 0)
-                 {
-                    <div class="helft" style="width:100%;">
-                        <div class="kostenBalk2">
-
-                        </div>
-                    </div>
-                 }
-                 else
-                 {
-                    <div class="helft" style="width: @item.KostenBalk%;">
-                        <div class="kostenBalk">
-
-                        </div>
-                    </div>
-                    <div class="helft" style="width: @item.BatenBalk%;">
-
-                        <div class="batenBalk">
-
-                        </div>
-                    </div>
-                 }
-                 
-
-                 <div>
-                     <div class="kosten text-left" style="width:50%; float:left;">
-                         <strong>@item.KostenResultaat.ToString("C")</strong>
-                     </div>
-                     <div class="baten text-right" style="width:50%; float:right">
-                         <strong>@item.BatenResultaat.ToString("C")</strong>
-                     </div>
-                 </div>
-             </div>
-
-
-             @if (item.NettoResultaat == 0)
-             {
-                 <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: lightgray;">
-                     <strong>@item.NettoResultaat.ToString("C")</strong>
-                 </div>
-             }
-             else if (item.NettoResultaat > 0)
-             {
-                <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #9fdf9f;">
-                    <strong>@item.NettoResultaat.ToString("C")</strong>
                 </div>
-             }
-             else
-             {
-                 <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #ff6666;">
-                     <strong>@((item.NettoResultaat*-1).ToString("C"))</strong>
-                 </div>
-             }
+                @*informatie*@
+                <div class="col-lg-12 col-md-12 col-sm-12 omlijnBoven verhoogPaddingZijkant verhoogPaddingBovenOnder achtergrondKleurtje">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="infoTekst">
+                            <u><strong>Afdeling</strong></u>
+                        </div>
+                        <div class="infoTekst">
+                            <strong>@item.Afdeling</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="infoTekst">
+                            <u><strong>Locatie</strong></u>
+                        </div>
+                        <div class="infoTekst">
+                            <strong>@item.Locatie</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="infoTekst">
+                            <u><strong>Gewijzigd Op</strong></u>
+                        </div>
+                        <div class="infoTekst">
+                            <strong>@string.Format("{0:dd/MM/yyyy}", item.GewijzigdOp)</strong>
+                        </div>
+                    </div>
+                </div>
+                @*resultaten*@
+                <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant achtergrondKleurtje">
+                    <div>
+                        <div class="kosten text-left halveBreedte links">
+                            <strong>Kosten</strong>
+                        </div>
+                        <div class="baten text-right halveBreedte rechts">
+                            <strong>Baten</strong>
+                        </div>
+                    </div>
+
+                    @if (item.KostenResultaat == 0 && item.BatenResultaat == 0)
+                    {
+                        <div class="helft" style="width: 50%;">
+
+                            <div class="batenBalk3">
+
+                            </div>
+                        </div>
+
+                        <div class="helft" style="width:50%;">
+                            <div class="kostenBalk2">
+
+                            </div>
+                        </div>
+
+                    }
+                    else if (item.KostenResultaat == 0)
+                    {
+                        <div class="helft" style="width: 100%;">
+
+                            <div class="batenBalk2">
+
+                            </div>
+                        </div>
+                    }
+                    else if (item.BatenResultaat == 0)
+                    {
+                        <div class="helft" style="width:100%;">
+                            <div class="kostenBalk2">
+
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="helft" style="width: @item.KostenBalk%;">
+                            <div class="kostenBalk">
+
+                            </div>
+                        </div>
+                        <div class="helft" style="width: @item.BatenBalk%;">
+
+                            <div class="batenBalk">
+
+                            </div>
+                        </div>
+                    }
+
+
+                    <div>
+                        <div class="kosten text-left" style="width:50%; float:left;">
+                            <strong>@item.KostenResultaat.ToString("C")</strong>
+                        </div>
+                        <div class="baten text-right" style="width:50%; float:right">
+                            <strong>@item.BatenResultaat.ToString("C")</strong>
+                        </div>
+                    </div>
+                </div>
+
+
+                @if (item.NettoResultaat == 0)
+                {
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: lightgray;">
+                        <strong>@item.NettoResultaat.ToString("C")</strong>
+                    </div>
+                }
+                else if (item.NettoResultaat > 0)
+                {
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #9fdf9f;">
+                        <strong>@item.NettoResultaat.ToString("C")</strong>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #ff6666;">
+                        <strong>@((item.NettoResultaat * -1).ToString("C"))</strong>
+                    </div>
+                }
 
 
 
-         </div>
+            </div>
 
-         
-     </div>
+
+        </div>
     }
-    <div class="col-md-12" style="margin-top: 50px;">
+    <div id="knoppenBlok" class="col-md-12 @(Model.ActiveerKnoppen?"toonKnoppenBlok":"verbergKnoppenBlok")" style="margin-top: 50px;">
         <div class="col-md-offset-4 col-md-4">
             <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-right:0px; float:left;">
-                <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles1"><img src="~/images/iconen/eerstePagina.png" class="fototjeKosten" /></a>
-                <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/vorigePagina.png" class="fototjeKosten" /></a>
+                <button class="col-md-6 btn btn-primary btn-sm borderstyles1 eerstePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/eerstePagina.png" class="fototjeKosten" /></button>
+                <button class="col-md-6 btn btn-primary btn-sm borderstyles2 vorigePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/vorigePagina.png" class="fototjeKosten" /></button>
             </div>
             <div class="col-md-2 marginTopKlein" style="padding-left:0px; padding-right:0px; float:left; text-align:center;">
-                <label style="font-size: 20px;margin-top:5%;">4 van 16</label>
+                <label id="paginaLabel" style="font-size: 20px;margin-top:5%;">4 van 16</label>
             </div>
             <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-left:0px; float:left;">
-                <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/volgendePagina.png" class="fototjeKosten" /></a>
-                <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles3"><img src="~/images/iconen/laatstePagina.png" class="fototjeKosten" /></a>
+                <button class="col-md-6 btn btn-primary btn-sm borderstyles2 volgendePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/volgendePagina.png" class="fototjeKosten" /></button>
+                <button class="col-md-6 btn btn-primary btn-sm borderstyles3 laatstePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/laatstePagina.png" class="fototjeKosten" /></button>
             </div>
         </div>
 
