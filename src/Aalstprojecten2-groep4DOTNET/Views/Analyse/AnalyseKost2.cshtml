@@ -13,14 +13,14 @@
 <script language="JavaScript" type="text/javascript" src="~/js/tableScript.js"></script>
 <script src="~/js/ShowHideFormulier.js"></script>
 <script src="~/js/KostEnBaatVulIn/Kost2.js"></script>
-
+<link rel="stylesheet" href="~/css/FixVoorHeader.css" />
 
 <div class="row">
     <div class="col-md-3">
-        <h2><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
+        <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
     </div>
     <div class="col-md-6 text-center">
-        <h2>Kosten</h2>
+        <h2 class="titelFix">Kosten</h2>
     </div>
     <div class="col-md-3 text-right">
         <div class="btn-group marginTopKlein" role="group">
