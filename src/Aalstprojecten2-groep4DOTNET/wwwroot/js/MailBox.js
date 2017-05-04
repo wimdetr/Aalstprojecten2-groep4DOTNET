@@ -1,10 +1,11 @@
 ﻿$(document)
     .ready(function () {
+        var mailKaart;
         $("#gelezenKnop").prop("disabled", true);
         $("#verwijderKnop").prop("disabled", true);
         $(".mailKaartje")
             .click(function () {
-                var mailKaart = $(this);
+                 mailKaart = $(this);
                 if ($("#selecteerKnop").data("geselecteerd") === true) {
                     if (mailKaart.hasClass("isGeselecteerd")) {
                         mailKaart.removeClass("isGeselecteerd");
@@ -42,12 +43,32 @@
                         if (mailKaart.hasClass("verbergMail")) {
                             mailKaart.removeClass("verbergMail").addClass("toonMail");
                         }
-                        $("#geopendeMail").css("display", "block");
+                        $("#geopendeMail").removeClass("verbergMail").addClass("toonMail");
                         $("#afzenderNaam").text(mailKaart.find("#dataDiv").data("naam"));
                         $("#mailDatum").text(mailKaart.find("#dataDiv").data("datum"));
                         $("#afzenderMail").text(mailKaart.find("#dataDiv").data("email"));
                         $("#mailOnderwerp").text(mailKaart.find("#dataDiv").data("onderwerp"));
                         $("#mailInhoud").text(mailKaart.find("#dataDiv").data("inhoud"));
+                        $("#antwoordMailKnop").removeClass("verbergMail").addClass("toonMail");
+                        $("#verwijderGeselecteerdeMailKnop").removeClass("verbergMail").addClass("toonMail");
+                        $("#geopendeMail").data("mailid", mailKaart.find("#dataDiv").data("id"));
+
+                        if ($("#antwoordOpMailDiv").hasClass("toonMail")) {
+                            $("#antwoordOpMailDiv")
+                                .removeClass("toonMail animated fadeIn")
+                                .addClass("animated fadeOut");
+                            setTimeout(function() {
+                                    $("#antwoordOpMailDiv").addClass("verbergMail");
+                                    $("#geopendeMail")
+                                        .removeClass("verbergMail animated fadeOut")
+                                        .addClass("toonMail animated fadeIn");
+                                },
+                                1500);
+                        } else {
+                            $("#geopendeMail")
+                                .removeClass("verbergMail animated fadeOut")
+                                .addClass("toonMail animated fadeIn");
+                        }
                     }
                 }
             });
@@ -79,7 +100,20 @@
                 $(this).submit();
             });
         $("#antwoordMailKnop")
-            .click(function() {
-
+            .click(function () {
+                $("#geopendeMail").removeClass("toonMail animated fadeIn").addClass("animated fadeOut");
+                setTimeout(function () {
+                    $("#geopendeMail").addClass("verbergMail");
+                    $("#antwoordOpMailDiv").removeClass("verbergMail animated fadeOut").addClass("toonMail animated fadeIn");
+                }, 1500);
+                
+            });
+        $("#verwijderGeselecteerdeMailKnop")
+            .click(function () {
+                var anchor = $(this);
+                var href = anchor.attr('href').split('/');
+                href[3] = $("#geopendeMail").data("mailid"); 
+                anchor.attr('href', href.join('/'));
+                anchor[0].click();
             });
     });

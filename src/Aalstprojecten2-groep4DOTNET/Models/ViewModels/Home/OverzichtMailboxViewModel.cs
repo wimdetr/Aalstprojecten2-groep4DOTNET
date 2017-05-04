@@ -8,9 +8,16 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
 {
     public class OverzichtMailboxViewModel
     {
+        private int _geopendeMailId;
         public IEnumerable<MailViewModel> Mails { get; set; }
         public bool IsLegeLijst { get; set; }
         public MailViewModel GeopendeMail { get; set; } = null;
+
+        public int GeopendeMailId
+        {
+            get { return GeopendeMail == null ? -1 : _geopendeMailId; } 
+            set { _geopendeMailId = value; }
+        }
 
         public OverzichtMailboxViewModel(IEnumerable<InterneMailJobcoach> mails)
         {
@@ -21,6 +28,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
                 IsLegeLijst = false;
                 break;
             }
+            
         }
     }
 }
