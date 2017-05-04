@@ -19,7 +19,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
         }
         public IEnumerable<InterneMailJobcoach> GetAll(string jobcoachEmail)
         {
-            return _interneMailJobcoaches.Include(i => i.InterneMail).Where(i => i.JobcoachEmail.Equals(jobcoachEmail)).OrderBy(i => i.InterneMail.VerzendDatum).AsNoTracking().ToList();
+            return _interneMailJobcoaches.Include(i => i.InterneMail).Where(i => i.JobcoachEmail.Equals(jobcoachEmail)).OrderByDescending(i => i.InterneMail.VerzendDatum).AsNoTracking().ToList();
         }
 
         public InterneMailJobcoach GetById(string jobcoachEmail, int id)

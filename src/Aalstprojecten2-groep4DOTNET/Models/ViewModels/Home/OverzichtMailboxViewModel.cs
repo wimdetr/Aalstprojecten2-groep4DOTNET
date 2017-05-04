@@ -10,6 +10,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
     {
         public IEnumerable<MailViewModel> Mails { get; set; }
         public bool IsLegeLijst { get; set; }
+        public MailViewModel GeopendeMail { get; set; } = null;
 
         public OverzichtMailboxViewModel(IEnumerable<InterneMailJobcoach> mails)
         {

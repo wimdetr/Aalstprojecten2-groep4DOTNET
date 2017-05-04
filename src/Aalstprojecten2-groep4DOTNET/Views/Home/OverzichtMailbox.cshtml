@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
 <link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/js/MailBox.js"></script>
 
 @if (Model.IsLegeLijst)
 {
@@ -13,155 +16,113 @@
 
 else
 {
-    @*<form method="post">
-            <div class="row">
-                <button formaction="MarkeerGeselecteerdeAlsGelezen" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Markeer geselecteerde als gelezen</button>
-                <button formaction="VerwijderGeselecteerde" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Verwijder geselecteerde</button>
-                <button formaction="MarkeerAlleAlsGelezen" class="btn btn-primary col-md-2 col-sm-3 marginButtons">Markeer alle als gelezen</button>
-            </div>
-
-            <table class="table hover">
-                <tr>
-                    <th></th>
-                    <th>Tijdstip</th>
-                    <th>Afzender</th>
-                    <th>Onderwerp</th>
-                    <th>Inhoud</th>
-                    <th></th>
-                </tr>
-                @foreach (var item in Model.Mails)
-                {
-                    var id = "checkbox" + item.MailId;
-                    <tr class="@(item.Gelezen?"gelezen":"nietgelezen")">
-                        <td><input type="checkbox" name="@id" /></td>
-                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.DatumTijd</td>
-                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Afzender</td>
-                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Onderwerp</td>
-                        <td class="klikbaar" onclick="location.href = '@(Url.Action("GeselecteerdeMail", "Home", new {Id = item.MailId}))'">@item.Inhoud</td>
-                        <td><a asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@item.MailId" class="glyphicon glyphicon-trash"></a></td>
-                    </tr>
-
-
-                }
-            </table>
-        </form>*@
-
-    <div class="row" style="padding:0px;">
-        <div class="col-md-12" style="height: 70px;padding:0px;">
-            <div class="col-md-4" style="height: 70px; padding:0px;">
-                <div class="col-md-12 btn-group" role="group" style="padding-top: 8px; padding-left: 25px;">
-                    <button formaction="Selecteer" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/select.png" class="fototjeKosten" /></button>
-                    <button formaction="MarkeerGeselecteerdeAlsGelezen" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/markeerGeselecteerdAlsGelezen.png" class="fototjeKosten" /></button>
-                    <button formaction="VerwijderGeselecteerde" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></button>
-                </div>
-            </div>
-
-            <div class="col-md-8" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
-                <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
-                    <button formaction="Antwoord" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/antwoord.png" class="fototjeKosten"/></button>
-                    <button formaction="VerwijderGeselecteerde" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12" style="min-height: 1000px; padding-left:0px; padding-right:0px;">
-            @* linker kant *@
-
-            <div class="col-md-4" style="padding-right:0px; min-height: 1000px; overflow-y:scroll; max-height:1000px;">
-                @foreach (var item in Model.Mails)
-                {
-                    <div class="col-md-12 hoverOpMails" style="min-height: 175px; border:1px solid #808080; padding-left:0px; padding-right:0px;">
-
-                        <div class="@(item.Gelezen?"alGelezen": "nogNietGelezen")" style="float:left;">
-
-                        </div>
-                    <div style="float:left; width:99%;">
-                        @* rij 1 *@
-                        <div class="col-md-12" style="margin-bottom:15px; padding-top:20px;">
-                            <div class="col-md-6 text-left" style="float:left; font-size: 20px; font-weight:bold; padding-left:0px;">
-                                @item.Afzender
-                            </div>
-                            <div class="col-md-3 text-right" style="float:right; font-size: 16px;">
-                                @item.DatumTijd
-                            </div>
-                        </div>
-
-                        @* rij 2 *@
-                        <div class="col-md-10 text-left" style="margin-bottom:15px; font-size: 18px;">
-                            @item.Onderwerp
-                        </div>
-
-                        @* rij 2 *@
-                        <div class="col-md-10 text-left" style="font-size: 16px;">
-                            @item.Inhoud
-                        </div>
+    <form method="post">
+        <div class="row" style="padding:0px;">
+            <div class="col-md-12" style="height: 70px;padding:0px;">
+                <div class="col-md-4" style="height: 70px; padding:0px;">
+                    <div class="col-md-12 btn-group" role="group" style="padding-top: 8px; padding-left: 25px;">
+                        <a id="selecteerKnop" data-geselecteerd="false" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/select.png" class="fototjeKosten" /></a>
+                        <button id="gelezenKnop" formaction="MarkeerGeselecteerdeAlsGelezen" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/markeerGeselecteerdAlsGelezen.png" class="fototjeKosten" /></button>
+                        <button id="verwijderKnop" formaction="VerwijderGeselecteerde" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></button>
                     </div>
+                </div>
+
+                <div class="col-md-8" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
+                    <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
+                        <a id="antwoordMailKnop" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/antwoord.png" class="fototjeKosten"/></a>
+                        <a id="verwijderGeselecteerdeMail" formaction="VerwijderGeselecteerde" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="min-height: 1000px; padding-left:0px; padding-right:0px;">
+                @* linker kant *@
+
+                <div class="col-md-4" style="padding-right:0px; min-height: 1000px; overflow-y:scroll; max-height:1000px;">
+                    @foreach (var item in Model.Mails)
+                    {
+                        var id = "checkbox" + item.MailId;
+                        <div class="col-md-12 hoverOpMails mailKaartje" style="min-height: 175px; border:1px solid #808080; padding-left:0px; padding-right:0px;">
+                            
+                            <input class="geselecteerdeMailCheckBox" type="checkbox" name="@id" style="display: none;"/>
+                            <a class="beantwoordMailKnop" asp-controller="Home" asp-action="GeselecteerdeMail" asp-route-id="@item.MailId" style="display: none;"></a>
+
+                            <div id="dataDiv" class="@(item.Gelezen?"alGelezen": "nogNietGelezen")" data-id="@item.MailId" data-naam="@item.AfzenderVolledigeNaam" data-email="@item.Afzender" data-onderwerp="@item.Onderwerp" data-inhoud="@item.Inhoud" data-datum="@item.DatumTijdVolledig" style="float:left;">
+
+                            </div>
+                            
+                            <div style="float:left; width:99%;">
+                                @* rij 1 *@
+                                <div class="col-md-12" style="margin-bottom:15px; padding-top:20px;">
+                                    <div class="col-md-6 text-left" style="float:left; font-size: 20px; font-weight:bold; padding-left:0px;">
+                                        @item.AfzenderKort
+                                    </div>
+                                    <div class="col-md-3 text-right" style="float:right; font-size: 16px;">
+                                        @item.DatumTijdKort
+                                    </div>
+                                </div>
+
+                                @* rij 2 *@
+                                <div class="col-md-10 text-left" style="margin-bottom:15px; font-size: 18px;">
+                                    @item.OnderwerpKort
+                                </div>
+
+                                @* rij 2 *@
+                                <div class="col-md-10 text-left" style="font-size: 16px;">
+                                    @item.InhoudKort
+                                </div>
+                            </div>
                         
 
 
 
-                    </div>
-                }
-            </div>
+                        </div>
+                    }
+                </div>
 
 
-            @* rechter kant *@
-            <div class="col-md-8" style="min-height: 1000px; background-color:white;">
+                @* rechter kant *@
+                <div id="geopendeMail" class="col-md-8 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail")" style="min-height: 1000px; background-color:white;">
                     @* rij 1 *@
                     <div class="col-md-12" style="margin-bottom:15px; padding-top:50px;">
-                        <div class="col-md-offset-1 col-md-6 text-left" style="float:left; font-size: 16px; padding-left:0px;">
-                            Van Niels De Bruyne
+                        <div id="afzenderNaam" class="col-md-offset-1 col-md-6 text-left" style="float:left; font-size: 16px; padding-left:0px;">
+                            @if (Model.GeopendeMail != null)
+                            {
+                                @Model.GeopendeMail.AfzenderVolledigeNaam
+                            }
                         </div>
-                        <div class="col-md-3 text-right" style="float:right; font-size: 16px;">
-                            30/05/2017 - 18:02
+                        <div id="mailDatum" class="col-md-3 text-right" style="float:right; font-size: 16px;">
+                            @if (Model.GeopendeMail != null)
+                            {
+                                @Model.GeopendeMail.DatumTijdVolledig
+                            }
                         </div>
-                        <div class="col-md-offset-1 col-md-11" style="padding-left:0px; padding-right:0px;">
-                            niels95debruyne@hotmail.com
+                        <div id="afzenderMail" class="col-md-offset-1 col-md-11" style="padding-left:0px; padding-right:0px;">
+                            @if (Model.GeopendeMail != null)
+                            {
+                                @Model.GeopendeMail.Afzender
+                            }
                         </div>
                     </div>
 
                     @* rij 2 *@
-                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-bottom:50px; font-size: 36px;">
-                        Design for health project
+                    <div id="mailOnderwerp" class="col-md-offset-1 col-md-10 text-left" style="margin-bottom:50px; font-size: 36px;">
+                        @if (Model.GeopendeMail != null)
+                        {
+                            @Model.GeopendeMail.Onderwerp
+                        }
                     </div>
 
                     @* rij 2 *@
-                    <div class="col-md-offset-1 col-md-10 text-left" style="font-size: 20px;">
-                        <p>Hey Andreas,</p>
-                        <p>
-                            <br />
-                        </p>
-                        <p></p>
-                        <p style="margin-bottom:20px;">
-                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
-                            Hallo ik ben wat tekst aan he
-                            
-                            
-                            t typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
-                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
-                        </p>
-
-                        <p style="margin-bottom:20px;">
-                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
-                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen iste hebben terwijl Andreas rocket league gaan spelen is.
-                            Hallo ik ben wat tekst aan het typen om wat opvullineeeeeeeeeeeeeeeeeeeeeeeeeg te hebben terwijl Andreas rocket league gaan spelen is.
-                        <br />
-                            <br />
-                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
-                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
-                            Hallo ik ben wat tekst aan het typen om wat opvulling te hebben terwijl Andreas rocket league gaan spelen is.
-                        </p>
-
-                        <p>
-                            Mvg,
-                        </p>
-
-                        <p>
-                            Niels De Bruyne
-                        </p>
+                    <div id="mailInhoud" class="col-md-offset-1 col-md-10 text-left" style="font-size: 20px;">
+                        @if (Model.GeopendeMail != null)
+                        {
+                            @Model.GeopendeMail.Onderwerp
+                        }
                     </div>
 
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    </form>
 }

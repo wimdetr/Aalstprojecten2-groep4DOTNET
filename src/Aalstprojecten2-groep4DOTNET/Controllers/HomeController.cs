@@ -67,10 +67,12 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
                 _analyseRepository.Delete(analyse);
                 _analyseRepository.SaveChanges();
+                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " +
+                                      analyse.Werkgever.NaamAfdeling + " is succesvol verwijderd.";
             }
             catch
             {
-
+                TempData["error"] = "Iets is misgelopen, de analyse is niet verwijderd.";
             }
             return RedirectToAction(nameof(Index));
         }
@@ -123,11 +125,13 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     user.Naam = model.Naam;
                     user.Voornaam = model.Voornaam;
                     await _userManager.UpdateAsync(user);
+                    TempData["message"] = "Uw profiel is succesvol aangepast.";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
+                    TempData["error"] = "Iets is misgelopen, uw profiel is niet aangepast.";
                 }
             }
             return View(model);
@@ -165,11 +169,12 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     user.Naam = model.Naam;
                     user.Voornaam = model.Voornaam;
                     await _userManager.UpdateAsync(user);
+                    TempData["message"] = "Uw profiel is succesvol aangepast.";
                     return RedirectToAction(nameof(WachtwoordAanpassen));
                 }
                 catch
                 {
-                    
+                    TempData["error"] = "Iets is misgelopen, uw profiel is niet aangepast.";
                 }
             }
             return RedirectToAction(nameof(ProfielAanpassenDoorgaanMetOpslaanNietMogelijk), model);
@@ -218,6 +223,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                             jc.Wachtwoord = model.Password;
                             jc.MoetWachtwoordVeranderen = false;
                             _jobCoachRepository.SaveChanges();
+                            TempData["message"] = "Uw wachtwoord is succesvol aangepast.";
                             return RedirectToAction(nameof(ProfielAanpassen));
                         }
                         ModelState.AddModelError("", "Onze excuses, er is iets verkeerd gelopen.");
@@ -228,6 +234,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
+            TempData["error"] = "Uw wachtwoord is niet aangepast.";
             return View(new WachtwoordAanpassenViewModel());
         }
 
@@ -247,6 +254,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 {
                     JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
                     await MailVerzender.ContacteerAdmin(jc.Naam + " " + jc.Voornaam, jc.Email, model.Onderwerp, model.Inhoud);
+                    TempData["message"] = "Uw bericht werd succesvol naar de admin verstuurd.";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception e)
@@ -254,23 +262,39 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
+            TempData["error"] = "Iets is misgelopen, uw bericht werd niet naar de admin verstuurd.";
             return View(model);
         }
 
         public IActionResult OverzichtMailbox()
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
-            return View(new OverzichtMailboxViewModel(_interneMailJobcoachRepository.GetAll(User.Identity.Name)));
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                m.Jobcoach = jc;
+            }
+            return View(new OverzichtMailboxViewModel(mails));
         }
 
         public IActionResult GeselecteerdeMail(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
+
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
             InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
             mail.IsGelezen = true;
             _interneMailJobcoachRepository.SaveChanges();
-            MailViewModel model = new MailViewModel(mail);
-            return View(model);
+            mail.Jobcoach = jc;
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                m.Jobcoach = jc;
+            }
+            OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
+            model.GeopendeMail = new MailViewModel(mail);
+            return View(nameof(OverzichtMailbox), model);
         }
 
         public IActionResult VerwijderMail(int id)
@@ -288,8 +312,19 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult BevestigVerwijderMail(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
-            _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, id));
-            _interneMailJobcoachRepository.SaveChanges();
+            try
+            {
+                InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
+                _interneMailJobcoachRepository.Delete(mail);
+                _interneMailJobcoachRepository.SaveChanges();
+                TempData["message"] = "De mail van " + mail.InterneMail.Afzender + " met onderwerp " +
+                                      mail.InterneMail.Onderwerp + " werd succesvol verwijdert";
+                
+            }
+            catch
+            {
+                TempData["error"] = "Iets is misgelopen, de mail werd niet verwijderd.";
+            }
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
@@ -375,9 +410,17 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult BeantwoordMail(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
             InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
-            BeantwoordMailViewModel model = new BeantwoordMailViewModel(mail);
-            return View(model);
+            mail.Jobcoach = jc;
+            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mails)
+            {
+                m.Jobcoach = jc;
+            }
+            OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
+            model.GeopendeMail = new MailViewModel(mail);
+            return View(nameof(OverzichtMailbox));
         }
 
         [HttpPost]

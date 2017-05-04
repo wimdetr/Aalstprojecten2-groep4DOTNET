@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/sidebar.css" />
         <link rel="stylesheet" href="~/css/Animations.css">
+        <link rel="icon" type="image/png" href="~/images/kairosLogo/kairos_icon_green.png"/>
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -56,11 +57,21 @@
                 </div>
                 
             </nav>
+            @if (TempData["error"] != null)
+            {
+                <div class="alert alert-danger tempdataStijl">@TempData["error"]</div>
+            }
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success tempdataStijl">@TempData["message"]</div>
+            }
             <div id="page-wrapper">
                 <div class="container-fluid">
                     
                     <div class="row" id="main">
+                        
                         <div class="col-sm-12 col-md-12 col-lg-12 well" id="content">
+
                             @RenderBody()
                         </div>
                     </div>

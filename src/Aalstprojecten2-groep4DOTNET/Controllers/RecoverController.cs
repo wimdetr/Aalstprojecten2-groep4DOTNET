@@ -53,6 +53,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 try
                 {
+                    TempData["message"] =
+                        "U heeft succesvol een aanvraag voor een nieuw wachtwoord gedaan, u heeft een e-mail ontvangen met een herstel link.";
                     return RedirectToAction("Login", "Account");
                 }
                 catch (Exception e)
@@ -60,7 +62,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-
+            TempData["error"] = "Iets is misgelopen, de er is geen herstel mail verstuurd.";
             return View(model);
 
 
