@@ -99,20 +99,20 @@ else
                         <strong id="naam">@item.Organisatie</strong>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 iconen">
-                        <div class="icoon" id="binIcoon">
-                            <a asp-controller="Analyse" asp-action="Delete" asp-route-id="@item.Id"><img id="binPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh" /></a>
+                        <div class="icoon binIcoon">
+                            <a asp-controller="Analyse" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon binPrent" src="~/images/iconen/bin.png" alt="meh" /></a>
                         </div>                    
     @*knoppen downloaden versturen verwijderen*@
-                        <div class="icoon" id="sendIcoon">
-                            <a><img id="sendPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
+                        <div class="icoon sendIcoon">
+                            <a><img class="img-responsive img-rounded mijnIcoon sendPrent" src="~/images/iconen/send.png" alt="meh" /></a>
                         </div>
 
                         
-                        <div class="icoon" id="downloadIcoon">
-                            <a><img id="downloadPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
+                        <div class="icoon downloadIcoon">
+                            <a><img class="img-responsive img-rounded mijnIcoon downloadPrent" src="~/images/iconen/download.png" alt="meh" /></a>
                         </div>
-                        <div class="icoon" id="deArchiveerIcoon">
-                            <a asp-controller="Analyse" asp-action="DeArchiveer" asp-route-id="@item.Id"><img id="deArchiveerPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/unarchive.png" alt="meh" /></a>
+                        <div class="icoon deArchiveerIcoon">
+                            <a asp-controller="Analyse" asp-action="DeArchiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon deArchiveerPrent" src="~/images/iconen/unarchive.png" alt="meh" /></a>
                         </div>
                     </div>
                 </div>
@@ -154,17 +154,53 @@ else
                         </div>
                     </div>
 
-                    <div class="helft" style="width: @item.KostenBalk%;">
-                        <div class="kostenBalk">
+                    @if (item.KostenResultaat == 0 && item.BatenResultaat == 0)
+                    {
+                        <div class="helft" style="width: 50%;">
 
+                            <div class="batenBalk3">
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="helft" style="width: @item.BatenBalk%;">
 
-                        <div class="batenBalk">
+                        <div class="helft" style="width:50%;">
+                            <div class="kostenBalk2">
 
+                            </div>
                         </div>
-                    </div>
+
+                    }
+                    else if (item.KostenResultaat == 0)
+                    {
+                        <div class="helft" style="width: 100%;">
+
+                            <div class="batenBalk2">
+
+                            </div>
+                        </div>
+                    }
+                    else if (item.BatenResultaat == 0)
+                    {
+                        <div class="helft" style="width:100%;">
+                            <div class="kostenBalk2">
+
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="helft" style="width: @item.KostenBalk%;">
+                            <div class="kostenBalk">
+
+                            </div>
+                        </div>
+                        <div class="helft" style="width: @item.BatenBalk%;">
+
+                            <div class="batenBalk">
+
+                            </div>
+                        </div>
+                    }
 
                     <div>
                         <div class="kosten text-left" style="width:50%; float:left;">

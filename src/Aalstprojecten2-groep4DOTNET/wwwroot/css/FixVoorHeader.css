@@ -1,0 +1,29 @@
+﻿.titelFix {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+
+.borderstyles1 {
+    border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    
+}
+
+.borderstyles2 {
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    
+}
+
+.borderstyles3 {
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-right-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    
+}

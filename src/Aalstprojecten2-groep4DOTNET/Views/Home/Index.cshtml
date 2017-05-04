@@ -5,11 +5,58 @@
         ViewData["Title"] = "Kairos";
     }
 
-
+<link rel="stylesheet" href="~/css/FixVoorHeader.css" />
+    <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    
+    <link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
     <link rel="stylesheet" href="~/css/analyseDetail.css" />
+    
 
-    <h2>Home</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-3" style="padding-left:5px;">
+            <h2 class="titelFix">Home</h2>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-5 pull-right">
+                <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-right:0px; float:left;">
+                    <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles1"><img src="~/images/iconen/eerstePagina.png" class="fototjeKosten" /></a>
+                    <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/vorigePagina.png" class="fototjeKosten" /></a>
+                </div>
+                <div class="col-md-2 marginTopKlein" style="padding-left:0px; padding-right:0px; float:left;">
+                    <select style="width: 100%; height: 42px; text-align:center;">
+                        <option selected>Aantal</option>
+                        <option>5</option>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>Alle</option>
+                    </select>
+                </div>
+                <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-left:0px; float:left;">
+                    <a asp-controller="Analyse" asp-action="AnalyseKost" class="col-md-6 btn btn-primary btn-sm borderstyles2"><img src="~/images/iconen/volgendePagina.png" class="fototjeKosten" /></a>
+                    <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="col-md-6 btn btn-primary btn-sm borderstyles3"><img src="~/images/iconen/laatstePagina.png" class="fototjeKosten" /></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+<div>
+    <h5></h5>
     <hr />
+</div>
+
+
+
+
+
+
+
+
+
 
 @if (Model.IsLeeg)
 {
@@ -32,20 +79,20 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                  </div>
                  <div class="col-lg-6 col-md-6 col-sm-6 iconen">
                      @*knoppen downloaden versturen verwijderen*@
-                     <div class="icoon" id="verwijderIcoon">
-                         <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img id="verwijderPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/bin.png" alt="meh"/></a>
+                     <div class="icoon verwijderIcoon">
+                         <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon verwijderPrent" src="~/images/iconen/bin.png" alt="meh"/></a>
                      </div>
-                     <div class="icoon" id="verstuurIcoon">
-                         <a><img id="verstuurPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/send.png" alt="meh" /></a>
+                     <div class="icoon verstuurIcoon">
+                         <a><img class="img-responsive img-rounded mijnIcoon verstuurPrent" src="~/images/iconen/send.png" alt="meh" /></a>
                      </div>
-                     <div class="icoon" id="downloadIcoon">
-                         <a><img id="downloadPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/download.png" alt="meh" /></a>
+                     <div class="icoon downloadIcoon">
+                         <a><img class="img-responsive img-rounded mijnIcoon downloadPrent" src="~/images/iconen/download.png" alt="meh" /></a>
                      </div>
-                     <div class="icoon" id="archiveerIcoon">
-                         <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img id="archiveerPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/archive.png" alt="meh"/></a>
+                     <div class="icoon archiveerIcoon">
+                         <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon archiveerPrent" src="~/images/iconen/archive.png" alt="meh"/></a>
                      </div>
-                     <div class="icoon" id="potloodIcoon">
-                         <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img id="potloodPrent" class="img-responsive img-rounded mijnIcoon" src="~/images/iconen/edit.png" alt="meh"/></a>
+                     <div class="icoon potloodIcoon">
+                         <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon potloodPrent" src="~/images/iconen/edit.png" alt="meh"/></a>
                      </div>
                  </div>
              </div>
@@ -86,12 +133,28 @@ foreach (AnalyseOverzichtViewModel item in Model.Analyses)
                          <strong>Baten</strong>
                      </div>
                  </div>
-                 
-                 @if (item.KostenResultaat == 0)
+
+                 @if (item.KostenResultaat == 0 && item.BatenResultaat == 0)
+                 {
+                    <div class="helft" style="width: 50%;">
+
+                        <div class="batenBalk3">
+
+                        </div>
+                    </div>
+
+                    <div class="helft" style="width:50%;">
+                        <div class="kostenBalk2">
+
+                        </div>
+                    </div>
+
+                 }
+                 else if (item.KostenResultaat == 0)
                  {
                     <div class="helft" style="width: 100%;">
 
-                        <div class="batenBalk">
+                        <div class="batenBalk2">
 
                         </div>
                     </div>
