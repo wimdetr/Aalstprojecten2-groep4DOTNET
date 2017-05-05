@@ -9,7 +9,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
 {
     public class BeantwoordMailViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Admin mail is verplicht, contacteer de administrator")]
         public string AdminMail { get; set; }
         [Required(ErrorMessage ="Onderwerp is verplicht")]
         [MaxLength(100, ErrorMessage = "Onderwerp mag maximaal 100 karakters bevatten!")]
