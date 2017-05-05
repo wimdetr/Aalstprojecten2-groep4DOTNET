@@ -67,3 +67,7 @@
 .marginBenedenGrootMaarNietZoGrootAlsMarginBenedenMiddenDitMetOnzeExcuses_Pardon {
     margin-bottom:50px;
 }
+
+.fixPadding {
+    padding-left: 0px;
+}

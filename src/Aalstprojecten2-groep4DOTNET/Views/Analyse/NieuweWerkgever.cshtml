@@ -24,7 +24,7 @@
 
         <div class="col-md-6">
             <input asp-for="WerkgeverId"  />
-            <label asp-for="Naam" class="col-md-2 control-label"></label>
+            <label asp-for="Naam" class="col-md-12 control-label fixPadding"></label>
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="form-group">
                         <input asp-for="Naam" value="@Model.Naam" class="form-control" />
@@ -32,7 +32,7 @@
                     </div>
              </div>
                 
-            <label asp-for="Straat" class="col-md-12 text-left"></label>
+            <label asp-for="Straat" class="col-md-12 text-left fixPadding"></label>
             <div class="col-xs-12 col-sm-6 col-md-12">
                     <div class="form-group">
                         <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
@@ -47,10 +47,10 @@
 
 
 
-            <div class="col-md-12">
-                <div class="col-md-6 verwijderPaddingLinks">
+            <div class="col-md-12 fixPadding">
+                <div class="col-md-6">
 
-                    <label asp-for="Nummer" class="col-md-12 text-left verwijderPaddingLinks"></label>
+                    <label asp-for="Nummer" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
                     <div class="col-xs-12 col-sm-6 col-md-12 verwijderPaddingLinks">
                         <div class="form-group">
                             <input asp-for="Nummer" value="@Model.Nummer" id="street_number" class="form-control" />
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="col-md-6 verwijderPaddingRechts">
-                    <label asp-for="Bus" class="col-md-12 text-left verwijderPaddingRechts"></label>
+                    <label asp-for="Bus" class="col-md-12 text-left verwijderPaddingRechts fixPadding"></label>
                     <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
                         <div class="form-group">
                             <input asp-for="Bus" value="@Model.Bus" class="form-control" />
@@ -71,7 +71,7 @@
 
             </div>
 
-            <label asp-for="Postcode" class="col-md-2 control-label"></label>
+            <label asp-for="Postcode" class="col-md-12 control-label fixPadding"></label>
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="form-group">
                     <input asp-for="Postcode" value="@Model.Postcode" id="postal_code" class="form-control" />
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <label asp-for="Gemeente" class="col-md-12 text-left"></label>
+            <label asp-for="Gemeente" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="Gemeente" value="@Model.Gemeente" id="locality" class="form-control" />
@@ -104,7 +104,7 @@
 
             <div class="col-md-12">
                 <div class="col-md-6 verwijderPaddingLinks">
-                    <label asp-for="AantalWerkuren" class="col-md-12 text-left verwijderPaddingLinks"></label>
+                    <label asp-for="AantalWerkuren" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
                     <div class="col-xs-12 col-sm-6 col-md-12 verwijderPaddingLinks">
                         <div class="form-group">
                                 <input asp-for="AantalWerkuren" value="@Model.AantalWerkuren" class="form-control" />
@@ -114,7 +114,7 @@
                     </div>
                 <div class="col-md-6 verwijderPaddingRechts">
 
-                    <label asp-for="PatronaleBijdrage" class="col-md-12 text-left verwijderPaddingLinks"></label>
+                    <label asp-for="PatronaleBijdrage" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
                     <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
                         <div class="form-group">
                             <input asp-for="PatronaleBijdrage" value="@Model.PatronaleBijdrage" class="form-control" />
@@ -134,7 +134,7 @@
 
 
             
-            <label asp-for="NaamAfdeling" class="col-md-12 text-left"></label>
+            <label asp-for="NaamAfdeling" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="NaamAfdeling" value="@Model.NaamAfdeling" class="form-control" />
@@ -144,7 +144,7 @@
 
 
             
-            <label asp-for="ContactPersoonNaam" class="col-md-12 text-left"></label>
+            <label asp-for="ContactPersoonNaam" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="ContactPersoonNaam" value="@Model.ContactPersoonNaam" class="form-control" />
@@ -153,7 +153,7 @@
             </div>
 
             
-            <label asp-for="ContactPersoonVoornaam" class="col-md-12 text-left"></label>
+            <label asp-for="ContactPersoonVoornaam" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="ContactPersoonVoornaam" value="@Model.ContactPersoonVoornaam" class="form-control" />
@@ -162,7 +162,7 @@
             </div>
 
             
-            <label asp-for="ContactPersoonEmail" class="col-md-12 text-left"></label>
+            <label asp-for="ContactPersoonEmail" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="ContactPersoonEmail" value="@Model.ContactPersoonEmail" class="form-control" />

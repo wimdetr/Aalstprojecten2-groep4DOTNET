@@ -8,22 +8,22 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
 {
     public class WachtwoordAanpassenViewModel
     {
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage ="Oud wachtwoord is verplicht.")]
+        [StringLength(100, ErrorMessage = "Het wachtwoord moet minstens 6 en maximum 100 hebben.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Oud wachtwoord")]
+        [Display(Name = "Oud wachtwoord *")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Nieuw wachtwoord is verplicht.")]
+        [StringLength(100, ErrorMessage = "Het wachtwoord moet minstens 6 en maximum 100 hebben.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Nieuw wachtwoord")]
+        [Display(Name = "Nieuw wachtwoord *")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bevestig wachtwoord is verplicht.")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        [Display(Name = "Bevestig nieuw wachtwoord")]
+        [Compare("Password", ErrorMessage = "De twee ingegeven wachtwoorden komen zijn verschillend.")]
+        [Display(Name = "Bevestig nieuw wachtwoord *")]
         public string ConfirmPassword { get; set; }
     }
 }
