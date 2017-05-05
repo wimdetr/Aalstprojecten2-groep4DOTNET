@@ -11,27 +11,27 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
     {
         [Required(ErrorMessage = "{0} is verplicht.")]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email *")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "{0} is verplicht.")]
-        [Display(Name = "Voornaam")]
+        [Display(Name = "Voornaam *")]
         public string Voornaam { get; set; }
 
         [Required(ErrorMessage = "{0} is verplicht.")]
-        [Display(Name = "Naam")]
+        [Display(Name = "Naam *")]
         public string Naam { get; set; }
 
         [Required(ErrorMessage = "{0} is verplicht.")]
-        [Display(Name = "Bedrijfsnaam")]
+        [Display(Name = "Bedrijfsnaam *")]
         public string NaamBedrijf { get; set; }
 
         [Required(ErrorMessage = "{0} is verplicht.")]
-        [Display(Name = "Straat")]
+        [Display(Name = "Straat *")]
         public string Straat { get; set; }
 
         [Required(ErrorMessage = "{0} is verplicht.")]
-        [Display(Name = "Nummer")]
+        [Display(Name = "Nummer *")]
         [RegularExpression("[1-9][0-9]*", ErrorMessage = "{0} moet minstens 1 zijn.")]
         public int Nummer { get; set; }
 
@@ -40,12 +40,12 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public string Bus { get; set; }
 
         [Required(ErrorMessage = "{0} is verplicht.")]
-        [Display(Name = "Postcode")]
+        [Display(Name = "Postcode *")]
         [RegularExpression("[1-9][0-9]{3}", ErrorMessage = "{0} moet een getal tussen 1000 en 9999 zijn.")]
         public int Postcode { get; set; }
 
         [Required(ErrorMessage = "{0} is verplicht.")]
-        [Display(Name = "Gemeente")]
+        [Display(Name = "Gemeente *")]
         public string Gemeente { get; set; }
 
         
