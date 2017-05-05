@@ -9,7 +9,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
 {
     public class AnalyseKostLijstObjectViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="KostId is verplicht, contacteer Bart")]
         public int Kost1Id { get; set; }
         public string Functie { get; set; }
         public int AantalUrenPerWeek { get; set; }

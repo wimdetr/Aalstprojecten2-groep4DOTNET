@@ -8,7 +8,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
 {
     public class UrenMaandloonViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="KostId is verplicht, contacteer Bart")]
         public int KostId { get; set; }
         public int Uren { get; set; }
         public double Maandloon { get; set; }

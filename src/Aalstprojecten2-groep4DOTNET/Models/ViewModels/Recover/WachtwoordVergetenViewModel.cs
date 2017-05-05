@@ -8,7 +8,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Recover
 {
     public class WachtwoordVergetenViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="E-mail is verplicht")]
+        [Display(Name ="E-mail *")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
