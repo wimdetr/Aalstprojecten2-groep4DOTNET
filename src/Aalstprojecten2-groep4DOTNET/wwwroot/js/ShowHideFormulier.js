@@ -20,6 +20,7 @@
             knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
             setTimeout(function () {
                 knop.parent().parent().parent().parent().parent().addClass("verbergFormulier");
+                knop.parent().parent().siblings(".marginBenedenTekstvelden").find("input").val("-1");
                 knop.parent().parent().siblings(".marginBenedenTekstvelden").children(".vanKnopNaarInputVelden").children().each(function () {
                     $(this).children().children("div").children(".form-group").find("input").val("");
                 });
@@ -32,15 +33,7 @@
             $(this).parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
             setTimeout(function () {
                 knop.parent().parent().parent().parent().parent().addClass("verbergFormulier");
-                //var volledigeInvulveldjes = knop.siblings(".volledigeInvulveldjes");
-                //var inputsToClean1 = volledigeInvulveldjes.children(".invulveldjes1").children(".form-group").find("input");
-                //var inputsToClean2 = volledigeInvulveldjes.children(".invulveldjes2").children(".form-group").find("input");
-                //for (var i = 0; i < inputsToClean1.length; i++) {
-                //    inputsToClean1[i].value = null;
-                //}
-                //for (var j = 0; j < inputsToClean2.length; j++) {
-                //    inputsToClean2[j].value = null;
-                //}
+                knop.parent().parent().siblings("input").val("-1");
                 knop.parent()
                     .parent()
                     .siblings(".vanKnopNaarInputVelden")
