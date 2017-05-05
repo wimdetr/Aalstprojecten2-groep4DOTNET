@@ -65,11 +65,11 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             try
             {
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
+                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling + " is succesvol verwijderd.";
                 _analyseRepository.Delete(analyse);
                 _analyseRepository.SaveChanges();
-                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling + " is succesvol verwijderd.";
             }
-            catch
+            catch(Exception e)
             {
                 TempData["error"] = "Iets is misgelopen, de analyse is niet verwijderd.";
             }
