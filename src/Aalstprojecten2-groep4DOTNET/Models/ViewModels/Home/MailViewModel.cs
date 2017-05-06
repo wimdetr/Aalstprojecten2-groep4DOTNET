@@ -23,18 +23,18 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public MailViewModel(InterneMailJobcoach m)
         {
             MailId = m.InterneMailId;
-            Afzender = m.InterneMail.Afzender;
-            AfzenderKort = Afzender.Length > 20 ? Afzender.Substring(0, 20) + "..." : Afzender;
-            AfzenderVolledigeNaam = "Van " + m.Jobcoach.Voornaam + " " + m.Jobcoach.Naam;
+            Afzender = m.InterneMail.Afzender.Email;
+            AfzenderVolledigeNaam = "Van " + m.InterneMail.Afzender.Voornaam + " " + m.InterneMail.Afzender.Naam;
+            AfzenderKort = AfzenderVolledigeNaam.Length > 25? AfzenderVolledigeNaam.Substring(0, 25) + "..." : AfzenderVolledigeNaam;
             Gelezen = m.IsGelezen;
             Onderwerp = m.InterneMail.Onderwerp;
-            OnderwerpKort = Onderwerp.Length > 20 ? Onderwerp.Substring(0, 20) + "..." : Onderwerp;
+            OnderwerpKort = Onderwerp.Length > 25 ? Onderwerp.Substring(0, 25) + "..." : Onderwerp;
             Inhoud = m.InterneMail.Inhoud;
-            InhoudKort = Inhoud.Length > 20 ? Inhoud.Substring(0, 20) + "..." : Inhoud;
+            InhoudKort = Inhoud.Length > 25 ? Inhoud.Substring(0, 25) + "..." : Inhoud;
             DateTime dt = m.InterneMail.VerzendDatum;
             if (dt > DateTime.Now.AddDays(-1))
             {
-                DatumTijdKort = dt.Hour + ":" + dt.Minute;
+                DatumTijdKort = (dt.Hour > 9 ? dt.Hour.ToString() : "0" + dt.Hour) + ":" + (dt.Minute > 9?dt.Minute.ToString():"0"+dt.Minute);
             }
             else if (dt > DateTime.Now.AddDays(-7))
             {
@@ -63,13 +63,13 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
                         DatumTijdKort = "zo";
                         break;
                 }
-                DatumTijdKort += " " + dt.Hour + ":" + dt.Minute;
+                DatumTijdKort += " " + (dt.Hour > 9 ? dt.Hour.ToString() : "0" + dt.Hour) + ":" + (dt.Minute > 9 ? dt.Minute.ToString() : "0" + dt.Minute);
             }
             else
             {
-                DatumTijdKort = dt.Day + "/" + dt.Month + "/" + dt.Year;
+                DatumTijdKort = (dt.Day > 9 ? dt.Day.ToString() : "0" + dt.Day) + "/" + (dt.Month > 9 ? dt.Month.ToString() : "0" + dt.Month) + "/" + dt.Year;
             }
-            DatumTijdVolledig = dt.Day + "/" + dt.Month + "/" + dt.Year + " - " + dt.Hour + ":" + dt.Minute;
+            DatumTijdVolledig = (dt.Day > 9 ? dt.Day.ToString() : "0" + dt.Day) + "/" + (dt.Month > 9 ? dt.Month.ToString() : "0" + dt.Month) + "/" + dt.Year + " - " + (dt.Hour > 9 ? dt.Hour.ToString() : "0" + dt.Hour) + ":" + (dt.Minute > 9 ? dt.Minute.ToString() : "0" + dt.Minute);
         }
     }
 }

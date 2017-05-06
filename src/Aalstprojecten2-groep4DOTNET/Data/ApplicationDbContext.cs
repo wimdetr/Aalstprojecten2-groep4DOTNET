@@ -40,7 +40,17 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             builder.Entity<InterneMailJobcoach>(MapInterneMailJobcoach);
             builder.Entity<AdminMail>(MapAdminMail);
             builder.Entity<Doelgroep>(MapDoelgroep);
-            
+            builder.Entity<Admin>(MapAdmins);
+        }
+
+        private void MapAdmins(EntityTypeBuilder<Admin> a)
+        {
+            a.ToTable("Administrator");
+            a.HasKey(t => t.Email);
+
+            a.Property(t => t.Naam).IsRequired();
+            a.Property(t => t.Voornaam).IsRequired();
+            a.Property(t => t.Superadmin).IsRequired();
         }
 
         private void MapAdminMail(EntityTypeBuilder<AdminMail> a)
@@ -95,6 +105,8 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             m.Property(t => t.Onderwerp).HasMaxLength(100).IsRequired();
             m.Property(t => t.Inhoud).IsRequired();
             m.Property(t => t.VerzendDatum).IsRequired();
+
+            m.HasOne(t => t.Afzender).WithMany().IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
 
         private void MapKOBVak(EntityTypeBuilder<KOBVak> v)

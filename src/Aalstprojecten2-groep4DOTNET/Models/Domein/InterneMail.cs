@@ -10,7 +10,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         #region Properties
 
         public int InterneMailId { get; set; }
-        public string Afzender { get; set; }
+        public Admin Afzender { get; set; }
         public string Onderwerp { get; set; }
         public string Inhoud { get; set; }
         public DateTime VerzendDatum { get; set; }
@@ -23,7 +23,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         {
         }
 
-        public InterneMail(string afzender, string onderwerp, string inhoud, DateTime verzendDatum)
+        public InterneMail(Admin afzender, string onderwerp, string inhoud, DateTime verzendDatum)
         {
             Afzender = afzender;
             Onderwerp = onderwerp;
