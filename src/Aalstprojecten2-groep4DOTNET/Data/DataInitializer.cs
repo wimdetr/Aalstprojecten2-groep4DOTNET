@@ -277,14 +277,17 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 c.Nummer = 46;
                 a.Werkgever = c;
 
-                InterneMail mail1 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
-                InterneMail mail2 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
-                InterneMail mail3 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
-                InterneMail mail4 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
-                InterneMail mail5 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
-                InterneMail mail6 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
-                InterneMail mail7 = new InterneMail("niels95debruyne@hotmail.com", "welkom", "Welkom op kairos", DateTime.Now.AddDays(-10));
-                InterneMail mail8 = new InterneMail("andreas.dewitte@hotmail.com", "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                Admin admin = new Admin("bartmoens@gmail.com", "Moens", "Bart");
+                admin.Superadmin = true;
+
+                InterneMail mail1 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail2 = new InterneMail(admin, "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail3 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail4 = new InterneMail(admin, "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail5 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
+                InterneMail mail6 = new InterneMail(admin, "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail7 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-10));
+                InterneMail mail8 = new InterneMail(admin, "Hallo", "Hallo, nog wat tekst", DateTime.Now);
 
                 mark.AddMail(mail1);
                 mark.AddMail(mail3);
@@ -302,6 +305,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                     "admin mail", "dit is een mail voor de admin", DateTime.Now);
                 _context.AdminMails.Add(adminMail);
 
+                
 
                 _context.SaveChanges();
 

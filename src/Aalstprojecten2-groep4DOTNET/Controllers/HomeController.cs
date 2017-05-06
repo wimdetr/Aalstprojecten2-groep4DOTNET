@@ -69,7 +69,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 _analyseRepository.Delete(analyse);
                 _analyseRepository.SaveChanges();
             }
-            catch(Exception e)
+            catch
             {
                 TempData["error"] = "Iets is misgelopen, de analyse is niet verwijderd.";
             }
@@ -280,20 +280,33 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult GeselecteerdeMail(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
-
-            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
-            InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
-            mail.IsGelezen = true;
-            _interneMailJobcoachRepository.SaveChanges();
-            mail.Jobcoach = jc;
-            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
-            foreach (InterneMailJobcoach m in mails)
+            try
             {
-                m.Jobcoach = jc;
+                JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+                InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
+                mail.IsGelezen = true;
+                _interneMailJobcoachRepository.SaveChanges();
+                mail.Jobcoach = jc;
+                IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+                foreach (InterneMailJobcoach m in mails)
+                {
+                    m.Jobcoach = jc;
+                }
+                OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
+                model.GeopendeMail = new MailViewModel(mail);
+                return View(nameof(OverzichtMailbox), model);
             }
-            OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
-            model.GeopendeMail = new MailViewModel(mail);
-            return View(nameof(OverzichtMailbox), model);
+            catch
+            {
+                
+            }
+            IEnumerable<InterneMailJobcoach> mijnMails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            JobCoach j = _jobCoachRepository.GetByEmail(User.Identity.Name);
+            foreach (InterneMailJobcoach m in mijnMails)
+            {
+                m.Jobcoach = j;
+            }
+            return View(nameof(OverzichtMailbox), new OverzichtMailboxViewModel(mijnMails));
         }
 
         public IActionResult VerwijderMail(int id)

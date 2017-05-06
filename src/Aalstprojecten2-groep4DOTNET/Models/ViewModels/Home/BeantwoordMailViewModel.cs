@@ -26,7 +26,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
 
         public BeantwoordMailViewModel(InterneMailJobcoach m)
         {
-            AdminMail = m.InterneMail.Afzender;
+            AdminMail = m.InterneMail.Afzender.Email;
             Onderwerp = "RE: " + m.InterneMail.Onderwerp;
             Inhoud = "\n\n\n" + m.InterneMail.Inhoud;
         }
