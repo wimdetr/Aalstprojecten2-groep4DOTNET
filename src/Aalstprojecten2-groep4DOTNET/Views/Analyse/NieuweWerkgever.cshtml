@@ -9,43 +9,74 @@
 
 
 <div class="row">
-        <h2 style="padding-left: 5px;">@Model.Titel</h2>
+    <h2 style="padding-left: 5px;">@Model.Titel</h2>
     <hr />
 </div>
 
 <form method="post" class="form-horizontal">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    
+
     <div class="row col-md-offset-3 col-md-6 divOpmaak divBorder">
 
         <div class="logo">
             <img src="~/images/login/login foto.png" class="breddtefixen" />
         </div>
 
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <span asp-validation-for="Naam" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="Straat" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="Nummer" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="Bus" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="Postcode" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="Gemeente" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <span asp-validation-for="AantalWerkuren" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="PatronaleBijdrage" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="NaamAfdeling" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="ContactPersoonNaam" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="ContactPersoonVoornaam" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <span asp-validation-for="ContactPersoonEmail" class="text-danger"></span>
+            </div>
+        </div>
+
         <div class="col-md-6">
-            <input asp-for="WerkgeverId"  />
+            <input asp-for="WerkgeverId" />
             <label asp-for="Naam" class="col-md-12 control-label fixPadding"></label>
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="form-group">
-                        <input asp-for="Naam" value="@Model.Naam" class="form-control" />
-                        <span asp-validation-for="Naam" class="text-danger"></span>
-                    </div>
-             </div>
-                
-            <label asp-for="Straat" class="col-md-12 text-left fixPadding"></label>
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                    <div class="form-group">
-                        <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
-                        <span asp-validation-for="Straat" class="text-danger"></span>
-                    </div>
+                    <input asp-for="Naam" value="@Model.Naam" class="form-control" />
+                </div>
             </div>
 
-
-
-
-
-
-
+            <label asp-for="Straat" class="col-md-12 text-left fixPadding"></label>
+            <div class="col-xs-12 col-sm-6 col-md-12">
+                <div class="form-group">
+                    <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
+                </div>
+            </div>
 
             <div class="col-md-12 fixPadding">
                 <div class="col-md-6">
@@ -54,7 +85,6 @@
                     <div class="col-xs-12 col-sm-6 col-md-12 verwijderPaddingLinks">
                         <div class="form-group">
                             <input asp-for="Nummer" value="@Model.Nummer" id="street_number" class="form-control" />
-                            <span asp-validation-for="Nummer" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -64,7 +94,6 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
                         <div class="form-group">
                             <input asp-for="Bus" value="@Model.Bus" class="form-control" />
-                            <span asp-validation-for="Bus" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -75,7 +104,6 @@
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="form-group">
                     <input asp-for="Postcode" value="@Model.Postcode" id="postal_code" class="form-control" />
-                    <span asp-validation-for="Postcode" class="text-danger"></span>
                 </div>
             </div>
 
@@ -83,42 +111,28 @@
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="Gemeente" value="@Model.Gemeente" id="locality" class="form-control" />
-                    <span asp-validation-for="Gemeente" class="text-danger"></span>
                 </div>
             </div>
 
-            </div>
+        </div>
 
 
         <div class="col-md-6">
-            
-            
-
-            
-
-
-
-
-
-
-
             <div class="col-md-12">
                 <div class="col-md-6 verwijderPaddingLinks">
                     <label asp-for="AantalWerkuren" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
                     <div class="col-xs-12 col-sm-6 col-md-12 verwijderPaddingLinks">
                         <div class="form-group">
-                                <input asp-for="AantalWerkuren" value="@Model.AantalWerkuren" class="form-control" />
-                                <span asp-validation-for="AantalWerkuren" class="text-danger"></span>
+                            <input asp-for="AantalWerkuren" value="@Model.AantalWerkuren" class="form-control" />
                         </div>
                     </div>
-                    </div>
+                </div>
                 <div class="col-md-6 verwijderPaddingRechts">
 
                     <label asp-for="PatronaleBijdrage" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
                     <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
                         <div class="form-group">
                             <input asp-for="PatronaleBijdrage" value="@Model.PatronaleBijdrage" class="form-control" />
-                            <span asp-validation-for="PatronaleBijdrage" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -133,40 +147,36 @@
 
 
 
-            
+
             <label asp-for="NaamAfdeling" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="NaamAfdeling" value="@Model.NaamAfdeling" class="form-control" />
-                    <span asp-validation-for="NaamAfdeling" class="text-danger"></span>
                 </div>
             </div>
 
 
-            
+
             <label asp-for="ContactPersoonNaam" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="ContactPersoonNaam" value="@Model.ContactPersoonNaam" class="form-control" />
-                    <span asp-validation-for="ContactPersoonNaam" class="text-danger"></span>
                 </div>
             </div>
 
-            
+
             <label asp-for="ContactPersoonVoornaam" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="ContactPersoonVoornaam" value="@Model.ContactPersoonVoornaam" class="form-control" />
-                    <span asp-validation-for="ContactPersoonVoornaam" class="text-danger"></span>
                 </div>
             </div>
 
-            
+
             <label asp-for="ContactPersoonEmail" class="col-md-12 text-left fixPadding"></label>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <input asp-for="ContactPersoonEmail" value="@Model.ContactPersoonEmail" class="form-control" />
-                    <span asp-validation-for="ContactPersoonEmail" class="text-danger"></span>
                 </div>
             </div>
 
@@ -174,29 +184,32 @@
 
 
 
-                
-                
-                
-                
-                
-                
-                <div class="form-group">
-                    <div class="col-md-12" style="margin-top: 25px;">
-                        @if (Model.Aanpassen == false)
-                        {
-                            <button formaction="NieweWerkgever" type="submit" class="btn btn-primary btn-lg">Doorgaan</button>
-                        }
-                        else
-                        {
-                            <div class="btn-group col-md-12 margins" role="group">
-                                <button formaction="WerkgeverAanpassen" type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
-                                <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-danger col-md-6 btn-lg marginBenedenKlein">Annuleer</a>
-                            </div>
-                         }
-                     </div>
-                </div>
 
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-12" style="margin-top: 25px;">
+                @if (Model.Aanpassen == false)
+                {
+                    <div class="btn-group col-md-12 margins" role="group">
+                        <button formaction="NieuweWerkgever" type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-danger col-md-6 btn-lg marginBenedenKlein">Annuleer</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="btn-group col-md-12 margins" role="group">
+                        <button formaction="WerkgeverAanpassen" type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
+                        <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-danger col-md-6 btn-lg marginBenedenKlein">Annuleer</a>
+                    </div>
+                }
             </div>
+        </div>
+
+    </div>
 </form>
 
 @section Scripts {
