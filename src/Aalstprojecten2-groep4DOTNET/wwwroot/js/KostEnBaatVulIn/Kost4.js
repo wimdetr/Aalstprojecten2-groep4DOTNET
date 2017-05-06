@@ -25,7 +25,7 @@
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt1");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    1000);
+                    800);
             }
         });
 
@@ -61,7 +61,7 @@
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt2");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    1000);
+                    800);
             }
         });
 
@@ -92,7 +92,7 @@
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt3");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    1000);
+                    800);
             }
         });
 
@@ -123,7 +123,7 @@
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt4");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    1000);
+                    800);
             }
         });
 

@@ -30,7 +30,7 @@
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat1Punt1");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    1000);
+                    800);
             }
         });
 
@@ -65,7 +65,7 @@
                 setTimeout(function () {
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat1Punt2");
                     knop.parent().parent().parent().parent().parent().submit();
-                }, 1000);
+                }, 800);
             }
         });
 

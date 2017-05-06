@@ -44,7 +44,7 @@
                                     $("#geopendeMail").addClass("verbergMail");
                                     mailKaart.find("a")[0].click();
                                 },
-                                1500);
+                                800);
                         } else {
                             mailKaart.find("a")[0].click();
                         }
@@ -69,7 +69,7 @@
                                         .removeClass("verbergMail animated fadeOut")
                                         .addClass("toonMail animated fadeIn");
                                 },
-                                    1500);
+                                    800);
                             } else {
                                 $("#geopendeMail")
                                     .removeClass("verbergMail animated fadeOut")
@@ -99,14 +99,14 @@
                                             .removeClass("verbergMail animated fadeOut")
                                             .addClass("toonMail animated fadeIn");
                                     },
-                                        1500);
+                                        800);
                                 } else {
                                     $("#geopendeMail")
                                         .removeClass("verbergMail animated fadeOut")
                                         .addClass("toonMail animated fadeIn");
                                 }
                             },
-                                1500);
+                                800);
                         }
 
                     }
@@ -158,7 +158,7 @@
                     ontvanger2 += email2 + "&#62;";
                     $("#inhoudVorigeMailAntwoord").html("Aan: " + ontvanger2 + "<br />" + "Verstuurd: " + $("#mailDatum").text() + "<br />" + "Onderwerp: " + $("#mailOnderwerp").text() + "<br /><br /><br />" + $("#mailInhoud").text());
                     $("#antwoordOpMailDiv").removeClass("verbergMail animated fadeOut").addClass("toonMail animated fadeIn");
-                }, 1500);
+                }, 800);
 
             });
         $("#verwijderGeselecteerdeMailKnop")

@@ -38,7 +38,7 @@
                 setTimeout(function () {
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    1000);
+                    800);
             }
         });
 

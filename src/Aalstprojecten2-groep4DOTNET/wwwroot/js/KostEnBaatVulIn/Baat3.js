@@ -29,7 +29,7 @@
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat3Punt1");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    1000);
+                    800);
             }
         });
 
