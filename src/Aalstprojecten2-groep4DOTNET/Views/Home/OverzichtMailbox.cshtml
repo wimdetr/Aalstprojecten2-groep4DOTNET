@@ -19,8 +19,12 @@ else
 {
     <form method="post">
         <div class="row" style="padding:0px;">
-            <div class="col-md-12" style="height: 70px;padding:0px;">
-                <div class="col-md-4" style="height: 70px; padding:0px;">
+            @* Linker kant *@
+            <div class="col-md-4">
+
+
+                @* Knoppen boven emails *@
+                <div class="col-md-12" style="margin-bottom:15px; padding-left:0px;">
                     <div class="col-md-12 btn-group" role="group" style="padding-top: 8px; padding-left: 25px;">
                         <a id="selecteerKnop" data-geselecteerd="false" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/select.png" class="fototjeKosten" /></a>
                         <button id="gelezenKnop" formaction="MarkeerGeselecteerdeAlsGelezen" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/markeerGeselecteerdAlsGelezen.png" class="fototjeKosten" /></button>
@@ -28,21 +32,13 @@ else
                     </div>
                 </div>
 
-                <div class="col-md-8" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
-                    <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
-                        <a id="antwoordMailKnop" class="col-md-6 btn btn-primary btn-lg @(Model.GeopendeMail == null?"verbergMail":"toonMail")"><img src="~/images/iconen/antwoord.png" class="fototjeKosten" /></a>
-                        <a id="verwijderGeselecteerdeMailKnop" asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@Model.GeopendeMailId" class="col-md-6 btn btn-primary btn-lg @(Model.GeopendeMail == null?"verbergMail":"toonMail")"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" style="min-height: 1000px; padding-left:0px; padding-right:0px;">
-                @* linker kant *@
+                @* email divs *@
 
-                <div class="col-md-4" style="padding-right:0px; min-height: 1000px; overflow-y:scroll; max-height:1000px;">
+                <div class="col-md-12" style="padding-right:0px; min-height: 1000px; overflow-y:scroll; max-height:1000px;">
                     @foreach (var item in Model.Mails)
                     {
                         var id = "checkbox" + item.MailId;
-                        <div class="col-md-12 hoverOpMails mailKaartje" style="min-height: 175px; border:1px solid #808080; padding-left:0px; padding-right:0px;">
+                        <div class="col-md-12 hoverOpMails mailKaartje" style="height: 130px; border:1px solid #808080; padding-left:0px; padding-right:0px;">
 
                             <input class="geselecteerdeMailCheckBox" type="checkbox" name="@id" style="display: none;" />
                             <a class="beantwoordMailKnop" asp-controller="Home" asp-action="GeselecteerdeMail" asp-route-id="@item.MailId" style="display: none;"></a>
@@ -53,7 +49,7 @@ else
 
                             <div style="float:left; width:99%;">
                                 @* rij 1 *@
-                                <div class="col-md-12" style="margin-bottom:15px; padding-top:20px;">
+                                <div class="col-md-12" style="margin-bottom:10px; padding-top:10px;">
                                     <div class="col-md-6 text-left" style="float:left; font-size: 20px; font-weight:bold; padding-left:0px;">
                                         @item.AfzenderKort
                                     </div>
@@ -63,7 +59,7 @@ else
                                 </div>
 
                                 @* rij 2 *@
-                                <div class="col-md-10 text-left" style="margin-bottom:15px; font-size: 18px;">
+                                <div class="col-md-10 text-left" style="margin-bottom:10px; font-size: 18px;">
                                     @item.OnderwerpKort
                                 </div>
 
@@ -79,73 +75,25 @@ else
                         </div>
                     }
                 </div>
+            </div>
 
-                @* rechter kant antwoord*@
-                <div id="antwoordOpMailDiv" class="col-md-8 verbergMail" style="min-height: 1000px; background-color:white; margin-bottom: 100px;">
 
-                    @* rij 1 *@
-                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-top:50px;">
-                        <div class="col-md-12">
-                            <label id="ontvagerAntwoord" style="color:darkgrey;font-size:20px;">Aan: Niels95debruyne@hotmail.com</label>
-                        </div>
+            @* Rechter kant ontvangen *@
+            <div id="geopendeMail" data-mailid="@Model.GeopendeMailId" class="col-md-8 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail animated fadeIn")">
+
+                @* Knoppen boven ontvangen *@
+                <div class="col-md-12 2Knoppen" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
+                    <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
+                        <a id="antwoordMailKnop" class="col-md-6 btn btn-primary btn-lg @(Model.GeopendeMail == null?"verbergMail":"toonMail")"><img src="~/images/iconen/antwoord.png" class="fototjeKosten" /></a>
+                        <a id="verwijderGeselecteerdeMailKnop" asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@Model.GeopendeMailId" class="col-md-6 btn btn-primary btn-lg @(Model.GeopendeMail == null?"verbergMail":"toonMail")"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></a>
                     </div>
-
-                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-bottom:25px; margin-top:10px;">
-                        <div class="col-md-12">
-                            <label id="onderwerpAntwoord" style="color:darkgrey;font-size:20px;">Onderwerp: Een onderwerp</label>
-                        </div>
-                    </div>
-
-                    @* rij 2 *@
-                    <div class="col-md-offset-1 col-md-10 text-left" style="font-size: 22px;">
-                        <div class="col-md-12">
-                            <label>Inhoud</label>
-                        </div>
-
-                        <div class="col-md-12" style="margin-bottom: 100px;">
-                            <div class="whoopwhoop" style="overflow-y:scroll; max-height:1000px;">
-                                <div id="inhoudAntwoord" contenteditable="true" class="whoopwhoop3" style="min-height:250px; min-width: 100%;">
-
-                                </div>
-
-                                <div id="inhoudVorigeMailAntwoord" contenteditable="false" class="whoopwhoop2" style="min-height:300px; min-width: 100%;">
-                                    Van: Niels De Bruyne
-                                        <br />
-                                        Verstuurd: 4/05/2017 - 15:28<br />
-                                        Subject: Nieuwe aanbevolen onderwerpen<br />
-                                        <br /><br />
-                                        Hey Andreas,
-                                        <br /><br />
-                                        Wat denk jij ervan om onze mailbox opnieuw te bekijken zodat de mailbox toch wat meer stijl heeft en zodat hij er veel beter uitziet?
-                                        <br /><br />
-                                        Mvg,
-                                        Niels
-
-                                        Dag Niels,
-                                        <br /><br />
-                                        Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
-                                        <br /><br />
-                                        Mvg,
-                                        Andreas
-
-                                        Dag Niels,
-                                        <br /><br />
-                                        Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
-                                        <br /><br />
-                                        Mvg,
-                                        Andreas
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
 
                 @* rechter kant ontvangen*@
 
-                <div id="geopendeMail" data-mailid="@Model.GeopendeMailId" class="col-md-8 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail animated fadeIn")" style="min-height: 1000px; background-color:white;">
+                <div class="col-md-12" style="min-height: 1000px; background-color:white; padding-right:0px; right: 15px;">
+                    
+    
                     @* rij 1 *@
                     <div class="col-md-12" style="margin-bottom:15px; padding-top:50px;">
                         <div id="afzenderNaam" class="col-md-offset-1 col-md-6 text-left" style="float:left; font-size: 16px; padding-left:0px;">
@@ -182,6 +130,84 @@ else
                         {
                             @Model.GeopendeMail.Inhoud
                         }
+                    </div>
+
+                </div>
+
+               
+            </div>
+
+
+
+            @* Rechter kant antwoord *@
+            <div id="antwoordOpMailDiv" class="col-md-8 antwoord verbergMail">
+
+                @* Knoppen boven antwoord/ontvangen *@
+                <div class="col-md-12 2Knoppen" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
+                    <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
+                        <button id="verstuurMailKnop" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/send.png" class="fototjeKosten" /></button>
+                        <button id="annuleerKnop" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/cancel.png" class="fototjeKosten" /></button>
+                    </div>
+                </div>
+
+                @* rechter kant antwoord*@
+                <div class="col-md-12" style="min-height: 1000px; background-color:white; margin-bottom: 100px; padding-right:0px; right: 15px;">
+
+                    @* rij 1 *@
+                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-top:50px;">
+                        <div class="col-md-12">
+                            <label id="ontvagerAntwoord" style="color:darkgrey;font-size:20px;">Aan: Niels95debruyne@hotmail.com</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-offset-1 col-md-10 text-left" style="margin-bottom:25px; margin-top:10px;">
+                        <div class="col-md-12">
+                            <label id="onderwerpAntwoord" style="color:darkgrey;font-size:20px;">Onderwerp: Een onderwerp</label>
+                        </div>
+                    </div>
+
+                    @* rij 2 *@
+                    <div class="col-md-offset-1 col-md-10 text-left" style="font-size: 22px;">
+                        <div class="col-md-12">
+                            <label>Inhoud</label>
+                        </div>
+
+                        <div class="col-md-12" style="margin-bottom: 100px;">
+                            <div class="whoopwhoop" style="overflow-y:scroll; max-height:1000px;">
+                                <div id="inhoudAntwoord" contenteditable="true" class="whoopwhoop3" style="min-height:250px; min-width: 100%;">
+
+                                </div>
+
+                                <div id="inhoudVorigeMailAntwoord" contenteditable="false" class="whoopwhoop2" style="min-height:300px; min-width: 100%;">
+                                    Van: Niels De Bruyne
+                                    <br />
+                                    Verstuurd: 4/05/2017 - 15:28<br />
+                                    Subject: Nieuwe aanbevolen onderwerpen<br />
+                                    <br /><br />
+                                    Hey Andreas,
+                                    <br /><br />
+                                    Wat denk jij ervan om onze mailbox opnieuw te bekijken zodat de mailbox toch wat meer stijl heeft en zodat hij er veel beter uitziet?
+                                    <br /><br />
+                                    Mvg,
+                                    Niels
+
+                                    Dag Niels,
+                                    <br /><br />
+                                    Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
+                                    <br /><br />
+                                    Mvg,
+                                    Andreas
+
+                                    Dag Niels,
+                                    <br /><br />
+                                    Ik vindt het een goed idee om de mailbox aan te passen. Op deze manier heeft deze veel meer stijl en gaat Bart van zijn stoel vallen van amazing :o
+                                    <br /><br />
+                                    Mvg,
+                                    Andreas
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>
