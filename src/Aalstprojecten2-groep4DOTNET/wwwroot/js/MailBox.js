@@ -142,6 +142,7 @@
         $("#antwoordMailKnop")
             .click(function () {
                 $("#geopendeMail").removeClass("toonMail animated fadeIn").addClass("animated fadeOut");
+                $(".antwoordVeld").val("");
                 setTimeout(function () {
                     $("#geopendeMail").addClass("verbergMail");
                     var naam = $("#geopendeMail").find("#afzenderNaam").text();
@@ -156,7 +157,7 @@
                     var ontvanger2 = naam2.substring(4, naam.length) + " " + "&#60;";
                     var email2 = $("#geopendeMail").find("#afzenderMail").text();
                     ontvanger2 += email2 + "&#62;";
-                    $("#inhoudVorigeMailAntwoord").html("Aan: " + ontvanger2 + "<br />" + "Verstuurd: " + $("#mailDatum").text() + "<br />" + "Onderwerp: " + $("#mailOnderwerp").text() + "<br /><br /><br />" + $("#mailInhoud").text());
+                    $("#inhoudVorigeMailAntwoord").html("Van: " + ontvanger2 + "<br />" + "Verstuurd: " + $("#mailDatum").text() + "<br />" + "Onderwerp: " + $("#mailOnderwerp").text() + "<br /><br /><br />" + $("#mailInhoud").text());
                     $("#antwoordOpMailDiv").removeClass("verbergMail animated fadeOut").addClass("toonMail animated fadeIn");
                 }, 800);
 
@@ -168,5 +169,27 @@
                 href[3] = $("#geopendeMail").data("mailid");
                 anchor.attr('href', href.join('/'));
                 anchor[0].click();
+            });
+        $("#annuleerKnop")
+            .click(function () {
+                $("#antwoordOpMailDiv").removeClass("toonMail animated fadeIn").addClass("animated fadeOut");
+                setTimeout(function () {
+                    $("#antwoordOpMailDiv").addClass("verbergMail");
+                    $("#geopendeMail").removeClass("verbergMail animated fadeOut").addClass("toonMail animated fadeIn");
+                }, 800);
+            });
+        $("#verstuurMailKnop")
+            .click(function () {
+                $("#antwoordOntvanger").val($("#geopendeMail").find("#afzenderMail").text());
+                $("#antwoordOnderwerp").val($("#onderwerpAntwoord").text().substring(11, $("#onderwerpAntwoord").text().length));
+                var inhoud = $("#inhoudAntwoord").html().split("<div>").join("\n").split("</div>").join("") + "\n\n\n\n\n" + $("#inhoudVorigeMailAntwoord").html().replace("&lt;", "<").replace("&gt;", ">").split("<br>").join("\n");
+                $("#antwoordInhoud").val(inhoud);
+
+                $("#antwoordOpMailDiv").removeClass("toonMail animated fadeIn").addClass("animated fadeOut");
+                setTimeout(function () {
+                    $("#antwoordOpMailDiv").addClass("verbergMail");
+                    $("#formulier").attr("action", "BeantwoordMail");
+                    $("#formulier").submit();
+                }, 800);
             });
     });

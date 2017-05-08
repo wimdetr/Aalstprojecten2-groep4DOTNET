@@ -12,6 +12,9 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public IEnumerable<MailViewModel> Mails { get; set; }
         public bool IsLegeLijst { get; set; }
         public MailViewModel GeopendeMail { get; set; } = null;
+        public string Ontvanger { get; set; }
+        public string Onderwerp { get; set; }
+        public string Inhoud { get; set; }
 
         public int GeopendeMailId
         {
@@ -28,6 +31,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
                 IsLegeLijst = false;
                 break;
             }
+            
+        }
+
+        public OverzichtMailboxViewModel()
+        {
             
         }
     }
