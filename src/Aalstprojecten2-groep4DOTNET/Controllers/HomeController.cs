@@ -419,24 +419,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
-        public IActionResult BeantwoordMail(int id)
-        {
-            AnalyseFilter.ZetSessieLeeg(HttpContext);
-            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
-            InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
-            mail.Jobcoach = jc;
-            IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
-            foreach (InterneMailJobcoach m in mails)
-            {
-                m.Jobcoach = jc;
-            }
-            OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
-            model.GeopendeMail = new MailViewModel(mail);
-            return View(nameof(OverzichtMailbox));
-        }
-
         [HttpPost]
-        public IActionResult BeantwoordMail(BeantwoordMailViewModel model)
+        public IActionResult BeantwoordMail(OverzichtMailboxViewModel model)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             if (ModelState.IsValid)
@@ -444,7 +428,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 try
                 {
                     JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
-                    AdminMail mail = new AdminMail(jc, model.AdminMail, model.Onderwerp, model.Inhoud, DateTime.Now);
+                    AdminMail mail = new AdminMail(jc, model.Ontvanger, model.Onderwerp, model.Inhoud, DateTime.Now);
                     _adminMailRepository.Add(mail);
                     _adminMailRepository.SaveChanges();
                     return RedirectToAction(nameof(OverzichtMailbox));
@@ -454,7 +438,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(model);
+            return View(nameof(OverzichtMailbox));
         }
 
         public bool ControleerOfMailSessieVerlopenIs()
