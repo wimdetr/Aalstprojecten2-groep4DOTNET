@@ -30,7 +30,6 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 _context.Doelgroepen.Add(new Doelgroep("ander", 0, 0, false));
 
                 JobCoach mark = new JobCoach("De Witte", "Andreas", "andreas.dewitte@hotmail.com", "Kairos", "Zevekootstraat", 129, 9420, "Erpe");
-                mark.Wachtwoord = "woopwoop";
                 mark.MoetWachtwoordVeranderen = false;
                 _context.JobCoaches.Add(mark);
 
@@ -249,33 +248,22 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
                 mark.VoegAnalyseToe(a);
                 _context.Analyses.Add(a);
+                Werkgever w1 = new Werkgever(mark.Email, "Carrefour");
+                Departement d1 = new Departement(a, w1, "IT", "Zevekootstraat", 129, null, 9420, "Erpe")
+                {
+                    ContactPersoonNaam = "De Troyer",
+                    ContactPersoonVoornaam = "Wim",
+                    ContactPersoonEmail = "andreas.dewitte@hotmail.com"
+                };
+                _context.Werkgevers.Add(w1);
+                _context.Departementen.Add(d1);
 
-                Werkgever w = new Werkgever(a, "Carrefour", 9420, "Erpe", "magazijn");
-                _context.Werkgevers.Add(w);
-                w.ContactPersoonNaam = "De Troyer";
-                w.ContactPersoonVoornaam = "Wim";
-                w.ContactPersoonEmail = "andreas.dewitte@hotmail.com";
-                w.Straat = "Zevekootstraat";
-                w.Nummer = 129;
-                a.Werkgever = w;
-
-                Werkgever b = new Werkgever(a, "Delhaize", 9420, "Erpe", "Kassa");
+                Werkgever b = new Werkgever(mark.Email, "Delhaize");
                 _context.Werkgevers.Add(b);
-                b.ContactPersoonNaam = "De Bruyne";
-                b.ContactPersoonVoornaam = "Niels";
-                b.ContactPersoonEmail = "andreas.dewitte@hotmail.com";
-                b.Straat = "Eremietstraat";
-                b.Nummer = 2;
-                a.Werkgever = b;
 
-                Werkgever c = new Werkgever(a, "Dreamland", 9420, "Erpe", "Logistiek");
+                Werkgever c = new Werkgever(mark.Email, "Dreamland");
                 _context.Werkgevers.Add(c);
-                c.ContactPersoonNaam = "De Witte";
-                c.ContactPersoonVoornaam = "Andreas";
-                c.ContactPersoonEmail = "andreas.dewitte@hotmail.com";
-                c.Straat = "Benedenstraat";
-                c.Nummer = 46;
-                a.Werkgever = c;
+
 
                 Admin admin = new Admin("bartmoens@gmail.com", "Moens", "Bart");
                 admin.Superadmin = true;

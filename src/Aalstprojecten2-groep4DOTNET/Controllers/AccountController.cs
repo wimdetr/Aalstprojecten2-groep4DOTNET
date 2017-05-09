@@ -65,10 +65,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 ModelState.AddModelError("Email", "Er is geen gebruiker met dit emailadres geregistreerd");
             }
-            else if(!jc.Wachtwoord.Equals(model.Password))
-            {
-                ModelState.AddModelError("Password", "Incorrect wachtwoord");
-            }
+            
+                
+            
 
             if (ModelState.IsValid)
             {
@@ -98,11 +97,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _logger.LogWarning(2, "User account locked out.");
                     return View("Lockout");
                 }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
-                }
+
+                ModelState.AddModelError("Password", "Incorrect wachtwoord");
+                return View(model);
+                
             }
 
             // If we got this far, something failed, redisplay form
@@ -140,7 +138,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 {
                     MailVerzender.VerzendMailEersteKeerInloggen(model.Naam + " " + model.Voornaam, model.Email, wachtwoord);
                     JobCoach jc = new JobCoach(model.Naam, model.Voornaam, model.Email, model.NaamBedrijf, model.Straat, model.Nummer, model.Postcode, model.Gemeente);
-                    jc.Wachtwoord = wachtwoord;
                     if (model.Bus != null)
                     {
                         jc.BusBedrijf = model.Bus;
@@ -374,7 +371,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 JobCoach jc = _jobCoachRepository.GetByEmail(user.Email);
 
-                jc.Wachtwoord = model.Password;
                 jc.MoetWachtwoordVeranderen = false;
                 _jobCoachRepository.SaveChanges();
                 TempData["message"] =

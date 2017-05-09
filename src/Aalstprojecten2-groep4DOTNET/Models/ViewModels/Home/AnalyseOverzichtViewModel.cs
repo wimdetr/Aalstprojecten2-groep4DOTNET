@@ -26,9 +26,9 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public AnalyseOverzichtViewModel(Analyse a)
         {
             Id = a.AnalyseId;
-            Organisatie = a.Werkgever.Naam;
-            Afdeling = a.Werkgever.NaamAfdeling;
-            Locatie = a.Werkgever.Gemeente;
+            Organisatie = a.Departement.Werkgever.Naam;
+            Afdeling = a.Departement.Naam;
+            Locatie = a.Departement.Gemeente;
             GewijzigdOp = a.LaatsteAanpasDatum;
             KostenResultaat = a.KostenResultaat;
             BatenResultaat = a.BatenResultaat;

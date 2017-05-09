@@ -13,7 +13,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public string JobCoachEmail { get; set; }
         public int AnalyseId { get; set; }
         public ICollection<KostOfBaat> KostenEnBaten { get; set; }
-        public Werkgever Werkgever { get; set; }
+        public Departement Departement { get; set; }
         public DateTime LaatsteAanpasDatum { get; set; }
         public bool IsGearchiveerd { get; set; }
         [NotMapped]

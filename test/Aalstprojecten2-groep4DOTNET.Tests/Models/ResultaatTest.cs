@@ -13,6 +13,7 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
         private Resultaat resultaat;
         private Analyse analyse;
         private Werkgever werkgever;
+        private Departement departement;
 
         public ResultaatTest()
         {
@@ -26,9 +27,11 @@ namespace Aalstprojecten2_groep4DOTNET.Tests.Models
             analyse = new Analyse();
             analyse.KostenEnBaten = new List<KostOfBaat>();
             werkgever = new Werkgever();
-            werkgever.AantalWerkuren = 38;
+            departement = new Departement();
+            departement.AantalWerkuren = 38;
+            departement.Werkgever = werkgever;
             werkgever.PatronaleBijdrage = 35;
-            analyse.Werkgever = werkgever;
+            analyse.Departement = departement;
         }
 
         #region Kost1

@@ -51,7 +51,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["analyse"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View();
         }
 
@@ -64,8 +64,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
                 analyse.IsGearchiveerd = true;
                 _analyseRepository.SaveChanges();
-                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " +
-                                      analyse.Werkgever.NaamAfdeling + " is succesvol gearchiveerd.";
+                TempData["message"] = "De analyse voor " + analyse.Departement.Werkgever.Naam + " - " +
+                                      analyse.Departement.Naam + " is succesvol gearchiveerd.";
             }
             catch
             {
@@ -82,7 +82,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["analyse"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View();
         }
 
@@ -95,8 +95,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
                 analyse.IsGearchiveerd = false;
                 _analyseRepository.SaveChanges();
-                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " +
-                                      analyse.Werkgever.NaamAfdeling + " is succesvol gedearchiveerd en op de home pagina geplaatst.";
+                TempData["message"] = "De analyse voor " + analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam + " is succesvol gedearchiveerd en op de home pagina geplaatst.";
             }
             catch
             {
@@ -111,7 +110,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
             if (analyse == null)
                 return RedirectToAction("Index", "Home");
-            ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["analyse"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View();
         }
         [HttpPost]
@@ -122,8 +121,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             try
             {
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
-                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " +
-                                      analyse.Werkgever.NaamAfdeling + " is succesvol verwijderd.";
+                TempData["message"] = "De analyse voor " + analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam + " is succesvol verwijderd.";
                 _analyseRepository.Delete(analyse);
                 _analyseRepository.SaveChanges();
             }
@@ -160,7 +158,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 resultaat.BerekenResultaatVanAnalyse(analyse);
                 model = new AnalyseResultaatOverzichtViewModel(analyse);
             }
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -185,24 +183,37 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             model.Titel = "Nieuwe Analyse";
+            if (
+                _werkgeverRepository.GetAllDepartements(User.Identity.Name)
+                    .Any(d => ControlleerOfDepartementHetzelfdeIs(d, model)))
+            {
+                ModelState.AddModelError("NaamAfdeling", "Er is al een analyse voor deze dienst");
+            }
             if (ModelState.IsValid)
             {
                 try
                 {
                     Analyse a = new Analyse(_jobCoachRepository.GetByEmail(User.Identity.Name), DateTime.Now);
-                    Werkgever w = new Werkgever(a, model.Naam, model.Postcode, model.Gemeente, model.NaamAfdeling)
+
+                    Werkgever w = _werkgeverRepository.GetWithName(model.Naam, User.Identity.Name);
+                    if (w == null)
                     {
-                        Straat = model.Straat,
-                        Nummer = model.Nummer,
-                        Bus = model.Bus,
+                        w = new Werkgever(User.Identity.Name, model.Naam)
+                        {
+                            PatronaleBijdrage = model.PatronaleBijdrage,
+                            LinkNaarLogoPrent = model.LinkNaarLogoPrent
+                        };
+                    }
+
+                    Departement d = new Departement(a, w, model.NaamAfdeling, model.Straat, model.Nummer, model.Bus, model.Postcode, model.Gemeente)
+                    {
                         AantalWerkuren = model.AantalWerkuren,
-                        PatronaleBijdrage = model.PatronaleBijdrage,
-                        LinkNaarLogoPrent = model.LinkNaarLogoPrent,
                         ContactPersoonNaam = model.ContactPersoonNaam,
                         ContactPersoonVoornaam = model.ContactPersoonVoornaam,
                         ContactPersoonEmail = model.ContactPersoonEmail
                     };
-                    a.Werkgever = w;
+
+                    a.Departement = d;
                     _analyseRepository.Add(a);
                     _analyseRepository.SaveChanges();
                     AnalyseFilter.PlaatsAnalyseInSession(a, HttpContext);
@@ -223,10 +234,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            WerkgeverViewModel model = new WerkgeverViewModel(analyse.Werkgever);
-            model.NaamAfdeling = analyse.Werkgever.NaamAfdeling;
+            WerkgeverViewModel model = new WerkgeverViewModel(analyse.Departement);
+            model.NaamAfdeling = analyse.Departement.Naam;
             model.Aanpassen = true;
-            model.Titel = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            model.Titel = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(nameof(NieuweWerkgever), model);
         }
 
@@ -235,34 +246,40 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public IActionResult WerkgeverAanpassen(WerkgeverViewModel model, Analyse analyse)
         {
             model.Aanpassen = true;
-            model.Titel = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            model.Titel = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             if (ControleerOfSessieVerlopenIs(analyse))
             {
                 return RedirectToAction("Index", "Home");
             }
-            if (model.WerkgeverId == null)
+            if (model.DepartementId == null)
             {
                 return RedirectToAction("Index", "Home");
+            }
+            if (
+                _werkgeverRepository.GetAllDepartements(User.Identity.Name).Where(d => d.DepartementId != model.DepartementId)
+                    .Any(d => ControlleerOfDepartementHetzelfdeIs(d, model)))
+            {
+                ModelState.AddModelError("NaamAfdeling", "Er is al een analyse voor deze dienst");
             }
             if (ModelState.IsValid)
             {
                 try
                 {
-                    Werkgever w = _werkgeverRepository.GetById(model.WerkgeverId.Value);
-                    w.Naam = model.Naam;
-                    w.Straat = model.Straat;
-                    w.Nummer = model.Nummer;
-                    w.Bus = model.Bus;
-                    w.Postcode = model.Postcode;
-                    w.Gemeente = model.Gemeente;
-                    w.AantalWerkuren = model.AantalWerkuren;
-                    w.PatronaleBijdrage = model.PatronaleBijdrage;
-                    w.LinkNaarLogoPrent = model.LinkNaarLogoPrent;
-                    w.NaamAfdeling = model.NaamAfdeling;
-                    w.ContactPersoonNaam = model.ContactPersoonNaam;
-                    w.ContactPersoonVoornaam = model.ContactPersoonVoornaam;
-                    w.ContactPersoonEmail = model.ContactPersoonEmail;
-                    analyse.Werkgever = w;
+                    Departement d = _werkgeverRepository.GetDepartementById(model.DepartementId.Value);
+                    d.Werkgever.Naam = model.Naam;
+                    d.Straat = model.Straat;
+                    d.Nummer = model.Nummer;
+                    d.Bus = model.Bus;
+                    d.Postcode = model.Postcode;
+                    d.Gemeente = model.Gemeente;
+                    d.AantalWerkuren = model.AantalWerkuren;
+                    d.Werkgever.PatronaleBijdrage = model.PatronaleBijdrage;
+                    d.Werkgever.LinkNaarLogoPrent = model.LinkNaarLogoPrent;
+                    d.Naam = model.NaamAfdeling;
+                    d.ContactPersoonNaam = model.ContactPersoonNaam;
+                    d.ContactPersoonVoornaam = model.ContactPersoonVoornaam;
+                    d.ContactPersoonEmail = model.ContactPersoonEmail;
+                    analyse.Departement = d;
                     _werkgeverRepository.SaveChanges();
                     _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId).VernieuwDatum();
                     _analyseRepository.SaveChanges();
@@ -300,24 +317,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             else
             {
-                switch (model.ChoiceboxWaarde)
-                {
-                    case "Organisatie naam":
-                        werkgevers = _werkgeverRepository.GetByNaam(User.Identity.Name, model.ZoekString.Trim());
-                        break;
-                    case "Gemeente":
-                        werkgevers = _werkgeverRepository.GetByGemeente(User.Identity.Name, model.ZoekString.Trim());
-                        break;
-                    case "Postcode":
-                        werkgevers = _werkgeverRepository.GetByPostcode(User.Identity.Name, model.ZoekString.Trim());
-                        break;
-                    case "Contactpersoon naam":
-                        werkgevers = _werkgeverRepository.GetByContactPersoonNaam(User.Identity.Name, model.ZoekString.Trim());
-                        break;
-                    default:
-                        werkgevers = _werkgeverRepository.GetAll(User.Identity.Name);
-                        break;
-                }
+                werkgevers = _werkgeverRepository.GetByNaam(User.Identity.Name, model.ZoekString.Trim());
             }
             werkgevers = GeefUniekeWerkgevers(werkgevers);
             model = new BestaandeWerkgeverZoekenViewModel(werkgevers);
@@ -335,7 +335,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseBaat1ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -546,7 +546,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseBaat2ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -920,7 +920,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseBaat3ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -1136,7 +1136,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseBaat4ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -1248,7 +1248,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseKost1ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -1415,7 +1415,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseKost2ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -1528,7 +1528,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseKost3ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -1735,7 +1735,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             
             VulAnalyseKost4ViewModelIn(analyse, model);
 
-            ViewData["werkgever"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View(model);
         }
 
@@ -2943,7 +2943,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         public bool ControleerOfSessieVerlopenIs(Analyse analyse)
         {
-            return (analyse == null) || (analyse.JobCoachEmail == null && analyse.KostenEnBaten == null && analyse.Werkgever == null);
+            return (analyse == null) || (analyse.JobCoachEmail == null && analyse.KostenEnBaten == null && analyse.Departement == null);
+        }
+
+        public bool ControlleerOfDepartementHetzelfdeIs(Departement d, WerkgeverViewModel model)
+        {
+            return d.Werkgever.Naam.ToLower().Equals(model.Naam.ToLower()) && d.Naam.ToLower().Equals(model.NaamAfdeling.ToLower()) &&
+                   d.Postcode.Equals(model.Postcode) && d.Straat.ToLower().Equals(model.Straat.ToLower()) &&
+                   d.Gemeente.ToLower().Equals(model.Gemeente.ToLower()) && d.Nummer.Equals(model.Nummer);
         }
 
         public IEnumerable<Werkgever> GeefUniekeWerkgevers(IEnumerable<Werkgever> lijst)

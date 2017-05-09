@@ -15,7 +15,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public int PostcodeBedrijf { get; set; }
         public string GemeenteBedrijf { get; set; }
         public bool MoetWachtwoordVeranderen { get; set; }
-        public string Wachtwoord { get; set; }
 
         public JobCoach() : base(String.Empty, String.Empty, String.Empty)
         {

@@ -19,10 +19,6 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         {
             WerkgeverId = werkgever.WerkgeverId;
             Naam = werkgever.Naam;
-            Straat = werkgever.Straat;
-            Postcode = werkgever.Postcode;
-            Gemeente = werkgever.Gemeente;
-            ContactPersoonNaam = werkgever.ContactPersoonNaam + " " + werkgever.ContactPersoonVoornaam;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Aalstprojecten2_groep4DOTNET.Filters
                 ? new Analyse()
                 : JsonConvert.DeserializeObject<Analyse>(context.Session.GetString("analyse"));
 
-            analyse.Werkgever = _werkgeverRepository.GetByAnalyseId(analyse.AnalyseId);
+            analyse.Departement = _werkgeverRepository.GetDepartementByAnalyseId(analyse.AnalyseId);
             return analyse;
         }
 
