@@ -176,6 +176,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             a.Property(t => t.JobCoachEmail).IsRequired();
             a.Property(t => t.LaatsteAanpasDatum).IsRequired();
             a.Property(t => t.IsGearchiveerd).IsRequired();
+            a.Property(t => t.IsVerwijderd).IsRequired();
 
             a.HasMany(t => t.KostenEnBaten).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
             a.HasOne(t => t.Departement).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);

@@ -16,6 +16,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public Departement Departement { get; set; }
         public DateTime LaatsteAanpasDatum { get; set; }
         public bool IsGearchiveerd { get; set; }
+        public bool IsVerwijderd { get; set; } = false;
         [NotMapped]
         public double KostenResultaat { get; set; }
         [NotMapped]

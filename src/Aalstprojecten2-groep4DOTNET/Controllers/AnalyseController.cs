@@ -74,35 +74,35 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult DeArchiveer(int id)
-        {
-            AnalyseFilter.ZetSessieLeeg(HttpContext);
-            Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
-            if (analyse == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            ViewData["analyse"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
-            return View();
-        }
+        //public IActionResult DeArchiveer(int id)
+        //{
+        //    AnalyseFilter.ZetSessieLeeg(HttpContext);
+        //    Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
+        //    if (analyse == null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    ViewData["analyse"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
+        //    return View();
+        //}
 
-        [HttpPost, ActionName("DeArchiveer")]
-        public IActionResult BevestigDeArchiveer(int id)
-        {
-            AnalyseFilter.ZetSessieLeeg(HttpContext);
-            try
-            {
-                Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
-                analyse.IsGearchiveerd = false;
-                _analyseRepository.SaveChanges();
-                TempData["message"] = "De analyse voor " + analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam + " is succesvol gedearchiveerd en op de home pagina geplaatst.";
-            }
-            catch
-            {
-                TempData["error"] = "Iets is misgelopen, de analyse is niet gedearchiveerd.";
-            }
-            return RedirectToAction(nameof(AnalyseBekijken));
-        }
+        //[HttpPost, ActionName("DeArchiveer")]
+        //public IActionResult BevestigDeArchiveer(int id)
+        //{
+        //    AnalyseFilter.ZetSessieLeeg(HttpContext);
+        //    try
+        //    {
+        //        Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
+        //        analyse.IsGearchiveerd = false;
+        //        _analyseRepository.SaveChanges();
+        //        TempData["message"] = "De analyse voor " + analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam + " is succesvol gedearchiveerd en op de home pagina geplaatst.";
+        //    }
+        //    catch
+        //    {
+        //        TempData["error"] = "Iets is misgelopen, de analyse is niet gedearchiveerd.";
+        //    }
+        //    return RedirectToAction(nameof(AnalyseBekijken));
+        //}
 
         public IActionResult Delete(int id)
         {
@@ -162,6 +162,37 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View(model);
         }
 
+        public IActionResult BekijkGearchiveerdeAnalyse(int id = -1)
+        {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
+            Analyse a = _analyseRepository.GetById(User.Identity.Name, id);
+            AnalyseFilter.PlaatsAnalyseInSession(a, HttpContext);
+            return RedirectToAction(nameof(AnalyseOverzichtBekijken));
+        }
+
+        [ServiceFilter(typeof(AnalyseFilter))]
+        public IActionResult AnalyseOverzichtBekijken(Analyse analyse)
+        {
+            if (ControleerOfSessieVerlopenIs(analyse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            AnalyseResultaatOverzichtViewModel model;
+            if (analyse == null)
+            {
+                model = new AnalyseResultaatOverzichtViewModel();
+            }
+            else
+            {
+                Resultaat resultaat = new Resultaat(_doelgroepRepository.GetAll());
+                resultaat.BerekenResultaatVanAnalyse(analyse);
+                model = new AnalyseResultaatOverzichtViewModel(analyse);
+            }
+            model.IsVoltooid = true;
+            ViewData["werkgever"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
+            return View(nameof(AnalyseOverzicht), model);
+        }
+
         public IActionResult WerkgeverKeuze()
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
@@ -183,11 +214,20 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             model.Titel = "Nieuwe Analyse";
-            if (
-                _werkgeverRepository.GetAllDepartements(User.Identity.Name)
-                    .Any(d => ControlleerOfDepartementHetzelfdeIs(d, model)))
+            string origineelWerkgeverNaam;
+            if (model.DepartementId != null)
             {
-                ModelState.AddModelError("NaamAfdeling", "Er is al een analyse voor deze dienst");
+                origineelWerkgeverNaam =
+                    _werkgeverRepository.GetDepartementById(model.DepartementId.Value).Werkgever.Naam;
+            }
+            else
+            {
+                origineelWerkgeverNaam = model.Naam;
+            }
+            if (
+                _analyseRepository.GetAllNietGearchiveerd(User.Identity.Name).Any(a => ControlleerOfDepartementHetzelfdeIs(a.Departement, model, origineelWerkgeverNaam)))
+            {
+                ModelState.AddModelError("NaamAfdeling", "Er is al een actieve analyse voor deze dienst");
             }
             if (ModelState.IsValid)
             {
@@ -255,11 +295,30 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            if (
-                _werkgeverRepository.GetAllDepartements(User.Identity.Name).Where(d => d.DepartementId != model.DepartementId)
-                    .Any(d => ControlleerOfDepartementHetzelfdeIs(d, model)))
+            string origineelWerkgeverNaam;
+            if (model.DepartementId != null)
             {
-                ModelState.AddModelError("NaamAfdeling", "Er is al een analyse voor deze dienst");
+                origineelWerkgeverNaam =
+                    _werkgeverRepository.GetDepartementById(model.DepartementId.Value).Werkgever.Naam;
+            }
+            else
+            {
+                origineelWerkgeverNaam = model.Naam;
+            }
+            if (
+                _analyseRepository.GetAllNietGearchiveerd(User.Identity.Name).Where(a => a.Departement.DepartementId != model.DepartementId).Any(a => ControlleerOfDepartementHetzelfdeIs(a.Departement, model, origineelWerkgeverNaam)))
+            {
+                ModelState.AddModelError("NaamAfdeling", "Er is al een actieve analyse voor deze dienst");
+            }
+            if (
+                _werkgeverRepository.GetAll(User.Identity.Name)
+                    .Where(
+                        w =>
+                            w.WerkgeverId !=
+                            _werkgeverRepository.GetDepartementById(model.DepartementId.Value).Werkgever.WerkgeverId)
+                    .Any(w => w.Naam.Equals(model.Naam)))
+            {
+                ModelState.AddModelError("NaamAfdeling", "Er is al een actieve analyse voor deze dienst");
             }
             if (ModelState.IsValid)
             {
@@ -2946,9 +3005,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return (analyse == null) || (analyse.JobCoachEmail == null && analyse.KostenEnBaten == null && analyse.Departement == null);
         }
 
-        public bool ControlleerOfDepartementHetzelfdeIs(Departement d, WerkgeverViewModel model)
+        public bool ControlleerOfDepartementHetzelfdeIs(Departement d, WerkgeverViewModel model, string origineelWerkgeverNaam)
         {
-            return d.Werkgever.Naam.ToLower().Equals(model.Naam.ToLower()) && d.Naam.ToLower().Equals(model.NaamAfdeling.ToLower()) &&
+            return d.Werkgever.Naam.ToLower().Equals(origineelWerkgeverNaam.ToLower()) && d.Naam.ToLower().Equals(model.NaamAfdeling.ToLower()) &&
                    d.Postcode.Equals(model.Postcode) && d.Straat.ToLower().Equals(model.Straat.ToLower()) &&
                    d.Gemeente.ToLower().Equals(model.Gemeente.ToLower()) && d.Nummer.Equals(model.Nummer);
         }

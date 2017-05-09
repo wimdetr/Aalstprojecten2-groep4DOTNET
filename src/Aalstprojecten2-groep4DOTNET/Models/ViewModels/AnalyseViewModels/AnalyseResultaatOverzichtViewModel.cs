@@ -31,6 +31,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public double Baat11 { get; set; }
         public double SubtotaalBaten { get; set; }
         public double NettoResultaat { get; set; }
+        public bool IsVoltooid { get; set; } = false;
 
         public AnalyseResultaatOverzichtViewModel(Analyse analyse)
         {
