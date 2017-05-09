@@ -1,4 +1,4 @@
-﻿/* import the fonts needed */
+﻿kleineBreedte2/* import the fonts needed */
 @import url("http://fonts.googleapis.com/css?family=Cookie");
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 
@@ -369,7 +369,7 @@
 }
 
 .kleineBreedte2 {
-    width:2%;
+    width:3%;
 }
 
 .kleineBreedte3 {

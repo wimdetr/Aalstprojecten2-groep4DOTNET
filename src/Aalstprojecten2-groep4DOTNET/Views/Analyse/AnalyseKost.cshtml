@@ -16,17 +16,19 @@
 <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 tooltip diepte2">
         <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
+        <span class="tooltiptext tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
     </div>
     <div class="col-md-6 text-center">
         <h2 class="titelFix">Kosten</h2>
     </div>
     <div class="col-md-3 text-right">
-        <div class="btn-group marginTopKlein" role="group">
+        <div class="btn-group marginTopKlein tooltip" role="group">
             <a asp-controller="Analyse" asp-action="AnalyseKost" class="btn btn-primary btn-lg"><img src="~/images/iconen/kosten_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="btn btn-primary btn-lg"><img src="~/images/iconen/baten_wit.png" class="fototjeKosten" /></a>
+            <span class="tooltiptext tooltipLeftHomePageDropdown">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
         </div>
     </div>
 </div>
@@ -39,7 +41,7 @@
     <div class="row form-group">
         
         <div class="col-xs-12">
-            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel tooltip">
                 <li class="active">
                     <a asp-controller="Analyse" asp-action="AnalyseKost">
                         <h4 class="list-group-item-heading">Stap 1</h4>
@@ -51,6 +53,8 @@
                         <h4 class="list-group-item-heading">Stap 2</h4>
                         <p>Kosten aan maatwerkbedrijf via enclave of onderaanneming</p>
                     </a>
+                    <span class="tooltiptext tooltipBottomMenuAnalyseKostInvullen">Door hier te klikken kan u wisselen naar de gewenste vragenreeks</span>
+
                 </li>
                 <li>
                     <a asp-controller="Analyse" asp-action="AnalyseKost3">
@@ -64,12 +68,15 @@
                         <p>Extra structureel en materiaal huur</p>
                     </a>
                 </li>
+
             </ul>
+
             <div class="text-center">
                 <div class="col-md-12">
-                    <div class="btn-group marginTopKlein" role="group">
+                    <div class="btn-group marginTopKlein tooltip" role="group">
                         <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten2" /></a>
                         <a asp-controller="Analyse" asp-action="AnalyseKost2" class="btn btn-primary btn-lg"><img src="~/images/iconen/rechts.png" class="fototjeKosten2" /></a>
+                        <span class="tooltiptext tooltipBottomAnalyseInvullenVolgendePagina">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
                     </div>
                 </div>
             </div>
@@ -80,7 +87,8 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Welke nieuwe functies zet u in?</h3>
-                <table class="table table-striped text-left test marginBenedenGroot">
+                <table class="table table-striped text-left marginBenedenGroot">
+
                     <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
                             <th class="kleineBreedte2"></th>
@@ -97,7 +105,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         @for (var i = 1; i <= Model.AantalLijnenKost1; i++)
                         {
                             <tr id="tr_0">
@@ -115,9 +123,13 @@
                                 <td>@Model.LijnenKost1[i - 1].AantalMaandenIBO</td>
                                 <td>@Model.LijnenKost1[i - 1].TotaleProductiviteitsPremieIBO.ToString("C")</td>
                                 <td>@Model.LijnenKost1[i - 1].BaatUitkomst.ToString("C")</td>
-                                <td>
+                                <td class="text-center tooltip">
                                     <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseKostRijVerwijderen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-remove"></a>
+                                    @if (i == 1)
+                                    {
+                                        <span class="tooltiptext tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
+                                    }
                                 </td>
 
                             </tr>
@@ -126,127 +138,130 @@
 
                         <tr>
                             <td class="opmaakKnopje" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt">
+                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip">
                                     <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                    <span class="tooltiptext tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                
+
+
 
 
                 <form asp-controller="Analyse" asp-action="AnalyseKost" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")" method="post">
-                        <div class="row">
-                            <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe functie</u></h3>
-                            <div class="col-md-offset-1 col-md-10">
-                                <input asp-for="VolgendeLijn" id="volgendeLijn1" type="hidden" />
-                                <span asp-validation-for="VolgendeLijn" class="text-danger"></span>
-                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
-                                    <div class="col-md-12" style="margin-bottom: 25px;">
-                                        <div style="float:left; width:25%;">
-                                            <label asp-for="Functie" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                                <div class="form-group">
-                                                    <input asp-for="Functie" id="Functie" class="form-control" placeholder="Nieuwe functie" />
-                                                    <span asp-validation-for="Functie" class="text-danger"></span>
-                                                </div>
+                    <div class="row">
+                        <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe functie</u></h3>
+                        <div class="col-md-offset-1 col-md-10">
+                            <input asp-for="VolgendeLijn" id="volgendeLijn1" type="hidden" />
+                            <span asp-validation-for="VolgendeLijn" class="text-danger"></span>
+                            <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
+                                <div class="col-md-12" style="margin-bottom: 25px;">
+                                    <div style="float:left; width:25%;">
+                                        <label asp-for="Functie" class="col-md-12 text-left"></label>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="Functie" id="Functie" class="form-control" placeholder="Nieuwe functie" />
+                                                <span asp-validation-for="Functie" class="text-danger"></span>
                                             </div>
                                         </div>
-                                        <div style="float:left; width:25%;">
-                                            <label asp-for="AantalUrenPerWeek" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                                <div class="form-group">
-                                                    <input asp-for="AantalUrenPerWeek" type="number" id="UrenPerWeek" class="form-control" placeholder="Aantal uren per week" />
-                                                    <span asp-validation-for="AantalUrenPerWeek" class="text-danger"></span>
-                                                </div>
+                                    </div>
+                                    <div style="float:left; width:25%;">
+                                        <label asp-for="AantalUrenPerWeek" class="col-md-12 text-left"></label>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="AantalUrenPerWeek" type="number" id="UrenPerWeek" class="form-control" placeholder="Aantal uren per week" />
+                                                <span asp-validation-for="AantalUrenPerWeek" class="text-danger"></span>
                                             </div>
                                         </div>
-
-                                        <div style="float:left; width:25%;">
-                                            <label asp-for="BrutoMaandloonFulltime" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                                <div class="form-group">
-                                                    <input asp-for="BrutoMaandloonFulltime" id="BrutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" />
-                                                    <span asp-validation-for="BrutoMaandloonFulltime" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div style="float:left; width:25%;">
-                                            <label asp-for="Doelgroep" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="padding-left:0px;">
-                                                <div class="form-group">
-                                                    <select asp-for="Doelgroep" id="dropDown1" class="btn btn-default selectpicker breedte">
-
-                                                        <option selected>Kies uw doelgroep</option>
-                                                        @foreach (var groep in Model.Doelgroepen)
-                                                        {
-                                                            <option>@groep</option>
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        
                                     </div>
 
-                                    <div class="col-md-12 text-right">
-                                        <div style="float:left;" class="col-md-4">
-                                            <label asp-for="AantalMaandenIBO" class="col-md-12 text-left" style="padding-left:25%;"></label>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                                <div class="form-group" style="padding-left:25%;">
-                                                    <input asp-for="AantalMaandenIBO" type="number" id="aantalMaandenIBO" class="form-control" placeholder="Aantal maanden" />
-                                                    <span asp-validation-for="AantalMaandenIBO" class="text-danger"></span>
-                                                </div>
+                                    <div style="float:left; width:25%;">
+                                        <label asp-for="BrutoMaandloonFulltime" class="col-md-12 text-left"></label>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="BrutoMaandloonFulltime" id="BrutoMaandloonFulltime" class="form-control" placeholder="Bruto maandloon fulltime" />
+                                                <span asp-validation-for="BrutoMaandloonFulltime" class="text-danger"></span>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div style="float:left;" class="col-md-4">
-                                            <label asp-for="TotaleProductiviteitsPremieIBO" class="col-md-12 text-left" style="padding-left:15%;"></label>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                                <div class="form-group" style="padding-left:15%;">
-                                                    <input asp-for="TotaleProductiviteitsPremieIBO" id="productiviteitsPremie" class="form-control" placeholder="Totale premie"/>
-                                                    <span asp-validation-for="TotaleProductiviteitsPremieIBO" class="text-danger"></span>
-                                                </div>
+                                    <div style="float:left; width:25%;">
+                                        <label asp-for="Doelgroep" class="col-md-12 text-left"></label>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="padding-left:0px;">
+                                            <div class="form-group">
+                                                <select asp-for="Doelgroep" id="dropDown1" class="btn btn-default selectpicker breedte">
+
+                                                    <option selected>Kies uw doelgroep</option>
+                                                    @foreach (var groep in Model.Doelgroepen)
+                                                    {
+                                                        <option>@groep</option>
+                                                    }
+                                                </select>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div style="float:right;" class="col-md-4">
-                                            <label asp-for="VlaamseOndersteuningsPremie" class="col-md-12 text-left" style="padding-right:25%;"></label>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                                <div class="form-group" style="padding-right:25%;">
-                                                    <select asp-for="VlaamseOndersteuningsPremie" id="dropDown2" class="btn btn-default selectpicker breedte">
-                                                        <option selected>Vlaamse ondersteuningspremie</option>
-                                                        <option>40%</option>
-                                                        <option>30%</option>
-                                                        <option>20%</option>
-                                                        <option>0%</option>
-                                                    </select>
-                                                </div>
+
+                                </div>
+
+                                <div class="col-md-12 text-right">
+                                    <div style="float:left;" class="col-md-4">
+                                        <label asp-for="AantalMaandenIBO" class="col-md-12 text-left" style="padding-left:25%;"></label>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <div class="form-group" style="padding-left:25%;">
+                                                <input asp-for="AantalMaandenIBO" type="number" id="aantalMaandenIBO" class="form-control" placeholder="Aantal maanden" />
+                                                <span asp-validation-for="AantalMaandenIBO" class="text-danger"></span>
                                             </div>
                                         </div>
+                                    </div>
 
+                                    <div style="float:left;" class="col-md-4">
+                                        <label asp-for="TotaleProductiviteitsPremieIBO" class="col-md-12 text-left" style="padding-left:15%;"></label>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <div class="form-group" style="padding-left:15%;">
+                                                <input asp-for="TotaleProductiviteitsPremieIBO" id="productiviteitsPremie" class="form-control" placeholder="Totale premie" />
+                                                <span asp-validation-for="TotaleProductiviteitsPremieIBO" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="float:right;" class="col-md-4">
+                                        <label asp-for="VlaamseOndersteuningsPremie" class="col-md-12 text-left" style="padding-right:25%;"></label>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <div class="form-group" style="padding-right:25%;">
+                                                <select asp-for="VlaamseOndersteuningsPremie" id="dropDown2" class="btn btn-default selectpicker breedte">
+                                                    <option selected>Vlaamse ondersteuningspremie</option>
+                                                    <option>40%</option>
+                                                    <option>30%</option>
+                                                    <option>20%</option>
+                                                    <option>0%</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
 
-                                <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 ">
-                                    <div class="btn-group col-md-12 col-sm-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
-                                        <a id="vulInKnop" class="btn btn-primary col-md-6 col-sm-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
-                                        <a class="btn btn-danger btn-lg col-md-6 col-sm-6 fancyKnopkesRechterKnop annuleerKnopKost1">Annuleren</a>
-                                    </div>
+                            </div>
+
+                            <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 ">
+                                <div class="btn-group col-md-12 col-sm-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                    <a id="vulInKnop" class="btn btn-primary col-md-6 col-sm-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                    <a class="btn btn-danger btn-lg col-md-6 col-sm-6 fancyKnopkesRechterKnop annuleerKnopKost1">Annuleren</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </form>
 
 
-                
+
 
             </div>
+
         </div>
     </div>
 </div>

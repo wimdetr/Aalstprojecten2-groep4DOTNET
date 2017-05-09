@@ -29,6 +29,28 @@
 }
 
 /* Tooltip text bottom*/
+.tooltip .tooltipBottomMenuAnalyseKostInvullen {
+    visibility: hidden;
+    width: 350px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 4;
+    top: 95%;
+    left: 25%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip text bottom*/
 .tooltip .tooltipBottomAnalyseOverzichtWerkgeverAanpassen {
     visibility: hidden;
     width: 350px;
@@ -43,6 +65,28 @@
     z-index: 4;
     top: 125%;
     left: 20%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip text bottom*/
+.tooltip .tooltipBottomAnalyseInvullenVolgendePagina {
+    visibility: hidden;
+    width: 350px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 4;
+    top: 125%;
+    left: -54%;
     margin-left: -60px;
 
     /* Fade in tooltip */
@@ -138,6 +182,28 @@
     transition: opacity 1s;
 }
 
+/* Tooltip text left*/
+.tooltip .tooltipLefAnalyseInvullenTabelAanpassenVerwijderen {
+    visibility: hidden;
+    width: 400px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 5;
+    top: 1%;
+    right: 120%; 
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
 /* Tooltip text right*/
 .tooltip .tooltipRightSidebar {
     visibility: hidden;
@@ -153,6 +219,28 @@
     z-index: 1;
     top: 15%;
     left: 160%; 
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip text right*/
+.tooltip .tooltipRightPlusIcoon {
+    visibility: hidden;
+    width: 400px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: -50%;
+    left: 400%; 
     margin-left: -60px;
 
     /* Fade in tooltip */
@@ -183,7 +271,7 @@
 }
 
 /* Tooltip arrow bottom*/
-.tooltip .tooltipBottomKnoppenHomeschermDoorPaginasBladeren::after, .tooltip .tooltipBottomAnalyseOverzichtWerkgeverAanpassen::after, .tooltip .tooltipBottomAnalyseOverzichtTableHoverBaten::after, .tooltip .tooltipBottomAnalyseOverzichtTableHoverKosten::after {
+.tooltip .tooltipBottomKnoppenHomeschermDoorPaginasBladeren::after, .tooltip .tooltipBottomAnalyseOverzichtWerkgeverAanpassen::after, .tooltip .tooltipBottomAnalyseOverzichtTableHoverBaten::after, .tooltip .tooltipBottomAnalyseOverzichtTableHoverKosten::after, .tooltipBottomMenuAnalyseKostInvullen::after, .tooltip .tooltipBottomAnalyseInvullenVolgendePagina::after {
     content: " ";
     position: absolute;
     bottom: 100%;  /* At the top of the tooltip */
@@ -208,7 +296,7 @@
 }
 
 /* Tooltip arrow right*/
-.tooltip .tooltipRightSidebar::after {
+.tooltip .tooltipRightSidebar::after, .tooltip .tooltipRightPlusIcoon::after {
     content: " ";
     position: absolute;
     top: 50%;
@@ -232,7 +320,7 @@
 }
 
 /* Tooltip arrow left*/
-.tooltip .tooltipLeftHomePageDropdown::after {
+.tooltip .tooltipLeftHomePageDropdown::after, .tooltip .tooltipLefAnalyseInvullenTabelAanpassenVerwijderen::after {
     content: " ";
     position: absolute;
     top: 50%;
