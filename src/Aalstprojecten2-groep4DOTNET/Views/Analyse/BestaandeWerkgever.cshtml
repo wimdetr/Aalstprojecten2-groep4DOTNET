@@ -23,13 +23,6 @@
         
 
         <div class="col-lg-12">
-            @*<select id="zoekKeuze" name="zoekKeuze" class=" col-lg-4">*@
-            <select asp-for="ChoiceboxWaarde" class="btn btn-default col-lg-4 marginRechtsMidden">
-                <option selected>Organisatie naam</option>
-                <option>Gemeente</option>
-                <option>Postcode</option>
-                <option>Contactpersoon naam</option>
-            </select>
 
             <div class="form-group col-lg-4">
                 @*<label asp-for="ZoekString" class="col-md-2 control-label"></label>*@
@@ -57,20 +50,12 @@
             <thead class="achtergrondKleurVanDeTabelHeader">
                 <tr>
                     <th>Organisatie naam</th>
-                    <th>Straat</th>
-                    <th>Postcode</th>
-                    <th>Gemeente</th>
-                    <th>Contact persoon</th>
                 </tr>
             </thead>
             @foreach (var item in Model.Werkgevers)
             {
                 <tr class="klikbaar" onclick="location.href = '@(Url.Action("NieuweWerkgever", "Analyse", new { Id = item.WerkgeverId }))'">
                     <td>@item.Naam</td>
-                    <td>@item.Straat</td>
-                    <td>@item.Postcode</td>
-                    <td>@item.Gemeente</td>
-                    <td>@item.ContactPersoonNaam</td>
                 </tr>
             }
         </table>

@@ -19,6 +19,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         public DbSet<InterneMailJobcoach> InterneMailJobcoaches { get; set; }
         public DbSet<Doelgroep> Doelgroepen { get; set; }
         public DbSet<AdminMail> AdminMails { get; set; }
+        public DbSet<Departement> Departementen { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -41,6 +42,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             builder.Entity<AdminMail>(MapAdminMail);
             builder.Entity<Doelgroep>(MapDoelgroep);
             builder.Entity<Admin>(MapAdmins);
+            builder.Entity<Departement>(MapDepartementen);
         }
 
         private void MapAdmins(EntityTypeBuilder<Admin> a)
@@ -139,22 +141,31 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             k.HasMany(t => t.Rijen).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
 
+        private void MapDepartementen(EntityTypeBuilder<Departement> d)
+        {
+            d.ToTable("Departementen");
+            d.HasKey(t => t.DepartementId);
+
+            d.Property(t => t.AnalyseId).IsRequired(false);
+            d.Property(t => t.AantalWerkuren).IsRequired();
+            d.Property(t => t.Bus).HasMaxLength(1).IsRequired(false);
+            d.Property(t => t.Gemeente).IsRequired();
+            d.Property(t => t.Naam).IsRequired();
+            d.Property(t => t.Nummer).IsRequired();
+            d.Property(t => t.Postcode).HasMaxLength(4).IsRequired();
+            d.Property(t => t.Straat).IsRequired();
+
+            d.HasOne(t => t.Werkgever).WithMany().IsRequired();
+        }
+
         private void MapWerkgever(EntityTypeBuilder<Werkgever> w)
         {
             w.ToTable("Werkgever");
             w.HasKey(t => t.WerkgeverId);
 
-            w.Property(t => t.AnalyseId).IsRequired(false);
-            w.Property(t => t.AantalWerkuren).IsRequired();
-            w.Property(t => t.Bus).HasMaxLength(1).IsRequired(false);
-            w.Property(t => t.Gemeente).IsRequired();
             w.Property(t => t.LinkNaarLogoPrent).IsRequired(false);
             w.Property(t => t.Naam).IsRequired();
-            w.Property(t => t.NaamAfdeling).IsRequired();
-            w.Property(t => t.Nummer).IsRequired();
             w.Property(t => t.PatronaleBijdrage).HasMaxLength(3).IsRequired();
-            w.Property(t => t.Postcode).HasMaxLength(4).IsRequired();
-            w.Property(t => t.Straat).IsRequired();
         }
 
         private void MapAnalyse(EntityTypeBuilder<Analyse> a)
@@ -167,7 +178,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             a.Property(t => t.IsGearchiveerd).IsRequired();
 
             a.HasMany(t => t.KostenEnBaten).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade);
-            a.HasOne(t => t.Werkgever).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);
+            a.HasOne(t => t.Departement).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
 
         private void MapJobCoach(EntityTypeBuilder<JobCoach> j)
@@ -179,7 +190,6 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             j.Property(t => t.PostcodeBedrijf).HasMaxLength(4).IsRequired();
             j.Property(t => t.StraatBedrijf).IsRequired();
             j.Property(t => t.MoetWachtwoordVeranderen).IsRequired();
-            j.Property(t => t.Wachtwoord).IsRequired();
 
             j.HasMany(t => t.Analyses).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);
         }

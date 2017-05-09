@@ -54,7 +54,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
             if (analyse == null)
                 return RedirectToAction(nameof(Index));
-            ViewData["analyse"] = analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling;
+            ViewData["analyse"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             return View();
         }
         [HttpPost]
@@ -65,7 +65,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             try
             {
                 Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
-                TempData["message"] = "De analyse voor " + analyse.Werkgever.Naam + " - " + analyse.Werkgever.NaamAfdeling + " is succesvol verwijderd.";
+                TempData["message"] = "De analyse voor " + analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam + " is succesvol verwijderd.";
                 _analyseRepository.Delete(analyse);
                 _analyseRepository.SaveChanges();
             }
@@ -219,7 +219,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         {
                             JobCoach jc = _jobCoachRepository.GetByEmail(user.Email);
 
-                            jc.Wachtwoord = model.Password;
                             jc.MoetWachtwoordVeranderen = false;
                             _jobCoachRepository.SaveChanges();
                             TempData["message"] = "Uw wachtwoord is succesvol aangepast.";

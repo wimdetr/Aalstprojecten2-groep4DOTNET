@@ -43,7 +43,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
 
         public void BerekenEnSetResultaat(KOBRij mijnRij)
         {
-            int aantalWerkuren = Analyse.Werkgever.AantalWerkuren;
+            int aantalWerkuren = Analyse.Departement.AantalWerkuren;
             switch (KostOfBaat.Formule)
             {
                     case Formule.FormuleBaat1:
@@ -86,7 +86,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                     }
                     mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble()/aantalWerkuren*
                                           mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()*
-                                         (1 + (double)Analyse.Werkgever.PatronaleBijdrage/100);
+                                         (1 + (double)Analyse.Departement.Werkgever.PatronaleBijdrage/100);
                     break;
                     case Formule.FormuleGeefVak2:
                     mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble();
@@ -94,7 +94,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                     case Formule.FormuleKost6:
                     mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()/152*
                                         mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()*
-                                        (1 + (double)Analyse.Werkgever.PatronaleBijdrage/100);
+                                        (1 + (double)Analyse.Departement.Werkgever.PatronaleBijdrage/100);
                     break;
                     case Formule.FormuleGeefVak1:
                     mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble();
@@ -108,7 +108,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
                     {
                         mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(1).GeefDataAlsDouble()/aantalWerkuren*
                                             mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble()*
-                                            (1 + (double)Analyse.Werkgever.PatronaleBijdrage/100)*13.92;
+                                            (1 + (double)Analyse.Departement.Werkgever.PatronaleBijdrage/100)*13.92;
                     }
                     break;
                     case Formule.FormuleSomVak1En2:
@@ -133,7 +133,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             }
             mijnRij.Resultaat = mijnRij.GeefKOBVakMetNummer(3).GeefDataAlsDouble() / aantalWerkuren *
                                   mijnRij.GeefKOBVakMetNummer(2).GeefDataAlsDouble() *
-                                 (1 + (double)Analyse.Werkgever.PatronaleBijdrage / 100);
+                                 (1 + (double)Analyse.Departement.Werkgever.PatronaleBijdrage / 100);
         }
 
         public KOBRij GeefRijVanKost(int kostId, int rijId)

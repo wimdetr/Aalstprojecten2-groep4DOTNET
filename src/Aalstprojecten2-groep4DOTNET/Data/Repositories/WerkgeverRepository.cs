@@ -11,25 +11,45 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<Werkgever> _werkgevers;
+        private readonly DbSet<Departement> _departementen;
 
         public WerkgeverRepository(ApplicationDbContext context)
         {
             _context = context;
             _werkgevers = context.Werkgevers;
+            _departementen = context.Departementen;
         }
         public IEnumerable<Werkgever> GetAll(string jobcoachEmail)
         {
             return _werkgevers.Where(w => w.JobCoachEmail.Equals(jobcoachEmail)).AsNoTracking().ToList();
         }
 
+        public IEnumerable<Departement> GetAllDepartements(string jobcoachEmail)
+        {
+            return
+                _departementen.Include(d => d.Werkgever)
+                    .Where(d => d.Werkgever.JobCoachEmail.Equals(jobcoachEmail))
+                    .AsNoTracking()
+                    .ToList();
+        }
         public Werkgever GetById(int id)
         {
             return _werkgevers.SingleOrDefault(w => w.WerkgeverId == id);
         }
 
-        public Werkgever GetByAnalyseId(int id)
+        public Werkgever GetWithName(string name, string jobcoachEmail)
         {
-            return _werkgevers.SingleOrDefault(w => w.AnalyseId == id);
+            return _werkgevers.SingleOrDefault(w => w.Naam.Equals(name) && w.JobCoachEmail.Equals(jobcoachEmail));
+        }
+
+        public Departement GetDepartementById(int id)
+        {
+            return _departementen.Include(d => d.Werkgever).SingleOrDefault(d => d.AnalyseId == id);
+        }
+
+        public Departement GetDepartementByAnalyseId(int id)
+        {
+            return _departementen.Include(d => d.Werkgever).SingleOrDefault(w => w.AnalyseId == id);
         }
 
         public IEnumerable<Werkgever> GetByNaam(string jobcoachEmail, string naam)
@@ -37,33 +57,6 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
             return
                 _werkgevers
                     .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && w.Naam.ToLower().Contains(naam.ToLower()))
-                    .AsNoTracking()
-                    .ToList();
-        }
-
-        public IEnumerable<Werkgever> GetByGemeente(string jobcoachEmail, string gemeente)
-        {
-            return
-                _werkgevers
-                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && w.Gemeente.ToLower().Contains(gemeente.ToLower()))
-                    .AsNoTracking()
-                    .ToList();
-        }
-
-        public IEnumerable<Werkgever> GetByPostcode(string jobcoachEmail, string postcode)
-        {
-            return
-                _werkgevers
-                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && w.Postcode.ToString().Contains(postcode))
-                    .AsNoTracking()
-                    .ToList();
-        }
-
-        public IEnumerable<Werkgever> GetByContactPersoonNaam(string jobcoachEmail, string naam)
-        {
-            return
-                _werkgevers
-                    .Where(w => w.JobCoachEmail.Equals(jobcoachEmail) && ((w.ContactPersoonVoornaam + " " + w.ContactPersoonNaam).ToLower().Contains(naam.ToLower()) || (w.ContactPersoonNaam + " " + w.ContactPersoonVoornaam).ToLower().Contains(naam.ToLower())))
                     .AsNoTracking()
                     .ToList();
         }

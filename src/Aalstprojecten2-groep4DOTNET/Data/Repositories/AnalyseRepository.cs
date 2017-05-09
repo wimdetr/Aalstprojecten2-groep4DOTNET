@@ -20,18 +20,18 @@ namespace Aalstprojecten2_groep4DOTNET.Data.Repositories
 
         public IEnumerable<Analyse> GetAllNietGearchiveerd(string jobcoachEmail)
         {
-            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && !a.IsGearchiveerd).OrderByDescending(a => a.LaatsteAanpasDatum).AsNoTracking().ToList();
+            return _analyses.Include(a => a.Departement).ThenInclude(d => d.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && !a.IsGearchiveerd).OrderByDescending(a => a.LaatsteAanpasDatum).AsNoTracking().ToList();
         }
 
         public IEnumerable<Analyse> GetAllWelGearchiveerd(string jobcoachEmail)
         {
-            return _analyses.Include(a => a.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.IsGearchiveerd).OrderByDescending(a => a.LaatsteAanpasDatum).AsNoTracking().ToList();
+            return _analyses.Include(a => a.Departement).ThenInclude(d => d.Werkgever).Include(a => a.KostenEnBaten).ThenInclude(kob => kob.Rijen).ThenInclude(rij => rij.Vakken).Where(a => a.JobCoachEmail.Equals(jobcoachEmail) && a.IsGearchiveerd).OrderByDescending(a => a.LaatsteAanpasDatum).AsNoTracking().ToList();
         }
 
         public Analyse GetById(string jobcoachEmail, int id)
         {
             return
-                _analyses.Include(a => a.Werkgever)
+                _analyses.Include(a => a.Departement).ThenInclude(d => d.Werkgever)
                     .Include(a => a.KostenEnBaten)
                     .ThenInclude(kob => kob.Rijen)
                     .ThenInclude(rij => rij.Vakken)

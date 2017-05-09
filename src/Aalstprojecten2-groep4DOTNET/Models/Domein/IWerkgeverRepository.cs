@@ -9,11 +9,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
     {
         IEnumerable<Werkgever> GetAll(string jobcoachEmail);
         Werkgever GetById(int id);
-        Werkgever GetByAnalyseId(int id);
+        Werkgever GetWithName(string name, string jobcoachEmail);
+        Departement GetDepartementByAnalyseId(int id);
+        Departement GetDepartementById(int id);
         IEnumerable<Werkgever> GetByNaam(string jobcoachEmail, string naam);
-        IEnumerable<Werkgever> GetByGemeente(string jobcoachEmail, string gemeente);
-        IEnumerable<Werkgever> GetByPostcode(string jobcoachEmail, string postcode);
-        IEnumerable<Werkgever> GetByContactPersoonNaam(string jobcoachEmail, string naam);
+        IEnumerable<Departement> GetAllDepartements(string jobcoachEmail);
         void Add(Werkgever werkgever);
         void Remove(Werkgever werkgever);
         void SaveChanges();

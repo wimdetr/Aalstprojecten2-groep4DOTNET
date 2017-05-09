@@ -11,7 +11,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
     public class WerkgeverViewModel
     {
         [HiddenInput]
-        public int? WerkgeverId { get; set; }
+        public int? DepartementId { get; set; }
         public string Titel { get; set; }
         public bool Aanpassen { get; set; } = false;
         [Display(Name ="Naam *")]
@@ -56,21 +56,29 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [EmailAddress]
         public string ContactPersoonEmail { get; set; }
 
+        public WerkgeverViewModel(Departement departement)
+        {
+            DepartementId = departement.DepartementId;
+            Naam = departement.Werkgever.Naam;
+            Straat = departement.Straat;
+            Nummer = departement.Nummer;
+            Bus = departement.Bus;
+            Postcode = departement.Postcode;
+            Gemeente = departement.Gemeente;
+            AantalWerkuren = departement.AantalWerkuren;
+            PatronaleBijdrage = departement.Werkgever.PatronaleBijdrage;
+            LinkNaarLogoPrent = departement.Werkgever.LinkNaarLogoPrent;
+            ContactPersoonNaam = departement.ContactPersoonNaam;
+            ContactPersoonVoornaam = departement.ContactPersoonVoornaam;
+            ContactPersoonEmail = departement.ContactPersoonEmail;
+        }
+
         public WerkgeverViewModel(Werkgever werkgever)
         {
-            WerkgeverId = werkgever.WerkgeverId;
             Naam = werkgever.Naam;
-            Straat = werkgever.Straat;
-            Nummer = werkgever.Nummer;
-            Bus = werkgever.Bus;
-            Postcode = werkgever.Postcode;
-            Gemeente = werkgever.Gemeente;
-            AantalWerkuren = werkgever.AantalWerkuren;
             PatronaleBijdrage = werkgever.PatronaleBijdrage;
             LinkNaarLogoPrent = werkgever.LinkNaarLogoPrent;
-            ContactPersoonNaam = werkgever.ContactPersoonNaam;
-            ContactPersoonVoornaam = werkgever.ContactPersoonVoornaam;
-            ContactPersoonEmail = werkgever.ContactPersoonEmail;
+            AantalWerkuren = 38;
         }
 
         public WerkgeverViewModel()
