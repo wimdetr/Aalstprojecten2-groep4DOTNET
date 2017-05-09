@@ -3,6 +3,7 @@
     position: relative;
     display: inline-block;
     opacity: 1;
+    z-index:auto;
 }
 
 /* Tooltip text bottom*/
@@ -20,6 +21,72 @@
     z-index: 4;
     top: 125%;
     left: 0%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip text bottom*/
+.tooltip .tooltipBottomAnalyseOverzichtWerkgeverAanpassen {
+    visibility: hidden;
+    width: 350px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 4;
+    top: 125%;
+    left: 20%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip text bottom*/
+.tooltip .tooltipBottomAnalyseOverzichtTableHoverBaten {
+    visibility: hidden;
+    width: 350px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 4;
+    top: 12%;
+    left: 10%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip text bottom*/
+.tooltip .tooltipBottomAnalyseOverzichtTableHoverKosten {
+    visibility: hidden;
+    width: 350px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 4;
+    top: 12%;
+    left: 75%;
     margin-left: -60px;
 
     /* Fade in tooltip */
@@ -116,7 +183,7 @@
 }
 
 /* Tooltip arrow bottom*/
-.tooltip .tooltipBottomKnoppenHomeschermDoorPaginasBladeren::after {
+.tooltip .tooltipBottomKnoppenHomeschermDoorPaginasBladeren::after, .tooltip .tooltipBottomAnalyseOverzichtWerkgeverAanpassen::after, .tooltip .tooltipBottomAnalyseOverzichtTableHoverBaten::after, .tooltip .tooltipBottomAnalyseOverzichtTableHoverKosten::after {
     content: " ";
     position: absolute;
     bottom: 100%;  /* At the top of the tooltip */
@@ -126,6 +193,7 @@
     border-style: solid;
     border-color: transparent transparent black transparent;
 }
+
 
 /* Tooltip arrow top*/
 .tooltip .tooltipTopIconenCards::after {

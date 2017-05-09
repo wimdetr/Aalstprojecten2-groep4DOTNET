@@ -82,3 +82,7 @@ tr td a:hover {
 .hoverkeBaat:hover {
     background-color:rgba(165,42,42,0.6);
 }
+
+.diepte2 {
+    z-index: 3;
+}
