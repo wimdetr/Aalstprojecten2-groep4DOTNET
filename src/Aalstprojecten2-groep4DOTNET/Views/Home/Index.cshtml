@@ -22,7 +22,8 @@
             <h2 class="titelFix">Home</h2>
         </div>
         <div class="col-md-9">
-            <div class="col-md-5 pull-right">
+            <div class="col-md-5 pull-right tooltip diepte">
+                <span class="tooltiptext tooltipBottomKnoppenHomeschermDoorPaginasBladeren">Hier kan u door de pagina's bladeren en aangeven hoeveel analyses u wilt zien per pagina</span>
                 <div class="col-md-5 btn-group marginTopKlein" role="group" style="padding-right:0px; float:left;">
                     <button class="col-md-6 btn btn-primary btn-sm borderstyles1 eerstePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/eerstePagina.png" class="fototjeKosten" /></button>
                     <button class="col-md-6 btn btn-primary btn-sm borderstyles2 vorigePagina" disabled="@(Model.ActiveerKnoppen == false? "true":"false")"><img src="~/images/iconen/vorigePagina.png" class="fototjeKosten" /></button>
@@ -53,14 +54,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
 @if (Model.IsLeeg)
 {
     <p>Er zijn geen actieve analyses.</p>
@@ -80,10 +73,11 @@ else
                         @*naam werkgever*@
                         <strong>@item.Organisatie</strong>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 iconen">
+                    <div class="col-lg-6 col-md-6 col-sm-6 iconen tooltip">
                         @*knoppen downloaden versturen verwijderen*@
-                        <div class="icoon verwijderIcoon">
+                        <div class="icoon verwijderIcoon tooltiptext">
                             <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon verwijderPrent" src="~/images/iconen/bin.png" alt="meh" /></a>
+                            <span class="tooltiptext tooltipTopIconenCards">Klik hier om een analyse te bewerken, archiveren, downloaden, versturen of verwijderen</span>
                         </div>
                         <div class="icoon verstuurIcoon">
                             <a><img class="img-responsive img-rounded mijnIcoon verstuurPrent" src="~/images/iconen/send.png" alt="meh" /></a>

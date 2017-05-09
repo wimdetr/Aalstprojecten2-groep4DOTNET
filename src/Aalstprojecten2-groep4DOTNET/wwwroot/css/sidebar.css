@@ -173,3 +173,15 @@
 .extraMarginRight {
     margin-right: 15px;
 }
+
+.navbar-nav > li {
+    float: none;
+}
+
+.test:hover {
+    background-color: white;
+}
+
+.test > a {
+    text-align:center;
+}

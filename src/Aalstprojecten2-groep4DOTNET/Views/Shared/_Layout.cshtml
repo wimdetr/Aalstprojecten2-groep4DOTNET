@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/sidebar.css" />
         <link rel="stylesheet" href="~/css/Animations.css">
+        <link rel="stylesheet" href="~/css/Tooltip.css" />
         <link rel="icon" type="image/png" href="~/images/kairosLogo/kairos_icon_green.png"/>
     </environment>
     <environment names="Staging,Production">
@@ -31,27 +32,34 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand tooltip">
                         <img class="kairosLogo" src="~/images/kairosLogo/kairos_wordmark_white.png" alt="LOGO" />
+                        <span class="tooltiptext tooltipRightHomeKairosLogo">Via hier kan u terug naar het dashboard keren</span>
                     </a>
                 </div>
                 <!-- Top Menu Items -->
-                <ul class="nav navbar-right top-nav extraPaddingBeneden DropdownUserMargin marginRechts">
+                <ul class="nav navbar-right top-nav extraPaddingBeneden DropdownUserMargin marginRechts tooltip">
                     <li>
                         @await Html.PartialAsync("_LoginPartial")
+                        <span class="tooltiptext tooltipLeftHomePageDropdown">Hier kan u uw profiel wijzigen, Bart contacteren, uw inbox controleren en uitloggen</span>
                     </li>
                 </ul>
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse nieuweAchtergrond">
-                    <ul class="nav navbar-nav side-nav intMidden">
-                        <li class="homeIcoon">
-                            <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/iconen/home.png" class="icons homePrent" /></a>
+                    <ul class="nav navbar-nav side-nav intMidden" style="overflow:initial;">
+                        <li class="homeIcoon test tooltip">
+                            
+                                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/iconen/home.png" class="icons homePrent" /></a>
+                            <span class="tooltiptext tooltipRightSidebar">Klik hier om naar het dashboard te gaan</span>
+                            
                         </li>
-                        <li class="nieuwIcoon">
-                            <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img src="~/images/iconen/nieuw.png" class="icons nieuwPrent" /></a>
+                        <li class="nieuwIcoon test tooltip">
+                                <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img src="~/images/iconen/nieuw.png" class="icons nieuwPrent" /></a>
+                                <span class="tooltiptext tooltipRightSidebar">Klik hier om een nieuwe analyse te maken</span>
                         </li>
-                        <li class="archiefIcoon">
-                            <a  asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
+                        <li class="archiefIcoon test tooltip">
+                                <a asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
+                                   <span class="tooltiptext tooltipRightSidebar">Klik hier om naar het archief te gaan</span>
                         </li>
                     </ul>
                 </div>

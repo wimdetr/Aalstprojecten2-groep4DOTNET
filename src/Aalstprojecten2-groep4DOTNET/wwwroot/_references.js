@@ -21,6 +21,7 @@
 /// <reference path="js/site.js" />
 /// <reference path="js/tableScript.js" />
 /// <reference path="js/tablescriptbaten.js" />
+/// <reference path="js/tooltip.js" />
 /// <reference path="js/wizard.js" />
 /// <reference path="js/wizardbaten.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />

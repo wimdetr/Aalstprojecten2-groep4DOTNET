@@ -186,8 +186,13 @@
 
 .toonAnalyseKaart {
     display: block;
+    z-index:3;
 }
 
 .verbergAnalyseKaart {
     display: none;
+}
+
+.diepte {
+    z-index: 4;
 }
