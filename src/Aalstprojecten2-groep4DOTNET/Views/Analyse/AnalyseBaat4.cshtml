@@ -16,17 +16,21 @@
 <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 tooltip diepte2">
         <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
+        <span class="tooltiptext tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
+
     </div>
     <div class="col-md-6 text-center">
         <h2 class="titelFix">Baten</h2>
     </div>
     <div class="col-md-3 text-right">
-        <div class="btn-group marginTopKlein" role="group">
+        <div class="btn-group marginTopKlein tooltip" role="group">
             <a asp-controller="Analyse" asp-action="AnalyseKost" class="btn btn-primary btn-lg"><img src="~/images/iconen/kosten_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="btn btn-primary btn-lg"><img src="~/images/iconen/baten_wit.png" class="fototjeKosten" /></a>
+            <span class="tooltiptext tooltipLeftHomePageDropdown">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
+
         </div>
     </div>
 </div>
@@ -39,7 +43,7 @@
 
     <div class="row form-group">
         <div class="col-xs-12">
-            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel tooltip">
                 <li>
                     <a asp-controller="Analyse" asp-action="AnalyseBaat1">
                         <h4 class="list-group-item-heading">Stap 1</h4>
@@ -51,6 +55,8 @@
                         <h4 class="list-group-item-heading">Stap 2</h4>
                         <p>Uitzendkrachten, overuren en uitbesteede zaken</p>
                     </a>
+                    <span class="tooltiptext tooltipBottomMenuAnalyseKostInvullen">Door hier te klikken kan u wisselen naar de gewenste vragenreeks</span>
+
                 </li>
                 <li>
                     <a asp-controller="Analyse" asp-action="AnalyseBaat3">
@@ -67,10 +73,11 @@
             </ul>
             <div class="text-center">
                 <div class="col-md-12">
-                    <div class="btn-group marginTopKlein" role="group">
+                    <div class="btn-group marginTopKlein tooltip" role="group">
                         <a asp-controller="Analyse" asp-action="AnalyseBaat3" class="btn btn-primary btn-lg"><img src="~/images/iconen/links.png" class="fototjeKosten2" /></a>
                         <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten2" /></a>
-                        
+                        <span class="tooltiptext tooltipBottomAnalyseInvullenVolgendePagina">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
+
                     </div>
                 </div>
             </div>
@@ -81,7 +88,7 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Aan welke besparingen kan er nog meer gedacht worden? Vul de bedragen in per jaar?</h3>
-                <table class="table table-striped text-left test marginBottomGroot">
+                <table class="table table-striped text-left marginBottomGroot">
                     <thead class="achtergrondKleurVanDeTabelHeader">
                         <tr>
                             <th class="kleineBreedte2"></th>
@@ -98,17 +105,22 @@
                                 <td>@i.</td>
                                 <td>@Model.Lijst[i - 1].Beschrijving</td>
                                 <td>@Model.Lijst[i - 1].Bedrag.ToString("C")</td>
-                                <td class="text-center">
+                                <td class="text-center tooltip">
                                     <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat4RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                    @if (i == 1)
+                                    {
+                                        <span class="tooltiptext tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
+                                    }
                                 </td>
                             </tr>
                         }
 
                         <tr>
                             <td class="opmaakKnopje" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt">
+                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip">
                                     <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                    <span class="tooltiptext tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
                                 </div>
                             </td>
                         </tr>
