@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="~/css/AnalyseOverzicht.css" />
 
 <div class="row">
-    <div class="col-md-3">
+
+    <div class="col-md-3 tooltip diepte2">
         @if (Model.IsVoltooid)
         {
             <h2>@ViewData["werkgever"]</h2>
@@ -17,6 +18,7 @@
         {
             <h2><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
         }
+        <span class="tooltiptext tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
     </div>
     <div class="col-md-6 text-center">
         <h2>Analyse Overzicht</h2>
@@ -29,6 +31,7 @@
 <div class="col-md-10 col-lg-10 col-sm-12">
     @if (Model.IsVoltooid)
     {
+
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-center hoogte linkerKol">Baten</th>
@@ -158,6 +161,10 @@
     }
     else
     {
+      <div class="tooltip">
+        <span class="tooltiptext tooltipBottomAnalyseOverzichtTableHoverBaten">Als u op deze titel klikt kan u de gekozen baat invullen en komt u ook bij alle baten terecht</span>
+        <span class="tooltiptext tooltipBottomAnalyseOverzichtTableHoverKosten">Als u op deze titel klikt kan u de gekozen kost invullen en komt u ook bij alle kosten terecht</span>
+
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-center hoogte linkerKol">Baten</th>
@@ -169,6 +176,7 @@
                 <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseKost", "Analyse"))'">Totale loonkostsubsidies (VOP, IBO en doelgroepvermindering)</td>
                 <td class="text-center">@Model.Baat1.ToString("C")</td>
                 <td class="text-center">@Model.Kost1.ToString("C")</td>
+
                 <td class="text-right kosten2 klikbaar hoverkeBaat" onclick="location.href = '@(Url.Action("AnalyseKost", "Analyse"))'">Loonkosten medewerkers met grote afstand tot arbeidsmarkt</td>
             </tr>
 
@@ -279,10 +287,13 @@
                 else
                 {
                     <td class="text-center vetGedrukt" style="background-color: brown; color: white;" colspan="2">@((Model.NettoResultaat*-1).ToString("C"))</td>
+
                 }
 
             </tr>
 
         </table>
+              </div>
     }
+
 </div>
