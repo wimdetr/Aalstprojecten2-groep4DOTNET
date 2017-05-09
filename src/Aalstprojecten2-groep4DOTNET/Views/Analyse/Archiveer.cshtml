@@ -1,4 +1,7 @@
-﻿<h2>Archiveer Analyse</h2>
+﻿
+<link rel="stylesheet" href="~/css/Tooltip.css" />
+
+<h2>Archiveer Analyse</h2>
 <hr />
 <h4>Bent u zeker dat u de analyse @ViewData["analyse"] wilt archiveren?</h4>
 
@@ -6,5 +9,28 @@
     <div>
         <button class="btn btn-primary" type="submit">Archiveer</button>
         <a asp-controller="Home" asp-action="Index" class="btn btn-default">annuleer</a>
+    </div>
+
+    <div class="tooltip">
+        Hover over me
+        <span class="tooltiptext tooltipLeft">Tooltip text</span>
+    </div>
+    
+    <br /><br /><br /><br />
+
+    <div class="tooltip">
+        Hover over me
+        <span class="tooltiptext tooltipRight">Tooltip text</span>
+    </div>
+    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    <br /><br /><br /><br />
+    <div class="tooltip">
+        Hover over me
+        <span class="tooltiptext tooltipTop">Tooltip text</span>
+    </div>
+    <br /><br /><br /><br />
+    <div class="tooltip">
+        Hover over me
+        <span class="tooltiptext tooltipBottom">Tooltip text</span>
     </div>
 </form>

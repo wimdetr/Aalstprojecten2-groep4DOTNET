@@ -74,7 +74,6 @@
     border-left: 1px solid black;
     height: 8px;
 }
-
 .PaddingLinks {
     padding-left: 10px;
 }
@@ -186,8 +185,13 @@
 
 .toonAnalyseKaart {
     display: block;
+    z-index:3;
 }
 
 .verbergAnalyseKaart {
     display: none;
+}
+
+.diepte {
+    z-index: 4;
 }

@@ -93,7 +93,6 @@
         width: 125px;
         border-bottom: 1px rgba(0,0,0,.3) solid;
     }
-
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
@@ -172,4 +171,16 @@
 
 .extraMarginRight {
     margin-right: 15px;
+}
+
+.navbar-nav > li {
+    float: none;
+}
+
+.test:hover {
+    background-color: white;
+}
+
+.test > a {
+    text-align:center;
 }
