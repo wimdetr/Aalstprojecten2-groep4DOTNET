@@ -109,12 +109,12 @@ else
                         </div>
                         @*knoppen downloaden versturen verwijderen*@
                         <div class="icoon sendIcoon">
-                            <a><img class="img-responsive img-rounded mijnIcoon sendPrent" src="~/images/iconen/send.png" alt="meh"/></a>
+                            <a class="verstuurIcoonKnop"><img class="img-responsive img-rounded mijnIcoon sendPrent" src="~/images/iconen/send.png" alt="meh"/></a>
                         </div>
 
 
                         <div class="icoon downloadIcoon">
-                            <a class="downloadIcoonKnop"><img class="img-responsive img-rounded mijnIcoon downloadPrent" src="~/images/iconen/download.png" alt="meh"/></a>
+                            <a class="downloadIcoonKnop klikbaar"><img class="img-responsive img-rounded mijnIcoon downloadPrent" src="~/images/iconen/download.png" alt="meh"/></a>
                         </div>
                         <div class="icoon deArchiveerIcoon">
                             <a asp-controller="Analyse" asp-action="BekijkGearchiveerdeAnalyse" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon deArchiveerPrent" src="~/images/iconen/unarchive.png" alt="meh"/></a>
