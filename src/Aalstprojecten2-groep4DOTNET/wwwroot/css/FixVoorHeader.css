@@ -26,3 +26,43 @@
     border-bottom-right-radius: 5px !important;
     border-top-right-radius: 5px !important;
 }
+
+.hoverKlasse {
+    width: 100%;
+    height: 75px;
+}
+
+.geenTextDecoratie {
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #23527c;
+    text-decoration: none;
+}
+
+.verbergAntwoord {
+    display: none;
+}
+
+.gekozen {
+    background-color: #eee;
+}
+
+.nietGekozen {
+    background-color: #FFFFFF;
+}
+
+.knopTitel {
+    width: 100%;
+    height: 75px;
+    background-color: #337AB7;
+    border: none;
+}
+
+.knopTitel2 {
+    width: 100%;
+    height: 65px;
+    background-color: #80ABCE;
+    border: none;   
+}

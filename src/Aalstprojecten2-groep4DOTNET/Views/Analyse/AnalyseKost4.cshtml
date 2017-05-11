@@ -14,6 +14,7 @@
 <script src="~/js/ShowHideFormulier.js"></script>
 <script src="~/js/KostEnBaatVulIn/Kost4.js"></script>
 <script src="~/js/site.js"></script>
+<script src="~/js/analyseKost6.js" ></script>
 <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
 
 <div class="row">
@@ -119,9 +120,9 @@
                         }
 
                         <tr>
-                            <td class="opmaakKnopje" style="padding-top:0;">
+                            <td class="opmaakKnopje toverknop" style="padding-top:0;">
                                 <div class="SpecialeHoogteDoorNielsGemaakt tooltip">
-                                    <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                    <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
                                     <span class="tooltiptext tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
                                 </div>
                             </td>
@@ -187,43 +188,58 @@
                 <div class="col-md-offset-1 col-md-10" style="min-height: 200px;">
                     <ul style="padding-left:0px;">
                         <li class="hoverOpVragen kost6Header actief" id="vraag1" style="border-top-left-radius: 4px;cursor:pointer; touch-action:manipulation; list-style:none;">
-                            <a href=""><h3 class="textkleur">Bekwaamheid</h3></a>
+                            <button class="geenTextDecoratie knopTitel"><h3 class="textkleur">Bekwaamheid</h3></button>
                         </li>
-                        <li class="hoverOpVragen kost6Header nietActief2" id="vraag2" style="cursor:pointer; touch-action:manipulation; list-style:none;">
-                            <div class="">
-                                <a href=""><h3 class="textkleur">Functie</h3></a>
-                            </div>
-                            
+                        <li class="hoverOpVragen kost6Header nietActief geenTextDecoratie nietActief2" id="vraag2" style="cursor:pointer; touch-action:manipulation; list-style:none;">
+                            <button class="geenTextDecoratie knopTitel2" disabled><h3 class="textkleur">Functie</h3></button>
                         </li>
-                        <li class="hoverOpVragen kost6Header nietActief" id="vraag3" style="cursor:pointer; touch-action:manipulation; list-style:none;">
-                            <a href=""><h3 class="nietActief2 textkleur">Werkzaamheden</h3></a>
+                        <li class="hoverOpVragen kost6Header nietActief geenTextDecoratie nietActief2" id="vraag3" style="cursor:pointer; touch-action:manipulation; list-style:none;">
+                            <button class="geenTextDecoratie knopTitel2" disabled><h3 class="textkleur">Werkzaamheden</h3></button>
                         </li>
-                        <li class="hoverOpVragen kost6Header nietActief" id="vraag4" style="border-top-right-radius: 4px; cursor:pointer; touch-action:manipulation; list-style:none;">
-                            <a href=""><h3 class="nietActief2 textkleur">Werkomgeving</h3></a>
+                        <li class="hoverOpVragen kost6Header nietActief geenTextDecoratie nietActief2" id="vraag4" style="border-top-right-radius: 4px; cursor:pointer; touch-action:manipulation; list-style:none;">
+                            <button class="geenTextDecoratie knopTitel2" disabled><h3 class="textkleur">Werkomgeving</h3></button>
                         </li>
                     </ul>
-                    @*<div class="hoverOpVragen kost6Header" id="vraag1" style="border-top-left-radius: 4px;cursor:pointer; touch-action:manipulation;">
-                            <h3>Bekwaamheid</h3>
 
-                        </div>
-                        <div class="hoverOpVragen kost6Header" id="vraag2" style="cursor:pointer; touch-action:manipulation;">
-                            <h3>Functie</h3>
-                        </div>
-                        <div class="hoverOpVragen kost6Header" id="vraag3" style="cursor:pointer; touch-action:manipulation;">
-                            <h3>Werkzaamheden</h3>
-                        </div>
-                        <div class="hoverOpVragen kost6Header" id="vraag4" style="border-top-right-radius: 4px; cursor:pointer; touch-action:manipulation;">
-                            <h3>Werkomgeving</h3>
-                        </div>*@
+                    <div style="width:100%;min-height: 310px;">
+                        <div id="linkerAntwoord" class="hoverAntwoord kost6Antwoord" style="border-bottom-left-radius: 4px;border-left: 3px solid #337AB7;border-bottom: 3px solid #337AB7;min-height: 310px;">
+                            <div id="antwoord1A" style="padding-top: 10%;">
+                                <h3>De medewerker is niet bekwaam om werk uit te voeren op minimaal hoger middelbaar onderwijs niveau (ASO, TSO, KSO, 7de jaar BSO of hoger onderwijs).</h3>
+                            </div>
 
-                    <div style="width:100%;min-height: 75px;">
-                        <div class="hoverAntwoord kost6Antwoord" style="border-bottom-left-radius: 4px;border-left: 3px solid #337AB7;border-bottom: 3px solid #337AB7;">
-                            <h3>De medewerker is niet bekwaam om werk uit te voeren op minimaal hoger middelbaar onderwijs niveau (ASO, TSO, KSO, 7de jaar BSO of hoger onderwijs).</h3>
+                            <div id="antwoord2A" style="padding-top: 15%;" class="verbergAntwoord">
+                                <h3>De medewerker wordt geplaatst op een eenvoudige (al dan niet aangepaste) functie.</h3>
+                            </div>
+
+                            <div id="antwoord3A" class="verbergAntwoord">
+                                <h3>De medewerker verricht eenvoudige werkzaamheden uit waarvoor beperkte scholing en/of ervaring vereist is, zoals schoonmaak-, logistieke-, groen-, verpakkings- en montagewerkzaamheden. Bijvoorbeeld: productiebedrijf dat overweegt om iemand met een arbeidsbeperking aan te werven voor het inpakken van maaltijden aan de lopende band.</h3>
+                            </div>
+
+                            <div id="antwoord4A" class="verbergAntwoord">
+                                <h3>De medewerker komt terecht in een gestructureerde, eenvoudige werkomgeving. Met andere woorden, een werkomgeving waar geen of zeer weinig interactie plaatsvindt tussen de medewerker met een arbeidsbeperking en medewerkers van reguliere complexere bedrijfsprocessen en/of interactie met klanten en andere complexe situaties.</h3>
+                            </div>
                         </div>
-                        <div class="hoverAntwoord kost6Antwoord" style="border-left: 4px solid #337AB7;border-right: 3px solid #337AB7;border-bottom: 3px solid #337AB7; border-bottom-right-radius: 3px;">
-                            <h3>De medewerker is wel bekwaam om werk uit te voeren op minimaal hoger middelbaar onderwijs niveau (ASO, TSO, KSO, 7de jaar BSO of hoger onderwijs).</h3>
+
+
+                        <div id="rechterAntwoord" class="hoverAntwoord kost6Antwoord" style="border-left: 4px solid #337AB7;border-right: 3px solid #337AB7;border-bottom: 3px solid #337AB7; border-bottom-right-radius: 3px;min-height: 310px;">
+                            <div id="antwoord1B" style="padding-top:10%;">
+                                <h3>De medewerker isbekwaam om werk uit te voeren op minimaal hoger middelbaar onderwijs niveau (ASO, TSO, KSO, 7de jaar BSO of hoger onderwijs).</h3>
+                            </div>
+
+                            <div id="antwoord2B" style="padding-top: 15%;" class="verbergAntwoord">
+                                <h3>De medewerker wordt geplaatst op een functie waarvoor minimaal een diploma middelbaar onderwijs vereist is.</h3>
+                            </div>
+
+                            <div id="antwoord3B" class="verbergAntwoord">
+                                <h3>De medewerker verricht complexere werkzaamheden uit waarvoor scholing en/of ervaring vereist is. Bijvoorbeeld: een bank werft een persoon met een arbeidsbeperking aan als projectmedewerker of administratief bediende</h3>
+                            </div>
+
+                            <div id="antwoord4B" class="verbergAntwoord">
+                                <h3>De medewerker komt terecht in een complexere werkomgeving. Met andere woorden, een werkomgeving waar vaak of veel interactie plaatsvindt tussen de medewerker met een arbeidsbeperking en medewerkers van reguliere complexere bedrijfsprocessen en/of interactie met klanten en andere complexe situaties.</h3>
+                            </div>
                         </div>
                     </div>
+                    <input placeholder="Bedrag" value="€ 12.142,45" style="margin-top:15px; font-size: 18px;"/>
                 </div>
 
 

@@ -1,15 +1,15 @@
 ﻿$(document).ready(function () {
     $(".toverknop")
         .click(function () {
-            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+            if ($(this).parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
             } else {
-                $(this).parent().parent().parent().parent().parent()
+                $(this).parent().parent().parent()
                     .siblings(".invulgegevens")
                     .removeClass("toonFormulier animated zoomIn")
                     .addClass("animated zoomOut");
                 setTimeout(function () {
-                    $(".toverknop").parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
+                    $(".toverknop").parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
                 }, 800);
             }
         });
