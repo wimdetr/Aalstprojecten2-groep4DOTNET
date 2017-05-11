@@ -500,3 +500,16 @@ u {
 .invulgegevens {
     overflow: hidden;
 }
+
+
+.verwijderPaddingLinks {
+    padding-left:0px;
+}
+
+.fixKleineKnop {
+    position: absolute;
+    bottom: 2%;
+    left: 34%;
+    float:left;
+    margin-top: 15px;
+}
