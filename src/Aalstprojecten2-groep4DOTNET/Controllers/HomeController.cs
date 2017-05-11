@@ -252,6 +252,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 {
                     JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
                     await MailVerzender.ContacteerAdmin(jc.Naam + " " + jc.Voornaam, jc.Email, model.Onderwerp, model.Inhoud);
+                    AdminMail mail = new AdminMail(jc, "bartmoens@gmail.com", model.Onderwerp, model.Inhoud, DateTime.Now);
+                    _adminMailRepository.Add(mail);
+                    _adminMailRepository.SaveChanges();
                     TempData["message"] = "Uw bericht werd succesvol naar de admin verstuurd.";
                     return RedirectToAction(nameof(Index));
                 }
