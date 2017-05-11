@@ -463,10 +463,10 @@ div.switch5 > input.switch:focus ~ label:before { box-shadow: 0px 0px 0px 3px rg
 }
 
 .nietActief2:hover {
-    background-color: white;
     color: #337AB7;
     border-radius: 4px;
     padding: 2px;
+    border-top: 6px solid white;
 }
 
 
