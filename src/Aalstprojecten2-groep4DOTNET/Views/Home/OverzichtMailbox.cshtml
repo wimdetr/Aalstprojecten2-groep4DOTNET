@@ -22,14 +22,15 @@ else
             @* Linker kant *@
             <div class="col-md-4">
 
-
+                
                 @* Knoppen boven emails *@
-                <div class="col-md-12" style="margin-bottom:15px; padding-left:0px;">
+                <div class="col-md-12 tooltip" style="margin-bottom:15px; padding-left:0px;">
                     <div class="col-md-12 btn-group" role="group" style="padding-top: 8px; padding-left: 25px;">
                         <a id="selecteerKnop" data-geselecteerd="false" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/select.png" class="fototjeKosten" /></a>
                         <button id="gelezenKnop" formaction="MarkeerGeselecteerdeAlsGelezen" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/markeerGeselecteerdAlsGelezen.png" class="fototjeKosten" /></button>
                         <button id="verwijderKnop" formaction="VerwijderGeselecteerde" class="col-md-4 btn btn-primary btn-lg"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></button>
                     </div>
+                    <span class="tooltiptext tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Hier kan u mails selecteren en daarna markeren als gelezen of ze verwijderen</span>
                 </div>
 
                 @* email divs *@
@@ -83,11 +84,14 @@ else
 
                 @* Knoppen boven ontvangen *@
                 <div class="col-md-12 2Knoppen" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
-                    <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
+                    <div class="col-md-4 btn-group pull-right tooltip" role="group" style="padding-top: 8px; padding-left: 10px;">
                         <a id="antwoordMailKnop" class="col-md-6 btn btn-primary btn-lg @(Model.GeopendeMail == null?"verbergMail":"toonMail")"><img src="~/images/iconen/antwoord.png" class="fototjeKosten" /></a>
                         <a id="verwijderGeselecteerdeMailKnop" asp-controller="Home" asp-action="VerwijderMail" asp-route-id="@Model.GeopendeMailId" class="col-md-6 btn btn-primary btn-lg @(Model.GeopendeMail == null?"verbergMail":"toonMail")"><img src="~/images/iconen/bin.png" class="fototjeKosten" /></a>
+                        <span class="tooltiptext tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Hier kan u antwoorden op de openstaande e-mail of deze verwijderen</span>
                     </div>
+
                 </div>
+
 
                 @* rechter kant ontvangen*@
 
@@ -148,9 +152,10 @@ else
 
                 @* Knoppen boven antwoord/ontvangen *@
                 <div class="col-md-12 2Knoppen" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
-                    <div class="col-md-4 btn-group pull-right" role="group" style="padding-top: 8px; padding-left: 10px;">
+                    <div class="col-md-4 btn-group pull-right tooltip" role="group" style="padding-top: 8px; padding-left: 10px;">
                         <a id="verstuurMailKnop" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/send.png" class="fototjeKosten" /></a>
                         <a id="annuleerKnop" class="col-md-6 btn btn-primary btn-lg"><img src="~/images/iconen/cancel.png" class="fototjeKosten" /></a>
+                        <span class="tooltiptext tooltipBottomAnalyseOverzichtWerkgeverAanpassen">U kan de e-mail versturen of annuleren</span>
                     </div>
                 </div>
 

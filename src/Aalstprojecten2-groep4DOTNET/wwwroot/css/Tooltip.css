@@ -1,13 +1,10 @@
 ﻿/* Tooltip container */
 .tooltip {
     position: relative;
-    display: inline-block;
+    /*display: inline-block;*/
     opacity: 1;
     z-index:auto;
-}
-
-.tooltiptext {
-    display: none;
+    display:block;
 }
 
 /* Tooltip text bottom*/
@@ -341,3 +338,7 @@
     opacity: 1;
     font-size: 18px;
 }
+
+.tooltiptext {
+    display: none;
+}   
