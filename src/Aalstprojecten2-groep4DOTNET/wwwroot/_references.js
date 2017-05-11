@@ -3,6 +3,7 @@
 /// <reference path="js/archief.js" />
 /// <reference path="js/autocomplete.js" />
 /// <reference path="js/baat1.js" />
+/// <reference path="js/bestaandewerkgeverzoeken.js" />
 /// <reference path="js/homepage.js" />
 /// <reference path="js/hovericonen.js" />
 /// <reference path="js/javascript.js" />

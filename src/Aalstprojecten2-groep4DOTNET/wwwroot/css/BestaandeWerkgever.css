@@ -22,3 +22,45 @@
     background-color: rgba(51,122,183, 0.6);
     color: white;
 }
+
+.toonRij {
+    display: block;
+}
+
+.verbergRij {
+    display: none;
+}
+
+.stripe {
+    background-color: #F9F9F9;
+}
+
+.fancySearch {
+    -webkit-animation-name: fancySearch;
+    animation-name: fancySearch;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+
+@-webkit-keyframes fancySearch {
+  from {
+    max-width: 280px;
+  }
+
+  to {
+    max-width: 400px;
+  }
+}
+
+@keyframes fancySearch {
+  from {
+    max-width: 280px;
+  }
+
+  to {
+    max-width: 400px;
+  }
+}

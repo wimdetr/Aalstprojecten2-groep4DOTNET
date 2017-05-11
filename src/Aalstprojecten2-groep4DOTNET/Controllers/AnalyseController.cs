@@ -352,34 +352,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View(nameof(NieuweWerkgever), model);
         }
 
-        public IActionResult BestaandeWerkgever(BestaandeWerkgeverZoekenViewModel m = null)
+        public IActionResult BestaandeWerkgever()
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
-            BestaandeWerkgeverZoekenViewModel model;
-            if (m == null || m.HeeftAlGezocht == false)
-            {
-                model = new BestaandeWerkgeverZoekenViewModel();
-                return View(model);
-            }
-            model = m;
-            return View(model);
-        }
-
-        [HttpPost, ActionName("BestaandeWerkgever")]
-        public IActionResult BestaandeWerkgeverPost(BestaandeWerkgeverZoekenViewModel model)
-        {
-            AnalyseFilter.ZetSessieLeeg(HttpContext);
-            IEnumerable<Werkgever> werkgevers;
-            if (model.ZoekString == null || model.ZoekString.Trim().Equals(""))
-            {
-                werkgevers = _werkgeverRepository.GetAll(User.Identity.Name);
-            }
-            else
-            {
-                werkgevers = _werkgeverRepository.GetByNaam(User.Identity.Name, model.ZoekString.Trim());
-            }
-            werkgevers = GeefUniekeWerkgevers(werkgevers);
-            model = new BestaandeWerkgeverZoekenViewModel(werkgevers);
+            BestaandeWerkgeverZoekenViewModel model = new BestaandeWerkgeverZoekenViewModel(_werkgeverRepository.GetAll(User.Identity.Name));
             return View(model);
         }
 
