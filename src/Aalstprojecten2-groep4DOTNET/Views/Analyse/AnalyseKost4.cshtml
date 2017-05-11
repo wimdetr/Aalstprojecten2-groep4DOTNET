@@ -184,39 +184,47 @@
 
             <div class="Blok1 text-center">
                 <h3 class="text-left">2. Hoeveel uren spendeert u jaarlijks aan extra administratie en interne begeleiding?</h3>
-                <table class="table table-striped text-left marginBenedenGroot">
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th>Uren</th>
-                            <th>Bruto Maandloon Begeleider</th>
-                            <th class="kleineBreedte2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
-                        {
-                            <tr id="tr_0">
-                                <td style="display: none;">@Model.Lijst2[i - 1].KostId</td>
-                                <td>@i.</td>
-                                <td>@Model.Lijst2[i - 1].Uren</td>
-                                <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
-                                <td class="text-center">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
-                                </td>
-                            </tr>
-                        }
+                <div class="col-md-offset-1 col-md-10" style="min-height: 200px;">
+                    <ul style="padding-left:0px;">
+                        <li class="hoverOpVragen kost6Header actief" id="vraag1" style="border-top-left-radius: 4px;cursor:pointer; touch-action:manipulation; list-style:none;">
+                            <a href=""><h3 class="textkleur">Bekwaamheid</h3></a>
+                        </li>
+                        <li class="hoverOpVragen kost6Header nietActief2" id="vraag2" style="cursor:pointer; touch-action:manipulation; list-style:none;">
+                            <div class="">
+                                <a href=""><h3 class="textkleur">Functie</h3></a>
+                            </div>
+                            
+                        </li>
+                        <li class="hoverOpVragen kost6Header nietActief" id="vraag3" style="cursor:pointer; touch-action:manipulation; list-style:none;">
+                            <a href=""><h3 class="nietActief2 textkleur">Werkzaamheden</h3></a>
+                        </li>
+                        <li class="hoverOpVragen kost6Header nietActief" id="vraag4" style="border-top-right-radius: 4px; cursor:pointer; touch-action:manipulation; list-style:none;">
+                            <a href=""><h3 class="nietActief2 textkleur">Werkomgeving</h3></a>
+                        </li>
+                    </ul>
+                    @*<div class="hoverOpVragen kost6Header" id="vraag1" style="border-top-left-radius: 4px;cursor:pointer; touch-action:manipulation;">
+                            <h3>Bekwaamheid</h3>
 
-                        <tr>
-                            <td class="opmaakKnopje" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt">
-                                    <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </div>
+                        <div class="hoverOpVragen kost6Header" id="vraag2" style="cursor:pointer; touch-action:manipulation;">
+                            <h3>Functie</h3>
+                        </div>
+                        <div class="hoverOpVragen kost6Header" id="vraag3" style="cursor:pointer; touch-action:manipulation;">
+                            <h3>Werkzaamheden</h3>
+                        </div>
+                        <div class="hoverOpVragen kost6Header" id="vraag4" style="border-top-right-radius: 4px; cursor:pointer; touch-action:manipulation;">
+                            <h3>Werkomgeving</h3>
+                        </div>*@
+
+                    <div style="width:100%;min-height: 75px;">
+                        <div class="hoverAntwoord kost6Antwoord" style="border-bottom-left-radius: 4px;border-left: 3px solid #337AB7;border-bottom: 3px solid #337AB7;">
+                            <h3>De medewerker is niet bekwaam om werk uit te voeren op minimaal hoger middelbaar onderwijs niveau (ASO, TSO, KSO, 7de jaar BSO of hoger onderwijs).</h3>
+                        </div>
+                        <div class="hoverAntwoord kost6Antwoord" style="border-left: 4px solid #337AB7;border-right: 3px solid #337AB7;border-bottom: 3px solid #337AB7; border-bottom-right-radius: 3px;">
+                            <h3>De medewerker is wel bekwaam om werk uit te voeren op minimaal hoger middelbaar onderwijs niveau (ASO, TSO, KSO, 7de jaar BSO of hoger onderwijs).</h3>
+                        </div>
+                    </div>
+                </div>
 
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">

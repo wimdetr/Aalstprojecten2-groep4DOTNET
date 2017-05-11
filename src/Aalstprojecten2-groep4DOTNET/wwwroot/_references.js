@@ -20,6 +20,7 @@
 /// <reference path="js/search.js" />
 /// <reference path="js/showhideformulier.js" />
 /// <reference path="js/site.js" />
+/// <reference path="js/switchvoortooltips.js" />
 /// <reference path="js/tableScript.js" />
 /// <reference path="js/tablescriptbaten.js" />
 /// <reference path="js/tooltip.js" />
