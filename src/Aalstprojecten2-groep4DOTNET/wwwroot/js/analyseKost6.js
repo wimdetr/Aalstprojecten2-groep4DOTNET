@@ -264,7 +264,7 @@
         if ($("#antwoord4A").hasClass("gekozen")) {
             $("#antwoord4A").removeClass("gekozen").addClass("nietGekozen");
         }
-        $(this).addClass("gekozen").removeClass("nietGekozen");
+        $("#rechterAntwoord").addClass("gekozen").removeClass("nietGekozen");
     });
 
     function verbergAntwoorden(knopId) {
