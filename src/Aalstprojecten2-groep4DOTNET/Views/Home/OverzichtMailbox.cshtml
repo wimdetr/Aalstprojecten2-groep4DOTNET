@@ -132,7 +132,7 @@ else
                     <div id="mailInhoud" class="col-md-offset-1 col-md-10 text-left" style="font-size: 20px;">
                         @if (Model.GeopendeMail != null)
                         {
-                            @Model.GeopendeMail.Inhoud
+                            @Html.Raw(Model.GeopendeMail.Inhoud)
                         }
                     </div>
 

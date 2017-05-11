@@ -31,6 +31,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
             OnderwerpKort = Onderwerp.Length > 25 ? Onderwerp.Substring(0, 25) + "..." : Onderwerp;
             Inhoud = m.InterneMail.Inhoud;
             InhoudKort = Inhoud.Length > 25 ? Inhoud.Substring(0, 25) + "..." : Inhoud;
+            Inhoud = Inhoud.Replace("\n", "<br>");
             DateTime dt = m.InterneMail.VerzendDatum;
             if (dt > DateTime.Now.AddDays(-1))
             {

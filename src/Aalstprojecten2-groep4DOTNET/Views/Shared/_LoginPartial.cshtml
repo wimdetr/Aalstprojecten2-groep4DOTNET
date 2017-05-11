@@ -25,14 +25,13 @@
                                                                                                                                                                    <span class="glyphicon glyphicon-envelope pull-right"></span>
                                                                                                                                                                }</a>
                 <ul class="dropdown-menu">
-                    <li><a asp-controller="Home" asp-action="ProfielAanpassen">Profiel wijzigen <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a asp-controller="Home" asp-action="ContacteerAdmin">Contacteer Bart <span class="glyphicon glyphicon-envelope pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a asp-controller="Home" asp-action="OverzichtMailbox">Inbox <span class="badge pull-right"> @ViewData["ongelezen"] </span></a></li>
-                    <li class="divider"></li>
-                    <li><a asp-controller="Account" asp-action="LogUit">Log uit<span class="glyphicon glyphicon-log-out pull-right" /></a></li>
-                    <li class="divider"></li>
+                    <li><a asp-controller="Home" asp-action="ProfielAanpassen" style="padding: 9px;">Profiel wijzigen <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                    <li class="divider" style="margin: 0;"></li>
+                    <li><a asp-controller="Home" asp-action="ContacteerAdmin" style="padding: 9px;">Contacteer Bart <span class="glyphicon glyphicon-envelope pull-right"></span></a></li>
+                    <li class="divider" style="margin: 0;"></li>
+                    <li><a asp-controller="Home" asp-action="OverzichtMailbox" style="padding: 9px;">Inbox <span class="badge pull-right"> @ViewData["ongelezen"] </span></a></li>
+                    <li class="divider" style="margin: 0;"></li>
+                    <li><a asp-controller="Account" asp-action="LogUit" style="padding: 9px;">Log uit<span class="glyphicon glyphicon-log-out pull-right" /></a></li>
                 </ul>
             </li>
 
