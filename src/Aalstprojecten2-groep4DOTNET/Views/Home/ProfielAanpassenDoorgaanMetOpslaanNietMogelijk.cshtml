@@ -1,6 +1,11 @@
 ﻿@model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.ProfielAanpassenViewModel
 
-<h2>Doorgaan met opslaan was niet mogelijk, mogelijks was verplichte data niet ingevuld.</h2>
+<link rel="stylesheet" href="~/css/ProfielAanpassen.css" />
+
+<h2 class="text-left">Oeps.. er was een probleem</h2>
+<hr />
+
+<h3>Doorgaan met opslaan was niet mogelijk, mogelijks was verplichte data niet ingevuld.</h3>
 <form method="post">
     <input asp-for="Email" type="hidden" />
     <input asp-for="Voornaam" type="hidden" />
@@ -11,7 +16,10 @@
     <input asp-for="Bus" type="hidden" />
     <input asp-for="Postcode" type="hidden" />
     <input asp-for="Gemeente" type="hidden" />
-    <a asp-controller="Home" asp-action="DoorgaanZonderOpslaan" class="btn btn-default">Doorgaan zonder opslaan</a>
-    <button formaction="ProfielAanpassen" class="btn btn-default">Keer terug</button>
-
+    
+    
+    <div class="btn-group col-md-4 margins verwijderPaddingLinks" role="group">
+        <button type="submit" formaction="ProfielAanpassen" class="btn btn-danger btn-lg col-md-6 marginBenedenGroot">Keer terug</button>
+        <a asp-controller="Home" asp-action="DoorgaanZonderOpslaan" class="btn btn-primary btn-lg col-md-6">Doorgaan zonder opslaan</a>
+    </div>
 </form>
