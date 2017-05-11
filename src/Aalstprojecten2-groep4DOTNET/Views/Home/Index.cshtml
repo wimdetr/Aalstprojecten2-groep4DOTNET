@@ -4,14 +4,7 @@
 @{
     ViewData["Title"] = "Kairos";
 }
-<environment names="Development, Production">
-    <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
-    <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
-    <link rel="stylesheet" href="~/css/StyleSheet.css" />
-    <link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
-    <link rel="stylesheet" href="~/css/analyseDetail.css" />
-</environment>
-=======
+
 <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
@@ -71,7 +64,7 @@ else
     <canvas id="canvas" width="1200" height="930" style="display: none;"></canvas>
     foreach (AnalyseOverzichtViewModel item in Model.Analyses)
     {
-        <div class="col-lg-4 col-md-6 col-sm-12 analyseKaarten verbergAnalyseKaart">
+        <div class="col-lg-4 col-md-6 col-sm-12 analyseKaarten">
             <div class="col-lg-12 col-md-12 col-sm-12 omlijn borderRadius">
                 <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading borderRadiusTop">
                     <div class="col-lg-2 col-md-2 col-sm-2">
@@ -245,20 +238,3 @@ else
 
     </div>
 }
-
-<environment names="Development, Production">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="~/js/HomePage.js"></script>
-</environment>
-<environment names="Staging,Production">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-            asp-fallback-test="window.jQuery">
-    </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-    </script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
-</environment>

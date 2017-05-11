@@ -224,7 +224,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 origineelWerkgeverNaam = model.Naam;
             }
-            if (
+            if (ModelState.IsValid &&
                 _analyseRepository.GetAllNietGearchiveerd(User.Identity.Name).Any(a => ControlleerOfDepartementHetzelfdeIs(a.Departement, model, origineelWerkgeverNaam)))
             {
                 ModelState.AddModelError("NaamAfdeling", "Er is al een actieve analyse voor deze dienst");
@@ -305,7 +305,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 origineelWerkgeverNaam = model.Naam;
             }
-            if (
+            if (ModelState.IsValid && 
                 _analyseRepository.GetAllNietGearchiveerd(User.Identity.Name).Where(a => a.Departement.DepartementId != model.DepartementId).Any(a => ControlleerOfDepartementHetzelfdeIs(a.Departement, model, origineelWerkgeverNaam)))
             {
                 ModelState.AddModelError("NaamAfdeling", "Er is al een actieve analyse voor deze dienst");

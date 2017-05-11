@@ -342,3 +342,9 @@
 .tooltiptext {
     display: none;
 }   
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
