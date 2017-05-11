@@ -16,6 +16,7 @@
 /// <reference path="js/kostenbaatvulin/kost4.js" />
 /// <reference path="js/loginscreen.js" />
 /// <reference path="js/mailbox.js" />
+/// <reference path="js/pdfcreater.js" />
 /// <reference path="js/search.js" />
 /// <reference path="js/showhideformulier.js" />
 /// <reference path="js/site.js" />
