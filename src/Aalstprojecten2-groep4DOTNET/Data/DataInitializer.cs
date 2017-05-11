@@ -269,7 +269,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 admin.Superadmin = true;
 
                 InterneMail mail1 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
-                InterneMail mail2 = new InterneMail(admin, "Hallo", "Hallo, nog wat tekst", DateTime.Now);
+                InterneMail mail2 = new InterneMail(admin, "Hallo", "Hallo, nog wat\n\n\n tekst", DateTime.Now);
                 InterneMail mail3 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
                 InterneMail mail4 = new InterneMail(admin, "Hallo", "Hallo, nog wat tekst", DateTime.Now);
                 InterneMail mail5 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));
