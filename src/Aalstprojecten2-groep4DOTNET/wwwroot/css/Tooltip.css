@@ -6,6 +6,10 @@
     z-index:auto;
 }
 
+.tooltiptext {
+    display: none;
+}
+
 /* Tooltip text bottom*/
 .tooltip .tooltipBottomKnoppenHomeschermDoorPaginasBladeren {
     visibility: hidden;
