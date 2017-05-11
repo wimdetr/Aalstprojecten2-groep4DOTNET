@@ -54,7 +54,7 @@
                             $("#mailDatum").text(mailKaart.find("#dataDiv").data("datum"));
                             $("#afzenderMail").text(mailKaart.find("#dataDiv").data("email"));
                             $("#mailOnderwerp").text(mailKaart.find("#dataDiv").data("onderwerp"));
-                            $("#mailInhoud").text(mailKaart.find("#dataDiv").data("inhoud"));
+                            $("#mailInhoud").html(mailKaart.find("#dataDiv").data("inhoud").split("\n").join("<br>"));
                             $("#antwoordMailKnop").removeClass("verbergMail").addClass("toonMail");
                             $("#verwijderGeselecteerdeMailKnop").removeClass("verbergMail").addClass("toonMail");
                             $("#geopendeMail").data("mailid", mailKaart.find("#dataDiv").data("id"));
@@ -84,7 +84,7 @@
                                 $("#mailDatum").text(mailKaart.find("#dataDiv").data("datum"));
                                 $("#afzenderMail").text(mailKaart.find("#dataDiv").data("email"));
                                 $("#mailOnderwerp").text(mailKaart.find("#dataDiv").data("onderwerp"));
-                                $("#mailInhoud").text(mailKaart.find("#dataDiv").data("inhoud"));
+                                $("#mailInhoud").html(mailKaart.find("#dataDiv").data("inhoud").split("\n").join("<br>"));
                                 $("#antwoordMailKnop").removeClass("verbergMail").addClass("toonMail");
                                 $("#verwijderGeselecteerdeMailKnop").removeClass("verbergMail").addClass("toonMail");
                                 $("#geopendeMail").data("mailid", mailKaart.find("#dataDiv").data("id"));
@@ -157,7 +157,9 @@
                     var ontvanger2 = naam2.substring(4, naam.length) + " " + "&#60;";
                     var email2 = $("#geopendeMail").find("#afzenderMail").text();
                     ontvanger2 += email2 + "&#62;";
-                    $("#inhoudVorigeMailAntwoord").html("Van: " + ontvanger2 + "<br />" + "Verstuurd: " + $("#mailDatum").text() + "<br />" + "Onderwerp: " + $("#mailOnderwerp").text() + "<br /><br /><br />" + $("#mailInhoud").text());
+                    var tekst = $("#mailInhoud").html();
+
+                    $("#inhoudVorigeMailAntwoord").html("Van: " + ontvanger2 + "<br />" + "Verstuurd: " + $("#mailDatum").text() + "<br />" + "Onderwerp: " + $("#mailOnderwerp").text() + "<br /><br /><br />" + tekst);
                     $("#antwoordOpMailDiv").removeClass("verbergMail animated fadeOut").addClass("toonMail animated fadeIn");
                 }, 800);
 
@@ -182,7 +184,7 @@
             .click(function () {
                 $("#antwoordOntvanger").val($("#geopendeMail").find("#afzenderMail").text());
                 $("#antwoordOnderwerp").val($("#onderwerpAntwoord").text().substring(11, $("#onderwerpAntwoord").text().length));
-                var inhoud = $("#inhoudAntwoord").html().split("<div>").join("\n").split("</div>").join("") + "\n\n\n\n\n" + $("#inhoudVorigeMailAntwoord").html().replace("&lt;", "<").replace("&gt;", ">").split("<br>").join("\n");
+                var inhoud = $("#inhoudAntwoord").html().split("<div>").join("\n").split("</div>").join("").split("<br>").join("").split("\r").join("") + "\n\n\n\n\n" + $("#inhoudVorigeMailAntwoord").html().replace("&lt;", "<").replace("&gt;", ">").split("<br>").join("\n").split("\r").join("");
                 $("#antwoordInhoud").val(inhoud);
 
                 $("#antwoordOpMailDiv").removeClass("toonMail animated fadeIn").addClass("animated fadeOut");
