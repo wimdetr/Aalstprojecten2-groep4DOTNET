@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-md-3 tooltip diepte2">
         <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
-        <span class="tooltiptext tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
+        <span class="tooltiptext verbergTooltip tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
 
     </div>
     <div class="col-md-6 text-center">
@@ -29,7 +29,7 @@
             <a asp-controller="Analyse" asp-action="AnalyseKost" class="btn btn-primary btn-lg"><img src="~/images/iconen/kosten_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="btn btn-primary btn-lg" style="border-top-right-radius: 6px;border-bottom-right-radius: 6px;"><img src="~/images/iconen/baten_wit.png" class="fototjeKosten" /></a>
-            <span class="tooltiptext tooltipLeftHomePageDropdown">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
+            <span class="tooltiptext verbergTooltip tooltipLeftHomePageDropdown">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
 
         </div>
     </div>
@@ -55,7 +55,7 @@
                         <h4 class="list-group-item-heading">Stap 2</h4>
                         <p>Uitzendkrachten, overuren en uitbesteede zaken</p>
                     </a>
-                    <span class="tooltiptext tooltipBottomMenuAnalyseKostInvullen">Door hier te klikken kan u wisselen naar de gewenste vragenreeks</span>
+                    <span class="tooltiptext verbergTooltip tooltipBottomMenuAnalyseKostInvullen">Door hier te klikken kan u wisselen naar de gewenste vragenreeks</span>
 
                 </li>
                 <li class="active">
@@ -77,7 +77,7 @@
                         <a asp-controller="Analyse" asp-action="AnalyseBaat2" class="btn btn-primary btn-lg"><img src="~/images/iconen/links.png" class="fototjeKosten2" /></a>
                         <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten2" /></a>
                         <a asp-controller="Analyse" asp-action="AnalyseBaat4" class="btn btn-primary btn-lg"><img src="~/images/iconen/rechts.png" class="fototjeKosten2" /></a>
-                        <span class="tooltiptext tooltipBottomAnalyseInvullenVolgendePagina">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
+                        <span class="tooltiptext verbergTooltip tooltipBottomAnalyseInvullenVolgendePagina">Hier kan u schakelen tussen de pagina's kosten, overzicht en baten</span>
 
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                     @if (i == 1)
                                     {
-                                        <span class="tooltiptext tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
+                                        <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
                                     }
                                 </td>
                             </tr>
@@ -121,7 +121,7 @@
                             <td class="opmaakKnopje toverknop" style="padding-top:0;">
                                 <div class="SpecialeHoogteDoorNielsGemaakt tooltip">
                                     <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                    <span class="tooltiptext tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
+                                    <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
                                 </div>
                             </td>
                         </tr>

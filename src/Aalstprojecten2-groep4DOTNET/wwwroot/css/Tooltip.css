@@ -9,7 +9,7 @@
 
 /* Tooltip text bottom*/
 .tooltip .tooltipBottomKnoppenHomeschermDoorPaginasBladeren {
-    visibility: hidden;
+    
     width: 350px;
     background-color: #555;
     color: #fff;
@@ -25,13 +25,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text bottom*/
 .tooltip .tooltipBottomMenuAnalyseKostInvullen {
-    visibility: hidden;
+    
     width: 350px;
     background-color: #555;
     color: #fff;
@@ -47,13 +47,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text bottom*/
 .tooltip .tooltipBottomAnalyseOverzichtWerkgeverAanpassen {
-    visibility: hidden;
+    
     width: 350px;
     background-color: #555;
     color: #fff;
@@ -69,13 +69,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text bottom*/
 .tooltip .tooltipBottomAnalyseInvullenVolgendePagina {
-    visibility: hidden;
+    
     width: 350px;
     background-color: #555;
     color: #fff;
@@ -91,13 +91,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text bottom*/
 .tooltip .tooltipBottomAnalyseOverzichtTableHoverBaten {
-    visibility: hidden;
+    
     width: 350px;
     background-color: #555;
     color: #fff;
@@ -113,13 +113,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text bottom*/
 .tooltip .tooltipBottomAnalyseOverzichtTableHoverKosten {
-    visibility: hidden;
+    
     width: 350px;
     background-color: #555;
     color: #fff;
@@ -135,13 +135,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text top*/
 .tooltip .tooltipTopIconenCards {
-    visibility: hidden;
+    
     width: 300px;
     background-color: #555;
     color: #fff;
@@ -157,13 +157,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text left*/
 .tooltip .tooltipLeftHomePageDropdown {
-    visibility: hidden;
+    
     width: 400px;
     background-color: #555;
     color: #fff;
@@ -179,13 +179,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text left*/
 .tooltip .tooltipLefAnalyseInvullenTabelAanpassenVerwijderen {
-    visibility: hidden;
+    
     width: 400px;
     background-color: #555;
     color: #fff;
@@ -201,13 +201,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text right*/
 .tooltip .tooltipRightSidebar {
-    visibility: hidden;
+    
     width: 200px;
     background-color: #555;
     color: #fff;
@@ -223,13 +223,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text right*/
 .tooltip .tooltipRightPlusIcoon {
-    visibility: hidden;
+    
     width: 400px;
     background-color: #555;
     color: #fff;
@@ -245,13 +245,13 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip text right*/
 .tooltip .tooltipRightHomeKairosLogo {
-    visibility: hidden;
+    
     width: 200px;
     background-color: #555;
     color: #fff;
@@ -267,8 +267,8 @@
     margin-left: -60px;
 
     /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
+    
+    
 }
 
 /* Tooltip arrow bottom*/
@@ -333,14 +333,79 @@
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-    font-size: 18px;
-}
 
 .btn-group, .btn-group-vertical {
     position: relative;
     display: inline-block;
     vertical-align: middle;
+}
+
+.verbergTooltip {
+    display: none;
+}
+
+.toonTooltip {
+    display: block;
+}
+
+.tooltiptext {
+    font-size: 18px;
+}
+
+.tooltipFadeIn {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: myFadeIn;
+  animation-name: myFadeIn;
+}
+
+@-webkit-keyframes myFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes myFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.tooltipFadeOut {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: myFadeOut;
+  animation-name: myFadeOut;
+}
+
+@-webkit-keyframes myFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes myFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }

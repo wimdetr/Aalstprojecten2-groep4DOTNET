@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="~/css/Tooltip.css" />
         <link rel="icon" type="image/png" href="~/images/kairosLogo/kairos_icon_green.png"/>
         <link rel="stylesheet" href="~/css/slider.css" />
+        <link rel="stylesheet" href="~/css/StyleSheet.css"/>
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -33,49 +34,50 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a asp-controller="Home" asp-action="Index" class="navbar-brand tooltip">
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand tooltip" data-volgorde="1">
                         <img class="kairosLogo" src="~/images/kairosLogo/kairos_wordmark_white.png" alt="LOGO" />
-                        <span class="tooltiptext tooltipRightHomeKairosLogo">Via hier kan u terug naar het dashboard keren</span>
+                        <span class="tooltiptext tooltipRightHomeKairosLogo tooltipOnzichtbaar verbergTooltip">Via hier kan u terug naar het dashboard keren</span>
                     </a>
                 </div>
                 <!-- Top Menu Items -->
-                <ul class="nav navbar-right top-nav extraPaddingBeneden DropdownUserMargin marginRechts tooltip">
+                <ul class="nav navbar-right top-nav extraPaddingBeneden DropdownUserMargin marginRechts tooltip" data-volgorde="4">
                     <li>
                         @await Html.PartialAsync("_LoginPartial")
-                        <span class="tooltiptext tooltipLeftHomePageDropdown">Hier kan u uw profiel wijzigen, Bart contacteren, uw inbox controleren en uitloggen</span>
+                        <span class="tooltiptext tooltipLeftHomePageDropdown tooltipOnzichtbaar verbergTooltip">Hier kan u uw profiel wijzigen, Bart contacteren, uw inbox controleren en uitloggen</span>
                     </li>
                 </ul>
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse nieuweAchtergrond">
                     <ul class="nav navbar-nav side-nav intMidden" style="overflow:initial;">
-                        <li class="homeIcoon test tooltip">
+                        <li class="homeIcoon test tooltip" data-volgorde="2">
                             
                                 <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/iconen/home.png" class="icons homePrent" /></a>
-                            <span class="tooltiptext tooltipRightSidebar">Klik hier om naar het dashboard te gaan</span>
+                            <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het dashboard te gaan</span>
                             
                         </li>
-                        <li class="nieuwIcoon test tooltip">
+                        <li class="nieuwIcoon test tooltip" data-volgorde="2">
                                 <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img src="~/images/iconen/nieuw.png" class="icons nieuwPrent" /></a>
-                                <span class="tooltiptext tooltipRightSidebar">Klik hier om een nieuwe analyse te maken</span>
+                                <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om een nieuwe analyse te maken</span>
                         </li>
-                        <li class="archiefIcoon test tooltip">
+                        <li class="archiefIcoon test tooltip" data-volgorde="1">
                                 <a asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
-                                   <span class="tooltiptext tooltipRightSidebar">Klik hier om naar het archief te gaan</span>
+                                   <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het archief te gaan</span>
                         </li>
                         <li style="margin-top:420%;">
                             <h4>Help</h4>
-                            <div class="onoffswitch" style="margin-left:13%;">
-                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
-                                <label class="onoffswitch-label" for="myonoffswitch">
-                                    <span class="onoffswitch-inner"></span>
-                                    <span class="onoffswitch-switch"></span>
+                            <div class="btn-group" id="status" data-toggle="buttons">
+                                <label id="activeerTooltipKnop" class="btn btn-default btn-on">
+                                    <input type="radio" value="1" name="multifeatured_module[module_id][status]" checked="checked">AAN
+                                </label>
+                                <label id="deactiveerTooltipKnop" class="btn btn-default btn-off active">
+                                    <input type="radio" value="0" name="multifeatured_module[module_id][status]">UIT
                                 </label>
                             </div>
                             <div style="width: 50%; float:left;">
-                                <img src="~/images/iconen/left_arrow_black.png" class="actAsKnop fototjeKosten3" style="float:right; padding-right: 5px;"/>
+                                <img id="linkerPijl" src="~/images/iconen/left_arrow_black.png" class="actAsKnop fototjeKosten3 verbergPijl" style="float:right; padding-right: 5px;"/>
                             </div>
                             <div style="width: 50%; float: left;">
-                                <img src="~/images/iconen/right_arrow_black.png" class="actAsKnop fototjeKosten3" style="float:left; padding-left:5px;"/>
+                                <img id="rechterPijl" src="~/images/iconen/right_arrow_black.png" class="actAsKnop fototjeKosten3 verbergPijl" style="float:left; padding-left:5px;"/>
                             </div>
                         </li>
                     </ul>
@@ -114,6 +116,7 @@
         <script src="~/js/HoverIconen.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/js/SwitchVoorTooltips.js"></script>
+        <script src="~/js/tooltip.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
