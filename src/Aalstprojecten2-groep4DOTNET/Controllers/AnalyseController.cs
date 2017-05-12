@@ -74,36 +74,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //public IActionResult DeArchiveer(int id)
-        //{
-        //    AnalyseFilter.ZetSessieLeeg(HttpContext);
-        //    Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
-        //    if (analyse == null)
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    ViewData["analyse"] = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
-        //    return View();
-        //}
-
-        //[HttpPost, ActionName("DeArchiveer")]
-        //public IActionResult BevestigDeArchiveer(int id)
-        //{
-        //    AnalyseFilter.ZetSessieLeeg(HttpContext);
-        //    try
-        //    {
-        //        Analyse analyse = _analyseRepository.GetById(User.Identity.Name, id);
-        //        analyse.IsGearchiveerd = false;
-        //        _analyseRepository.SaveChanges();
-        //        TempData["message"] = "De analyse voor " + analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam + " is succesvol gedearchiveerd en op de home pagina geplaatst.";
-        //    }
-        //    catch
-        //    {
-        //        TempData["error"] = "Iets is misgelopen, de analyse is niet gedearchiveerd.";
-        //    }
-        //    return RedirectToAction(nameof(AnalyseBekijken));
-        //}
-
         public IActionResult Delete(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);

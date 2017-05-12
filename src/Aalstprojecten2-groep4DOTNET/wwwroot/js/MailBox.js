@@ -182,6 +182,7 @@
             });
         $("#verstuurMailKnop")
             .click(function () {
+                $(this).prop("disabled", true);
                 $("#antwoordOntvanger").val($("#geopendeMail").find("#afzenderMail").text());
                 $("#antwoordOnderwerp").val($("#onderwerpAntwoord").text().substring(11, $("#onderwerpAntwoord").text().length));
                 var inhoud = $("#inhoudAntwoord").html().split("<div>").join("\n").split("</div>").join("").split("<br>").join("").split("\r").join("") + "\n\n\n\n\n" + $("#inhoudVorigeMailAntwoord").html().replace("&lt;", "<").replace("&gt;", ">").split("<br>").join("\n").split("\r").join("");
