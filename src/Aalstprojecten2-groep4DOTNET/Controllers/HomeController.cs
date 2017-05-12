@@ -296,6 +296,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
                 OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
                 model.GeopendeMail = new MailViewModel(mail);
+                model.GeopendeMailId = mail.InterneMailId;
                 return View(nameof(OverzichtMailbox), model);
             }
             catch
@@ -317,7 +318,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
             if (mail == null)
                 return RedirectToAction(nameof(OverzichtMailbox));
-            ViewData["mail"] = mail.InterneMail.Afzender + " met onderwerp " + mail.InterneMail.Onderwerp;
+            ViewData["mail"] = mail.InterneMail.Afzender.Voornaam + " " + mail.InterneMail.Afzender.Naam + " met onderwerp " + mail.InterneMail.Onderwerp;
             return View();
         }
 
