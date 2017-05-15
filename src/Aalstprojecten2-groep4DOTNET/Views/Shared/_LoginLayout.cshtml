@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/loginpage.css" />
         <link rel="icon" type="image/png" href="~/images/kairosLogo/kairos_icon_green.png" />
+        <link rel="stylesheet" href="~/css/TempDataStijl.css"/>
     </environment>
 
     <environment names="Staging,Production">
@@ -22,11 +23,11 @@
 <body>
     @if (TempData["error"] != null)
             {
-        <div class="alert alert-danger tempdataStijl animated slideInDown">@TempData["error"]</div>
+        <div class="alert alertMislukt tempdataStijl animated slideInDown"><strong>@TempData["error"]</strong></div>
     }
     @if (TempData["message"] != null)
             {
-        <div class="alert alert-success tempdataStijl animated slideInDown">@TempData["message"]</div>
+        <div class="alert alertGelukt tempdataStijl animated slideInDown"><strong>@TempData["message"]</strong></div>
     }
     <row>
         <div class="col-sm-12 col-md-12 col-lg-12 beetjeMargin text-center flex">

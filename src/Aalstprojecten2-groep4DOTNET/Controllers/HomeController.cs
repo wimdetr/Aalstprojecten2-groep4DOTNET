@@ -382,7 +382,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
             HttpContext.Session.SetString("mails", JsonConvert.SerializeObject(geselecteerdeMails));
-
+            
             return RedirectToAction(nameof(BevestigVerwijderGeselecteerde));
         }
 
@@ -402,6 +402,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             ICollection<InterneMailJobcoach> mails = JsonConvert.DeserializeObject<ICollection<InterneMailJobcoach>>(HttpContext.Session.GetString("mails"));
             if (mails == null)
             {
+                TempData["error"] = "Er is iets misgelopen, de mails werden niet verwijderd";
                 return RedirectToAction(nameof(Index));
             }
             foreach (InterneMailJobcoach m in mails)
@@ -409,6 +410,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, m.InterneMailId));
                 _interneMailJobcoachRepository.SaveChanges();
             }
+            TempData["message"] = "De geselecteerde mails zijn succesvol verwijderd";
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
@@ -417,12 +419,17 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            if (mails == null)
+            {
+                TempData["error"] = "Er is iets misgelopen, de mails werden niet als gelezen gemarkeerd";
+                return RedirectToAction(nameof(Index));
+            }
             foreach (InterneMailJobcoach m in mails)
             {
                 _interneMailJobcoachRepository.GetById(User.Identity.Name, m.InterneMailId).IsGelezen = true;
                 _interneMailJobcoachRepository.SaveChanges();
             }
-            
+            TempData["message"] = "De geselecteerde mails zijn succesvol als gelezen gemarkeerd";
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
@@ -439,6 +446,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     AdminMail mail = new AdminMail(jc, admin, model.Onderwerp, model.Inhoud, DateTime.Now);
                     _adminMailRepository.Add(mail);
                     _adminMailRepository.SaveChanges();
+                    TempData["message"] = "Uw antwoord werd succesvol verzonden";
                     return RedirectToAction(nameof(OverzichtMailbox));
                 }
                 catch (Exception e)
@@ -446,6 +454,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
+            TempData["error"] = "Er is iets misgelopen, uw antwoord werd niet verzonden";
             return View(nameof(OverzichtMailbox));
         }
 
