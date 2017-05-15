@@ -26,8 +26,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly IInterneMailJobcoachRepository _interneMailJobcoachRepository;
         private readonly IDoelgroepRepository _doelgroepRepository;
         private readonly IAdminMailRepository _adminMailRepository;
+        private readonly IAdminRepository _adminRepository;
 
-        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository, IDoelgroepRepository doelgroepRepository, IAdminMailRepository adminMailRepository)
+        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository, IDoelgroepRepository doelgroepRepository, IAdminMailRepository adminMailRepository, IAdminRepository adminRepository)
         {
             _jobCoachRepository = jobCoachRepository;
             _analyseRepository = analyseRepository;
@@ -35,6 +36,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             _interneMailJobcoachRepository = interneMailJobcoachRepository;
             _doelgroepRepository = doelgroepRepository;
             _adminMailRepository = adminMailRepository;
+            _adminRepository = adminRepository;
         }
         public IActionResult Index()
         {
@@ -252,7 +254,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 {
                     JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
                     await MailVerzender.ContacteerAdmin(jc.Naam + " " + jc.Voornaam, jc.Email, model.Onderwerp, model.Inhoud);
-                    AdminMail mail = new AdminMail(jc, "bartmoens@gmail.com", model.Onderwerp, model.Inhoud, DateTime.Now);
+                    Admin admin = _adminRepository.GetByEmail("bartmoens@gmail.com");
+                    AdminMail mail = new AdminMail(jc, admin, model.Onderwerp, model.Inhoud, DateTime.Now);
                     _adminMailRepository.Add(mail);
                     _adminMailRepository.SaveChanges();
                     TempData["message"] = "Uw bericht werd succesvol naar de admin verstuurd.";
@@ -431,7 +434,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 try
                 {
                     JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
-                    AdminMail mail = new AdminMail(jc, model.Ontvanger, model.Onderwerp, model.Inhoud, DateTime.Now);
+                    Admin admin = _adminRepository.GetByEmail(model.Ontvanger);
+                    AdminMail mail = new AdminMail(jc, admin, model.Onderwerp, model.Inhoud, DateTime.Now);
                     _adminMailRepository.Add(mail);
                     _adminMailRepository.SaveChanges();
                     return RedirectToAction(nameof(OverzichtMailbox));

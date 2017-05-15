@@ -67,6 +67,7 @@ namespace Aalstprojecten2_groep4DOTNET
             services.AddScoped<IInterneMailJobcoachRepository, InterneMailJobcoachRepository>();
             services.AddScoped<IDoelgroepRepository, DoelgroepRepository>();
             services.AddScoped<IAdminMailRepository, AdminMailRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<AnalyseFilter>();
             services.AddTransient<DataInitializer>();
 

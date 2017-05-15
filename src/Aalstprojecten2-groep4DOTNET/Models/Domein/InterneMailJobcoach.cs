@@ -8,7 +8,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
     public class InterneMailJobcoach
     {
         #region Properties
-
+        public int Id { get; set; }
         public InterneMail InterneMail { get; set; }
         public int InterneMailId { get; set; }
         public JobCoach Jobcoach { get; set; }
