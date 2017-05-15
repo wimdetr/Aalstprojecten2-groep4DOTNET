@@ -10,6 +10,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
     public class AnalyseOverzichtViewModel
     {
         public int Id { get; set; }
+        public string LinkNaarPrent { get; set; }
         public string Organisatie { get; set; }
         public string Afdeling { get; set; }
         public string Locatie { get; set; }
@@ -49,6 +50,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public AnalyseOverzichtViewModel(Analyse a)
         {
             Id = a.AnalyseId;
+            LinkNaarPrent = a.Departement.Werkgever.LinkNaarLogoPrent;
             Organisatie = a.Departement.Werkgever.Naam;
             Afdeling = a.Departement.Naam;
             Locatie = a.Departement.Gemeente;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Aalstprojecten2_groep4DOTNET.Filters;
@@ -8,6 +9,8 @@ using Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -22,13 +25,15 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly IWerkgeverRepository _werkgeverRepository;
         private readonly IJobCoachRepository _jobCoachRepository;
         private readonly IDoelgroepRepository _doelgroepRepository;
+        private readonly IHostingEnvironment _environment;
 
-        public AnalyseController(IAnalyseRepository analyseRepository, IWerkgeverRepository werkgeverRepository, IJobCoachRepository jobCoachRepository, IDoelgroepRepository doelgroepRepository)
+        public AnalyseController(IAnalyseRepository analyseRepository, IWerkgeverRepository werkgeverRepository, IJobCoachRepository jobCoachRepository, IDoelgroepRepository doelgroepRepository, IHostingEnvironment environment)
         {
             _analyseRepository = analyseRepository;
             _werkgeverRepository = werkgeverRepository;
             _jobCoachRepository = jobCoachRepository;
             _doelgroepRepository = doelgroepRepository;
+            _environment = environment;
         }
         // GET: /<controller>/
         public IActionResult AnalyseBekijken()
@@ -180,7 +185,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         }
 
         [HttpPost]
-        public IActionResult NieuweWerkgever(WerkgeverViewModel model)
+        public async Task<IActionResult> NieuweWerkgever(IFormFile file, WerkgeverViewModel model)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             model.Titel = "Nieuwe Analyse";
@@ -203,6 +208,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 try
                 {
+
+
                     Analyse a = new Analyse(_jobCoachRepository.GetByEmail(User.Identity.Name), DateTime.Now);
 
                     Werkgever w = _werkgeverRepository.GetWithName(model.Naam, User.Identity.Name);
@@ -226,6 +233,27 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     a.Departement = d;
                     _analyseRepository.Add(a);
                     _analyseRepository.SaveChanges();
+
+                    
+                    if (file != null && file.Length > 0)
+                    {
+                        var upload = Path.Combine(_environment.WebRootPath, "images\\uploads");
+                        string[] gesplitst = file.FileName.Split('.');
+                        string linkNaarLogoPrent = User.Identity.Name + "_" + a.Departement.Werkgever.WerkgeverId + "." +
+                                                   gesplitst[gesplitst.Length - 1];
+                        using (
+                            var fileStream =
+                                new FileStream(
+                                    Path.Combine(upload, linkNaarLogoPrent),
+                                    FileMode.Create))
+                        {
+                            await file.CopyToAsync(fileStream);
+                        }
+                        _werkgeverRepository.GetById(a.Departement.Werkgever.WerkgeverId).LinkNaarLogoPrent =
+                        "/images/uploads/" + linkNaarLogoPrent;
+                        _werkgeverRepository.SaveChanges();
+                    }
+                    
                     AnalyseFilter.PlaatsAnalyseInSession(a, HttpContext);
                     return RedirectToAction(nameof(AnalyseKost));
                 }
@@ -253,7 +281,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
 
         [ServiceFilter(typeof(AnalyseFilter))]
         [HttpPost]
-        public IActionResult WerkgeverAanpassen(WerkgeverViewModel model, Analyse analyse)
+        public async Task<IActionResult> WerkgeverAanpassen(IFormFile file, WerkgeverViewModel model, Analyse analyse)
         {
             model.Aanpassen = true;
             model.Titel = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
@@ -312,6 +340,27 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     _werkgeverRepository.SaveChanges();
                     _analyseRepository.GetById(User.Identity.Name, analyse.AnalyseId).VernieuwDatum();
                     _analyseRepository.SaveChanges();
+
+                    
+                    if (file != null && file.Length > 0)
+                    {
+                        var upload = Path.Combine(_environment.WebRootPath, "images\\uploads");
+                        string[] gesplitst = file.FileName.Split('.');
+                        string linkNaarLogoPrent = User.Identity.Name + "_" + analyse.Departement.Werkgever.WerkgeverId + "." +
+                                                   gesplitst[gesplitst.Length - 1];
+                        using (
+                            var fileStream =
+                                new FileStream(
+                                    Path.Combine(upload, linkNaarLogoPrent),
+                                    FileMode.Create))
+                        {
+                            await file.CopyToAsync(fileStream);
+                        }
+                        _werkgeverRepository.GetById(analyse.Departement.Werkgever.WerkgeverId).LinkNaarLogoPrent =
+                        "/images/uploads/" + linkNaarLogoPrent;
+                        _werkgeverRepository.SaveChanges();
+                    }
+                    
                     return RedirectToAction(nameof(AnalyseOverzicht));
                 }
                 catch (Exception e)
