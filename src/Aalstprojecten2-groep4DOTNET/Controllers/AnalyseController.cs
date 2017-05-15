@@ -283,6 +283,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public async Task<IActionResult> WerkgeverAanpassen(IFormFile file, WerkgeverViewModel model, Analyse analyse)
         {
             model.Aanpassen = true;
+
             model.Titel = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             if (ControleerOfSessieVerlopenIs(analyse))
             {
