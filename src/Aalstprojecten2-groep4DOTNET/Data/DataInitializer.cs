@@ -289,7 +289,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 mark.AddMail(mail4);
                 mark.AddMail(mail7);
                 mark.AddMail(mail8);
-                AdminMail adminMail = new AdminMail(mark, "andreas.dewitte@hotmail.com",
+                AdminMail adminMail = new AdminMail(mark, admin,
                     "admin mail", "dit is een mail voor de admin", DateTime.Now);
                 _context.AdminMails.Add(adminMail);
 

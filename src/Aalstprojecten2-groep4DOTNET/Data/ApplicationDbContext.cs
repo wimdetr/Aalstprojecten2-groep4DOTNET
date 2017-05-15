@@ -20,6 +20,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
         public DbSet<Doelgroep> Doelgroepen { get; set; }
         public DbSet<AdminMail> AdminMails { get; set; }
         public DbSet<Departement> Departementen { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -62,7 +63,6 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
             a.Property(t => t.Onderwerp).HasMaxLength(100).IsRequired();
             a.Property(t => t.Inhoud).IsRequired();
-            a.Property(t => t.Ontvanger).IsRequired();
             a.Property(t => t.IsGelezen).IsRequired();
             a.Property(t => t.VerzendDatum).IsRequired();
 
@@ -70,6 +70,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 .WithMany()
                 .HasForeignKey(t => t.AfzenderMail)
                 .IsRequired();
+            a.HasOne(t => t.Ontvanger).WithMany().HasForeignKey(t => t.OntvangerMail).IsRequired();
         }
 
         private void MapDoelgroep(EntityTypeBuilder<Doelgroep> d)
@@ -84,7 +85,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
 
         private void MapInterneMailJobcoach(EntityTypeBuilder<InterneMailJobcoach> i)
         {
-            i.HasKey(t => new {t.InterneMailId, t.JobcoachEmail});
+            i.HasKey(t => t.Id);
 
             i.HasOne(t => t.Jobcoach)
                 .WithMany(t => t.InterneMailJobcoaches)
