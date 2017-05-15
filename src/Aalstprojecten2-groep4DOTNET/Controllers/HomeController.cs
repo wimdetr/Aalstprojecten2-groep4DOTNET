@@ -342,6 +342,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             catch
             {
                 TempData["error"] = "Iets is misgelopen, de mail werd niet verwijderd.";
+
             }
             return RedirectToAction(nameof(OverzichtMailbox));
         }
