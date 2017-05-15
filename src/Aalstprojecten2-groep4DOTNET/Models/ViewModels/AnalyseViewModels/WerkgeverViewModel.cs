@@ -45,14 +45,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [Required(ErrorMessage = "Naam afdeling is verplicht.")]
         [Display(Name = "Naam afdeling *")]
         public string NaamAfdeling { get; set; }
-        [Required(ErrorMessage = "Contactpersoon naam is verplicht.")]
-        [Display(Name = "Contactpersoon Naam *")]
+        [Display(Name = "Contactpersoon Naam")]
         public string ContactPersoonNaam { get; set; }
-        [Display(Name = "Contactpersoon Voornaam *")]
-        [Required(ErrorMessage = "Contactpersoon voornaam is verplicht.")]
+        [Display(Name = "Contactpersoon Voornaam")]
         public string ContactPersoonVoornaam { get; set; }
-        [Required(ErrorMessage = "Contactpersoon e-mail is verplicht.")]
-        [Display(Name = "Contactpersoon e-mail *")]
+        [Display(Name = "Contactpersoon e-mail")]
         [EmailAddress]
         public string ContactPersoonEmail { get; set; }
 

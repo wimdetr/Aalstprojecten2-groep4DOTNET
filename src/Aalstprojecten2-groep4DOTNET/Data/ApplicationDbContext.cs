@@ -155,6 +155,9 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             d.Property(t => t.Nummer).IsRequired();
             d.Property(t => t.Postcode).HasMaxLength(4).IsRequired();
             d.Property(t => t.Straat).IsRequired();
+            d.Property(t => t.ContactPersoonEmail).IsRequired(false);
+            d.Property(t => t.ContactPersoonNaam).IsRequired(false);
+            d.Property(t => t.ContactPersoonVoornaam).IsRequired(false);
 
             d.HasOne(t => t.Werkgever).WithMany().IsRequired();
         }
