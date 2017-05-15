@@ -335,13 +335,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 InterneMailJobcoach mail = _interneMailJobcoachRepository.GetById(User.Identity.Name, id);
                 _interneMailJobcoachRepository.Delete(mail);
                 _interneMailJobcoachRepository.SaveChanges();
-                TempData["message"] = "De mail van " + mail.InterneMail.Afzender + " met onderwerp " +
-                                      mail.InterneMail.Onderwerp + " werd succesvol verwijdert";
+                TempData["message"] = "De mail van " + mail.InterneMail.Afzender.Voornaam + " " + mail.InterneMail.Afzender.Naam + " met onderwerp " +
+                                      mail.InterneMail.Onderwerp + " werd succesvol verwijderd";
                 
             }
             catch
             {
                 TempData["error"] = "Iets is misgelopen, de mail werd niet verwijderd.";
+
             }
             return RedirectToAction(nameof(OverzichtMailbox));
         }
