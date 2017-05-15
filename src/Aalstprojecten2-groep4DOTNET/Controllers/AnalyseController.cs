@@ -218,7 +218,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         w = new Werkgever(User.Identity.Name, model.Naam)
                         {
                             PatronaleBijdrage = model.PatronaleBijdrage,
-                            LinkNaarLogoPrent = model.LinkNaarLogoPrent
                         };
                     }
 
@@ -331,7 +330,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     d.Gemeente = model.Gemeente;
                     d.AantalWerkuren = model.AantalWerkuren;
                     d.Werkgever.PatronaleBijdrage = model.PatronaleBijdrage;
-                    d.Werkgever.LinkNaarLogoPrent = model.LinkNaarLogoPrent;
                     d.Naam = model.NaamAfdeling;
                     d.ContactPersoonNaam = model.ContactPersoonNaam;
                     d.ContactPersoonVoornaam = model.ContactPersoonVoornaam;
