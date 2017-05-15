@@ -31,12 +31,12 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="z-index: 4;">
             <div class="col-md-12 text-left">
                 <form method="post">
-                    <div class="input-group col-md-12" id="adv-search">
-                        <input type="text" id="searchBarMetMeerShtijlDanDieVanNiels" class="form-control" placeholder="Welke organisatie zoekt u?" />
-
+                    <div class="input-group col-md-12 tooltip" id="adv-search" data-volgorde="3">
+                        <input type="text" id="searchBarMetMeerShtijlDanDieVanNiels" class="form-control" placeholder="Welke organisatie zoekt u?"/>
+                        <span class="tooltiptext tooltipRightZoekInArchief tooltipOnzichtbaar verbergTooltip">Hier kan u zoeken op naam van de werkgever of klik op het pijltje om verdere zoekopties in te geven</span>
 
 
 
@@ -87,9 +87,11 @@
 }
 else
 {
+    var teller = 0;
     <canvas id="canvas" width="1200" height="930" style="display: none;"></canvas>
-    foreach (AnalyseOverzichtViewModel item in Model.Analyses)
-    {
+        foreach (AnalyseOverzichtViewModel item in Model.Analyses)
+        {
+            teller++;
         <div class="col-lg-4 col-md-6 col-sm-12 cards">
             <div class="col-lg-12 col-md-12 col-sm-12 omlijn borderRadius">
                 <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading borderRadiusTop">
@@ -101,12 +103,14 @@ else
                         @*naam werkgever*@
                         <strong id="naam">@item.Organisatie</strong>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 iconen">
+                    <div class="col-lg-6 col-md-6 col-sm-6 iconen tooltip @(teller != 1? "geenTooltip" : "")" data-volgorde="4" style="z-index:5;">
                         <div class="datadiv" data-organisatie="@item.Organisatie" data-afdeling="@item.Afdeling" data-locatie="@item.Locatie" data-straat="@item.Straat" data-nummer="@item.Nummer" data-baat1="@item.Baat1.ToString("C")" data-baat2="@item.Baat2.ToString("C")" data-baat3="@item.Baat3.ToString("C")" data-baat4="@item.Baat4.ToString("C")" data-baat5="@item.Baat5.ToString("C")" data-baat6="@item.Baat6.ToString("C")" data-baat7="@item.Baat7.ToString("C")" data-baat8="@item.Baat8.ToString("C")" data-baat9="@item.Baat9.ToString("C")" data-baat10="@item.Baat10.ToString("C")" data-baat11="@item.Baat11.ToString("C")" data-kost1="@item.Kost1.ToString("C")" data-kost1punt1="@item.Kost1Punt1.ToString("C")" data-kost2="@item.Kost2.ToString("C")" data-kost3="@item.Kost3.ToString("C")" data-kost4="@item.Kost4.ToString("C")" data-kost5="@item.Kost5.ToString("C")" data-kost6="@item.Kost6.ToString("C")" data-kost7="@item.Kost7.ToString("C")" data-subtotaalbaten="@item.BatenResultaat.ToString("C")" data-subtotaalkosten="@item.KostenResultaat.ToString("C")" data-nettoresultaat="@item.NettoResultaat.ToString("C")" style="display: none;"></div>
 
                         <div class="icoon binIcoon">
                             <a asp-controller="Analyse" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon binPrent" src="~/images/iconen/bin.png" alt="meh"/></a>
                         </div>
+                        <span class="tooltiptext tooltipTopIconenCards tooltipOnzichtbaar verbergTooltip" style="left:20%;">Klik hier om een analyse te bekijken, downloaden, versturen of verwijderen</span>
+
                         @*knoppen downloaden versturen verwijderen*@
                         <div class="icoon sendIcoon">
                             <a class="verstuurIcoonKnop"><img class="img-responsive img-rounded mijnIcoon sendPrent" src="~/images/iconen/send.png" alt="meh"/></a>

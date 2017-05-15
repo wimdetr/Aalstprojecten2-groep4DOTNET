@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
 
 <div class="row">
-    <div class="col-md-3 tooltip diepte2">
+    <div class="col-md-3 tooltip diepte2" data-volgorde="3">
         <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
         <span class="tooltiptext verbergTooltip tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
 
@@ -25,7 +25,7 @@
         <h2 class="titelFix">Baten</h2>
     </div>
     <div class="col-md-3 text-right">
-        <div class="btn-group marginTopKlein tooltip" role="group">
+        <div class="btn-group marginTopKlein tooltip" role="group" data-volgorde="4">
             <a asp-controller="Analyse" asp-action="AnalyseKost" class="btn btn-primary btn-lg"><img src="~/images/iconen/kosten_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten" /></a>
             <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="btn btn-primary btn-lg" style="border-top-right-radius: 6px;border-bottom-right-radius: 6px;"><img src="~/images/iconen/baten_wit.png" class="fototjeKosten" /></a>
@@ -42,7 +42,7 @@
 <div class="container">
     <div class="row form-group">
         <div class="col-xs-12">
-            <ul class="nav nav-pills nav-justified thumbnail setup-panel tooltip">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel tooltip" data-volgorde="3">
                 <li>
                     <a asp-controller="Analyse" asp-action="AnalyseBaat1">
                         <h4 class="list-group-item-heading">Stap 1</h4>
@@ -72,7 +72,7 @@
             </ul>
             <div class="text-center">
                 <div class="col-md-12">
-                    <div class="btn-group marginTopKlein tooltip" role="group">
+                    <div class="btn-group marginTopKlein tooltip" role="group" data-volgorde="4">
                         <a asp-controller="Analyse" asp-action="AnalyseBaat1" class="btn btn-primary btn-lg"><img src="~/images/iconen/links.png" class="fototjeKosten2" /></a>
                         <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-primary btn-lg"><img src="~/images/iconen/analyse_wit.png" class="fototjeKosten2" /></a>
                         <a asp-controller="Analyse" asp-action="AnalyseBaat3" class="btn btn-primary btn-lg"><img src="~/images/iconen/rechts.png" class="fototjeKosten2" /></a>
@@ -105,7 +105,7 @@
                                 <td>@i.</td>
                                 <td>@Model.Lijst1[i - 1].Beschrijving</td>
                                 <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
-                                <td class="text-center tooltip">
+                                <td class="text-center tooltip" data-volgorde="10">
                                     <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
                                     <a asp-controller="Analyse" asp-action="AnalyseBaat2Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
                                     @if (i == 1)
@@ -118,7 +118,7 @@
 
                         <tr>
                             <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip">
+                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip" data-volgorde="10">
                                     <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
                                     <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
                                 </div>
@@ -208,9 +208,8 @@
 
                         <tr>
                             <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip">
+                                <div class="SpecialeHoogteDoorNielsGemaakt">
                                     <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                    <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
                                 </div>
                             </td>
                         </tr>

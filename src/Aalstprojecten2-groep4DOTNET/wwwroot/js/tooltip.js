@@ -8,7 +8,7 @@ $(document)
                 if (!$(this).hasClass("active")) {
                     huidige = 0;
                     $(".verbergPijl").removeClass("verbergPijl").addClass("toonPijl");
-                    $(".tooltip")
+                    $(".tooltip:not(.geenTooltip)")
                         .each(function () {
                             if ($(this).data("volgorde") === volgordeWaarden[huidige]) {
                                 $(this).find(".tooltiptext").removeClass("verbergTooltip tooltipFadeOut").addClass("toonTooltip tooltipFadeIn");
@@ -21,7 +21,7 @@ $(document)
                 if (!$(this).hasClass("active")) {
                     huidige = 0;
                     $(".toonPijl").removeClass("toonPijl").addClass("verbergPijl");
-                    $(".tooltip")
+                    $(".tooltip:not(.geenTooltip)")
                         .each(function() {
                             $(this).find(".tooltiptext").removeClass("toonTooltip tooltipFadeIn").addClass("tooltipFadeOut");
                             var tip = $(this);
@@ -47,7 +47,7 @@ $(document)
 
 
         function maakVolgordeArray() {
-            $(".tooltip")
+            $(".tooltip:not(.geenTooltip)")
                 .each(function() {
                     if (volgordeWaarden.indexOf($(this).data("volgorde")) === -1) {
                         volgordeWaarden.push($(this).data("volgorde"));
@@ -71,8 +71,7 @@ $(document)
         }
 
         function toonTooltipsOpPositie() {
-            $(".tooltip")
-                .each(function() {
+            $(".tooltip:not(.geenTooltip)").each(function () {
                     if ($(this).data("volgorde") === volgordeWaarden[huidige]) {
                         $(this).find(".tooltiptext").removeClass("verbergTooltip tooltipFadeOut").addClass("toonTooltip tooltipFadeIn");
                     }
