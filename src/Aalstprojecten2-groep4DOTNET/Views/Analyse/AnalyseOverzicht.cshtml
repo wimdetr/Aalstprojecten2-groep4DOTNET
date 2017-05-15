@@ -9,7 +9,7 @@
 
 <div class="row">
 
-    <div class="col-md-3 tooltip diepte2">
+    <div class="col-md-3 tooltip diepte2" data-volgorde="10">
         @if (Model.IsVoltooid)
         {
             <h2>@ViewData["werkgever"]</h2>
@@ -161,7 +161,7 @@
     }
     else
     {
-      <div class="tooltip">
+      <div class="tooltip" data-volgorde="4">
         <span class="tooltiptext verbergTooltip tooltipBottomAnalyseOverzichtTableHoverBaten">Als u op deze titel klikt kan u de gekozen baat invullen en komt u ook bij alle baten terecht</span>
         <span class="tooltiptext verbergTooltip tooltipBottomAnalyseOverzichtTableHoverKosten">Als u op deze titel klikt kan u de gekozen kost invullen en komt u ook bij alle kosten terecht</span>
 

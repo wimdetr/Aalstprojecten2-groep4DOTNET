@@ -14,7 +14,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -36,7 +36,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -58,7 +58,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -80,7 +80,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -102,7 +102,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -124,7 +124,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -146,7 +146,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -168,7 +168,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -190,7 +190,7 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -208,11 +208,11 @@
 /* Tooltip text right*/
 .tooltip .tooltipRightSidebar {
     
-    width: 200px;
+    width: 250px;
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -228,13 +228,35 @@
 }
 
 /* Tooltip text right*/
+.tooltip .tooltipRightSidebar2 {
+    
+    width: 250px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 15%;
+    left: 185%; 
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    
+    
+}
+
+/* Tooltip text right*/
 .tooltip .tooltipRightPlusIcoon {
     
     width: 400px;
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -252,11 +274,11 @@
 /* Tooltip text right*/
 .tooltip .tooltipRightHomeKairosLogo {
     
-    width: 200px;
+    width: 250px;
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
@@ -264,6 +286,28 @@
     z-index: 1;
     top: 15%;
     left: 145%; 
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    
+    
+}
+
+/* Tooltip text right*/
+.tooltip .tooltipRightZoekInArchief {
+    
+    width: 300px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: -60%;
+    left: 80%; 
     margin-left: -60px;
 
     /* Fade in tooltip */
@@ -297,7 +341,7 @@
 }
 
 /* Tooltip arrow right*/
-.tooltip .tooltipRightSidebar::after, .tooltip .tooltipRightPlusIcoon::after {
+.tooltip .tooltipRightSidebar::after,.tooltip .tooltipRightSidebar2:after, .tooltip .tooltipRightPlusIcoon::after {
     content: " ";
     position: absolute;
     top: 50%;
@@ -309,7 +353,7 @@
 }
 
 /* Tooltip arrow right*/
-.tooltip .tooltipRightHomeKairosLogo::after {
+.tooltip .tooltipRightHomeKairosLogo::after, .tooltip .tooltipRightZoekInArchief::after {
     content: " ";
     position: absolute;
     top: 50%;
