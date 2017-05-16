@@ -70,4 +70,8 @@
                 $("span").text("");
             }, tijd);
         });
+    $(".verwijderRij")
+        .click(function() {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
+        });
 });

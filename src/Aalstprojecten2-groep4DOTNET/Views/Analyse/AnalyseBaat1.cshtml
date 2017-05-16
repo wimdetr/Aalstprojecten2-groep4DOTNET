@@ -109,7 +109,7 @@
                                     <td>@Model.Lijst1[i - 1].Maandloon.ToString("C")</td>
                                     <td class="text-center tooltip" data-volgorde="10">
                                         <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
                                         @if (i == 1)
                                         {
                                             <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
@@ -188,7 +188,7 @@
 
 
             <div>
-                <img src="~/images/iconen/divider.png" class="betereMarginBeneden" />
+                <img src="~/images/iconen/divider.png" class="betereMarginBeneden dividertje" />
             </div>
 
             <div class="Blok1 text-center">
@@ -214,7 +214,7 @@
                                     <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
                                     <td class="text-center">
                                         <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseBaat1Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
                                     </td>
                                 </tr>
                             }

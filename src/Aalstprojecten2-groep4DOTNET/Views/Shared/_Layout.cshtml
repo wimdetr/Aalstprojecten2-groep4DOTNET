@@ -61,10 +61,10 @@
                                 <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om een nieuwe analyse te maken</span>
                         </li>
                         <li class="archiefIcoon test tooltip" data-volgorde="2">
-                                <a asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
-                                   <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het archief te gaan</span>
+                            <a asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
+                            <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het archief te gaan</span>
                         </li>
-                        <li style="margin-top:420%;">
+                        <li id="helpKnop" style="margin-top: calc(100vh - 430px)">
                             <h4>Help</h4>
                             <div class="btn-group tooltip" id="status" data-toggle="buttons" data-volgorde="0">
                                 <label id="activeerTooltipKnop" class="btn btn-default btn-on">
@@ -120,6 +120,7 @@
         <script src="~/js/SwitchVoorTooltips.js"></script>
         <script src="~/js/tooltip.js"></script>
         <script src="~/js/DisableKnoppenScript.js"></script>
+        <script src="~/js/PlaatsHelpScript.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

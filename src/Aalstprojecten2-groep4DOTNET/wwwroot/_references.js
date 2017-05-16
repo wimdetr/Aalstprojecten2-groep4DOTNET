@@ -21,6 +21,7 @@
 /// <reference path="js/loginscreen.js" />
 /// <reference path="js/mailbox.js" />
 /// <reference path="js/pdfcreater.js" />
+/// <reference path="js/plaatshelpscript.js" />
 /// <reference path="js/search.js" />
 /// <reference path="js/showhideformulier.js" />
 /// <reference path="js/site.js" />

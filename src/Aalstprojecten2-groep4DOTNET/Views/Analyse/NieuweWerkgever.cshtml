@@ -54,14 +54,14 @@
 
 
                     <input asp-for="DepartementId" type="hidden" id="DepartementId" name="DepartementId">
-                    <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="Naam">Naam *</label>
+                    <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="Naam"></label>
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <input asp-for="Naam" class="form-control" placeholder="Organisatie" />
                         </div>
                     </div>
 
-                    <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="Straat">Straat *</label>
+                    <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="Straat"></label>
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <input asp-for="Straat" id="route" class="form-control" />
@@ -72,7 +72,7 @@
 
 
                         <div class="col-sm-6 col-md-6 col-lg-6 verwijderPaddingLinks">
-                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="Nummer">Nummer *</label>
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" asp-for="Nummer"></label>
                             <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
                                 <div class="form-group paddingLeft15px">
                                     <input asp-for="Nummer" id="street_number" class="form-control" />
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="col-sm-4 col-md-5 col-lg-5 verwijderPaddingLinks verwijderPaddingRechts rechtsPlaatsen" style="float:right;">
-                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="Bus">Bus</label>
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" asp-for="Bus"></label>
                             <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
                                 <div class="form-group marginRechts0px">
                                     <input asp-for="Bus" class="form-control" />
@@ -89,10 +89,17 @@
                             </div>
                         </div>
 
-                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="Postcode">Postcode *</label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="Postcode"></label>
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <input asp-for="Postcode" id="postal_code" class="form-control" />
+                            </div>
+                        </div>
+                        
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="Gemeente"></label>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input asp-for="Gemeente" id="locality" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -106,7 +113,7 @@
                     <div class="col-md-12 col-sm-12 col-lg-12 verwijderPaddingRechts verwijderPaddingLinks">
 
                         <div class="col-sm-5 col-md-6 col-lg-6 verwijderPaddingLinks">
-                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="AantalWerkuren">Uren per week *</label>
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" asp-for="AantalWerkuren"></label>
                             <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
                                 <div class="form-group marginLinks0px">
                                     <input asp-for="AantalWerkuren" class="form-control" />
@@ -115,7 +122,7 @@
                         </div>
 
                         <div class="col-md-5 col-sm-5 col-lg-5 verwijderPaddingRechts rechtsPlaatsen">
-                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="PatronaleBijdrage">Patronale bijdrage *</label>
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" asp-for="PatronaleBijdrage"></label>
                             <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
                                 <div class="form-group marginRechts0px">
                                     <input asp-for="PatronaleBijdrage" class="form-control" />
@@ -123,7 +130,7 @@
                             </div>
                         </div>
 
-                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="NaamAfdeling">Naam afdeling *</label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="NaamAfdeling"></label>
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <input asp-for="NaamAfdeling" class="form-control" />
@@ -131,7 +138,7 @@
                         </div>
 
 
-                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="ContactPersoonNaam">Contactpersoon Naam *</label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="ContactPersoonNaam"></label>
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <input asp-for="ContactPersoonNaam" class="form-control" />
@@ -139,13 +146,19 @@
                         </div>
 
 
-                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="ContactPersoonVoornaam">Contactpersoon Voornaam *</label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="ContactPersoonVoornaam"></label>
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <input asp-for="ContactPersoonVoornaam" class="form-control" />
                             </div>
                         </div>
-
+                        
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" asp-for="ContactPersoonEmail"></label>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input asp-for="ContactPersoonEmail" class="form-control" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
