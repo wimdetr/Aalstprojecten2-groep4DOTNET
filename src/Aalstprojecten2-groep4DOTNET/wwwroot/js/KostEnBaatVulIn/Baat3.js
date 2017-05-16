@@ -5,6 +5,7 @@
     }
     $("#vulInKnop")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var jaarbedrag = $("#jaarbedragOmzetverlies").val().trim();
