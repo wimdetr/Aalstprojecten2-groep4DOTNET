@@ -200,3 +200,11 @@ tr:nth-child(odd) {
 .btn-group .btn {
     margin-left: 0px;
 }
+
+.verbergPrent {
+    display: none;
+}
+
+.toonPrent {
+    display: block;
+}

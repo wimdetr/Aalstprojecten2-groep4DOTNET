@@ -21,6 +21,11 @@
                             $(this).removeClass("zetCardZichtbaar").addClass("zetCardOnzichtbaar");
                         }
                     });
+                if ($(".zetCardZichtbaar").length === 0) {
+                    $("#geenAnalysesDiv").removeClass("verbergPrent").addClass("toonPrent");
+                } else {
+                    $("#geenAnalysesDiv").removeClass("toonPrent").addClass("verbergPrent");
+                }
             });
     $("#organisatieVeld")
         .on("input", function() {
@@ -64,4 +69,9 @@ function filterArchief() {
                 $(this).removeClass("zetCardZichtbaar").addClass("zetCardOnzichtbaar");
             }
         });
+    if ($(".zetCardZichtbaar").length === 0) {
+        $("#geenAnalysesDiv").removeClass("verbergPrent").addClass("toonPrent");
+    } else {
+        $("#geenAnalysesDiv").removeClass("toonPrent").addClass("verbergPrent");
+    }
 }
