@@ -117,12 +117,7 @@
     min-height: 35px;
 }
 
-.icoon {
-    float: right;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-}
+
 
 .werkgeverTekst {
     padding-top: 8px;
@@ -195,4 +190,22 @@
 
 .diepte {
     z-index: 4;
+}
+
+@media (min-width: 768px) {
+    .icoon {
+    float: right;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .icoon {
+    float: right;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    }
 }

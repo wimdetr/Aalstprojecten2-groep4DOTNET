@@ -16,11 +16,11 @@
 <link rel="stylesheet" href="~/css/FixVoorHeader.css" />
 
 <div class="row">
-    <div class="col-md-3 tooltip diepte2" data-volgorde="3">
+    <div class="col-md-3 col-sm-3 col-lg-3 tooltip diepte2" data-volgorde="3">
         <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
         <span class="tooltiptext verbergTooltip tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
     </div>
-    <div class="col-md-6 text-center">
+    <div class="col-md-4 col-sm-3 col-lg-6 text-center">
         <h2 class="titelFix">Kosten</h2>
     </div>
     <div class="col-md-3 text-right">
@@ -87,65 +87,68 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Welke nieuwe functies zet u in?</h3>
-                <table class="table table-striped text-left marginBenedenGroot">
+                <div class="table-responsive">
+                    <table class="table table-striped text-left marginBenedenGroot">
 
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th class="kleineBreedte3">Functie</th>
-                            <th class="kleineBreedte3">Uren per Week</th>
-                            <th class="kleineBreedte4">Bruto Maandloon Fulltime</th>
-                            <th class="kleineBreedte5">Werknemer leeftijd</th>
-                            <th class="kleineBreedte">VOP</th>
-                            <th class="kleineBreedte6">Kost</th>
-                            <th class="kleineBreedte6">Maanden IBO</th>
-                            <th class="kleineBreedte6">IBO premie</th>
-                            <th class="kleineBreedte6">Baat</th>
-                            <th class="kleineBreedte"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @for (var i = 1; i <= Model.AantalLijnenKost1; i++)
-                        {
-                            <tr id="tr_0">
-                                <td style="display: none;">@Model.LijnenKost1[i - 1].Kost1Id</td>
-                                <td>@i.</td>
-                                <td>@Model.LijnenKost1[i - 1].Functie</td>
-                                <td>@Model.LijnenKost1[i - 1].AantalUrenPerWeek</td>
-                                <td>@Model.LijnenKost1[i - 1].BrutoMaandloonFulltime.ToString("C")</td>
-
-                                <td>@Model.LijnenKost1[i - 1].Doelgroep</td>
-
-
-                                <td>@(Model.LijnenKost1[i - 1].VlaamseOndersteuningsPremie)%</td>
-                                <td>@Model.LijnenKost1[i - 1].KostUitkomst.ToString("C")</td>
-                                <td>@Model.LijnenKost1[i - 1].AantalMaandenIBO</td>
-                                <td>@Model.LijnenKost1[i - 1].TotaleProductiviteitsPremieIBO.ToString("C")</td>
-                                <td>@Model.LijnenKost1[i - 1].BaatUitkomst.ToString("C")</td>
-                                <td class="text-center tooltip" data-volgorde="10">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKostRijVerwijderen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-remove"></a>
-                                    @if (i == 1)
-                                    {
-                                        <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
-                                    }
-                                </td>
-
+                        <thead class="achtergrondKleurVanDeTabelHeader">
+                            <tr>
+                                <th class="kleineBreedte2"></th>
+                                <th class="kleineBreedte3">Functie</th>
+                                <th class="kleineBreedte3">Uren per Week</th>
+                                <th class="kleineBreedte4">Bruto Maandloon Fulltime</th>
+                                <th class="kleineBreedte5">Werknemer leeftijd</th>
+                                <th class="kleineBreedte">VOP</th>
+                                <th class="kleineBreedte6">Kost</th>
+                                <th class="kleineBreedte6">Maanden IBO</th>
+                                <th class="kleineBreedte6">IBO premie</th>
+                                <th class="kleineBreedte6">Baat</th>
+                                <th class="kleineBreedte"></th>
                             </tr>
+                        </thead>
+                        <tbody>
 
-                        }
+                            @for (var i = 1; i <= Model.AantalLijnenKost1; i++)
+                            {
+                                <tr id="tr_0">
+                                    <td style="display: none;">@Model.LijnenKost1[i - 1].Kost1Id</td>
+                                    <td>@i.</td>
+                                    <td>@Model.LijnenKost1[i - 1].Functie</td>
+                                    <td>@Model.LijnenKost1[i - 1].AantalUrenPerWeek</td>
+                                    <td>@Model.LijnenKost1[i - 1].BrutoMaandloonFulltime.ToString("C")</td>
 
-                        <tr>
-                            <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip" data-volgorde="10">
-                                    <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                    <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    <td>@Model.LijnenKost1[i - 1].Doelgroep</td>
+
+
+                                    <td>@(Model.LijnenKost1[i - 1].VlaamseOndersteuningsPremie)%</td>
+                                    <td>@Model.LijnenKost1[i - 1].KostUitkomst.ToString("C")</td>
+                                    <td>@Model.LijnenKost1[i - 1].AantalMaandenIBO</td>
+                                    <td>@Model.LijnenKost1[i - 1].TotaleProductiviteitsPremieIBO.ToString("C")</td>
+                                    <td>@Model.LijnenKost1[i - 1].BaatUitkomst.ToString("C")</td>
+                                    <td class="text-center tooltip" data-volgorde="10">
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKostRijVerwijderen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-remove"></a>
+                                        @if (i == 1)
+                                        {
+                                            <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
+                                        }
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                            <tr>
+                                <td class="opmaakKnopje toverknop" style="padding-top:0;">
+                                    <div class="SpecialeHoogteDoorNielsGemaakt tooltip" data-volgorde="10">
+                                        <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                        <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
 
 
 
