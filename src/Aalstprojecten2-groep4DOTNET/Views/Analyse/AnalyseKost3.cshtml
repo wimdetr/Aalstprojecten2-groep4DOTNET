@@ -90,6 +90,7 @@
                 <h3 class="text-left">1. Welke extra kosten moet u structureel extra maken voor deze inhuur?</h3>
                 <h4 class="text-left">(alleen kosten zoals werkkleding bij normale inhuur en bij reshoring alle kosten)</h4>
 
+                <div class="table-responsive">
                     <table class="table table-striped text-left marginBenedenGroot">
                         <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
@@ -128,6 +129,9 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                    
 
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
@@ -186,38 +190,43 @@
             <div class="Blok1 text-center">
                 <h3 class="text-left">2. Welke kosten moet u structureel jaarlijks extra maken voor deze inhuur?</h3>
                 <h4 class="text-left">(vul hier de gereedschapskosten ed in)</h4>
-                <table class="table table-striped text-left marginBenedenGroot">
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th>Type</th>
-                            <th>Bedrag</th>
-                            <th class="kleineBreedte2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
-                        {
-                            <tr id="tr_0">
-                                <td style="display: none;">@Model.Lijst2[i - 1].KostId</td>
-                                <td>@i.</td>
-                                <td>@Model.Lijst2[i - 1].Beschrijving</td>
-                                <td>@Model.Lijst2[i - 1].Bedrag.ToString("C")</td>
-                                <td class="text-center">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKost3Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped text-left marginBenedenGroot">
+                        <thead class="achtergrondKleurVanDeTabelHeader">
+                            <tr>
+                                <th class="kleineBreedte2"></th>
+                                <th>Type</th>
+                                <th>Bedrag</th>
+                                <th class="kleineBreedte2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
+                            {
+                                <tr id="tr_0">
+                                    <td style="display: none;">@Model.Lijst2[i - 1].KostId</td>
+                                    <td>@i.</td>
+                                    <td>@Model.Lijst2[i - 1].Beschrijving</td>
+                                    <td>@Model.Lijst2[i - 1].Bedrag.ToString("C")</td>
+                                    <td class="text-center">
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost3Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td class="opmaakKnopje toverknop" style="padding-top:0;">
+                                    <div class="SpecialeHoogteDoorNielsGemaakt">
+                                        <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                    </div>
                                 </td>
                             </tr>
-                        }
-                        <tr>
-                            <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt">
-                                    <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                
+                
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
 

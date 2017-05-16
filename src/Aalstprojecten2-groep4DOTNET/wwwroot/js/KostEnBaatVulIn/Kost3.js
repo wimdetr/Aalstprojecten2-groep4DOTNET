@@ -16,7 +16,7 @@
                 bevatFout = true;
             }
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(jaarbedrag)) {
+            if (jaarbedrag !== "" && !re.test(jaarbedrag)) {
                 bevatFout = true;
             }
 
@@ -50,7 +50,7 @@
                 bevatFout = true;
             }
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(jaarbedrag)) {
+            if (jaarbedrag !== "" && !re.test(jaarbedrag)) {
                 bevatFout = true;
             }
 
@@ -89,10 +89,10 @@
             $("#type1").val(beschrijving);
             $("#Bedrag1").val(bedrag);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });
@@ -117,10 +117,10 @@
             $("#type2").val(beschrijving);
             $("#Bedrag2").val(bedrag);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });

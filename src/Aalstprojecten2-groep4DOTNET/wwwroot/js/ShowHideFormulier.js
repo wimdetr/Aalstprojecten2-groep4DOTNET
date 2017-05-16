@@ -8,24 +8,25 @@
     $(window).scrollTop(scrollPos);
     $(".toverknop")
         .click(function () {
-            if ($(this).parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             } else {
                 $(this)
                     .parent()
                     .parent()
                     .parent()
+                    .parent()
                     .siblings(".invulgegevens")
                     .removeClass("toonFormulier animated zoomIn");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent()
+                    $(this).parent().parent().parent().parent()
                     .siblings(".invulgegevens").addClass("animated zoomOut");
                 }
                 setTimeout(function () {
-                    $(".toverknop").parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
+                    $(".toverknop").parent().parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
                 }, tijd);
             }
         });

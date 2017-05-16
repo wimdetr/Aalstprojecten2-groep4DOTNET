@@ -22,17 +22,17 @@
                 bevatFout = true;
             }
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(brutoMaandloonFulltime)) {
+            if (brutoMaandloonFulltime !== "" && !re.test(brutoMaandloonFulltime)) {
                 bevatFout = true;
             }
-            if (!re.test(premieIBO)) {
+            if (premieIBO !== "" && !re.test(premieIBO)) {
                 bevatFout = true;
             }
             var re2 = new RegExp("[1-9][0-9]*");
-            if (!re2.test(aantalUrenPerWeek)) {
+            if (aantalUrenPerWeek !== "" && !re2.test(aantalUrenPerWeek)) {
                 bevatFout = true;
             }
-            if (!re2.test(aantalMaandenIBO)) {
+            if (aantalMaandenIBO !== "" && !re2.test(aantalMaandenIBO)) {
                 bevatFout = true;
             }
 
@@ -87,10 +87,10 @@
             $("#productiviteitsPremie").val(premie);
             $("#dropDown2").val(ondersteurningsPremie);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });

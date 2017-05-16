@@ -16,11 +16,11 @@
                 bevatFout = true;
             }
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(jaarbedrag)) {
+            if (jaarbedrag !== "" && !re.test(jaarbedrag)) {
                 bevatFout = true;
             }
             var re2 = new RegExp("^[1-9][0-9]?$|^100$");
-            if (re2.test(percent)) {
+            if (percent !== "" && re2.test(percent)) {
                 bevatFout = true;
             }
 
@@ -62,10 +62,10 @@
             $("#jaarbedragOmzetverlies").val(jaarbedrag);
             $("#besparing").val(besparing);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });
