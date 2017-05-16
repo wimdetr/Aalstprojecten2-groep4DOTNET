@@ -3,6 +3,36 @@
         var canvas;
         var context;
         var knop;
+        $(".verstuurIcoonKnop")
+            .click(function() {
+                knop = $(this);
+                canvas = document.getElementById("canvas");
+                context = canvas.getContext('2d');
+                schrijfTitel();
+                tekenHeaders();
+                tekenRij1();
+                tekenRij2();
+                tekenRij3();
+                tekenRij4();
+                tekenRij5();
+                tekenRij6();
+                tekenRij7();
+                tekenRij8();
+                tekenRij9();
+                tekenRij10();
+                tekenRij11();
+                tekenSubtotaalRij();
+                tekenEindResultaat();
+
+                var imgData = canvas.toDataURL('image/png');
+                var doc = new jsPDF('p', 'mm');
+                doc.addImage(imgData, 'PNG', 10, 10);
+                var binary = doc.output();
+                var encoded = binary ? btoa(binary) : "";
+                $("#verstuurPdfVeld").val(encoded);
+                $("#ontvangerEmail").val(knop.parent().siblings(".datadiv").data("contactpersoon"));
+                $("#verstuurPdfVeld").parent().submit();
+            });
         $(".downloadIcoonKnop")
             .click(function () {
                 knop = $(this);

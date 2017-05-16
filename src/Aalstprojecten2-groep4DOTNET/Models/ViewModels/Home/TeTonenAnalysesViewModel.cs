@@ -11,6 +11,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public IEnumerable<AnalyseOverzichtViewModel> Analyses { get; set; }
         public bool IsLeeg { get; set; }
         public bool ActiveerKnoppen { get; set; }
+        public string PdfEncrypted { get; set; } = null;
+        public string OntvangerEmail { get; set; } = null;
 
         public TeTonenAnalysesViewModel(IEnumerable<Analyse> analyses)
         {
@@ -23,6 +25,11 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
                 teller++;
             }
             ActiveerKnoppen = teller > 10;
+        }
+
+        public TeTonenAnalysesViewModel()
+        {
+            
         }
     }
 }

@@ -62,6 +62,10 @@
 else
 {
     <canvas id="canvas" width="1200" height="930" style="display: none;"></canvas>
+    <form asp-controller="Home" asp-action="VerstuurPdfNaarServer" method="post" style="display: none;">
+        <input id="verstuurPdfVeld" asp-for="PdfEncrypted" style="display: none;"/>
+        <input id="ontvangerEmail" asp-for="OntvangerEmail" style="display: none;"/>
+    </form>
         var teller = 0;
         foreach (AnalyseOverzichtViewModel item in Model.Analyses)
         {
@@ -78,7 +82,7 @@ else
                         <strong>@item.Organisatie</strong>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 iconen tooltip @(teller != 1? "geenTooltip" : "")" data-volgorde="5">
-                        <div class="datadiv" data-organisatie="@item.Organisatie" data-afdeling="@item.Afdeling" data-locatie="@item.Locatie" data-straat="@item.Straat" data-nummer="@item.Nummer" data-baat1="@item.Baat1.ToString("C")" data-baat2="@item.Baat2.ToString("C")" data-baat3="@item.Baat3.ToString("C")" data-baat4="@item.Baat4.ToString("C")" data-baat5="@item.Baat5.ToString("C")" data-baat6="@item.Baat6.ToString("C")" data-baat7="@item.Baat7.ToString("C")" data-baat8="@item.Baat8.ToString("C")" data-baat9="@item.Baat9.ToString("C")" data-baat10="@item.Baat10.ToString("C")" data-baat11="@item.Baat11.ToString("C")" data-kost1="@item.Kost1.ToString("C")" data-kost1punt1="@item.Kost1Punt1.ToString("C")" data-kost2="@item.Kost2.ToString("C")" data-kost3="@item.Kost3.ToString("C")" data-kost4="@item.Kost4.ToString("C")" data-kost5="@item.Kost5.ToString("C")" data-kost6="@item.Kost6.ToString("C")" data-kost7="@item.Kost7.ToString("C")" data-subtotaalbaten="@item.BatenResultaat.ToString("C")" data-subtotaalkosten="@item.KostenResultaat.ToString("C")" data-nettoresultaat="@item.NettoResultaat.ToString("C")" style="display: none;"></div>
+                        <div class="datadiv" data-contactpersoon="@item.ContactPersoonEmail" data-organisatie="@item.Organisatie" data-afdeling="@item.Afdeling" data-locatie="@item.Locatie" data-straat="@item.Straat" data-nummer="@item.Nummer" data-baat1="@item.Baat1.ToString("C")" data-baat2="@item.Baat2.ToString("C")" data-baat3="@item.Baat3.ToString("C")" data-baat4="@item.Baat4.ToString("C")" data-baat5="@item.Baat5.ToString("C")" data-baat6="@item.Baat6.ToString("C")" data-baat7="@item.Baat7.ToString("C")" data-baat8="@item.Baat8.ToString("C")" data-baat9="@item.Baat9.ToString("C")" data-baat10="@item.Baat10.ToString("C")" data-baat11="@item.Baat11.ToString("C")" data-kost1="@item.Kost1.ToString("C")" data-kost1punt1="@item.Kost1Punt1.ToString("C")" data-kost2="@item.Kost2.ToString("C")" data-kost3="@item.Kost3.ToString("C")" data-kost4="@item.Kost4.ToString("C")" data-kost5="@item.Kost5.ToString("C")" data-kost6="@item.Kost6.ToString("C")" data-kost7="@item.Kost7.ToString("C")" data-subtotaalbaten="@item.BatenResultaat.ToString("C")" data-subtotaalkosten="@item.KostenResultaat.ToString("C")" data-nettoresultaat="@item.NettoResultaat.ToString("C")" style="display: none;"></div>
                         @*knoppen downloaden versturen verwijderen*@
                         <div class="icoon verwijderIcoon">
                             <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon verwijderPrent" src="~/images/iconen/bin.png" alt="meh"/></a>

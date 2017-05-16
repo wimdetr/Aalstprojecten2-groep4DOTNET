@@ -53,6 +53,40 @@ namespace Aalstprojecten2_groep4DOTNET.Services
             }
         }
 
+        public static async Task StuurPdf(string naam, string email, string ontvangerEmail, string onderwerp, string inhoud, string attachment)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(naam, email));
+            message.To.Add(new MailboxAddress(ontvangerEmail, ontvangerEmail));
+            message.Subject = onderwerp;
+
+            BodyBuilder builder = new BodyBuilder();
+            builder.TextBody = inhoud;
+            builder.Attachments.Add(attachment);
+
+            message.Body = builder.ToMessageBody();
+
+
+
+            using (var client = new SmtpClient())
+            {
+                // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
+                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                client.Connect("smtp.gmail.com", 587, false);
+
+                // Note: since we don't have an OAuth2 token, disable
+                // the XOAUTH2 authentication mechanism.
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
+
+                // Note: only needed if the SMTP server requires authentication
+                client.Authenticate("ITSolutions.Kairos@gmail.com", "ITSolutions123");
+
+                await client.SendAsync(message);
+                client.Disconnect(true);
+            }
+        }
+
         //string body moet eventueel veranderen naar BodyBuilder object voor in de body te steken
         private static async Task VerzendMailMetBody(string naam, string email, string body, string subject)
         {

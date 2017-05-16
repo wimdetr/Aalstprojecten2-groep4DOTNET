@@ -26,6 +26,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public double BatenBalk { get; set; }
         public double KostenBalk { get; set; }
 
+        public string ContactPersoonEmail { get; set; }
+        public string ContactPersoonNaam { get; set; }
         public double Baat1 { get; set; }
         public double Baat2 { get; set; }
         public double Baat3 { get; set; }
@@ -60,6 +62,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
             KostenResultaat = a.KostenResultaat;
             BatenResultaat = a.BatenResultaat;
             NettoResultaat = a.NettoResultaat;
+
+            ContactPersoonEmail = a.Departement.ContactPersoonEmail;
 
 
             if (BatenResultaat == KostenResultaat)
