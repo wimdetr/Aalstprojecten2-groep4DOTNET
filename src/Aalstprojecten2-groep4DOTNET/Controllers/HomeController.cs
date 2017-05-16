@@ -50,6 +50,14 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             return View(new TeTonenAnalysesViewModel(analyses));
         }
 
+        public IActionResult AnimatiesAanUit()
+        {
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+            jc.WilAnimaties = !jc.WilAnimaties;
+            _jobCoachRepository.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult Delete(int id)
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
@@ -279,7 +287,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 m.Jobcoach = jc;
             }
-            return View(new OverzichtMailboxViewModel(mails));
+            return View(new OverzichtMailboxViewModel(mails) {WilAnimaties = jc.WilAnimaties});
         }
 
         public IActionResult GeselecteerdeMail(int id)
@@ -300,6 +308,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
                 model.GeopendeMail = new MailViewModel(mail);
                 model.GeopendeMailId = mail.InterneMailId;
+                model.WilAnimaties = jc.WilAnimaties;
                 return View(nameof(OverzichtMailbox), model);
             }
             catch
@@ -312,7 +321,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 m.Jobcoach = j;
             }
-            return View(nameof(OverzichtMailbox), new OverzichtMailboxViewModel(mijnMails));
+            return View(nameof(OverzichtMailbox), new OverzichtMailboxViewModel(mijnMails) {WilAnimaties = j.WilAnimaties});
         }
 
         public IActionResult VerwijderMail(int id)
@@ -456,13 +465,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             }
             TempData["error"] = "Er is iets misgelopen, uw antwoord werd niet verzonden";
             return View(nameof(OverzichtMailbox));
-        }
-
-        public bool ControleerOfMailSessieVerlopenIs()
-        {
-            ICollection<InterneMailJobcoach> mails = JsonConvert.DeserializeObject<ICollection<InterneMailJobcoach>>(HttpContext.Session.GetString("mails"));
-            //return (analyse == null) || (analyse.JobCoachEmail == null && analyse.KostenEnBaten == null && analyse.Werkgever == null);
-            return true;
         }
 
         private bool ControleerOfModelVerandertIs(ProfielAanpassenViewModel model)

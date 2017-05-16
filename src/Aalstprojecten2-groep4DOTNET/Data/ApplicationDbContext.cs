@@ -195,6 +195,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
             j.Property(t => t.PostcodeBedrijf).HasMaxLength(4).IsRequired();
             j.Property(t => t.StraatBedrijf).IsRequired();
             j.Property(t => t.MoetWachtwoordVeranderen).IsRequired();
+            j.Property(t => t.WilAnimaties).IsRequired();
 
             j.HasMany(t => t.Analyses).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);
         }

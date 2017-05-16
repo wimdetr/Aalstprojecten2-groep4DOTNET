@@ -1,5 +1,9 @@
 $(document)
     .ready(function () {
+        var tijd = 1000;
+        if ($("#animatiesAanUit").text().trim() === "Animaties aanzetten") {
+            tijd = 0;
+        }
         var huidige = 0;
         var volgordeWaarden = new Array();
         maakVolgordeArray();
@@ -11,7 +15,10 @@ $(document)
                     $(".tooltip:not(.geenTooltip)")
                         .each(function () {
                             if ($(this).data("volgorde") === volgordeWaarden[huidige]) {
-                                $(this).find(".tooltiptext").removeClass("verbergTooltip tooltipFadeOut").addClass("toonTooltip tooltipFadeIn");
+                                $(this).find(".tooltiptext").removeClass("verbergTooltip tooltipFadeOut").addClass("toonTooltip");
+                                if (tijd !== 0) {
+                                    $(this).find(".tooltiptext").addClass("tooltipFadeIn");
+                                }
                             }
                         });
                 }
@@ -23,12 +30,15 @@ $(document)
                     $(".toonPijl").removeClass("toonPijl").addClass("verbergPijl");
                     $(".tooltip:not(.geenTooltip)")
                         .each(function() {
-                            $(this).find(".tooltiptext").removeClass("toonTooltip tooltipFadeIn").addClass("tooltipFadeOut");
+                            $(this).find(".tooltiptext").removeClass("toonTooltip tooltipFadeIn");
+                            if (tijd !== 0) {
+                                $(this).find(".tooltiptext").addClass("tooltipFadeOut");
+                            }
                             var tip = $(this);
                             setTimeout(function() {
                                     tip.find(".tooltiptext").addClass("verbergTooltip");
                                 },
-                                1000);
+                                tijd);
                         });
                 }
             });
@@ -60,12 +70,15 @@ $(document)
             $(".tooltip")
                 .each(function() {
                     if ($(this).data("volgorde") === volgordeWaarden[huidige]) {
-                        $(this).find(".tooltiptext").removeClass("toonTooltip tooltipFadeIn").addClass("tooltipFadeOut");
+                        $(this).find(".tooltiptext").removeClass("toonTooltip tooltipFadeIn");
+                        if (tijd !== 0) {
+                            $(this).find(".tooltiptext").addClass("tooltipFadeOut");
+                        }
                         var tip = $(this);
                         setTimeout(function () {
                             tip.find(".tooltiptext").addClass("verbergTooltip");
                         },
-                            1000);
+                            tijd);
                     }
                 });
         }
@@ -73,7 +86,10 @@ $(document)
         function toonTooltipsOpPositie() {
             $(".tooltip:not(.geenTooltip)").each(function () {
                     if ($(this).data("volgorde") === volgordeWaarden[huidige]) {
-                        $(this).find(".tooltiptext").removeClass("verbergTooltip tooltipFadeOut").addClass("toonTooltip tooltipFadeIn");
+                        $(this).find(".tooltiptext").removeClass("verbergTooltip tooltipFadeOut").addClass("toonTooltip");
+                        if (tijd !== 0) {
+                            $(this).find(".tooltiptext").addClass("tooltipFadeIn");
+                        }
                     }
                 });
         }
