@@ -1,0 +1,35 @@
+﻿.paddingTopEnBottom {
+        padding-top: 9px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+}
+
+.paddingLeft15px {
+    padding-left: 15px;
+}
+
+.rechtsPlaatsen {
+    float:right;
+}
+
+.marginRechts0px {
+    margin-right: 0 !important;
+}
+
+.marginLinks0px {
+    margin-left: 0 !important;
+}
+
+@media (min-width: 767px) {
+    .marginLinks {
+        margin-left: 8.6666667%;
+    }
+}
+
+.kleinePaddingLinks {
+    padding-left: 7.5px;
+}
+
+.kleinePaddingRechts {
+    padding-left: 7.5px;
+}

@@ -1,5 +1,5 @@
 ﻿input, select, textarea {
-    max-width: 429.5px;
+    max-width: 600px;
 }
 
 .verwijderPaddingLinks {
@@ -71,3 +71,136 @@
 .fixPadding {
     padding-left: 0px;
 }
+
+.js .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    /* 10px 20px */
+}
+
+.no-js .inputfile + label {
+    display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+
+/* style 1 */
+
+.inputfile-1 + label {
+    color: #f1e5e6;
+    background-color: #d3394c;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #722040;
+}
+
+.opmaakStijlKnop {
+    width: 97%;
+    border-radius: 4px;
+}
+
+.marginLeftOpNul {
+    margin-left: 0;
+}
+
+/*.zetPaddingLinksAan {
+    padding-left: 15px;
+}
+
+.nogBeetjeExtraRechts {
+    right: 2.5%;
+}
+
+.nogBeetjeRechts {
+    right:8%;
+}
+
+.paddingTopEnBottom {
+        padding-top: 9px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+}
+
+.beetjeMarginLinks {
+    margin-left: 3px;
+}
+
+@media (max-width: 767px) {
+    .marginOpNul {
+        margin-left: 0;
+    }
+    .col-sm-offset-2 {
+        margin-left: 0;
+    }
+    .col-sm-offset-1 {
+    margin-left: 0;
+    }
+
+    .fixPaddingLeft {
+        padding-left: 15px;
+    }
+
+    .fixAnderVeld {
+        margin-left:16.66666667%;
+    }
+
+    .fixAnderVeld2 {
+        margin-left: 8.33333333%;
+    }
+}
+
+@media (max-width: 992px) {
+    .col-lg-offset-2 {
+        margin-left: 16.66666667%;
+    }
+
+    .col-sm-offset-1 {
+        margin-left: 0%;
+    }
+
+    .col-sm-offset-2 {
+        margin-left: 0;
+    }
+
+    .pullLeft {
+        left: 9%;
+    }
+
+    .floatRight {
+        float:right;
+    }
+}*/

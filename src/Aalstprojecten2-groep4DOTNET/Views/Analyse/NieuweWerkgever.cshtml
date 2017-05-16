@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
 <link rel="stylesheet" href="~/css/BestaandeWerkgeverAfdelingKiezen.css" />
 <link rel="stylesheet" href="~/css/ProfielAanpassen.css" />
+<link rel="stylesheet" href="~/css/WerkgeverAanpassen.css" />
 
 @{
     ViewData["Title"] = "Werkgever";
@@ -17,11 +18,12 @@
 
 
 
-    <div class="row col-md-offset-3 col-md-6 divOpmaak divBorder">
+<div class="row col-sm-12 col-md-12 col-lg-6 col-lg-offset-3 divOpmaak divBorder">
+    <div class="col-lg-12 col-md-12 col-sm-12">
         @if (Model.LinkNaarLogoPrent == null)
         {
             <div class="logo">
-                <img src="~/images/login/login foto.png" class="breddtefixen"/>
+                <img src="~/images/login/login foto.png" class="breddtefixen" />
             </div>
         }
         else
@@ -30,200 +32,217 @@
                 <img src="@Model.LinkNaarLogoPrent" class="breddtefixen" />
             </div>
         }
-        
-    <form method="post" class="form-horizontal" enctype="multipart/form-data">
-            <input type="file" name="file" accept="image/*" />
-            <div class="col-md-12">
-                <div class="col-md-6">
-                    <span asp-validation-for="Naam" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="Straat" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="Nummer" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="Bus" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="Postcode" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="Gemeente" class="text-danger"></span>
+
+        <form method="post" class="form-horizontal" enctype="multipart/form-data">
+
+            <div class="col-sm-10 col-sm-offset-1 col-md-offset-0 col-lg-offset-0 col-md-6 col-lg-5 verwijderPaddingLinks" style="margin-top: 10%;">
+                <div class="col-sm-12 col-md-12 verwijderPaddingLinks">
+                    <label>Heeft de organisatie een logo?</label>
                 </div>
 
-                <div class="col-md-6">
-                    <span asp-validation-for="AantalWerkuren" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="PatronaleBijdrage" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="NaamAfdeling" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="ContactPersoonNaam" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="ContactPersoonVoornaam" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <span asp-validation-for="ContactPersoonEmail" class="text-danger"></span>
+                <div class="col-sm-12 col-md-12 verwijderPaddingLinks" style="margin-bottom: 10%;">
+                    <input type="file" name="file" accept="image/*" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" style="display:none;" />
+
+                    <label for="file-1" class="opmaakStijlKnop paddingTopEnBottom"><svg width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> <span>Selecteer uw logo &hellip;</span></label>
+
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <input asp-for="DepartementId" />
-                <label asp-for="Naam" class="col-md-12 control-label fixPadding"></label>
-                <div class="col-xs-12 col-sm-6 col-md-12">
-                    <div class="form-group">
-                        <input asp-for="Naam" value="@Model.Naam" class="form-control" />
+
+            <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
+                <div class="col-sm-12 col-md-6 col-lg-6 kleinePaddingLinks kleinePaddingRechts">
+
+
+                    <input asp-for="DepartementId" type="hidden" id="DepartementId" name="DepartementId">
+                    <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="Naam">Naam *</label>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input asp-for="Naam" class="form-control" placeholder="Organisatie" />
+                        </div>
                     </div>
-                </div>
 
-                <label asp-for="Straat" class="col-md-12 text-left fixPadding"></label>
-                <div class="col-xs-12 col-sm-6 col-md-12">
-                    <div class="form-group">
-                        <input asp-for="Straat" value="@Model.Straat" id="route" class="form-control" />
+                    <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="Straat">Straat *</label>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input asp-for="Straat" id="route" class="form-control" />
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-12 fixPadding">
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
 
-                        <label asp-for="Nummer" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
-                        <div class="col-xs-12 col-sm-6 col-md-12 verwijderPaddingLinks">
+
+                        <div class="col-sm-6 col-md-6 col-lg-6 verwijderPaddingLinks">
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="Nummer">Nummer *</label>
+                            <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
+                                <div class="form-group paddingLeft15px">
+                                    <input asp-for="Nummer" id="street_number" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-5 col-lg-5 verwijderPaddingLinks verwijderPaddingRechts rechtsPlaatsen" style="float:right;">
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="Bus">Bus</label>
+                            <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
+                                <div class="form-group marginRechts0px">
+                                    <input asp-for="Bus" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="Postcode">Postcode *</label>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
-                                <input asp-for="Nummer" value="@Model.Nummer" id="street_number" class="form-control" />
+                                <input asp-for="Postcode" id="postal_code" class="form-control" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 verwijderPaddingRechts">
-                        <label asp-for="Bus" class="col-md-12 text-left verwijderPaddingRechts fixPadding"></label>
-                        <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
-                            <div class="form-group">
-                                <input asp-for="Bus" value="@Model.Bus" class="form-control" />
+
+
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6 verwijderPaddingLinks kleinePaddingLinks kleinePaddingRechts">
+
+                    <div class="col-md-12 col-sm-12 col-lg-12 verwijderPaddingRechts verwijderPaddingLinks">
+
+                        <div class="col-sm-5 col-md-6 col-lg-6 verwijderPaddingLinks">
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="AantalWerkuren">Uren per week *</label>
+                            <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
+                                <div class="form-group marginLinks0px">
+                                    <input asp-for="AantalWerkuren" class="form-control" />
+                                </div>
                             </div>
                         </div>
+
+                        <div class="col-md-5 col-sm-5 col-lg-5 verwijderPaddingRechts rechtsPlaatsen">
+                            <label class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts text-left" for="PatronaleBijdrage">Patronale bijdrage *</label>
+                            <div class="col-sm-12 col-md-12 col-lg-12 verwijderPaddingLinks verwijderPaddingRechts">
+                                <div class="form-group marginRechts0px">
+                                    <input asp-for="PatronaleBijdrage" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="NaamAfdeling">Naam afdeling *</label>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input asp-for="NaamAfdeling" class="form-control" />
+                            </div>
+                        </div>
+
+
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="ContactPersoonNaam">Contactpersoon Naam *</label>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input asp-for="ContactPersoonNaam" class="form-control" />
+                            </div>
+                        </div>
+
+
+                        <label class="col-sm-12 col-md-12 col-lg-12 text-left verwijderPaddingLinks" for="ContactPersoonVoornaam">Contactpersoon Voornaam *</label>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input asp-for="ContactPersoonVoornaam" class="form-control" />
+                            </div>
+                        </div>
+
                     </div>
-
                 </div>
-
-                <label asp-for="Postcode" class="col-md-12 control-label fixPadding"></label>
-                <div class="col-xs-12 col-sm-6 col-md-12">
-                    <div class="form-group">
-                        <input asp-for="Postcode" value="@Model.Postcode" id="postal_code" class="form-control" />
-                    </div>
-                </div>
-
-                <label asp-for="Gemeente" class="col-md-12 text-left fixPadding"></label>
-                <div class="form-group">
-                    <div class="col-xs-12 col-sm-6 col-md-12">
-                        <input asp-for="Gemeente" value="@Model.Gemeente" id="locality" class="form-control" />
-                    </div>
-                </div>
-
             </div>
-
-
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <div class="col-md-6 verwijderPaddingLinks">
-                        <label asp-for="AantalWerkuren" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
-                        <div class="col-xs-12 col-sm-6 col-md-12 verwijderPaddingLinks">
-                            <div class="form-group">
-                                <input asp-for="AantalWerkuren" value="@Model.AantalWerkuren" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 verwijderPaddingRechts">
-
-                        <label asp-for="PatronaleBijdrage" class="col-md-12 text-left verwijderPaddingLinks fixPadding"></label>
-                        <div class="col-xs-12 col-sm-12 col-md-12 verwijderPaddingRechts">
-                            <div class="form-group">
-                                <input asp-for="PatronaleBijdrage" value="@Model.PatronaleBijdrage" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-                <label asp-for="NaamAfdeling" class="col-md-12 text-left fixPadding"></label>
-                <div class="form-group">
-                    <div class="col-xs-12 col-sm-6 col-md-12">
-                        <input asp-for="NaamAfdeling" value="@Model.NaamAfdeling" class="form-control" />
-                    </div>
-                </div>
-
-
-
-                <label asp-for="ContactPersoonNaam" class="col-md-12 text-left fixPadding"></label>
-                <div class="form-group">
-                    <div class="col-xs-12 col-sm-6 col-md-12">
-                        <input asp-for="ContactPersoonNaam" value="@Model.ContactPersoonNaam" class="form-control" />
-                    </div>
-                </div>
-
-
-                <label asp-for="ContactPersoonVoornaam" class="col-md-12 text-left fixPadding"></label>
-                <div class="form-group">
-                    <div class="col-xs-12 col-sm-6 col-md-12">
-                        <input asp-for="ContactPersoonVoornaam" value="@Model.ContactPersoonVoornaam" class="form-control" />
-                    </div>
-                </div>
-
-
-                <label asp-for="ContactPersoonEmail" class="col-md-12 text-left fixPadding"></label>
-                <div class="form-group">
-                    <div class="col-xs-12 col-sm-6 col-md-12">
-                        <input asp-for="ContactPersoonEmail" value="@Model.ContactPersoonEmail" class="form-control" />
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
-
-
-
-
 
             <div class="form-group">
-                <div class="col-md-12" style="margin-top: 25px;">
+                <div class="col-md-12 col-sm-12 col-lg-12" style="margin-top: 25px;">
                     @if (Model.Aanpassen == false)
                     {
-                        <div class="btn-group col-md-12 margins" role="group">
-                            <button formaction="NieuweWerkgever" type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
-                            <a asp-controller="Home" asp-action="Index" class="btn btn-danger col-md-6 btn-lg marginBenedenKlein">Annuleer</a>
+                        <div class="btn-group col-md-12 col-sm-8 col-sm-offset-2 col-md-offset-0 col-lg-offset-0 margins" role="group">
+                            <button formaction="NieuweWerkgever" type="submit" class="btn btn-primary col-sm-6 col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-danger col-md-6 col-sm-6 btn-lg marginBenedenKlein">Annuleer</a>
                         </div>
                     }
                     else
                     {
-                        <div class="btn-group col-md-12 margins" role="group">
-                            <button formaction="WerkgeverAanpassen" type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein">Opslaan</button>
-                            <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-danger col-md-6 btn-lg marginBenedenKlein">Annuleer</a>
+                        <div class="btn-group col-md-12 col-sm-8 col-sm-offset-2 col-md-offset-0 col-lg-offset-0 margins" role="group">
+                            <button formaction="WerkgeverAanpassen" type="submit" class="btn btn-primary col-md-6 col-sm-6 btn-lg marginBenedenKlein">Opslaan</button>
+                            <a asp-controller="Analyse" asp-action="AnalyseOverzicht" class="btn btn-danger col-md-6 col-sm-6 btn-lg marginBenedenKlein">Annuleer</a>
                         </div>
                     }
                 </div>
             </div>
+
+
+
+
+
+
         </form>
+
+        @*<form method="post" class="form-horizontal" enctype="multipart/form-data">
+
+
+        <div class="col-sm-10 col-sm-offset-1 col-md-6 col-lg-5 verwijderPaddingLinks">
+            <div class="col-sm-12 col-md-12">
+                <label>Heeft de organisatie een logo?</label>
+            </div>
+
+            <div class="col-sm-12 col-md-12">
+                <input type="file" name="file" accept="image/*" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" style="display:none;" />
+
+                <label for="file-1" class="opmaakStijlKnop paddingTopEnBottom"><svg width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> <span>Selecteer uw logo &hellip;</span></label>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Naam" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Straat" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Nummer" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Bus" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Postcode" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Gemeente" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="AantalWerkuren" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="PatronaleBijdrage" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="NaamAfdeling" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="ContactPersoonNaam" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="ContactPersoonVoornaam" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-valid" data-valmsg-for="ContactPersoonEmail" data-valmsg-replace="true"></span>
+            </div>
+        </div>*@
+    </div>
+    
 </div>
 
 
 @section Scripts {
     <script src="~/js/AutoComplete.js"></script>
+    <script src="~/js/custom-file-input.js"></script>
+    <script src="~/js/jquery.custom-file-input.js"></script>
+    <script src="~/js/jquery-v1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHogrgooACi21TbM_0F_uSU2vbJAYai24&libraries=places&callback=initAutocomplete" async defer></script>
 }
