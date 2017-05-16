@@ -30,7 +30,7 @@ namespace Aalstprojecten2_groep4DOTNET.Services
         public static async Task ContacteerAdmin(string naam, string email, string onderwerp, string inhoud)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(naam, email));
+            message.From.Add(new MailboxAddress(email, email));
             message.To.Add(new MailboxAddress("Admin", "andreas.dewitte@hotmail.com"));
             message.Subject = onderwerp;
 
