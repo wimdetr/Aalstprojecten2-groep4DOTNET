@@ -239,6 +239,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     if (file != null && file.Length > 0)
                     {
                         var upload = Path.Combine(_environment.WebRootPath, "images\\uploads");
+                        if (!Directory.Exists(upload))
+                        {
+                            Directory.CreateDirectory(upload);
+                        }
                         string[] gesplitst = file.FileName.Split('.');
                         string linkNaarLogoPrent = User.Identity.Name + "_" + a.Departement.Werkgever.WerkgeverId + "." +
                                                    gesplitst[gesplitst.Length - 1];
@@ -346,6 +350,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     if (file != null && file.Length > 0)
                     {
                         var upload = Path.Combine(_environment.WebRootPath, "images\\uploads");
+                        if (!Directory.Exists(upload))
+                        {
+                            Directory.CreateDirectory(upload);
+                        }
                         string[] gesplitst = file.FileName.Split('.');
                         string linkNaarLogoPrent = User.Identity.Name + "_" + analyse.Departement.Werkgever.WerkgeverId + "." +
                                                    gesplitst[gesplitst.Length - 1];
