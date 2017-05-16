@@ -109,7 +109,7 @@
                                     <td>@Model.Lijst[i - 1].Bedrag.ToString("C")</td>
                                     <td class="text-center tooltip" data-volgorde="10">
                                         <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseBaat4RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseBaat4RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
                                         @if (i == 1)
                                         {
                                             <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
