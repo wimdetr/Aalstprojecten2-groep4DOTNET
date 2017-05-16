@@ -15,15 +15,15 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [RegularExpression("^[1-9][0-9]?$|^100$", ErrorMessage = "{0} moet minstens 1 en maximaal 100 zijn.")]
         public string Percent1 { get; set; }
         [Display(Name = "Bedrag")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string Bedrag1 { get; set; }
         public bool ToonGroep1 { get; set; }
 
         [Display(Name = "Bedrag")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string Baat7 { get; set; }
         [Display(Name = "Bedrag")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string Baat2 { get; set; }
 
         public bool BevatFout { get; set; } = false;
