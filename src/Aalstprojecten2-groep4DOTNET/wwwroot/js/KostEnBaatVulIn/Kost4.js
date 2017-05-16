@@ -1,6 +1,11 @@
 ﻿$(document).ready(function () {
+    var tijd = 800;
+    if ($("#animatiesAanUit").text().trim() === "Animaties aanzetten") {
+        tijd = 0;
+    }
     $("#vulInKnop1")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var beschrijving = $("#type1").val().trim();
@@ -20,18 +25,22 @@
                 knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt1");
                 knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                if (tijd !== 0) {
+                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                }
                 setTimeout(function () {
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt1");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    800);
+                    tijd);
             }
         });
 
 
     $("#vulInKnop2")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var uren = $("#uren").val().trim();
@@ -56,18 +65,22 @@
                 knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt2");
                 knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                if (tijd !== 0) {
+                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                }
                 setTimeout(function () {
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt2");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    800);
+                    tijd);
             }
         });
 
 
     $("#vulInKnop3")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var beschrijving = $("#type3").val().trim();
@@ -87,18 +100,22 @@
                 knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt3");
                 knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                if (tijd !== 0) {
+                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                }
                 setTimeout(function () {
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt3");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    800);
+                    tijd);
             }
         });
 
 
     $("#vulInKnop4")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var beschrijving = $("#type4").val().trim();
@@ -118,12 +135,15 @@
                 knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt4");
                 knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                if (tijd !== 0) {
+                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                }
                 setTimeout(function () {
                     knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt4");
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    800);
+                    tijd);
             }
         });
 
@@ -146,7 +166,10 @@
             $("#Bedrag1").val(bedrag);
 
             if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+                if (tijd !== 0) {
+                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                }
             }
         });
 
@@ -173,7 +196,10 @@
             $("#brutoMaandloonBegeleider").val(bedrag);
 
             if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+                if (tijd !== 0) {
+                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                }
             }
         });
     $(".editKnop3")
@@ -195,7 +221,10 @@
             $("#Bedrag3").val(bedrag);
 
             if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+                if (tijd !== 0) {
+                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                }
             }
         });
 
@@ -220,7 +249,10 @@
             $("#Bedrag4").val(bedrag);
 
             if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+                if (tijd !== 0) {
+                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                }
             }
         });
 });

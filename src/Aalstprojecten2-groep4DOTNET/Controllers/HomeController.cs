@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Aalstprojecten2_groep4DOTNET.Filters;
@@ -10,6 +11,7 @@ using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home;
 using Aalstprojecten2_groep4DOTNET.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,8 +29,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly IDoelgroepRepository _doelgroepRepository;
         private readonly IAdminMailRepository _adminMailRepository;
         private readonly IAdminRepository _adminRepository;
+        private readonly IHostingEnvironment _environment;
 
-        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository, IDoelgroepRepository doelgroepRepository, IAdminMailRepository adminMailRepository, IAdminRepository adminRepository)
+        public HomeController(IJobCoachRepository jobCoachRepository, IAnalyseRepository analyseRepository, UserManager<ApplicationUser> userManager, IInterneMailJobcoachRepository interneMailJobcoachRepository, IDoelgroepRepository doelgroepRepository, IAdminMailRepository adminMailRepository, IAdminRepository adminRepository, IHostingEnvironment environment)
         {
             _jobCoachRepository = jobCoachRepository;
             _analyseRepository = analyseRepository;
@@ -37,6 +40,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             _doelgroepRepository = doelgroepRepository;
             _adminMailRepository = adminMailRepository;
             _adminRepository = adminRepository;
+            _environment = environment;
         }
         public IActionResult Index()
         {
@@ -48,6 +52,68 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 r.BerekenResultaatVanAnalyse(a);
             }
             return View(new TeTonenAnalysesViewModel(analyses));
+        }
+
+        [HttpPost]
+        public IActionResult VerstuurPdfNaarServer(TeTonenAnalysesViewModel model)
+        {
+            var pdfBinary = Convert.FromBase64String(model.PdfEncrypted);
+            var dir = Path.Combine(_environment.WebRootPath, "pdfs");
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            var fileName = dir + "\\pdf_" + User.Identity.Name + ".pdf";
+
+            using (var fs = new FileStream(fileName, FileMode.Create))
+            using (var writer = new BinaryWriter(fs))
+            {
+                writer.Write(pdfBinary, 0, pdfBinary.Length);
+            }
+            MailMetPdfViewModel model2 = new MailMetPdfViewModel();
+            model2.OntvangerMail = model.OntvangerEmail;
+
+            return View(nameof(VerstuurMailMetPdf), model2);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> VerstuurMailMetPdf(MailMetPdfViewModel model)
+        {
+            AnalyseFilter.ZetSessieLeeg(HttpContext);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+                    var dir = Path.Combine(_environment.WebRootPath, "pdfs");
+                    var fileName = "";
+                    if (Directory.Exists(dir))
+                    {
+                        fileName = dir + "\\pdf_" + User.Identity.Name + ".pdf";
+                    }
+
+
+                    await MailVerzender.StuurPdf(jc.Voornaam + jc.Naam, jc.Email, model.OntvangerMail, model.Onderwerp, model.Inhoud, fileName);
+                    TempData["message"] = "Uw email naar " + model.OntvangerMail + " werd succesvol verstuurd.";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception e)
+                {
+                    TempData["error"] = "Iets is misgelopen, uw email werd niet verstuurd.";
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            
+            return View(model);
+        }
+
+        public IActionResult AnimatiesAanUit()
+        {
+            JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
+            jc.WilAnimaties = !jc.WilAnimaties;
+            _jobCoachRepository.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int id)
@@ -279,7 +345,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 m.Jobcoach = jc;
             }
-            return View(new OverzichtMailboxViewModel(mails));
+            return View(new OverzichtMailboxViewModel(mails) {WilAnimaties = jc.WilAnimaties});
         }
 
         public IActionResult GeselecteerdeMail(int id)
@@ -300,6 +366,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 OverzichtMailboxViewModel model = new OverzichtMailboxViewModel(mails);
                 model.GeopendeMail = new MailViewModel(mail);
                 model.GeopendeMailId = mail.InterneMailId;
+                model.WilAnimaties = jc.WilAnimaties;
                 return View(nameof(OverzichtMailbox), model);
             }
             catch
@@ -312,7 +379,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             {
                 m.Jobcoach = j;
             }
-            return View(nameof(OverzichtMailbox), new OverzichtMailboxViewModel(mijnMails));
+            return View(nameof(OverzichtMailbox), new OverzichtMailboxViewModel(mijnMails) {WilAnimaties = j.WilAnimaties});
         }
 
         public IActionResult VerwijderMail(int id)
@@ -382,7 +449,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 }
             }
             HttpContext.Session.SetString("mails", JsonConvert.SerializeObject(geselecteerdeMails));
-
+            
             return RedirectToAction(nameof(BevestigVerwijderGeselecteerde));
         }
 
@@ -402,6 +469,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             ICollection<InterneMailJobcoach> mails = JsonConvert.DeserializeObject<ICollection<InterneMailJobcoach>>(HttpContext.Session.GetString("mails"));
             if (mails == null)
             {
+                TempData["error"] = "Er is iets misgelopen, de mails werden niet verwijderd";
                 return RedirectToAction(nameof(Index));
             }
             foreach (InterneMailJobcoach m in mails)
@@ -409,6 +477,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 _interneMailJobcoachRepository.Delete(_interneMailJobcoachRepository.GetById(User.Identity.Name, m.InterneMailId));
                 _interneMailJobcoachRepository.SaveChanges();
             }
+            TempData["message"] = "De geselecteerde mails zijn succesvol verwijderd";
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
@@ -417,12 +486,17 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             AnalyseFilter.ZetSessieLeeg(HttpContext);
             IEnumerable<InterneMailJobcoach> mails = _interneMailJobcoachRepository.GetAll(User.Identity.Name);
+            if (mails == null)
+            {
+                TempData["error"] = "Er is iets misgelopen, de mails werden niet als gelezen gemarkeerd";
+                return RedirectToAction(nameof(Index));
+            }
             foreach (InterneMailJobcoach m in mails)
             {
                 _interneMailJobcoachRepository.GetById(User.Identity.Name, m.InterneMailId).IsGelezen = true;
                 _interneMailJobcoachRepository.SaveChanges();
             }
-            
+            TempData["message"] = "De geselecteerde mails zijn succesvol als gelezen gemarkeerd";
             return RedirectToAction(nameof(OverzichtMailbox));
         }
 
@@ -439,6 +513,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     AdminMail mail = new AdminMail(jc, admin, model.Onderwerp, model.Inhoud, DateTime.Now);
                     _adminMailRepository.Add(mail);
                     _adminMailRepository.SaveChanges();
+                    TempData["message"] = "Uw antwoord werd succesvol verzonden";
                     return RedirectToAction(nameof(OverzichtMailbox));
                 }
                 catch (Exception e)
@@ -446,14 +521,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
+            TempData["error"] = "Er is iets misgelopen, uw antwoord werd niet verzonden";
             return View(nameof(OverzichtMailbox));
-        }
-
-        public bool ControleerOfMailSessieVerlopenIs()
-        {
-            ICollection<InterneMailJobcoach> mails = JsonConvert.DeserializeObject<ICollection<InterneMailJobcoach>>(HttpContext.Session.GetString("mails"));
-            //return (analyse == null) || (analyse.JobCoachEmail == null && analyse.KostenEnBaten == null && analyse.Werkgever == null);
-            return true;
         }
 
         private bool ControleerOfModelVerandertIs(ProfielAanpassenViewModel model)

@@ -15,6 +15,7 @@ using Aalstprojecten2_groep4DOTNET.Filters;
 using Aalstprojecten2_groep4DOTNET.Models;
 using Aalstprojecten2_groep4DOTNET.Models.Domein;
 using Aalstprojecten2_groep4DOTNET.Services;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace Aalstprojecten2_groep4DOTNET
 {
@@ -46,6 +47,13 @@ namespace Aalstprojecten2_groep4DOTNET
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.Configure<FormOptions>(x =>
+            {
+                x.ValueCountLimit = 2147000000;
+                x.ValueLengthLimit = 2147000000;
+                x.KeyLengthLimit = 2147000000;
+            }); 
+
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(Configuration["Data:DefaultConnection:ConnectionString"]));

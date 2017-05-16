@@ -120,6 +120,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             AnalyseResultaatOverzichtViewModel model;
@@ -150,6 +151,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         {
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             AnalyseResultaatOverzichtViewModel model;
@@ -218,7 +220,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         w = new Werkgever(User.Identity.Name, model.Naam)
                         {
                             PatronaleBijdrage = model.PatronaleBijdrage,
-                            LinkNaarLogoPrent = model.LinkNaarLogoPrent
                         };
                     }
 
@@ -238,6 +239,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     if (file != null && file.Length > 0)
                     {
                         var upload = Path.Combine(_environment.WebRootPath, "images\\uploads");
+                        if (!Directory.Exists(upload))
+                        {
+                            Directory.CreateDirectory(upload);
+                        }
                         string[] gesplitst = file.FileName.Split('.');
                         string linkNaarLogoPrent = User.Identity.Name + "_" + a.Departement.Werkgever.WerkgeverId + "." +
                                                    gesplitst[gesplitst.Length - 1];
@@ -284,6 +289,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         public async Task<IActionResult> WerkgeverAanpassen(IFormFile file, WerkgeverViewModel model, Analyse analyse)
         {
             model.Aanpassen = true;
+
             model.Titel = analyse.Departement.Werkgever.Naam + " - " + analyse.Departement.Naam;
             if (ControleerOfSessieVerlopenIs(analyse))
             {
@@ -331,7 +337,6 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     d.Gemeente = model.Gemeente;
                     d.AantalWerkuren = model.AantalWerkuren;
                     d.Werkgever.PatronaleBijdrage = model.PatronaleBijdrage;
-                    d.Werkgever.LinkNaarLogoPrent = model.LinkNaarLogoPrent;
                     d.Naam = model.NaamAfdeling;
                     d.ContactPersoonNaam = model.ContactPersoonNaam;
                     d.ContactPersoonVoornaam = model.ContactPersoonVoornaam;
@@ -345,6 +350,10 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     if (file != null && file.Length > 0)
                     {
                         var upload = Path.Combine(_environment.WebRootPath, "images\\uploads");
+                        if (!Directory.Exists(upload))
+                        {
+                            Directory.CreateDirectory(upload);
+                        }
                         string[] gesplitst = file.FileName.Split('.');
                         string linkNaarLogoPrent = User.Identity.Name + "_" + analyse.Departement.Werkgever.WerkgeverId + "." +
                                                    gesplitst[gesplitst.Length - 1];
@@ -360,12 +369,13 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                         "/images/uploads/" + linkNaarLogoPrent;
                         _werkgeverRepository.SaveChanges();
                     }
-                    
+                    TempData["message"] = "De werkgever is succesvol aangepast";
                     return RedirectToAction(nameof(AnalyseOverzicht));
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
+                    TempData["error"] = "Er is iets fout gelopen, de werkgever werd niet aangepast";
                 }
             }
             return View(nameof(NieuweWerkgever), model);
@@ -384,6 +394,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -400,6 +411,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Uren1 == null && model.Maandloon1 == null)
@@ -471,6 +483,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Uren2 == null && model.Maandloon2 == null)
@@ -541,6 +554,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij baatrij = analyse.GeefBaatMetNummer(3).GeefKOBRijMetNummer(id);
@@ -567,6 +581,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij baatrij = analyse.GeefBaatMetNummer(4).GeefKOBRijMetNummer(id);
@@ -595,6 +610,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -611,6 +627,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Beschrijving1 == null && model.Bedrag1 == null)
@@ -681,6 +698,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Beschrijving2 == null && model.Bedrag2 == null)
@@ -752,6 +770,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (ModelState.IsValid)
@@ -803,6 +822,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (ModelState.IsValid)
@@ -860,6 +880,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (ModelState.IsValid)
@@ -917,6 +938,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij baatrij = analyse.GeefBaatMetNummer(5).GeefKOBRijMetNummer(id);
@@ -943,6 +965,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij baatrij = analyse.GeefBaatMetNummer(9).GeefKOBRijMetNummer(id);
@@ -969,6 +992,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -985,6 +1009,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Percent1 == null && model.Bedrag1 == null)
@@ -1056,6 +1081,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (ModelState.IsValid)
@@ -1108,6 +1134,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (ModelState.IsValid)
@@ -1159,6 +1186,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij baatrij = analyse.GeefBaatMetNummer(6).GeefKOBRijMetNummer(id);
@@ -1185,6 +1213,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -1201,6 +1230,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Beschrijving == null && model.Bedrag == null)
@@ -1271,6 +1301,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij baatrij = analyse.GeefBaatMetNummer(11).GeefKOBRijMetNummer(id);
@@ -1297,6 +1328,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -1313,6 +1345,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -1425,6 +1458,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(1).GeefKOBRijMetNummer(id);
@@ -1464,6 +1498,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -1480,6 +1515,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -1551,6 +1587,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(8).GeefKOBRijMetNummer(id);
@@ -1577,6 +1614,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -1593,6 +1631,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Bedrag1 == null && model.Beschrijving1 == null)
@@ -1663,6 +1702,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Bedrag2 == null && model.Beschrijving2 == null)
@@ -1732,6 +1772,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(3).GeefKOBRijMetNummer(id);
@@ -1758,6 +1799,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(4).GeefKOBRijMetNummer(id);
@@ -1784,6 +1826,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             
@@ -1800,6 +1843,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Bedrag1 == null && model.Beschrijving1 == null)
@@ -1871,6 +1915,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Uren2 == null && model.Maandloon2 == null)
@@ -1941,6 +1986,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Beschrijving3 == null && model.Bedrag3 == null)
@@ -2011,6 +2057,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             if (model.Beschrijving4 == null && model.Bedrag4 == null)
@@ -2080,6 +2127,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(2).GeefKOBRijMetNummer(id);
@@ -2106,6 +2154,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(6).GeefKOBRijMetNummer(id);
@@ -2132,6 +2181,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(5).GeefKOBRijMetNummer(id);
@@ -2158,6 +2208,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             AnalyseFilter.HaalMailsUitSessie(HttpContext);
             if (ControleerOfSessieVerlopenIs(analyse))
             {
+                TempData["error"] = "Uw sessie is verlopen, u kan vanaf hier verder werken";
                 return RedirectToAction("Index", "Home");
             }
             KOBRij kostrij = analyse.GeefKostMetNummer(7).GeefKOBRijMetNummer(id);

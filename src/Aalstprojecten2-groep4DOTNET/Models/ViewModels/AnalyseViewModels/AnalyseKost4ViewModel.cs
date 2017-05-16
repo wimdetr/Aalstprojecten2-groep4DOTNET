@@ -13,7 +13,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public int VolgendeLijn1 { get; set; } = -1;
         public string Beschrijving1 { get; set; }
         [Display(Name = "Bedrag")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string Bedrag1 { get; set; }
         public bool ToonGroep1 { get; set; }
 
@@ -24,7 +24,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [RegularExpression("[1-9][0-9]*", ErrorMessage = "{0} moet een positief getal zijn")]
         public string Uren2 { get; set; }
         [Display(Name = "Maandloon")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string Maandloon2 { get; set; }
         public bool ToonGroep2 { get; set; }
 
@@ -33,7 +33,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public int VolgendeLijn3 { get; set; } = -1;
         public string Beschrijving3 { get; set; }
         [Display(Name = "Bedrag")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string Bedrag3 { get; set; }
         public bool ToonGroep3 { get; set; }
 
@@ -42,7 +42,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public int VolgendeLijn4 { get; set; } = -1;
         public string Beschrijving4 { get; set; }
         [Display(Name = "Bedrag")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string Bedrag4 { get; set; }
         public bool ToonGroep4 { get; set; }
         public bool BevatFout { get; set; } = false;

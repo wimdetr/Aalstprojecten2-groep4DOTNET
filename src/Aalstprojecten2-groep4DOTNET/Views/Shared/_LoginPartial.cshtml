@@ -7,12 +7,14 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IInterneMailJobcoachRepository InterneMailJobcoachRepository
+@inject IJobCoachRepository JobCoachRepository
 @{
     ApplicationUser user = await UserManager.GetUserAsync(User);
     if (user != null)
     {
         ViewData["gebruikersnaam"] = user.Voornaam + " " + user.Naam;
         ViewData["ongelezen"] = InterneMailJobcoachRepository.GetAantalOngelezen(user.Email);
+        ViewData["animaties"] = JobCoachRepository.GetByEmail(user.Email).WilAnimaties ? "Animaties uitzetten" : "Animaties aanzetten";
     }
 
 }
@@ -31,7 +33,9 @@
                     <li class="divider" style="margin: 0;"></li>
                     <li><a asp-controller="Home" asp-action="OverzichtMailbox" style="padding: 9px;">Inbox <span class="badge pull-right"> @ViewData["ongelezen"] </span></a></li>
                     <li class="divider" style="margin: 0;"></li>
-                    <li><a asp-controller="Account" asp-action="LogUit" style="padding: 9px;">Log uit<span class="glyphicon glyphicon-log-out pull-right" /></a></li>
+                    <li><a asp-controller="Home" asp-action="AnimatiesAanUit" id="animatiesAanUit" style="padding: 9px;">@ViewData["animaties"] <span class="glyphicon glyphicon-flag pull-right"></span></a></li>
+                    <li class="divider" style="margin: 0;"></li>
+                    <li><a asp-controller="Account" asp-action="LogUit" style="padding: 9px;">Log uit<span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                 </ul>
             </li>
 

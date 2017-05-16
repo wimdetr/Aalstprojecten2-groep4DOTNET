@@ -1,6 +1,10 @@
 ﻿@using System.Runtime.InteropServices.ComTypes
 @model Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home.OverzichtMailboxViewModel
 
+@{
+    ViewData["Title"] = "Inbox";
+}
+
 <link rel="stylesheet" href="~/css/OverzichtMailbox.css" />
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
@@ -80,7 +84,7 @@ else
 
 
             @* Rechter kant ontvangen *@
-            <div id="geopendeMail" data-mailid="@Model.GeopendeMailId" class="col-md-9 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail animated fadeIn")">
+            <div id="geopendeMail" data-mailid="@Model.GeopendeMailId" class="col-md-9 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail") @(Model.GeopendeMail != null && Model.WilAnimaties?"animated fadeIn":"")">
 
                 @* Knoppen boven ontvangen *@
                 <div class="col-md-12 2Knoppen" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
