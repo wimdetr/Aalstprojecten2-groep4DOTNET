@@ -91,44 +91,49 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Welke kosten moet u maken ter voorbereiding om dit te implementeren?</h3>
-                <table class="table table-striped text-left marginBottomGroot">
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th>Type</th>
-                            <th>Bedrag</th>
-                            <th class="kleineBreedte2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
-                        {
-                            <tr id="tr_0">
-                                <td style="display: none;">@Model.Lijst1[i - 1].KostId</td>
-                                <td>@i.</td>
-                                <td>@Model.Lijst1[i - 1].Beschrijving</td>
-                                <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
-                                <td class="text-center tooltip" data-volgorde="10">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
-                                    @if (i == 1)
-                                    {
-                                        <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
-                                    }
+                
+                <div class="table-responsive">
+                    <table class="table table-striped text-left marginBottomGroot">
+                        <thead class="achtergrondKleurVanDeTabelHeader">
+                            <tr>
+                                <th class="kleineBreedte2"></th>
+                                <th>Type</th>
+                                <th>Bedrag</th>
+                                <th class="kleineBreedte2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
+                            {
+                                <tr id="tr_0">
+                                    <td style="display: none;">@Model.Lijst1[i - 1].KostId</td>
+                                    <td>@i.</td>
+                                    <td>@Model.Lijst1[i - 1].Beschrijving</td>
+                                    <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
+                                    <td class="text-center tooltip" data-volgorde="10">
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                        @if (i == 1)
+                                        {
+                                            <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td class="opmaakKnopje toverknop" style="padding-top:0;">
+                                    <div class="SpecialeHoogteDoorNielsGemaakt tooltip" data-volgorde="10">
+                                        <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                        <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
+                                    </div>
                                 </td>
                             </tr>
-                        }
-
-                        <tr>
-                            <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip" data-volgorde="10">
-                                    <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                    <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                
+                
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
 
@@ -185,39 +190,44 @@
 
             <div class="Blok1 text-center">
                 <h3 class="text-left">2. Hoeveel uren spendeert u jaarlijks aan extra administratie en interne begeleiding?</h3>
-                <table class="table table-striped text-left marginBenedenGroot">
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th>Uren</th>
-                            <th>Bruto Maandloon Begeleider</th>
-                            <th class="kleineBreedte2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
-                        {
-                            <tr id="tr_0">
-                                <td style="display: none;">@Model.Lijst2[i - 1].KostId</td>
-                                <td>@i.</td>
-                                <td>@Model.Lijst2[i - 1].Uren</td>
-                                <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
-                                <td class="text-center">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped text-left marginBenedenGroot">
+                        <thead class="achtergrondKleurVanDeTabelHeader">
+                            <tr>
+                                <th class="kleineBreedte2"></th>
+                                <th>Uren</th>
+                                <th>Bruto Maandloon Begeleider</th>
+                                <th class="kleineBreedte2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 1; i <= Model.AantalLijnenLijst2; i++)
+                            {
+                                <tr id="tr_0">
+                                    <td style="display: none;">@Model.Lijst2[i - 1].KostId</td>
+                                    <td>@i.</td>
+                                    <td>@Model.Lijst2[i - 1].Uren</td>
+                                    <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
+                                    <td class="text-center">
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td class="opmaakKnopje toverknop" style="padding-top:0;">
+                                    <div class="SpecialeHoogteDoorNielsGemaakt">
+                                        <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                    </div>
                                 </td>
                             </tr>
-                        }
+                        </tbody>
+                    </table>
 
-                        <tr>
-                            <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt">
-                                    <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                </div>
+                
 
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
@@ -274,39 +284,44 @@
 
             <div class="Blok1 text-center">
                 <h3 class="text-left">3. Welke opleidingskosten moeten er gemaakt worden om de nieuwe kraachten op het gewenste niveau te krijgen?</h3>
-                <table class="table table-striped text-left marginBenedenGroot">
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th>Type</th>
-                            <th>Bedrag</th>
-                            <th class="kleineBreedte2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst3; i++)
-                        {
-                            <tr id="tr_0">
-                                <td style="display: none;">@Model.Lijst3[i - 1].KostId</td>
-                                <td>@i.</td>
-                                <td>@Model.Lijst3[i - 1].Beschrijving</td>
-                                <td>@Model.Lijst3[i - 1].Bedrag.ToString("C")</td>
-                                <td class="text-center">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop3"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijVerwijderen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped text-left marginBenedenGroot">
+                        <thead class="achtergrondKleurVanDeTabelHeader">
+                            <tr>
+                                <th class="kleineBreedte2"></th>
+                                <th>Type</th>
+                                <th>Bedrag</th>
+                                <th class="kleineBreedte2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 1; i <= Model.AantalLijnenLijst3; i++)
+                            {
+                                <tr id="tr_0">
+                                    <td style="display: none;">@Model.Lijst3[i - 1].KostId</td>
+                                    <td>@i.</td>
+                                    <td>@Model.Lijst3[i - 1].Beschrijving</td>
+                                    <td>@Model.Lijst3[i - 1].Bedrag.ToString("C")</td>
+                                    <td class="text-center">
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop3"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijVerwijderen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td class="opmaakKnopje toverknop" style="padding-top:0;">
+                                    <div class="SpecialeHoogteDoorNielsGemaakt">
+                                        <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                    </div>
                                 </td>
                             </tr>
-                        }
+                        </tbody>
+                    </table>
 
-                        <tr>
-                            <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt">
-                                    <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                </div>
+                
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep3?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
 
@@ -363,39 +378,44 @@
 
             <div class="Blok1 text-center">
                 <h3 class="text-left">4. Aanwelke kosten kan nog meer worden gedacht?</h3>
-                <table class="table table-striped text-left marginBenedenGroot">
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th>Type</th>
-                            <th>Bedrag</th>
-                            <th class="kleineBreedte2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst4; i++)
-                        {
-                            <tr id="tr_0">
-                                <td style="display: none;">@Model.Lijst4[i - 1].KostId</td>
-                                <td>@i.</td>
-                                <td>@Model.Lijst4[i - 1].Beschrijving</td>
-                                <td>@Model.Lijst4[i - 1].Bedrag.ToString("C")</td>
-                                <td class="text-center">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop4"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijVerwijderen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped text-left marginBenedenGroot">
+                        <thead class="achtergrondKleurVanDeTabelHeader">
+                            <tr>
+                                <th class="kleineBreedte2"></th>
+                                <th>Type</th>
+                                <th>Bedrag</th>
+                                <th class="kleineBreedte2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 1; i <= Model.AantalLijnenLijst4; i++)
+                            {
+                                <tr id="tr_0">
+                                    <td style="display: none;">@Model.Lijst4[i - 1].KostId</td>
+                                    <td>@i.</td>
+                                    <td>@Model.Lijst4[i - 1].Beschrijving</td>
+                                    <td>@Model.Lijst4[i - 1].Bedrag.ToString("C")</td>
+                                    <td class="text-center">
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop4"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijVerwijderen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td class="opmaakKnopje" style="padding-top:0;">
+                                    <div class="SpecialeHoogteDoorNielsGemaakt">
+                                        <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                    </div>
                                 </td>
                             </tr>
-                        }
+                        </tbody>
+                    </table>
 
-                        <tr>
-                            <td class="opmaakKnopje" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt">
-                                    <a class="text-center toverknop marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                </div>
+                
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep4?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <div class="row">

@@ -90,43 +90,48 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Hoeveel omzet mist u doordat u personeel tekort komt?</h3>
-                <table class="table table-striped text-left marginBottomGroot">
-                    <thead class="achtergrondKleurVanDeTabelHeader">
-                        <tr>
-                            <th class="kleineBreedte2"></th>
-                            <th>Jaarbedrag Omzetverlies</th>
-                            <th>Besparing</th>
-                            <th class="kleineBreedte2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
-                        {
+                
+                <div class="table-responsive">
+                    <table class="table table-striped text-left marginBottomGroot">
+                        <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
-                                <td style="display: none;">@Model.Lijst1[i - 1].KostId</td>
-                                <td>@i.</td>
-                                <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
-                                <td>@(Model.Lijst1[i - 1].Percent)%</td>
-                                <td class="text-center tooltip" data-volgorde="10">
-                                    <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                    <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
-                                    @if (i == 1)
-                                    {
-                                        <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
-                                    }
+                                <th class="kleineBreedte2"></th>
+                                <th>Jaarbedrag Omzetverlies</th>
+                                <th>Besparing</th>
+                                <th class="kleineBreedte2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 1; i <= Model.AantalLijnenLijst1; i++)
+                            {
+                                <tr>
+                                    <td style="display: none;">@Model.Lijst1[i - 1].KostId</td>
+                                    <td>@i.</td>
+                                    <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
+                                    <td>@(Model.Lijst1[i - 1].Percent)%</td>
+                                    <td class="text-center tooltip" data-volgorde="10">
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove"></a>
+                                        @if (i == 1)
+                                        {
+                                            <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td class="opmaakKnopje toverknop" style="padding-top:0;">
+                                    <div class="SpecialeHoogteDoorNielsGemaakt tooltip" data-volgorde="10">
+                                        <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
+                                        <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
+                                    </div>
                                 </td>
                             </tr>
-                        }
-                        <tr>
-                            <td class="opmaakKnopje toverknop" style="padding-top:0;">
-                                <div class="SpecialeHoogteDoorNielsGemaakt tooltip" data-volgorde="10">
-                                    <a class="text-center marginBenedenMidden"><img src="~/images/iconen/plus.png" class="fototjeKosten" /></a>
-                                    <span class="tooltiptext verbergTooltip tooltipRightPlusIcoon">Met de plus kan u een rij toevoegen</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+
+                </div>
+                
 
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">

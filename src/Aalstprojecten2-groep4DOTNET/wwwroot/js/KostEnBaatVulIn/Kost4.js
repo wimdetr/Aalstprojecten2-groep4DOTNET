@@ -16,7 +16,7 @@
                 bevatFout = true;
             }
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(bedrag)) {
+            if (bedrag !== "" && !re.test(bedrag)) {
                 bevatFout = true;
             }
 
@@ -52,12 +52,12 @@
             }
 
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(bedrag)) {
+            if (bedrag !== "" && !re.test(bedrag)) {
                 bevatFout = true;
             }
 
             var re2 = new RegExp("[1-9][0-9]*");
-            if (!re2.test(uren)) {
+            if (uren !== "" && !re2.test(uren)) {
                 bevatFout = true;
             }
 
@@ -91,7 +91,7 @@
                 bevatFout = true;
             }
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(bedrag)) {
+            if (bedrag !== "" && !re.test(bedrag)) {
                 bevatFout = true;
             }
 
@@ -126,7 +126,7 @@
                 bevatFout = true;
             }
             var re = new RegExp("[1-9][0-9]*([,][0-9]+)?");
-            if (!re.test(bedrag)) {
+            if (bedrag !== "" && !re.test(bedrag)) {
                 bevatFout = true;
             }
 
@@ -165,10 +165,10 @@
             $("#type1").val(beschrijving);
             $("#Bedrag1").val(bedrag);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });
@@ -195,10 +195,10 @@
             $("#uren").val(uren);
             $("#brutoMaandloonBegeleider").val(bedrag);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });
@@ -220,10 +220,10 @@
             $("#type3").val(beschrijving);
             $("#Bedrag3").val(bedrag);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });
@@ -248,10 +248,10 @@
             $("#type4").val(beschrijving);
             $("#Bedrag4").val(bedrag);
 
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
+                $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).parent().parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
                 }
             }
         });
