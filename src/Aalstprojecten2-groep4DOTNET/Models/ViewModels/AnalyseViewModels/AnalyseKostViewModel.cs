@@ -17,7 +17,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [RegularExpression("[1-9][0-9]*", ErrorMessage = "{0} moet een positief getal zijn")]
         public string AantalUrenPerWeek { get; set; }
         [Display(Name = "Bruto maandloon")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string BrutoMaandloonFulltime { get; set; }
         [Display(Name = "Doelgroep")]
         public string Doelgroep { get; set; }
@@ -27,7 +27,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [RegularExpression("[1-9][0-9]*", ErrorMessage = "{0} moet een positief getal zijn")]
         public string AantalMaandenIBO { get; set; }
         [Display(Name = "Totale productiviteits premie IBO")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaat van een punt")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string TotaleProductiviteitsPremieIBO { get; set; }
         public IEnumerable<string> Doelgroepen { get; set; }
 
