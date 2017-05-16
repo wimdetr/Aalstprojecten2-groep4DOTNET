@@ -3,6 +3,9 @@
     if ($("#animatiesAanUit").text().trim() === "Animaties aanzetten") {
         tijd = 0;
     }
+    var scrollPos = localStorage.getItem("scrollPos");
+    localStorage.setItem("scrollPos", 0);
+    $(window).scrollTop(scrollPos);
     $(".toverknop")
         .click(function () {
             if ($(this).parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {

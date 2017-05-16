@@ -5,6 +5,7 @@
     }
     $("#vulInKnop1")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var uren = $("#uren1").val().trim();
@@ -44,6 +45,7 @@
 
     $("#vulInKnop2")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var uren = $("#uren2").val().trim();

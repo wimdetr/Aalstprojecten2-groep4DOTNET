@@ -5,6 +5,7 @@
     }
     $("#vulInKnop1")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var beschrijving = $("#type1").val().trim();
@@ -39,6 +40,7 @@
 
     $("#vulInKnop2")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var uren = $("#uren").val().trim();
@@ -78,6 +80,7 @@
 
     $("#vulInKnop3")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var beschrijving = $("#type3").val().trim();
@@ -112,6 +115,7 @@
 
     $("#vulInKnop4")
         .click(function () {
+            localStorage.setItem("scrollPos", $(window).scrollTop());
             var knop = $(this);
 
             var beschrijving = $("#type4").val().trim();
