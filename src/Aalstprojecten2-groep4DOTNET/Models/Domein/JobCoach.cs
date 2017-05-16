@@ -15,6 +15,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
         public int PostcodeBedrijf { get; set; }
         public string GemeenteBedrijf { get; set; }
         public bool MoetWachtwoordVeranderen { get; set; }
+        public bool WilAnimaties { get; set; }
 
         public JobCoach() : base(String.Empty, String.Empty, String.Empty)
         {
@@ -30,6 +31,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.Domein
             PostcodeBedrijf = postcodeBedrijf;
             GemeenteBedrijf = gemeenteBedrijf;
             MoetWachtwoordVeranderen = true;
+            WilAnimaties = true;
         }
 
         public JobCoach(string naam, string voornaam, string email, string naamBedrijf, string straatBedrijf,

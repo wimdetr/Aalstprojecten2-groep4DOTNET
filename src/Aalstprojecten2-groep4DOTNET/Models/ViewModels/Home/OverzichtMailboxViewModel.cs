@@ -15,6 +15,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.Home
         public string Ontvanger { get; set; }
         public string Onderwerp { get; set; }
         public string Inhoud { get; set; }
+        public bool WilAnimaties { get; set; }
 
         public int GeopendeMailId
         {

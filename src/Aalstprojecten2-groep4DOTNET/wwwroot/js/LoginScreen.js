@@ -32,7 +32,7 @@
     }
 
     $(window).resize(function () {
-        var breedte = $(window).width();
+        breedte = $(window).width();
 
         if (breedte < 1400) {
             $("#b").parent().removeClass("flex");

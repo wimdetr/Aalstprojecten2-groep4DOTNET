@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    var tijd = 800;
+    if ($("#animatiesAanUit").text().trim() === "Animaties aanzetten") {
+        tijd = 0;
+    }
     $("#vulInKnop")
         .click(function () {
             var knop = $(this);
@@ -19,11 +23,14 @@
             if (bevatFout) {
                 knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").addClass("animated zoomOut");
+                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                if (tijd !== 0) {
+                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                }
                 setTimeout(function () {
                     knop.parent().parent().parent().parent().parent().submit();
                 },
-                    800);
+                    tijd);
             }
         });
 
@@ -46,7 +53,10 @@
             $("#jaarBedrag").val(bedrag);
 
             if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier animated zoomIn");
+                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+                if (tijd !== 0) {
+                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                }
             }
         });
 });

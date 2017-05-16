@@ -1,5 +1,4 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="js/analysekost6.js" />
 /// <reference path="js/analysetoolbar.js" />
 /// <reference path="js/archief.js" />
 /// <reference path="js/autocomplete.js" />
