@@ -24,7 +24,7 @@ else
     <form id="formulier" method="post">
         <div class="row" style="padding:0px;">
             @* Linker kant *@
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3">
 
                 
                 @* Knoppen boven emails *@
@@ -39,7 +39,7 @@ else
 
                 @* email divs *@
 
-                <div class="col-md-12" style="padding-right:0px; min-height: 1000px; overflow-y:scroll; max-height:1000px;">
+                <div class="col-md-12 plizFixDezeOokNog" style="padding-right:0px; overflow-y: scroll;">
                     @foreach (var item in Model.Mails)
                     {
                         var id = "checkbox" + item.MailId;
@@ -52,9 +52,9 @@ else
 
                             </div>
 
-                            <div style="float:left; width:99%;">
+                            <div class="plizFixDit" style="width:99%;">
                                 @* rij 1 *@
-                                <div class="col-md-12" style="margin-bottom:10px; padding-top:10px;">
+                                <div class="col-md-12 plizFixDitOok" style="padding-top:10px; height: 45px;">
                                     <div class="col-md-6 text-left" style="float:left; font-size: 20px; font-weight:bold; padding-left:0px;">
                                         @item.AfzenderKort
                                     </div>
@@ -84,7 +84,7 @@ else
 
 
             @* Rechter kant ontvangen *@
-            <div id="geopendeMail" data-mailid="@Model.GeopendeMailId" class="col-md-9 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail") @(Model.GeopendeMail != null && Model.WilAnimaties?"animated fadeIn":"")">
+            <div id="geopendeMail" data-mailid="@Model.GeopendeMailId" class="col-md-8 col-lg-9 @(Model.GeopendeMail == null ? "verbergMail" : "toonMail") @(Model.GeopendeMail != null && Model.WilAnimaties?"animated fadeIn":"")">
 
                 @* Knoppen boven ontvangen *@
                 <div class="col-md-12 2Knoppen" style="height: 70px; padding-left:0px; padding-right:0px; padding-bottom: 5px;">
@@ -148,7 +148,7 @@ else
 
 
             @* Rechter kant antwoord *@
-            <div id="antwoordOpMailDiv" class="col-md-9 antwoord verbergMail">
+            <div id="antwoordOpMailDiv" class="col-lg-9 col-md-8 antwoord verbergMail">
                 
                 <input id="antwoordOntvanger" class="antwoordVeld" asp-for="Ontvanger" style="display: none;"/>
                 <input id="antwoordOnderwerp" class="antwoordVeld" asp-for="Onderwerp" style="display: none;" />

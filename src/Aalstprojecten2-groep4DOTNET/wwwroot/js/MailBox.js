@@ -4,6 +4,22 @@
         if ($("#animatiesAanUit").text().trim() === "Animaties aanzetten") {
             tijd = 0;
         }
+        var breedte = $(window).width();
+        if (breedte > 974) {
+            $(".plizFixDit").css("float", "left");
+        } else {
+            $(".plizFixDit").css("float", "none");
+        }
+        if (breedte <= 974 || breedte > 1827) {
+            $(".plizFixDitOok").css("margin-bottom", "5px");
+        } else {
+            $(".plizFixDitOok").css("margin-bottom", "20px");
+        }
+        if (breedte <= 974) {
+            $(".plizFixDezeOokNog").css("min-height", "400px").css("max-height", "400px");
+        } else {
+            $(".plizFixDezeOokNog").css("min-height", "1000px").css("max-height", "1000px");
+        }
         var mailKaart;
         $("#gelezenKnop").prop("disabled", true);
         $("#verwijderKnop").prop("disabled", true);
@@ -235,5 +251,24 @@
                     $("#formulier").attr("action", "BeantwoordMail");
                     $("#formulier").submit();
                 }, tijd);
+            });
+        $(window)
+            .resize(function() {
+                breedte = $(window).width();
+                if (breedte > 974) {
+                    $(".plizFixDit").css("float", "left");
+                } else {
+                    $(".plizFixDit").css("float", "none");
+                }
+                if (breedte <= 974 || breedte > 1827) {
+                    $(".plizFixDitOok").css("margin-bottom", "5px");
+                } else {
+                    $(".plizFixDitOok").css("margin-bottom", "20px");
+                }
+                if (breedte <= 974) {
+                    $(".plizFixDezeOokNog").css("min-height", "400px").css("max-height", "400px");
+                } else {
+                    $(".plizFixDezeOokNog").css("min-height", "1000px").css("max-height", "1000px");
+                }
             });
     });
