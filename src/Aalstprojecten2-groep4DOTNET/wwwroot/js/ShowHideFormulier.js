@@ -8,25 +8,19 @@
     $(window).scrollTop(scrollPos);
     $(".toverknop")
         .click(function () {
-            if ($(this).parent().parent().parent().parent().siblings(".invulgegevens").hasClass("verbergFormulier")) {
-                $(this).parent().parent().parent().parent().siblings(".invulgegevens").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
+            if ($(this).closest(".Blok1").find("form").hasClass("verbergFormulier")) {
+                $(this).closest(".Blok1").find("form").removeClass("verbergFormulier animated zoomOut").addClass("toonFormulier");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent().siblings(".invulgegevens").addClass("animated zoomIn");
+                    $(this).closest(".Blok1").find("form").addClass("animated zoomIn");
                 }
             } else {
-                $(this)
-                    .parent()
-                    .parent()
-                    .parent()
-                    .parent()
-                    .siblings(".invulgegevens")
+                $(this).closest(".Blok1").find("form")
                     .removeClass("toonFormulier animated zoomIn");
                 if (tijd !== 0) {
-                    $(this).parent().parent().parent().parent()
-                    .siblings(".invulgegevens").addClass("animated zoomOut");
+                    $(this).closest(".Blok1").find("form").addClass("animated zoomOut");
                 }
                 setTimeout(function () {
-                    $(".toverknop").parent().parent().parent().parent().siblings(".invulgegevens").addClass("verbergFormulier");
+                    $(".toverknop").closest(".Blok1").find("form").addClass("verbergFormulier");
                 }, tijd);
             }
         });
@@ -34,14 +28,14 @@
     $(".annuleerKnop")
         .click(function () {
             var knop = $(this);
-            knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+            knop.closest("form").removeClass("toonFormulier animated zoomIn");
             if (tijd !== 0) {
-                knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                knop.closest("form").addClass("animated zoomOut");
             }
             setTimeout(function () {
-                knop.parent().parent().parent().parent().parent().addClass("verbergFormulier");
-                knop.parent().parent().siblings(".marginBenedenTekstvelden").find("input").val("-1");
-                knop.parent().parent().siblings(".marginBenedenTekstvelden").children(".vanKnopNaarInputVelden").children().find("input").val("");
+                knop.closest("form").addClass("verbergFormulier");
+                knop.closest("form").find("input").val("");
+                knop.closest("form").find(".volgendeLijn").val("-1");
                 $("span").text("");
             }, tijd);
         });
