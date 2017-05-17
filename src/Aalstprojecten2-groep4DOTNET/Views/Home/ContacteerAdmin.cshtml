@@ -14,29 +14,38 @@
     
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-offset-4 col-md-4 text-center divOpmaak divBorder">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6 text-center divOpmaak divBorder">
                 <div class="logo">
                     <img src="~/images/login/login foto.png" class="breddtefixen" />
                 </div>
                 <div asp-validation-summary="All" class="text-danger text-left"></div>
-                <div class="form-group col-md-12 text-left verwijderPaddingRechts">
+                <div class="form-group col-md-12 text-left">
                     <label asp-for="Onderwerp" class="col-md-12"></label>
                     <div class="col-md-12 verwijderPaddingRechts">
                         <input asp-for="Onderwerp" class="form-control verwijderPaddingRechts" placeholder="Onderwerp" />
                     </div>
                 </div>
 
-                <div class="form-group col-md-12 text-left verwijderPaddingRechts">
+                <div class="form-group col-md-12 text-left">
                     <label asp-for="Inhoud" class="col-md-12"></label>
                     <div class="col-md-12 verwijderPaddingRechts">
                         <textarea asp-for="Inhoud" class="form-control minimumGrootte verwijderPaddingRechts"></textarea>
                     </div>
                 </div>
 
-                <div class="btn-group col-md-12 margins" role="group">
-                    <button type="submit" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein teDisablenKnop">Verzend</button>
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-danger btn-lg col-md-6">Annuleer</a>
+                <div class="btn-group col-md-12 col-sm-12 col-lg-10 col-lg-offset-1 col-sm-offset-0 col-md-offset-0 margins" role="group">
+                    <button type="submit" class="btn btn-primary col-md-6 col-sm-6 col-lg-6 btn-lg marginBenedenKlein">Wijzigingen opslaan</button>
+                    <button type="submit" formaction="ProfielAanpassenDoorgaanZonderOpslaan" class="btn btn-danger btn-lg col-md-6 col-lg-6 col-sm-6 marginBenedenGroot">Wachtwoord aanpassen</button>
+                </div>
+
+
+
+                <div class="btn-group margins" role="group">
+                    <div class="col-md-12 col-sm-12">
+                        <button type="submit" class="btn btn-primary col-md-6 col-sm-6 btn-lg marginBenedenKlein teDisablenKnop">Verzend</button>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-danger btn-lg col-md-6 col-sm-6">Annuleer</a>
+                    </div>
                 </div>
             </div>
             
