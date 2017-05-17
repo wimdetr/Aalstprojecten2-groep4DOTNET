@@ -41,9 +41,7 @@
             setTimeout(function () {
                 knop.parent().parent().parent().parent().parent().addClass("verbergFormulier");
                 knop.parent().parent().siblings(".marginBenedenTekstvelden").find("input").val("-1");
-                knop.parent().parent().siblings(".marginBenedenTekstvelden").children(".vanKnopNaarInputVelden").children().each(function () {
-                    $(this).children().children("div").children(".form-group").find("input").val("");
-                });
+                knop.parent().parent().siblings(".marginBenedenTekstvelden").children(".vanKnopNaarInputVelden").children().find("input").val("");
                 $("span").text("");
             }, tijd);
         });
@@ -62,9 +60,9 @@
                     .siblings(".vanKnopNaarInputVelden")
                     .children()
                     .children()
-                    .each(function() {
-                        $(this).children("div").children(".form-group").find("input").val("");
-                    });
+                    .find("input")
+                    .val("");
+                    
                 $("#dropDown1").val("Kies uw doelgroep");
                 $("#dropDown2").val("Vlaamse ondersteuningspremie");
                 $("span").text("");
