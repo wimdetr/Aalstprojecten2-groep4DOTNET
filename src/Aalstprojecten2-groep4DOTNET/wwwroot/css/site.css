@@ -103,3 +103,15 @@ hr {
 .iconen {
     padding-top:1%;
 }
+
+.kanKlikken {
+    cursor:pointer;
+}
+
+.paddingTop4px {
+    padding-top: 4px;
+}
+
+.paddingTop1px {
+    padding-top: 1px !important;
+}

@@ -17,7 +17,7 @@
 .header > label {
   display: none;
   width: 3em;
-  height: 3em;
+  height: 3em;  
   margin-left: 1em;
   margin-top: .5em;
   background-size: contain;
@@ -388,6 +388,18 @@
     width:10%;
 }
 
+.kleineBreedte7 {
+    width: 7%;
+}
+
+.kleineBreedte50 {
+    width: 50%;
+}
+
+.kleineBreedte40 {
+    width: 40%;
+}
+
 .marginRechtsEnFloatLeft {
     margin-right: 5px; 
     float: left;
@@ -524,4 +536,8 @@ u {
 
 input, select, textarea {
     max-width: 700px;
+}
+
+.floarRechts {
+    float: right;
 }

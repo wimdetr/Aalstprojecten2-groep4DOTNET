@@ -85,20 +85,20 @@ else
                     <div class="col-lg-6 col-md-6 col-sm-6 iconen tooltip @(teller != 1? "geenTooltip" : "")" data-volgorde="5">
                         <div class="datadiv" data-contactpersoon="@item.ContactPersoonEmail" data-organisatie="@item.Organisatie" data-afdeling="@item.Afdeling" data-locatie="@item.Locatie" data-straat="@item.Straat" data-nummer="@item.Nummer" data-baat1="@item.Baat1.ToString("C")" data-baat2="@item.Baat2.ToString("C")" data-baat3="@item.Baat3.ToString("C")" data-baat4="@item.Baat4.ToString("C")" data-baat5="@item.Baat5.ToString("C")" data-baat6="@item.Baat6.ToString("C")" data-baat7="@item.Baat7.ToString("C")" data-baat8="@item.Baat8.ToString("C")" data-baat9="@item.Baat9.ToString("C")" data-baat10="@item.Baat10.ToString("C")" data-baat11="@item.Baat11.ToString("C")" data-kost1="@item.Kost1.ToString("C")" data-kost1punt1="@item.Kost1Punt1.ToString("C")" data-kost2="@item.Kost2.ToString("C")" data-kost3="@item.Kost3.ToString("C")" data-kost4="@item.Kost4.ToString("C")" data-kost5="@item.Kost5.ToString("C")" data-kost6="@item.Kost6.ToString("C")" data-kost7="@item.Kost7.ToString("C")" data-subtotaalbaten="@item.BatenResultaat.ToString("C")" data-subtotaalkosten="@item.KostenResultaat.ToString("C")" data-nettoresultaat="@item.NettoResultaat.ToString("C")" style="display: none;"></div>
                         @*knoppen downloaden versturen verwijderen*@
-                        <div class="icoon verwijderIcoon">
+                        <div class="icoon verwijderIcoon kanKlikken">
                             <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon verwijderPrent" src="~/images/iconen/bin.png" alt="meh"/></a>
                         </div>
                         <span class="tooltiptext tooltipTopIconenCards tooltipOnzichtbaar verbergTooltip">Klik hier om een analyse te bewerken, archiveren, downloaden, versturen of verwijderen</span>
-                        <div class="icoon verstuurIcoon">
+                        <div class="icoon verstuurIcoon kanKlikken">
                             <a class="verstuurIcoonKnop"><img class="img-responsive img-rounded mijnIcoon verstuurPrent" src="~/images/iconen/send.png" alt="meh"/></a>
                         </div>
-                        <div class="icoon downloadIcoon">
+                        <div class="icoon downloadIcoon kanKlikken">
                             <a class="downloadIcoonKnop"><img class="img-responsive img-rounded mijnIcoon downloadPrent" src="~/images/iconen/download.png" alt="meh"/></a>
                         </div>
-                        <div class="icoon archiveerIcoon">
+                        <div class="icoon archiveerIcoon kanKlikken">
                             <a asp-controller="Analyse" asp-action="Archiveer" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon archiveerPrent" src="~/images/iconen/archive.png" alt="meh"/></a>
                         </div>
-                        <div class="icoon potloodIcoon">
+                        <div class="icoon potloodIcoon kanKlikken">
                             <a asp-controller="Analyse" asp-action="PasAnalyseAan" asp-route-id="@item.Id"><img class="img-responsive img-rounded mijnIcoon potloodPrent" src="~/images/iconen/edit.png" alt="meh"/></a>
                         </div>
                     </div>
