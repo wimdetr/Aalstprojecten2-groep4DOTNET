@@ -506,6 +506,10 @@ u {
     padding-left:0px;
 }
 
+.verwijderPaddingRechts {
+    padding-right:0px;
+}
+
 .fixKleineKnop {
     position: absolute;
     bottom: 2%;
@@ -516,4 +520,8 @@ u {
 
 .dividertje {
     width: 100%;
+}
+
+input, select, textarea {
+    max-width: 700px;
 }
