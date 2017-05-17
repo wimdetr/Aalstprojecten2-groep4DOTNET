@@ -248,7 +248,7 @@
                 }
                 setTimeout(function () {
                     $("#antwoordOpMailDiv").addClass("verbergMail");
-                    $("#formulier").attr("action", "BeantwoordMail");
+                    $("#formulier").attr("action", "/Home/BeantwoordMail");
                     $("#formulier").submit();
                 }, tijd);
             });
