@@ -192,7 +192,7 @@
                     $("#geopendeMail").addClass("verbergMail");
                     var naam = $("#geopendeMail").find("#afzenderNaam").text();
                     var ontvanger = naam.substring(4, naam.length) + " <";
-                    var email = $("#geopendeMail").find("#afzenderMail").text();
+                    var email = $("#geopendeMail").find("#afzenderMail").text().trim();
                     ontvanger += email + ">";
                     $("#ontvagerAntwoord").text("Aan: " + ontvanger);
                     $("#onderwerpAntwoord").text("Onderwerp: Re: " + $("#mailOnderwerp").text());
@@ -200,7 +200,7 @@
                     $("#inhoudVorigeMailAntwoord").text("");
                     var naam2 = $("#geopendeMail").find("#afzenderNaam").text();
                     var ontvanger2 = naam2.substring(4, naam.length) + " " + "&#60;";
-                    var email2 = $("#geopendeMail").find("#afzenderMail").text();
+                    var email2 = $("#geopendeMail").find("#afzenderMail").text().trim();
                     ontvanger2 += email2 + "&#62;";
                     var tekst = $("#mailInhoud").html();
 
