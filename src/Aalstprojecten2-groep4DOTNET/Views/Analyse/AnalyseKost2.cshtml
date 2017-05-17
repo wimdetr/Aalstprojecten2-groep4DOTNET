@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="~/css/AnalyseBekijken.css" />
 <link rel="stylesheet" href="~/css/Baat1.css" />
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
-<link rel="stylesheet" href="~/css/ShowHideFormulier.css"/>
+<link rel="stylesheet" href="~/css/ShowHideFormulier.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="~/js/tableScript.js"></script>
@@ -17,9 +17,9 @@
 
 <div class="row">
     <div class="col-md-3 tooltip diepte2" data-volgorde="3">
-        <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>    
+        <h2 class="titelFix"><a asp-controller="Analyse" asp-action="WerkgeverAanpassen">@ViewData["werkgever"]</a></h2>
         <span class="tooltiptext verbergTooltip tooltipBottomAnalyseOverzichtWerkgeverAanpassen">Via deze titel kan u de werkgever zijn gegevens aanpassen</span>
-</div>
+    </div>
     <div class="col-md-6 text-center">
         <h2 class="titelFix">Kosten</h2>
     </div>
@@ -87,7 +87,7 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Hoeveel betaalt u als u werk laat uitvoeren door maatwerkbedrijf via enclave of onderaanneming?</h3>
-                
+
                 <div class="table-responsive">
                     <table class="table table-striped text-left marginBenedenGroot">
                         <thead class="achtergrondKleurVanDeTabelHeader">
@@ -127,54 +127,50 @@
                         </tbody>
                     </table>
                 </div>
-                    
-                
+
+
 
                 <form asp-controller="Analyse" asp-action="AnalyseKost2" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")" method="post">
                     <div class="row">
                         <h3 class="marginBenedenTitel"><u>Gegevens van de nieuwe functie</u></h3>
-                        <div class="col-md-offset-1 col-md-10">
-                            <div class="marginBenedenTekstvelden">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-md-10 col-sm-12 col-lg-8 col-md-offset-1 col-sm-offset-0 col-lg-offset-2">
                                 <input asp-for="VolgendeLijn" id="volgendeLijn1" type="hidden" />
                                 <span asp-validation-for="VolgendeLijn" class="text-danger"></span>
-                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
-                                    <div class="col-md-6">
-                                        <div style="float:right;">
-                                            <label asp-for="Beschrijving" type="number" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-6 col-sm-6 col-md-12 text-center">
-                                                <div class="form-group">
-                                                    <input asp-for="Beschrijving" id="beschrijving" class="form-control" placeholder="Beschrijving van de functie" />
-                                                    <span asp-validation-for="Beschrijving" class="text-danger"></span>
-                                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div>
+                                        <label asp-for="Beschrijving" type="number" class="col-md-12 col-sm-12 col-lg-12 text-left"></label>
+                                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="Beschrijving" id="beschrijving" class="form-control" placeholder="Beschrijving van de functie" />
+                                                <span asp-validation-for="Beschrijving" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="col-md-6">
-                                        <div style="float:left;">
-                                            <label asp-for="Bedrag" type="number" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-6 col-sm-6 col-md-12">
-                                                <div class="form-group">
-                                                    <input asp-for="Bedrag" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag van de functie" />
-                                                    <span asp-validation-for="Bedrag" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
 
-                            </div>
 
-                            <div class="col-md-offset-4 col-md-4 ">
-                                <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
-                                    <a id="vulInKnop" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
-                                    <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div>
+                                        <label asp-for="Bedrag" type="number" class="col-md-12 col-sm-12 col-lg-12 text-left"></label>
+                                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="Bedrag" id="jaarbedrag" class="form-control" placeholder="Jaarbedrag van de functie" />
+                                                <span asp-validation-for="Bedrag" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-lg-6 col-lg-offset-3">
+                            <div class="btn-group col-md-12 col-sm-12 col-lg-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                <a id="vulInKnop" class="btn btn-primary col-md-6 col-sm-6 col-lg-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                <a class="btn btn-danger btn-lg col-md-6 col-sm-6 col-lg-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
+                            </div>
+                        </div>
                     </div>
+
                 </form>
             </div>
         </div>
