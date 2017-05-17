@@ -88,7 +88,7 @@
         <div class="col-md-12 well text-center">
             <div class="Blok1 text-center">
                 <h3 class="text-left">1. Vul hier de lonen op hetzelfde niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
-                
+
                 <div class="table-responsive">
                     <table class="table table-striped text-left marginBottomGroot">
                         <thead class="achtergrondKleurVanDeTabelHeader">
@@ -132,51 +132,49 @@
                     </table>
 
                 </div>
-                
-                
+
+
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep1?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <div class="row">
                         <h3 class="marginBenedenTitel"><u>Gegevens van het nieuw loon</u></h3>
-                        <div class="col-md-offset-1 col-md-10">
-                            <div class="marginBenedenTekstvelden">
+
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-md-10 col-sm-12 col-lg-8 col-md-offset-1 col-sm-offset-0 col-lg-offset-2">
                                 <input asp-for="VolgendeLijn1" id="volgendeLijn1" type="hidden" />
                                 <span asp-validation-for="VolgendeLijn1" class="text-danger"></span>
-                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
-                                    <div class="col-md-6">
-                                        <div style="float:right;">
-                                            <label asp-for="Uren1" type="number" placeholder="Uren" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-6 col-sm-6 col-md-12 text-center">
-                                                <div class="form-group">
-                                                    <input asp-for="Uren1" type="number" id="uren1" class="form-control" placeholder="Uren" />
-                                                    <span asp-validation-for="Uren1" class="text-danger"></span>
-                                                </div>
+
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div>
+                                        <label asp-for="Uren1" type="number" placeholder="Uren" class="col-md-12 col-sm-12 col-lg-12 text-left"></label>
+                                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="Uren1" type="number" id="uren1" class="form-control" placeholder="Uren" />
+                                                <span asp-validation-for="Uren1" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-
-                                    <div class="col-md-6">
-                                        <div style="float:left;">
-                                            <label asp-for="Maandloon1" type="number" placeholder="Maandloon" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-6 col-sm-6 col-md-12">
-                                                <div class="form-group">
-                                                    <input asp-for="Maandloon1" id="brutoMaandloonFulltime1" class="form-control" placeholder="Bruto maandloon fulltime" />
-                                                    <span asp-validation-for="Maandloon1" class="text-danger"></span>
-                                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div>
+                                        <label asp-for="Maandloon1" type="number" placeholder="Maandloon" class="col-md-12 col-sm-12 col-lg-12 text-left"></label>
+                                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="Maandloon1" id="brutoMaandloonFulltime1" class="form-control" placeholder="Bruto maandloon fulltime" />
+                                                <span asp-validation-for="Maandloon1" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                             </div>
+                        </div>
 
-                            <div class="col-md-offset-4 col-md-4 ">
-                                <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
-                                    <a id="vulInKnop1" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
-                                    <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
-                                </div>
+                        <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-lg-6 col-lg-offset-3">
+                            <div class="btn-group col-md-12 col-sm-12 col-lg-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                <a id="vulInKnop" class="btn btn-primary col-md-6 col-sm-6 col-lg-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                <a class="btn btn-danger btn-lg col-md-6 col-sm-6 col-lg-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
                             </div>
                         </div>
                     </div>
@@ -193,7 +191,7 @@
 
             <div class="Blok1 text-center">
                 <h3 class="text-left">2. Vul hier de lonen op een hoger niveau in die mogelijk vervangen worden, met het geschatte aantal uren dat per week weggehaald wordt.</h3>
-                
+
                 <div class="table-responsive">
                     <table class="table table-striped text-left marginBenedenGroot">
                         <thead class="achtergrondKleurVanDeTabelHeader">
@@ -229,50 +227,48 @@
                     </table>
 
                 </div>
-                
+
 
                 <form method="post" class="invulgegevens @(Model.ToonGroep2?(Model.BevatFout?"toonFormulier":"toonFormulier animated zoomIn"):"verbergFormulier")">
                     <div class="row">
                         <h3 class="marginBenedenTitel"><u>Gegevens van het nieuw loon</u></h3>
-                        <div class="col-md-offset-1 col-md-10">
-                            <div class="marginBenedenTekstvelden">
+
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-md-10 col-sm-12 col-lg-8 col-md-offset-1 col-sm-offset-0 col-lg-offset-2">
                                 <input asp-for="VolgendeLijn2" id="volgendeLijn2" type="hidden" />
                                 <span asp-validation-for="VolgendeLijn2" class="text-danger"></span>
-                                <div class="marginBenedenTekstvelden vanKnopNaarInputVelden">
-                                    <div class="col-md-6">
-                                        <div style="float:right;">
-                                            <label asp-for="Uren2" type="number" placeholder="Uren" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-6 col-sm-6 col-md-12 text-center">
-                                                <div class="form-group">
-                                                    <input asp-for="Uren2" type="number" id="uren2" class="form-control" placeholder="Uren" />
-                                                    <span asp-validation-for="Uren2" class="text-danger"></span>
-                                                </div>
+
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div>
+                                        <label asp-for="Uren2" type="number" placeholder="Uren" class="col-md-12 col-sm-12 col-lg-12 text-left"></label>
+                                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="Uren2" type="number" id="uren2" class="form-control" placeholder="Uren" />
+                                                <span asp-validation-for="Uren2" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="col-md-6">
-                                        <div style="float:left;">
-                                            <label asp-for="Maandloon2" type="number" placeholder="Maandloon" class="col-md-12 text-left"></label>
-                                            <div class="col-xs-6 col-sm-6 col-md-12">
-                                                <div class="form-group">
-                                                    <input asp-for="Maandloon2" id="brutoMaandloonFulltime2" class="form-control" placeholder="Bruto maandloon fulltime" />
-                                                    <span asp-validation-for="Maandloon2" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
 
+
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div>
+                                        <label asp-for="Maandloon2" type="number" placeholder="Maandloon" class="col-md-12 col-sm-12 col-lg-12 text-left"></label>
+                                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 text-center">
+                                            <div class="form-group">
+                                                <input asp-for="Maandloon2" id="brutoMaandloonFulltime2" class="form-control" placeholder="Bruto maandloon fulltime" />
+                                                <span asp-validation-for="Maandloon2" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-offset-4 col-md-4 ">
-                                <div class="btn-group col-md-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
-                                    <a id="vulInKnop2" class="btn btn-primary col-md-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
-                                    <a class="btn btn-danger btn-lg col-md-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
-                                </div>
+                        <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-lg-6 col-lg-offset-3">
+                            <div class="btn-group col-md-12 col-sm-12 col-lg-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                <a id="vulInKnop" class="btn btn-primary col-md-6 col-sm-6 col-lg-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                <a class="btn btn-danger btn-lg col-md-6 col-sm-6 col-lg-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
                             </div>
                         </div>
                     </div>
