@@ -11,6 +11,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public IList<BeschrijvingBedragViewModel> Lijst1 { get; set; }
         public int AantalLijnenLijst1 { get; set; }
         public int VolgendeLijn1 { get; set; } = -1;
+        [Display(Name = "Beschrijving")]
         public string Beschrijving1 { get; set; }
         [Display(Name = "Bedrag")]
         [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
@@ -31,6 +32,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public IList<BeschrijvingBedragViewModel> Lijst3 { get; set; }
         public int AantalLijnenLijst3 { get; set; }
         public int VolgendeLijn3 { get; set; } = -1;
+        [Display(Name = "Beschrijving")]
         public string Beschrijving3 { get; set; }
         [Display(Name = "Bedrag")]
         [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
@@ -40,6 +42,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         public IList<BeschrijvingBedragViewModel> Lijst4 { get; set; }
         public int AantalLijnenLijst4 { get; set; }
         public int VolgendeLijn4 { get; set; } = -1;
+        [Display(Name = "Beschrijving")]
         public string Beschrijving4 { get; set; }
         [Display(Name = "Bedrag")]
         [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
