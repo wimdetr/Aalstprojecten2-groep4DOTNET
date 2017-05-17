@@ -320,7 +320,7 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                 {
                     JobCoach jc = _jobCoachRepository.GetByEmail(User.Identity.Name);
                     await MailVerzender.ContacteerAdmin(jc.Naam + " " + jc.Voornaam, jc.Email, model.Onderwerp, model.Inhoud);
-                    Admin admin = _adminRepository.GetByEmail("bartmoens@gmail.com");
+                    Admin admin = _adminRepository.GetByEmail("bart@kairosnu.be");
                     AdminMail mail = new AdminMail(jc, admin, model.Onderwerp, model.Inhoud, DateTime.Now);
                     _adminMailRepository.Add(mail);
                     _adminMailRepository.SaveChanges();
