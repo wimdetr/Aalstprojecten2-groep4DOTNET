@@ -93,9 +93,9 @@
                         <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
                                 <th class="kleineBreedte2"></th>
-                                <th>Beschrijving</th>
-                                <th>Jaarbedrag</th>
-                                <th class="kleineBreedte2"></th>
+                                <th class="kleineBreedte50">Beschrijving</th>
+                                <th class="kleineBreedte40">Jaarbedrag</th>
+                                <th class="kleineBreedte7"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,8 +107,8 @@
                                     <td>@Model.Lijst[i - 1].Beschrijving</td>
                                     <td>@Model.Lijst[i - 1].Bedrag.ToString("C")</td>
                                     <td class="text-centecr tooltip" data-volgorde="10">
-                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseKost2RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost2RijVerwijderen" asp-route-id="@Model.Lijst[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij floarRechts"></a>
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1 floarRechts kanKlikken"></a>
                                         @if (i == 1)
                                         {
                                             <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>

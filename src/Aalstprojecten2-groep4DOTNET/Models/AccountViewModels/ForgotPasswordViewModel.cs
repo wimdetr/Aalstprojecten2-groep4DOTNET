@@ -10,7 +10,7 @@ namespace Aalstprojecten2_groep4DOTNET.Models.AccountViewModels
     {
         [Required(ErrorMessage ="E-mail is verplicht")]
         [Display(Name ="E-mail *")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "E-mail moet een geldig e-mail adres zijn.")]
         public string Email { get; set; }
     }
 }

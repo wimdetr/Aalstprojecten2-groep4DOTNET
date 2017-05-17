@@ -96,9 +96,9 @@
                         <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
                                 <th class="kleineBreedte2"></th>
-                                <th>Jaarbedrag Omzetverlies</th>
-                                <th>Besparing</th>
-                                <th class="kleineBreedte2"></th>
+                                <th class="kleineBreedte50">Jaarbedrag Omzetverlies</th>
+                                <th class="kleineBreedte40">Besparing</th>
+                                <th class="kleineBreedte7"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,8 +110,8 @@
                                     <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
                                     <td>@(Model.Lijst1[i - 1].Percent)%</td>
                                     <td class="text-center tooltip" data-volgorde="10">
-                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseBaat3Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij floarRechts"></a>
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1 floarRechts kanKlikken"></a>
                                         @if (i == 1)
                                         {
                                             <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
@@ -169,13 +169,13 @@
                             </div>
                         </div>
 
-                            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-lg-6 col-lg-offset-3">
-                                <div class="btn-group col-md-12 col-sm-12 col-lg-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
-                                    <a id="vulInKnop" class="btn btn-primary col-md-6 col-sm-6 col-lg-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
-                                    <a class="btn btn-danger btn-lg col-md-6 col-sm-6 col-lg-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
-                                </div>
+                        <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-lg-6 col-lg-offset-3">
+                            <div class="btn-group col-md-12 col-sm-12 col-lg-12 margins marginBenedenKnoppen marginBovenKnoppen" role="group">
+                                <a id="vulInKnop" class="btn btn-primary col-md-6 col-sm-6 col-lg-6 btn-lg marginBenedenKlein fancyKnopkesLinkerKnop">Opslaan</a>
+                                <a class="btn btn-danger btn-lg col-md-6 col-sm-6 col-lg-6 fancyKnopkesRechterKnop annuleerKnop">Annuleren</a>
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
 
@@ -187,10 +187,20 @@
                 <h3 class="text-left">2. Hoeveel extra productiviteit denkt u te kunnen maken door inzet van mensen met een grote afstand tot de arbeidsmarkt?</h3>
                 <form method="post">
                     <div class="form-group">
-                        <input asp-for="Baat7" class="form-control" placeholder="Jaarbedrag" />
-                        <span asp-validation-for="Baat7" class="text-danger"></span>
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <div class="col-md-12 text-left verwijderPaddingLinks">
+                                    <label>Bedrag</label>
+                                </div>
+                                <input asp-for="Baat7" class="form-control" placeholder="Jaarbedrag" />
+                                <span asp-validation-for="Baat7" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-1 fixKleineKnop">
+                                <button formaction="AnalyseBaat3Punt2" class="btn btn-primary text-center">Vul In</button>
+                            </div>
+                        </div>
+
                     </div>
-                    <button formaction="AnalyseBaat3Punt2" class="btn btn-primary btn-lg text-center">Vul In</button>
                 </form>
             </div>
 
@@ -202,12 +212,24 @@
                 <h3 class="text-left">3. Welk bedrag krijgt u aan subsidie voor eventuele aanpassingen aan de werkomgeving?</h3>
                 <form method="post">
                     <div class="form-group">
-                        <input asp-for="Baat2" class="form-control" placeholder="Jaarbedrag" />
-                        <span asp-validation-for="Baat2" class="text-danger"></span>
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <div class="col-md-12 text-left verwijderPaddingLinks">
+                                    <label>Bedrag</label>
+                                </div>
+                                <input asp-for="Baat2" class="form-control" placeholder="Jaarbedrag" />
+                                <span asp-validation-for="Baat2" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-1 fixKleineKnop">
+                                <button formaction="AnalyseBaat3Punt3" class="btn btn-primary text-center">Vul In</button>
+                            </div>
+                        </div>
+
                     </div>
-                    <button formaction="AnalyseBaat3Punt3" class="btn btn-primary btn-lg text-center">Vul In</button>
                 </form>
             </div>
+
+
         </div>
         <div class="text-center">
             <div class="col-md-12">

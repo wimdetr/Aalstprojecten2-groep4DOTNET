@@ -113,8 +113,9 @@
 }
 
 .mijnLogo {
-    max-height: 35px;
-    min-height: 35px;
+    max-height: 45px;
+    min-height: 45px;
+    border-radius: 8px;
 }
 
 

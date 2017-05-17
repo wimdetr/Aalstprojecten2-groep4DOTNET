@@ -97,9 +97,9 @@
                         <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
                                 <th class="kleineBreedte2"></th>
-                                <th>Type</th>
-                                <th>Bedrag</th>
-                                <th class="kleineBreedte2"></th>
+                                <th class="kleineBreedte50">Type</th>
+                                <th class="kleineBreedte40">Bedrag</th>
+                                <th class="kleineBreedte7"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -111,8 +111,9 @@
                                     <td>@Model.Lijst1[i - 1].Beschrijving</td>
                                     <td>@Model.Lijst1[i - 1].Bedrag.ToString("C")</td>
                                     <td class="text-center tooltip" data-volgorde="10">
-                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt1RijVerwijderen" asp-route-id="@Model.Lijst1[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij floarRechts"></a>
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1 floarRechts kanKlikken"></a>
+
                                         @if (i == 1)
                                         {
                                             <span class="tooltiptext verbergTooltip tooltipLefAnalyseInvullenTabelAanpassenVerwijderen">U kan een rij aanpassen of verwijderen</span>
@@ -194,9 +195,9 @@
                         <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
                                 <th class="kleineBreedte2"></th>
-                                <th>Uren</th>
-                                <th>Bruto Maandloon Begeleider</th>
-                                <th class="kleineBreedte2"></th>
+                                <th class="kleineBreedte50">Uren</th>
+                                <th class="kleineBreedte40">Bruto Maandloon Begeleider</th>
+                                <th class="kleineBreedte7"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -208,8 +209,8 @@
                                     <td>@Model.Lijst2[i - 1].Uren</td>
                                     <td>@Model.Lijst2[i - 1].Maandloon.ToString("C")</td>
                                     <td class="text-center">
-                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt2RijVerwijderen" asp-route-id="@Model.Lijst2[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij floarRechts"></a>
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop2 floarRechts kanKlikken"></a>
                                     </td>
                                 </tr>
                             }
@@ -279,16 +280,16 @@
             </div>
 
             <div class="Blok1 text-center">
-                <h3 class="text-left">3. Welke opleidingskosten moeten er gemaakt worden om de nieuwe kraachten op het gewenste niveau te krijgen?</h3>
+                <h3 class="text-left">3. Welke opleidingskosten moeten er gemaakt worden om de nieuwe krachten op het gewenste niveau te krijgen?</h3>
 
                 <div class="table-responsive">
                     <table class="table table-striped text-left marginBenedenGroot">
                         <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
                                 <th class="kleineBreedte2"></th>
-                                <th>Type</th>
-                                <th>Bedrag</th>
-                                <th class="kleineBreedte2"></th>
+                                <th class="kleineBreedte50">Type</th>
+                                <th class="kleineBreedte40">Bedrag</th>
+                                <th class="kleineBreedte7"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -300,8 +301,8 @@
                                     <td>@Model.Lijst3[i - 1].Beschrijving</td>
                                     <td>@Model.Lijst3[i - 1].Bedrag.ToString("C")</td>
                                     <td class="text-center">
-                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop3"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijVerwijderen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt3RijVerwijderen" asp-route-id="@Model.Lijst3[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij floarRechts"></a>
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop3 floarRechts kanKlikken"></a>
                                     </td>
                                 </tr>
                             }
@@ -379,9 +380,9 @@
                         <thead class="achtergrondKleurVanDeTabelHeader">
                             <tr>
                                 <th class="kleineBreedte2"></th>
-                                <th>Type</th>
-                                <th>Bedrag</th>
-                                <th class="kleineBreedte2"></th>
+                                <th class="kleineBreedte50">Type</th>
+                                <th class="kleineBreedte40">Bedrag</th>
+                                <th class="kleineBreedte7"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -393,8 +394,8 @@
                                     <td>@Model.Lijst4[i - 1].Beschrijving</td>
                                     <td>@Model.Lijst4[i - 1].Bedrag.ToString("C")</td>
                                     <td class="text-center">
-                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop4"></a>
-                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijVerwijderen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij"></a>
+                                        <a asp-controller="Analyse" asp-action="AnalyseKost4Punt4RijVerwijderen" asp-route-id="@Model.Lijst4[i - 1].KostId" class="glyphicon glyphicon-remove verwijderRij floarRechts"></a>
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop4 floarRechts kanKlikken"></a>
                                     </td>
                                 </tr>
                             }

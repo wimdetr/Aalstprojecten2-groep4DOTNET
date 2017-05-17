@@ -125,7 +125,7 @@
                                     <td>@Model.LijnenKost1[i - 1].TotaleProductiviteitsPremieIBO.ToString("C")</td>
                                     <td>@Model.LijnenKost1[i - 1].BaatUitkomst.ToString("C")</td>
                                     <td class="text-center tooltip" data-volgorde="10">
-                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1"></a>
+                                        <a class="glyphicon glyphicon-edit marginRechtsEnFloatLeft editKnop1 kanKlikken"></a>
                                         <a asp-controller="Analyse" asp-action="AnalyseKostRijVerwijderen" asp-route-id="@Model.LijnenKost1[i - 1].Kost1Id" class="glyphicon glyphicon-remove verwijderRij"></a>
                                         @if (i == 1)
                                         {
