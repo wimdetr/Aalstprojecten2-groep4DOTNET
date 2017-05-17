@@ -265,7 +265,7 @@ namespace Aalstprojecten2_groep4DOTNET.Data
                 _context.Werkgevers.Add(c);
 
 
-                Admin admin = new Admin("bartmoens@gmail.com", "Moens", "Bart");
+                Admin admin = new Admin("bart@kairosnu.be", "Moens", "Bart");
                 admin.Superadmin = true;
 
                 InterneMail mail1 = new InterneMail(admin, "welkom", "Welkom op kairos", DateTime.Now.AddDays(-2));

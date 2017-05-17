@@ -24,6 +24,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly IJobCoachRepository _jobCoachRepository;
+        private readonly IAdminRepository _adminRepository;
+        private readonly IInterneMailJobcoachRepository _interneMailJobcoachRepository;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -31,7 +33,9 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory,
-            IJobCoachRepository jobCoachRepository)
+            IJobCoachRepository jobCoachRepository,
+            IAdminRepository adminRepository,
+            IInterneMailJobcoachRepository interneMailJobcoachRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -39,6 +43,8 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
             _jobCoachRepository = jobCoachRepository;
+            _adminRepository = adminRepository;
+            _interneMailJobcoachRepository = interneMailJobcoachRepository;
         }
 
         //
@@ -144,6 +150,12 @@ namespace Aalstprojecten2_groep4DOTNET.Controllers
                     }
                     _jobCoachRepository.Add(jc);
                     _jobCoachRepository.SaveChanges();
+
+                    Admin admin = _adminRepository.GetByEmail("bart@kairosnu.be");
+                    InterneMail mail = new InterneMail(admin, "Welkom op Kairos", "Dag " + jc.Voornaam + " " + jc.Naam + ",\n\nwij wensen u hartelijk welkom op Kairos,\nwij hopen dat u een aangename ervaring heeft op onze applicatie, dat u deze applicatie bruikbaar vind en er mooie resultaten mee kan behalen om mensen met een beperking aan het werk te helpen.\nIndien u vragen heeft, aarzel niet om mij te contacteren.\n\nMet vriendelijke groeten,\nUw Kairos team", DateTime.Now);
+                    InterneMailJobcoach mailJobcoach = new InterneMailJobcoach(jc, mail);
+                    _interneMailJobcoachRepository.Add(mailJobcoach);
+                    _interneMailJobcoachRepository.SaveChanges();
                     TempData["message"] =
                         "U heeft succesvol geregistreerd, u heeft een e-mail ontvangen met uw eerste wachtwoord.";
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
