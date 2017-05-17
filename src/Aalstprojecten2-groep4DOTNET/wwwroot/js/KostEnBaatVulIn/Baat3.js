@@ -26,16 +26,16 @@
 
 
             if (bevatFout) {
-                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat3Punt1");
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.closest("form").attr("action", "AnalyseBaat3Punt1");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn");
                 if (tijd !== 0) {
-                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                    knop.closest("form").addClass("animated zoomOut");
                 }
                 setTimeout(function () {
-                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseBaat3Punt1");
-                    knop.parent().parent().parent().parent().parent().submit();
+                    knop.closest("form").attr("action", "AnalyseBaat3Punt1");
+                    knop.closest("form").submit();
                 },
                     tijd);
             }

@@ -22,16 +22,16 @@
 
 
             if (bevatFout) {
-                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt1");
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.closest("form").attr("action", "AnalyseKost4Punt1");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn");
                 if (tijd !== 0) {
-                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                    knop.closest("form").addClass("animated zoomOut");
                 }
                 setTimeout(function () {
-                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt1");
-                    knop.parent().parent().parent().parent().parent().submit();
+                    knop.closest("form").attr("action", "AnalyseKost4Punt1");
+                    knop.closest("form").submit();
                 },
                     tijd);
             }
@@ -62,16 +62,16 @@
             }
 
             if (bevatFout) {
-                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt2");
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.closest("form").attr("action", "AnalyseKost4Punt2");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn");
                 if (tijd !== 0) {
-                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                    knop.closest("form").addClass("animated zoomOut");
                 }
                 setTimeout(function () {
-                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt2");
-                    knop.parent().parent().parent().parent().parent().submit();
+                    knop.closest("form").attr("action", "AnalyseKost4Punt2");
+                    knop.closest("form").submit();
                 },
                     tijd);
             }
@@ -97,16 +97,16 @@
 
 
             if (bevatFout) {
-                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt3");
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.closest("form").attr("action", "AnalyseKost4Punt3");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn");
                 if (tijd !== 0) {
-                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                    knop.closest("form").addClass("animated zoomOut");
                 }
                 setTimeout(function () {
-                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt3");
-                    knop.parent().parent().parent().parent().parent().submit();
+                    knop.closest("form").attr("action", "AnalyseKost4Punt3");
+                    knop.closest("form").submit();
                 },
                     tijd);
             }
@@ -132,16 +132,16 @@
 
 
             if (bevatFout) {
-                knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt4");
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn").submit();
+                knop.closest("form").attr("action", "AnalyseKost4Punt4");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn").submit();
             } else {
-                knop.parent().parent().parent().parent().parent().removeClass("toonFormulier animated zoomIn");
+                knop.closest("form").removeClass("toonFormulier animated zoomIn");
                 if (tijd !== 0) {
-                    knop.parent().parent().parent().parent().parent().addClass("animated zoomOut");
+                    knop.closest("form").addClass("animated zoomOut");
                 }
                 setTimeout(function () {
-                    knop.parent().parent().parent().parent().parent().attr("action", "AnalyseKost4Punt4");
-                    knop.parent().parent().parent().parent().parent().submit();
+                    knop.closest("form").attr("action", "AnalyseKost4Punt4");
+                    knop.closest("form").submit();
                 },
                     tijd);
             }
@@ -182,7 +182,7 @@
 
             var lijnId = waarden[0];
             var uren = waarden[2];
-            var bedrag = waarden[3].substring(2, waarden[3].length);
+            var bedrag = waarden[3].substring(2, waarden[3].length).replace(".", "");
             if (parseFloat(uren) === 0) {
                 uren = "";
             }
@@ -237,7 +237,7 @@
 
             var lijnId = waarden[0];
             var beschrijving = waarden[2];
-            var bedrag = waarden[3].substring(2, waarden[3].length);
+            var bedrag = waarden[3].substring(2, waarden[3].length).replace(".", "");
 
 
             if (parseFloat(bedrag) === 0) {
