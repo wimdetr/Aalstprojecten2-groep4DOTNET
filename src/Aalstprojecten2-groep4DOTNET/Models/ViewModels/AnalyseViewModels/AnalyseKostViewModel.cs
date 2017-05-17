@@ -16,8 +16,8 @@ namespace Aalstprojecten2_groep4DOTNET.Models.ViewModels.AnalyseViewModels
         [Display(Name = "Uren per week")]
         [RegularExpression("[1-9][0-9]*", ErrorMessage = "{0} moet een positief getal zijn")]
         public string AantalUrenPerWeek { get; set; }
-        [Display(Name = "Bruto maandloon")]
-        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "{0} moet een positief getal zijn, gebruik een komma in plaats van een punt")]
+        [Display(Name = "Maandloon")]
+        [RegularExpression("[1-9][0-9]*([,][0-9]+)?", ErrorMessage = "Bruto maandloon moet een positief getal zijn, gebruik een komma in plaats van een punt")]
         public string BrutoMaandloonFulltime { get; set; }
         [Display(Name = "Doelgroep")]
         public string Doelgroep { get; set; }
