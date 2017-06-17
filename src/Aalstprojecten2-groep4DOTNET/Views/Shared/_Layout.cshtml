@@ -35,13 +35,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a asp-controller="Home" asp-action="Index" class="navbar-brand tooltip" data-volgorde="1">
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand tooltip hoofdSchermTooltip" data-volgorde="1">
                         <img class="kairosLogo" src="~/images/kairosLogo/kairos_wordmark_white.png" alt="LOGO" />
                         <span class="tooltiptext tooltipRightHomeKairosLogo tooltipOnzichtbaar verbergTooltip">Via hier kan u terug naar het dashboard keren</span>
                     </a>
                 </div>
                 <!-- Top Menu Items -->
-                <ul class="nav navbar-right top-nav extraPaddingBeneden DropdownUserMargin marginRechts tooltip" data-volgorde="10">
+                <ul class="nav navbar-right top-nav extraPaddingBeneden DropdownUserMargin marginRechts tooltip hoofdSchermTooltip" data-volgorde="10">
                     <li>
                         @await Html.PartialAsync("_LoginPartial")
                         <span class="tooltiptext tooltipLeftHomePageDropdown tooltipOnzichtbaar verbergTooltip">Hier kan u uw profiel wijzigen, Bart contacteren, uw inbox controleren, animaties uitschakelen en uitloggen</span>
@@ -50,23 +50,23 @@
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse nieuweAchtergrond">
                     <ul class="nav navbar-nav side-nav intMidden" style="overflow:initial;">
-                        <li class="homeIcoon test tooltip" data-volgorde="2">
+                        <li class="homeIcoon test tooltip hoofdSchermTooltip" data-volgorde="2">
                             
                                 <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/iconen/home.png" class="icons homePrent" /></a>
                             <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het dashboard te gaan</span>
                             
                         </li>
-                        <li class="nieuwIcoon test tooltip" data-volgorde="1">
+                        <li class="nieuwIcoon test tooltip hoofdSchermTooltip" data-volgorde="1">
                                 <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img src="~/images/iconen/nieuw.png" class="icons nieuwPrent" /></a>
                                 <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om een nieuwe analyse te maken</span>
                         </li>
-                        <li class="archiefIcoon test tooltip" data-volgorde="2">
+                        <li class="archiefIcoon test tooltip hoofdSchermTooltip" data-volgorde="2">
                             <a asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
                             <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het archief te gaan</span>
                         </li>
                         <li id="helpKnop" style="margin-top: calc(100vh - 430px)">
                             <h4>Help</h4>
-                            <div class="btn-group tooltip" id="status" data-toggle="buttons" data-volgorde="0">
+                            <div class="btn-group tooltip hoofdSchermTooltip" id="status" data-toggle="buttons" data-volgorde="0">
                                 <label id="activeerTooltipKnop" class="btn btn-default btn-on">
                                     <input type="radio" value="1" name="multifeatured_module[module_id][status]" checked="checked">AAN
                                 </label>
