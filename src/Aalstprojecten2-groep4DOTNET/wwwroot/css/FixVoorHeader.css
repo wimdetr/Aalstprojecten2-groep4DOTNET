@@ -66,3 +66,14 @@ a:hover, a:focus {
     background-color: #80ABCE;
     border: none;   
 }
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #99CC00;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #99CC00;
+    border-color: grey;
+}

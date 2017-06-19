@@ -6,7 +6,7 @@
         if ($(".analyseKaarten").length % aantalPerPagina > 0) {
             aantalPaginas++;
         }
-        $("#paginaLabel").text(huidigePagina + " van " + aantalPaginas);
+        $("#paginaLabel").text(huidigePagina + "/" + aantalPaginas);
         if ($(".analyseKaarten").length <= aantalPerPagina) {
             $(".eerstePagina").prop("disabled", true);
             $(".vorigePagina").prop("disabled", true);
@@ -24,9 +24,7 @@
         }
         $("#choiceBoxAantal")
             .change(function() {
-                if ($(this).val() === "Aantal") {
-                    aantalPerPagina = 10;
-                }else if ($(this).val() === "Alle") {
+                if ($(this).val() === "Alle") {
                     aantalPerPagina = $(".analyseKaarten").length;
                 } else {
                     aantalPerPagina = $(this).val();
@@ -51,7 +49,7 @@
                     toonAnalyses(1, aantalPerPagina);
                 }
                 huidigePagina = 1;
-                $("#paginaLabel").text(huidigePagina + " van " + aantalPaginas);
+                $("#paginaLabel").text(huidigePagina + "/" + aantalPaginas);
             });
         $(".eerstePagina")
             .click(function () {
@@ -61,7 +59,7 @@
                 $(".volgendePagina").prop("disabled", false);
                 $(".laatstePagina").prop("disabled", false);
                 toonAnalyses((huidigePagina - 1) * aantalPerPagina + 1, (huidigePagina) * aantalPerPagina);
-                $("#paginaLabel").text(huidigePagina + " van " + aantalPaginas);
+                $("#paginaLabel").text(huidigePagina + "/" + aantalPaginas);
             });
         $(".vorigePagina")
             .click(function () {
@@ -73,7 +71,7 @@
                 $(".volgendePagina").prop("disabled", false);
                 $(".laatstePagina").prop("disabled", false);
                 toonAnalyses((huidigePagina - 1) * aantalPerPagina + 1, (huidigePagina) * aantalPerPagina);
-                $("#paginaLabel").text(huidigePagina + " van " + aantalPaginas);
+                $("#paginaLabel").text(huidigePagina + "/" + aantalPaginas);
             });
         $(".volgendePagina")
             .click(function() {
@@ -85,7 +83,7 @@
                 $(".eerstePagina").prop("disabled", false);
                 $(".vorigePagina").prop("disabled", false);
                 toonAnalyses((huidigePagina - 1) * aantalPerPagina + 1, (huidigePagina) * aantalPerPagina);
-                $("#paginaLabel").text(huidigePagina + " van " + aantalPaginas);
+                $("#paginaLabel").text(huidigePagina + "/" + aantalPaginas);
             });
         $(".laatstePagina")
             .click(function() {
@@ -95,7 +93,7 @@
                 $(".eerstePagina").prop("disabled", false);
                 $(".vorigePagina").prop("disabled", false);
                 toonAnalyses((huidigePagina - 1) * aantalPerPagina + 1, (huidigePagina) * aantalPerPagina);
-                $("#paginaLabel").text(huidigePagina + " van " + aantalPaginas);
+                $("#paginaLabel").text(huidigePagina + "/" + aantalPaginas);
             });
 
         //in mensentaal beginnen bij kaart 1 en tot en met de hoeveelste we willen laten zien.

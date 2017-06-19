@@ -433,3 +433,7 @@ body{
 .beetjeMarginBeneden {
     margin-bottom: 5%;
 }
+
+.transparantie {
+    opacity: 0.8;
+}

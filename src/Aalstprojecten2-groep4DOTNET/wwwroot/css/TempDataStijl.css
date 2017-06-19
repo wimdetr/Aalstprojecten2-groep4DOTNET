@@ -1,11 +1,11 @@
 ﻿.alertGelukt {
-    background-color: #9fdf9f;
-      border-color: #9fdf9f;
+    background-color: #C6FF1A;
+      border-color: #C6FF1A;
       color: black;
 }
 
 .alertMislukt {
-    background-color: #ff6666;
-    border-color: #ff6666;
+    background-color: #FF3333;
+    border-color: #FF3333;
     color: black;
 }

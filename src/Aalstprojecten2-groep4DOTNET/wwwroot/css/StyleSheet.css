@@ -67,3 +67,51 @@
 .marginRechtsMidden {
     margin-right: 25px;
 }
+
+.glyphicon {
+    color: #86b300;
+}
+
+.groeneKnop {
+    background-color: #99CC00;
+    border-color: #99CC00;
+}
+
+.groeneKnop.disabled:hover, .groeneKnop[disabled]:hover {
+    background-color: #99CC00;
+    opacity: 0.65;
+    border-color: #99CC00;
+}
+
+.groeneKnop:hover, .groeneKnop:active, .groeneKnop:focus, .groeneKnop:active:focus {
+    background-color: #86b300;
+}
+
+.groeneKnop:active:hover, .groeneKnop.active:hover, .open > .dropdown-toggle.groeneKnop:hover, .groeneKnop:active:focus, .groeneKnop.active:focus, .open > .dropdown-toggle.groeneKnop:focus, .groeneKnop:active.focus, .groeneKnop.active.focus, .open > .dropdown-toggle.groeneKnop.focus {
+    color: #fff;
+    background-color: #86b300;
+    border-color: grey;
+}
+
+.groeneKnop:active:focus:hover:visited,
+.groeneKnop:active:focus:hover,
+.groeneKnop:active:focus:visited,
+.groeneKnop:active:hover:visited,
+.groeneKnop:focus:hover:visited,
+.groeneKnop:active:focus,
+.groeneKnop:active:hover,
+.groeneKnop:active:visited,
+.groeneKnop:focus:hover,
+.groeneKnop:focus:visited,
+.groeneKnop:hover:visited,
+.groeneKnop:hover,
+.groeneKnop:active,
+.groeneKnop:focus,
+.groeneKnop:visited {
+    border-color: grey;
+    box-shadow: none;
+}
+
+.transparantie {
+    opacity: 0.8;
+}
