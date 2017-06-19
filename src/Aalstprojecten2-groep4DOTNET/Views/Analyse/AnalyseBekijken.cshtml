@@ -98,7 +98,7 @@ else
         teller++;
         <div class="col-lg-4 col-md-6 col-sm-12 cards">
             <div class="col-lg-12 col-md-12 col-sm-12 omlijn borderRadius">
-                <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel kaartjeHeading borderRadiusTop">
+                <div class="col-lg-12 col-md-12 col-sm-12 verhoogPaddingZijkant verhoogPaddingTitel borderRadiusTop nieuweAchtergrond2">
                     <div class="col-lg-2 col-md-2 col-sm-2">
                         @*logo werkgever*@
                         <img class="img-responsive mijnLogo" src="@item.LinkNaarPrent" />
@@ -234,13 +234,13 @@ else
                 }
                 else if (item.NettoResultaat > 0)
                 {
-                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #9fdf9f;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #c6ff1a;">
                         <strong>@item.NettoResultaat.ToString("C")</strong>
                     </div>
                 }
                 else
                 {
-                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #ff6666;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 resultaat borderRadiusDown" style="background-color: #ff3333;">
                         <strong>@((item.NettoResultaat * -1).ToString("C"))</strong>
                     </div>
                 }

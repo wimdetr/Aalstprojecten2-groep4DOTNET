@@ -68,7 +68,7 @@
         function tekenHeaders() {
             context.beginPath();
             context.rect(0, 45, 238, 60);
-            context.fillStyle = "#008B8B";
+            context.fillStyle = "#99CC00";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -76,7 +76,7 @@
 
             context.beginPath();
             context.rect(462, 45, 238, 60);
-            context.fillStyle = "#A52A2A";
+            context.fillStyle = "#FF3333";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -91,7 +91,7 @@
         function tekenRij1() {
             context.beginPath();
             context.rect(0, 105, 238, 60);
-            context.fillStyle = "#EAF1F1";
+            context.fillStyle = "#F1F3E9";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -115,7 +115,7 @@
 
             context.beginPath();
             context.rect(462, 105, 238, 60);
-            context.fillStyle = "#F2ECEC";
+            context.fillStyle = "#F1EBEB";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -136,7 +136,7 @@
         function tekenRij2() {
             context.beginPath();
             context.rect(0, 165, 238, 60);
-            context.fillStyle = "#E1EFEF";
+            context.fillStyle = "#F0F5E0";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -160,7 +160,7 @@
 
             context.beginPath();
             context.rect(462, 165, 238, 60);
-            context.fillStyle = "#F1E5E5";
+            context.fillStyle = "#F1E4E4";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -180,7 +180,7 @@
         function tekenRij3() {
             context.beginPath();
             context.rect(0, 225, 238, 60);
-            context.fillStyle = "#EAF1F1";
+            context.fillStyle = "#F1F3E9";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -204,7 +204,7 @@
 
             context.beginPath();
             context.rect(462, 225, 238, 60);
-            context.fillStyle = "#F2ECEC";
+            context.fillStyle = "#F1EBEB";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -225,7 +225,7 @@
         function tekenRij4() {
             context.beginPath();
             context.rect(0, 285, 238, 60);
-            context.fillStyle = "#E1EFEF";
+            context.fillStyle = "#F0F5E0";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -249,7 +249,7 @@
 
             context.beginPath();
             context.rect(462, 285, 238, 60);
-            context.fillStyle = "#F1E5E5";
+            context.fillStyle = "#F1E4E4";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -269,7 +269,7 @@
         function tekenRij5() {
             context.beginPath();
             context.rect(0, 345, 238, 60);
-            context.fillStyle = "#EAF1F1";
+            context.fillStyle = "#F1F3E9";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -293,7 +293,7 @@
 
             context.beginPath();
             context.rect(462, 345, 238, 60);
-            context.fillStyle = "#F2ECEC";
+            context.fillStyle = "#F1EBEB";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -313,7 +313,7 @@
         function tekenRij6() {
             context.beginPath();
             context.rect(0, 405, 238, 60);
-            context.fillStyle = "#E1EFEF";
+            context.fillStyle = "#F0F5E0";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -337,7 +337,7 @@
 
             context.beginPath();
             context.rect(462, 405, 238, 60);
-            context.fillStyle = "#F1E5E5";
+            context.fillStyle = "#F1E4E4";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -357,7 +357,7 @@
         function tekenRij7() {
             context.beginPath();
             context.rect(0, 465, 238, 60);
-            context.fillStyle = "#EAF1F1";
+            context.fillStyle = "#F1F3E9";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -381,7 +381,7 @@
 
             context.beginPath();
             context.rect(462, 465, 238, 60);
-            context.fillStyle = "#F2ECEC";
+            context.fillStyle = "#F1EBEB";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -400,7 +400,7 @@
         function tekenRij8() {
             context.beginPath();
             context.rect(0, 525, 238, 60);
-            context.fillStyle = "#E1EFEF";
+            context.fillStyle = "#F0F5E0";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -424,7 +424,7 @@
 
             context.beginPath();
             context.rect(462, 525, 238, 60);
-            context.fillStyle = "#F1E5E5";
+            context.fillStyle = "#F1E4E4";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -443,7 +443,7 @@
         function tekenRij9() {
             context.beginPath();
             context.rect(0, 585, 238, 60);
-            context.fillStyle = "#EAF1F1";
+            context.fillStyle = "#F1F3E9";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -467,7 +467,7 @@
 
             context.beginPath();
             context.rect(462, 585, 238, 60);
-            context.fillStyle = "#F2ECEC";
+            context.fillStyle = "#F1EBEB";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -483,7 +483,7 @@
         function tekenRij10() {
             context.beginPath();
             context.rect(0, 645, 238, 80);
-            context.fillStyle = "#E1EFEF";
+            context.fillStyle = "#F0F5E0";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -507,7 +507,7 @@
 
             context.beginPath();
             context.rect(462, 645, 238, 80);
-            context.fillStyle = "#F1E5E5";
+            context.fillStyle = "#F1E4E4";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -525,7 +525,7 @@
         function tekenRij11() {
             context.beginPath();
             context.rect(0, 725, 238, 60);
-            context.fillStyle = "#EAF1F1";
+            context.fillStyle = "#F1F3E9";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -549,7 +549,7 @@
 
             context.beginPath();
             context.rect(462, 725, 238, 60);
-            context.fillStyle = "#F2ECEC";
+            context.fillStyle = "#F1EBEB";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -565,7 +565,7 @@
         function tekenSubtotaalRij() {
             context.beginPath();
             context.rect(0, 805, 238, 60);
-            context.fillStyle = "#E1EFEF";
+            context.fillStyle = "#F0F5E0";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -589,7 +589,7 @@
 
             context.beginPath();
             context.rect(462, 805, 238, 60);
-            context.fillStyle = "#F1E5E5";
+            context.fillStyle = "#F1E4E4";
             context.fill();
             context.lineWidth = 2;
             context.strokeStyle = "#DDDDDD";
@@ -614,9 +614,9 @@
             if (nettoResultaat === 0) {
                 context.fillStyle = "#D3D3D3";
             }else if (nettoResultaat > 0) {
-                context.fillStyle = "#008B8B";
+                context.fillStyle = "#99CC00";
             } else {
-                context.fillStyle = "#A52A2A";
+                context.fillStyle = "#FF3333";
                 tekst = tekst.replace("-", "");
             }
             

@@ -39,7 +39,7 @@
                 <th class="text-center rechterKol">Kosten</th>
             </tr>
 
-            <tr class="vet">
+            <tr>
                 <td class="baten2 hoogte">Totale loonkostsubsidies (VOP, IBO en doelgroepvermindering)</td>
                 <td class="text-center">@Model.Baat1.ToString("C")</td>
                 <td class="text-center">@Model.Kost1.ToString("C")</td>
@@ -148,11 +148,11 @@
                 }
                 else if (Model.NettoResultaat > 0)
                 {
-                    <td class="text-center vetGedrukt" style="background-color: darkcyan; color: white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
+                    <td class="text-center vetGedrukt" style="background-color: #99CC00; color: white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
                 }
                 else
                 {
-                    <td class="text-center vetGedrukt" style="background-color: brown; color: white;" colspan="2">@((Model.NettoResultaat * -1).ToString("C"))</td>
+                    <td class="text-center vetGedrukt" style="background-color: #FF3333; color: white;" colspan="2">@((Model.NettoResultaat * -1).ToString("C"))</td>
                 }
 
             </tr>
@@ -172,7 +172,7 @@
                 <th class="text-center rechterKol">Kosten</th>
             </tr>
 
-            <tr class="vet">
+            <tr>
                 <td class="baten2 klikbaar hoogte hoverkeKost" onclick="location.href = '@(Url.Action("AnalyseKost", "Analyse"))'">Totale loonkostsubsidies (VOP, IBO en doelgroepvermindering)</td>
                 <td class="text-center">@Model.Baat1.ToString("C")</td>
                 <td class="text-center">@Model.Kost1.ToString("C")</td>
@@ -282,12 +282,11 @@
                 }
                 else if (Model.NettoResultaat > 0)
                 {
-                    <td class="text-center vetGedrukt" style="background-color: darkcyan; color: white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
+                    <td class="text-center vetGedrukt" style="background-color: #99CC00; color: white;" colspan="2">@Model.NettoResultaat.ToString("C")</td>
                 }
                 else
                 {
-                    <td class="text-center vetGedrukt" style="background-color: brown; color: white;" colspan="2">@((Model.NettoResultaat*-1).ToString("C"))</td>
-
+                    <td class="text-center vetGedrukt" style="background-color: #FF3333; color: white;" colspan="2">@((Model.NettoResultaat*-1).ToString("C"))</td>
                 }
 
             </tr>

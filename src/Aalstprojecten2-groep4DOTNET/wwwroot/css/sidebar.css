@@ -146,7 +146,55 @@
 }
 
 .nieuweAchtergrond {
-    background-color: #337AB7;
+    background-image: url(../images/login/achtergrond.png);
+}
+
+.nieuweAchtergrond2 {
+    /*blauw*/
+    /*background-color: #337AB7;*/
+    /*paars*/
+    /*background-color: #b366ff;*/
+    /*groen*/
+    background-color: #99CC00;
+    /*background-image: url(../images/login/achtergrond.png);*/
+}
+
+.nieuweAchtergrond3 {
+    background-color: #99CC00;
+}
+
+.nieuweAchtergrond3.disabled:hover, .nieuweAchtergrond3[disabled]:hover {
+    background-color: #99CC00;
+    opacity: 0.65;
+}
+
+.nieuweAchtergrond3:hover, .nieuweAchtergrond3:active, .nieuweAchtergrond3:focus, .nieuweAchtergrond3:active:focus {
+    background-color: #86b300;
+}
+
+.nieuweAchtergrond3:active:hover, .nieuweAchtergrond3.active:hover, .open > .dropdown-toggle.nieuweAchtergrond3:hover, .nieuweAchtergrond3:active:focus, .nieuweAchtergrond3.active:focus, .open > .dropdown-toggle.nieuweAchtergrond3:focus, .nieuweAchtergrond3:active.focus, .nieuweAchtergrond3.active.focus, .open > .dropdown-toggle.nieuweAchtergrond3.focus {
+    color: #fff;
+    background-color: #86b300;
+    border-color: grey;
+}
+
+.nieuweAchtergrond3:active:focus:hover:visited,
+.nieuweAchtergrond3:active:focus:hover,
+.nieuweAchtergrond3:active:focus:visited,
+.nieuweAchtergrond3:active:hover:visited,
+.nieuweAchtergrond3:focus:hover:visited,
+.nieuweAchtergrond3:active:focus,
+.nieuweAchtergrond3:active:hover,
+.nieuweAchtergrond3:active:visited,
+.nieuweAchtergrond3:focus:hover,
+.nieuweAchtergrond3:focus:visited,
+.nieuweAchtergrond3:hover:visited,
+.nieuweAchtergrond3:hover,
+.nieuweAchtergrond3:active,
+.nieuweAchtergrond3:focus,
+.nieuweAchtergrond3:visited {
+    border-color: grey;
+    box-shadow: none;
 }
 
 .icons {

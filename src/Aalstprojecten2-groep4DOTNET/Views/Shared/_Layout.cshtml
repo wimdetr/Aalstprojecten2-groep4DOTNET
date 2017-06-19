@@ -48,24 +48,24 @@
                     </li>
                 </ul>
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse nieuweAchtergrond">
-                    <ul class="nav navbar-nav side-nav intMidden" style="overflow:initial;">
+                <div class="collapse navbar-collapse navbar-ex1-collapse nieuweAchtergrond2">
+                    <ul class="nav navbar-nav side-nav intMidden nieuweAchtergrond" style="overflow:initial;">
                         <li class="homeIcoon test tooltip hoofdSchermTooltip" data-volgorde="2">
                             
-                                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/iconen/home.png" class="icons homePrent" /></a>
+                                <a asp-area="" asp-controller="Home" asp-action="Index" style="border-bottom:1px white solid;"><img src="~/images/iconen/home.png" class="icons homePrent" /></a>
                             <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het dashboard te gaan</span>
                             
                         </li>
                         <li class="nieuwIcoon test tooltip hoofdSchermTooltip" data-volgorde="1">
-                                <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze"><img src="~/images/iconen/nieuw.png" class="icons nieuwPrent" /></a>
+                                <a asp-area="" asp-controller="Analyse" asp-action="WerkgeverKeuze" style="border-bottom:1px white solid;"><img src="~/images/iconen/nieuw.png" class="icons nieuwPrent" /></a>
                                 <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om een nieuwe analyse te maken</span>
                         </li>
                         <li class="archiefIcoon test tooltip hoofdSchermTooltip" data-volgorde="2">
-                            <a asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
+                            <a asp-area="" asp-controller="Analyse" asp-action="AnalyseBekijken" style="border-bottom:1px white solid;"><img src="~/images/iconen/archief.png" class="icons archiefPrent" /></a>
                             <span class="tooltiptext tooltipRightSidebar tooltipOnzichtbaar verbergTooltip">Klik hier om naar het archief te gaan</span>
                         </li>
                         <li id="helpKnop" style="margin-top: calc(100vh - 430px)">
-                            <h4>Help</h4>
+                            <h4 style="color:white;">Help</h4>
                             <div class="btn-group tooltip hoofdSchermTooltip" id="status" data-toggle="buttons" data-volgorde="0">
                                 <label id="activeerTooltipKnop" class="btn btn-default btn-on">
                                     <input type="radio" value="1" name="multifeatured_module[module_id][status]" checked="checked">AAN
@@ -99,8 +99,7 @@
                     
                     <div class="row" id="main">
                         
-                        <div class="col-sm-12 col-md-12 col-lg-12 well" id="content">
-
+                        <div class="col-sm-12 col-md-12 col-lg-12 well achtergrond" style="border: none;" id="content">
                             @RenderBody()
                         </div>
                     </div>
