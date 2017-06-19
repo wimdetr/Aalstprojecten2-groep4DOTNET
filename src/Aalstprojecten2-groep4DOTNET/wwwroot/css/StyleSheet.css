@@ -67,3 +67,7 @@
 .marginRechtsMidden {
     margin-right: 25px;
 }
+
+.afbeelding {
+    background-image: url("../images/login/sidebar.png");
+}
